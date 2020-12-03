@@ -27,23 +27,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 //Админ-панель
 Route::group(['middleware'=>'roles','roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
-    
+
     #главная админ-панели
     Route::get('/', 'AdminController@index')->name('index');
-    
-    //Раздел товары
-    Route::group(['prefix'=>'products', 'as'=>'products.'], function(){
 
-        //Работа с товарами
-        Route::group(['prefix'=>'products', 'as'=>'products.'], function(){
-            Route::get('/', 'ProductsController@index')->name('index');
-        });
-
-        //Поставщики
-        Route::group(['prefix'=>'suppliers', 'as'=>'suppliers.'], function(){
-            Route::get('/', 'SuppliersController@index')->name('index');
-        });
-
-    });
+    //Раздел
 });
 
