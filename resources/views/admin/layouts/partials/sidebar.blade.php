@@ -34,6 +34,10 @@
                 <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaPages-->
 
+            <a href="#MetricaUsers" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Пользователи" data-trigger="hover">
+                <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
+            </a><!--end MetricaPages-->
+
             <a href="#pages" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Страницы" data-trigger="hover">
                 <i data-feather="book-open" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
@@ -132,11 +136,23 @@
                     <h6 class="menu-title">Врачи</h6>
                 </div>
                 <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
+                    <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список врачей</a></li>
-                    <hr>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список специализаций</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>
+                </ul>
+            </div><!-- end Pages -->
+
+            <div id="MetricaUsers" class="main-icon-menu-pane">
+                <div class="title-box">
+                    <h6 class="menu-title">Пользователи</h6>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить пользователя</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-email"></i>Email-рассылка</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список пользователей</a></li>
                 </ul>
             </div><!-- end Pages -->
 
