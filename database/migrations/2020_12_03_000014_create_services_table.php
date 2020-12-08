@@ -22,8 +22,8 @@ class CreateServicesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->unsignedInteger('cat_servise_id');
+            $table->id();
+            $table->unsignedBigInteger('cat_servise_id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();

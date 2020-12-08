@@ -6,35 +6,33 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateHistoryWorkTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'history_work';
 
-    /**
-     * Run the migrations.
-     * @table history_work
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->date('start')->nullable();
-            $table->date('end')->nullable();
+            $table->id('id');
+            $table->timestamp('start')->nullable();
+            $table->timestamp('end')->nullable();
             $table->string('position')->nullable()->comment('должность');
             $table->string('place')->nullable()->comment('место работы');
+            $table->unsignedBigInteger('doctor_id');
+            $table->timestamps();
+
+
+            $table->index(["doctor_id"], 'fk_doctors_doctor1_idx');
+
+
+            $table->foreign('doctor_id', 'fk_doctors_doctor1_idx')
+                ->references('id')->on('doctors')
+                ->onDelete('no action')
+                ->onUpdate('no action');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

@@ -22,23 +22,21 @@ class CreateServicesHasPostsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('service_id');
-            $table->unsignedInteger('post_id');
-
-            $table->index(["post_id"], 'fk_services_has_posts_posts1_idx');
-
-            $table->index(["service_id"], 'fk_services_has_posts_services1_idx');
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('post_id');
 
 
-            $table->foreign('service_id', 'fk_services_has_posts_services1_idx')
+            $table->foreign('service_id')
                 ->references('id')->on('services')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('post_id', 'fk_services_has_posts_posts1_idx')
+            $table->foreign('post_id')
                 ->references('id')->on('posts')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->primary(['service_id', 'post_id'], 'services_has_posts_service_id_post_id_primary');
         });
     }
 

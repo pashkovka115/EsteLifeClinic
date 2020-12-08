@@ -22,7 +22,7 @@ class CreateContactsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('address')->nullable();
             $table->text('working_hours')->nullable()->comment('режим работы');
             $table->string('phone1', 45)->nullable();

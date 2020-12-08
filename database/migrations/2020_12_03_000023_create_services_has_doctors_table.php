@@ -22,23 +22,21 @@ class CreateServicesHasDoctorsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('service_id');
-            $table->unsignedInteger('doctor_id');
-
-            $table->index(["service_id"], 'fk_services_has_doctors_services1_idx');
-
-            $table->index(["doctor_id"], 'fk_services_has_doctors_doctors1_idx');
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('doctor_id');
 
 
-            $table->foreign('service_id', 'fk_services_has_doctors_services1_idx')
+            $table->foreign('service_id')
                 ->references('id')->on('services')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('doctor_id', 'fk_services_has_doctors_doctors1_idx')
+            $table->foreign('doctor_id')
                 ->references('id')->on('doctors')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->primary(['doctor_id', 'service_id'], 'services_has_doctors_doctor_id_service_id_primary');
         });
     }
 

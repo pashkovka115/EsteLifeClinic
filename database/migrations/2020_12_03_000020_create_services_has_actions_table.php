@@ -22,12 +22,8 @@ class CreateServicesHasActionsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('service_id');
-            $table->unsignedInteger('action_id');
-
-            $table->index(["service_id"], 'fk_services_has_actions_services1_idx');
-
-            $table->index(["action_id"], 'fk_services_has_actions_actions1_idx');
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('action_id');
 
 
             $table->foreign('service_id', 'fk_services_has_actions_services1_idx')
@@ -39,6 +35,8 @@ class CreateServicesHasActionsTable extends Migration
                 ->references('id')->on('actions')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->primary(['service_id', 'action_id'], 'services_has_actions_service_id_action_id_primary');
         });
     }
 

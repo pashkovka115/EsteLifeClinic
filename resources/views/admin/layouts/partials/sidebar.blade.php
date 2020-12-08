@@ -131,16 +131,24 @@
                 </ul><!--end nav-->
             </div><!-- end Others -->
 
-            <div id="MetricaPages" class="main-icon-menu-pane">
+            <div id="MetricaPages" class="main-icon-menu-pane {{ active(['admin.doctors.*']) }}">
                 <div class="title-box">
                     <h6 class="menu-title">Врачи</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.doctors.create') }}"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить практический интерес</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Карьера</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список врачей</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active(['admin.doctors.doctors.index']) }}" href="{{ route('admin.doctors.doctors.index') }}">
+                            <i class="ti ti-user"></i>  Список врачей</a>
+                    </li>
+{{--                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.index') }}"><i class="ti ti-user"></i>  Список специализаций</a></li>--}}
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список специализаций</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список интересов</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Карьера</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>
                 </ul>
             </div><!-- end Pages -->

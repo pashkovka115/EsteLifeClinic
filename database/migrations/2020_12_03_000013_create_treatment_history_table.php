@@ -22,12 +22,12 @@ class CreateTreatmentHistoryTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->json('before_images')->nullable();
-            $table->json('after_images')->nullable();
+            $table->id();
+            $table->longText('before_images')->nullable();
+            $table->longText('after_images')->nullable();
             $table->text('before_text')->nullable();
             $table->text('after_text')->nullable();
-            $table->unsignedInteger('cat_treatment_history_id');
+            $table->unsignedBigInteger('cat_treatment_history_id');
             $table->date('done')->nullable();
 
             $table->index(["cat_treatment_history_id"], 'fk_treatment_history_cat_treatment_history1_idx');

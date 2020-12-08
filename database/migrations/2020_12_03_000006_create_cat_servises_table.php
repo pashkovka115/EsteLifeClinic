@@ -22,9 +22,9 @@ class CreateCatServisesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('name', 45)->nullable();
-            $table->text('content')->nullable();
+            $table->text('description')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();

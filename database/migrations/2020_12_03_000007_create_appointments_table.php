@@ -22,7 +22,7 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('name')->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('cat_servise', 45)->nullable();

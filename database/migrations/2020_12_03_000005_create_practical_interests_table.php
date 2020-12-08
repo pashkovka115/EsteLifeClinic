@@ -22,8 +22,19 @@ class CreatePracticalInterestsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
+            $table->unsignedBigInteger('doctor_id');
             $table->text('description')->nullable();
+            $table->string('ico')->nullable();
+            $table->timestamps();
+
+            $table->index(["doctor_id"], 'fk_doctors_doctor2_idx');
+
+
+            $table->foreign('doctor_id', 'fk_doctors_doctor2_idx')
+                ->references('id')->on('doctors')
+                ->onDelete('no action')
+                ->onUpdate('no action');
         });
     }
 

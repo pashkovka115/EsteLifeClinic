@@ -18,7 +18,6 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/import', 'SuppliersController@import');
 
 Auth::routes();
 
@@ -26,11 +25,31 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 
 //Админ-панель
-Route::group(['middleware'=>'roles','roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
+//Route::group(['middleware'=>'roles','roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
+Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('admin.')->group(function (){
 
     #главная админ-панели
-    Route::get('/', 'AdminController@index')->name('index');
+//    Route::get('/', 'AdminController@index')->name('index');
+    Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('index');
 
-    //Раздел
+    //Раздел врачи
+    Route::group(['prefix'=>'doctors', 'as'=>'doctors.'], function(){
+        // Работа с врачами
+        Route::resource('doctors', \App\Http\Controllers\Admin\AdminDoctorController::class)->except('show')->names('doctors');
+//        Route::resource('professions', \App\Http\Controllers\Admin\AdminProfessionController::class)->except('show')->names('professions');
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 

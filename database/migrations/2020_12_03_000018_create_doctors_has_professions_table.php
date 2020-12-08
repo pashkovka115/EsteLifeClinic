@@ -22,23 +22,20 @@ class CreateDoctorsHasProfessionsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('doctor_id');
-            $table->unsignedInteger('profession_id');
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('profession_id');
 
-            $table->index(["profession_id"], 'fk_doctors_has_professions_professions1_idx');
-
-            $table->index(["doctor_id"], 'fk_doctors_has_professions_doctors1_idx');
-
-
-            $table->foreign('doctor_id', 'fk_doctors_has_professions_doctors1_idx')
+            $table->foreign('doctor_id')
                 ->references('id')->on('doctors')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('profession_id', 'fk_doctors_has_professions_professions1_idx')
+            $table->foreign('profession_id')
                 ->references('id')->on('professions')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->primary(['doctor_id', 'profession_id'], 'doctors_has_professions_doctor_id_profession_id_primary');
         });
     }
 

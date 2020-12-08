@@ -22,12 +22,8 @@ class CreateActionsHasBannersActionsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('action_id');
-            $table->unsignedInteger('banner_action_id');
-
-            $table->index(["banner_action_id"], 'fk_actions_has_banners_actions_banners_actions1_idx');
-
-            $table->index(["action_id"], 'fk_actions_has_banners_actions_actions1_idx');
+            $table->unsignedBigInteger('action_id');
+            $table->unsignedBigInteger('banner_action_id');
 
 
             $table->foreign('action_id', 'fk_actions_has_banners_actions_actions1_idx')
@@ -39,6 +35,8 @@ class CreateActionsHasBannersActionsTable extends Migration
                 ->references('id')->on('banners_actions')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->primary(['action_id', 'banner_action_id'], 'actions_has_banners_actions_action_id_banner_action_id_primary');
         });
     }
 

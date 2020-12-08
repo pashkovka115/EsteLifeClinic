@@ -22,7 +22,7 @@ class CreateSocialNetworksTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('name', 45)->nullable();
             $table->string('account_link')->nullable();
             $table->string('icon_link')->nullable();

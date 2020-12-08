@@ -22,7 +22,7 @@ class CreateCatTreatmentHistoryTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('name', 45)->nullable();
             $table->text('content')->nullable();
             $table->text('meta_description')->nullable();

@@ -22,7 +22,7 @@ class CreatePagesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('name')->nullable();
             $table->text('content')->nullable();
             $table->string('title')->nullable();
