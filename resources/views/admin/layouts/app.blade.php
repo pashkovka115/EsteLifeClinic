@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
 
         @yield('headerStyle')
-        
+
         <!-- App css -->
         <link href="{{ URL::asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ URL::asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
@@ -45,16 +45,18 @@
             <!-- Page Content-->
             <div class="page-content-tab">
 
-               
+
 
                 <div class="container-fluid ">
-                   
+
                     <div class="row">
                         <div class="col-12 ">
                             @include('flash::message')
+                                @include('admin.layouts.partials.message_errors')
+<!--                            --><?php //dump($errors) ?>
                         </div>
                     </div>
-    
+
                     @if(Route::current()->getName() != 'admin.index')
                         <div class="row">
                             <div class="col-sm-12">
@@ -74,11 +76,11 @@
 
                     <!-- content -->
              @yield('content')
-                          
-                </div>
-                
 
-           
+                </div>
+
+
+
 
              <!-- extra Modal -->
              @include('layouts/partials/extra-modal')
@@ -100,11 +102,11 @@
         <script src="{{ URL::asset('assets/js/feather.min.js') }}"></script>
         <script src="{{ URL::asset('assets/js/jquery.slimscroll.min.js') }}"></script>
         <script src="{{ URL::asset('plugins/apexcharts/apexcharts.min.js') }}"></script>
-        
+
         <!-- footerScript -->
         @yield('footerScript')
 
         <!-- App js -->
-        <script src="{{ URL::asset('assets/js/app.js') }}"></script>        
+        <script src="{{ URL::asset('assets/js/app.js') }}"></script>
     </body>
 </html>

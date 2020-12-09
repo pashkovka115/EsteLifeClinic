@@ -137,7 +137,7 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.doctors.create') }}"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.create') }}"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить практический интерес</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Карьера</a></li>
                     <hr>
@@ -145,8 +145,7 @@
                         <a class="nav-link {{ active(['admin.doctors.doctors.index']) }}" href="{{ route('admin.doctors.doctors.index') }}">
                             <i class="ti ti-user"></i>  Список врачей</a>
                     </li>
-{{--                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.index') }}"><i class="ti ti-user"></i>  Список специализаций</a></li>--}}
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список специализаций</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.index') }}"><i class="ti ti-user"></i>  Список специализаций</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список интересов</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Карьера</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>

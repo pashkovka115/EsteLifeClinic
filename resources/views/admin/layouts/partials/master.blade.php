@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
     <head>
         <meta charset="utf-8" />
@@ -11,7 +11,7 @@
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
-        
+
         @yield('headerStyle')
 
           <!-- App css -->
@@ -44,8 +44,8 @@
         <script src="{{ URL::asset('assets/js/waves.js') }}"></script>
         <script src="{{ URL::asset('assets/js/feather.min.js') }}"></script>
         <script src="{{ URL::asset('assets/js/jquery.slimscroll.min.js') }}"></script>
-        <script src="{{ URL::asset('plugins/apexcharts/apexcharts.min.js') }}"></script> 
-      
+        <script src="{{ URL::asset('plugins/apexcharts/apexcharts.min.js') }}"></script>
+
        @yield('footerJs')
 
         <!-- App js -->

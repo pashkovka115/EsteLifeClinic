@@ -8,9 +8,6 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <button class="btn btn-primary"><i class="fas fa-plus"></i> Добавить</button>
-        </div>
         <div class="card-body">
             <table id="datatable" class="table table-bordered dt-responsive nowrap"
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">

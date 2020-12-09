@@ -24,6 +24,7 @@ class CreateProfessionsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name')->nullable();
+            $table->timestamps();
         });
     }
 
