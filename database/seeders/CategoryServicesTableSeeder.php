@@ -17,10 +17,9 @@ class CategoryServicesTableSeeder extends Seeder
                 'meta_description' => $faker->realText(),
                 'title' => $faker->words(3, true),
                 'keywords' => $faker->words(10, true),
-                'img' => asset('images/bg-category.png'),
             ];
         }
 
-        \DB::table('cat_servises')->insert($cats);
+        \DB::table('cat_services')->insert($cats);
     }
 }

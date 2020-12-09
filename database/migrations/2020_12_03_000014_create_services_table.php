@@ -6,24 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateServicesTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'services';
 
-    /**
-     * Run the migrations.
-     * @table services
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->unsignedBigInteger('cat_servise_id');
+            $table->unsignedBigInteger('cat_service_id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
@@ -31,22 +22,19 @@ class CreateServicesTable extends Migration
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();
+            $table->timestamps();
 
-            $table->index(["cat_servise_id"], 'fk_services_cat_servises_idx');
+            $table->index(["cat_service_id"], 'fk_services_cat_services_idx');
 
 
-            $table->foreign('cat_servise_id', 'fk_services_cat_servises_idx')
-                ->references('id')->on('cat_servises')
+            $table->foreign('cat_service_id', 'fk_services_cat_services_idx')
+                ->references('id')->on('cat_services')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

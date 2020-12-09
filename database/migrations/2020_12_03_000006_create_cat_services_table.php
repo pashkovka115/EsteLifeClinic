@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCatServisesTable extends Migration
+class CreateCatServicesTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'cat_servises';
+    public $tableName = 'cat_services';
 
     /**
      * Run the migrations.

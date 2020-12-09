@@ -11,7 +11,7 @@ class Service extends Model
 
     protected $table = 'services';
     protected $fillable = [
-        'cat_servise_id',
+        'cat_service_id',
         'name',
         'description',
         'price',
@@ -25,8 +25,17 @@ class Service extends Model
     /*
      * Врачи
      */
-    public function services()
+    public function doctors()
     {
         return $this->belongsToMany(Doctor::class, 'services_has_doctors');
+    }
+
+
+    /*
+     * Категория услуги
+     */
+    public function category()
+    {
+        return $this->belongsTo(CatService::class, 'cat_service_id');
     }
 }

@@ -93,7 +93,7 @@
             </div><!-- end sales -->
 
             {{--     todo: {{ active(['admin.products.*']) }}           --}}
-            <div id="MetricaApps" class="main-icon-menu-pane">
+            <div id="MetricaApps" class="main-icon-menu-pane {{ active(['admin.services.*']) }}">
                 <div class="title-box">
                     <h6 class="menu-title">Услуги</h6>
                 </div>
@@ -105,14 +105,13 @@
                             <li><a href="../apps/email-read">Read Email</a></li>
                         </ul>
                     </li><!--end nav-item--> --}}
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i> Добавить услугу</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i> Добавить категорию</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create') }}"><i class="mdi mdi-plus"></i> Добавить услугу</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create') }}"><i class="mdi mdi-plus"></i> Добавить категорию</a></li>
                     <hr>
-{{--                <li class="nav-item"><a class="nav-link {{ active(['admin.products.products.index']) }}" href="{{ route('admin.products.products.index') }}"><i class="mdi mdi-dropbox"></i> Список услуг</a></li>--}}
-                <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-dropbox"></i> Список услуг</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-lan"></i>Список категорий</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
+                <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.index']) }}" href="{{ route('admin.services.services.index') }}"><i class="mdi mdi-dropbox"></i> Список услуг</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.index']) }}" href="{{ route('admin.services.categories.index') }}">
+                            <i class="mdi mdi-lan"></i>Список категорий услуг</a>
+                    </li>
                 </ul>
             </div><!-- end Crypto -->
 
@@ -136,19 +135,15 @@
                     <h6 class="menu-title">Врачи</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.doctors.create') }}"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.create') }}"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить практический интерес</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Карьера</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.doctors.doctors.create']) }}" href="{{ route('admin.doctors.doctors.create') }}"><i class="mdi mdi-plus"></i>Добавить врача</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.doctors.professions.create']) }}" href="{{ route('admin.doctors.professions.create') }}"><i class="mdi mdi-plus"></i>Добавить специализацию</a></li>
                     <hr>
                     <li class="nav-item">
                         <a class="nav-link {{ active(['admin.doctors.doctors.index']) }}" href="{{ route('admin.doctors.doctors.index') }}">
                             <i class="ti ti-user"></i>  Список врачей</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.index') }}"><i class="ti ti-user"></i>  Список специализаций</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список интересов</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Карьера</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>
+{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>--}}
                 </ul>
             </div><!-- end Pages -->
 
