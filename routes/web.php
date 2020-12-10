@@ -42,6 +42,11 @@ Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('a
         Route::resource('services', 'Admin\AdminServiceController')->except('show')->names('services');
         Route::resource('categories', 'Admin\AdminCategoryServiceController')->except('show')->names('categories');
     });
+
+    // Раздел отзывы
+    Route::prefix('reviews')->as('reviews.')->group(function(){
+        Route::resource('reviews', 'Admin\AdminReviewController')->except('show')->names('reviews');
+    });
 });
 
 

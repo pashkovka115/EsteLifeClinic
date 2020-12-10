@@ -46,6 +46,10 @@
                 <i data-feather="book-open" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
 
+            <a href="#MetricaReviews" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Отзывы" data-trigger="hover">
+                <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
+            </a>
+
             <a href="#MetricaAuthentication" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Настройки" data-trigger="hover">
                 <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
@@ -193,6 +197,17 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
                 </ul><!--end nav-->
             </div><!-- end Others -->
+
+            <div id="MetricaReviews" class="main-icon-menu-pane {{ active(['admin.reviews.*']) }}">
+                <div class="title-box">
+                    <h6 class="menu-title">Отзывы</h6>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.reviews.reviews.create']) }}" href="{{ route('admin.reviews.reviews.create') }}"><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
+                    <hr>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.reviews.reviews.index']) }}" href="{{ route('admin.reviews.reviews.index') }}"><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
+                </ul>
+            </div>
 
             <div id="MetricaAuthentication" class="main-icon-menu-pane">
                 <div class="title-box">
