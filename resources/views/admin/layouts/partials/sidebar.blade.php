@@ -44,7 +44,7 @@
                 <i data-feather="credit-card" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaUikit-->
 
-            <a href="#MetricaUsers" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Пользователи" data-trigger="hover">
+            <a href="#MetricaUsers" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Администратор" data-trigger="hover">
                 <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaPages-->
 
@@ -186,12 +186,10 @@
 
             <div id="MetricaUsers" class="main-icon-menu-pane">
                 <div class="title-box">
-                    <h6 class="menu-title">Пользователи</h6>
+                    <h6 class="menu-title">Администратор</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить пользователя</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список пользователей</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.administrator.administrator.index') }}"><i class="ti ti-user"></i>  Редактировать профиль</a></li>
                 </ul>
             </div><!-- end Pages -->
 

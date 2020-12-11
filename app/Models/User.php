@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+//        'password',
         'remember_token',
     ];
 
@@ -46,7 +46,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role', 'user_roles', 'user_id', 'role_id');
     }
-    
+
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
@@ -62,7 +62,7 @@ class User extends Authenticatable
         }
         return false;
     }
-    
+
     public function hasRole($role)
     {
         if ($this->roles()->where('role_name', $role)->first()) {

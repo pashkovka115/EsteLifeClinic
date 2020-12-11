@@ -53,6 +53,11 @@ Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('a
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
     });
+
+    // Раздел администратор
+    Route::prefix('administrator')->as('administrator.')->group(function(){
+        Route::resource('administrator', 'Admin\AdministratorController')->only(['index', 'update'])->names('administrator');
+    });
 });
 
 
