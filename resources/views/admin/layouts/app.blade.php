@@ -29,6 +29,12 @@
                 font-weight: 400;
                 font-size: 13.5px !important;
             }
+            .btn{
+                box-shadow: none !important;
+            }
+            .table{
+                border-collapse: collapse; border-spacing: 0; width: 100%;
+            }
         </style>
     </head>
 

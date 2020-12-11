@@ -47,6 +47,12 @@ Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('a
     Route::prefix('reviews')->as('reviews.')->group(function(){
         Route::resource('reviews', 'Admin\AdminReviewController')->except('show')->names('reviews');
     });
+
+    // Раздел страницы
+    Route::prefix('pages')->as('pages.')->group(function(){
+        Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
+        Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
+    });
 });
 
 

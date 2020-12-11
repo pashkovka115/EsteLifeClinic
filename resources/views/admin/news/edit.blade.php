@@ -11,7 +11,8 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.services.services.store') }}" method="post">
+                  action="{{ route('admin.pages.news.update', ['news' => $post->id]) }}" method="post">
+                @method('PUT')
                 @csrf
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -24,29 +25,29 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="text-input-name">Имя</label>
-                                        <input class="form-control" type="text" name="name" value="{{ old('name') }}"
+                                        <label for="text-input-name">Заголовок</label>
+                                        <input class="form-control" type="text" name="name" value="{{ $post->name }}"
                                                id="text-input-name">
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-12">
-                                    <label>Цена</label>
-                                    <input class="form-control" name="price" type="text" value="{{ old('price') }}">
-                                </div>
-
-                                <div class="form-group col-sm-12">
-                                    <label>Тип услуги</label>
-                                    <select name="type" class="form-control">
-                                        <option value="medicine">Медицина</option>
-                                        <option value="cosmetology">Косметология</option>
-                                    </select>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="text-input-name">Время чтения</label>
+                                        <input class="form-control" type="text" name="read_time" value="{{ $post->read_time }}"
+                                               id="text-input-name">
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     <label>Категория</label>
-                                    <select name="cat_service_id" class="form-control">
+                                    <select name="cat_post_id" class="form-control">
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <?php
+                                            if ($category->id == $post->category->id){
+                                                $selected = ' selected';
+                                            }else{ $selected = ''; }
+                                            ?>
+                                        <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -57,30 +58,31 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify" />
+                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
+                                       @if($post->img) data-default-file="{{ URL::asset('storage/' . $post->img)}}" @endif />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="elm1">Описание</label>
-                    <textarea name="description" class="form-control" rows="5"
-                              id="elm1">{{ old('description') }}</textarea>
+                    <label for="elm1">Контент</label>
+                    <textarea name="content" class="form-control" rows="5"
+                              id="elm1">{{ $post->content }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Title</label>
-                    <input class="form-control" name="title" type="text" value="{{ old('title') }}">
+                    <input class="form-control" name="title" type="text" value="{{ $post->title }}">
                 </div>
                 <div class="form-group">
                     <label for="elm2">META Description</label>
                     <textarea name="meta_description"
-                              class="form-control" rows="5">{{ old('meta_description') }}</textarea>
+                              class="form-control" rows="5">{{ $post->meta_description }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="elm2">META Keywords</label>
                     <textarea name="keywords"
-                              class="form-control" rows="5">{{ old('keywords') }}</textarea>
+                              class="form-control" rows="5">{{ $post->keywords }}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>

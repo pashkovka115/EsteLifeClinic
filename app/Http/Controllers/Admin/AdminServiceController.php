@@ -29,6 +29,7 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
@@ -40,6 +41,7 @@ class AdminServiceController extends Controller
         ]);
 
         $data = [
+            'type' => $request->input('type'),
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),
@@ -74,6 +76,7 @@ class AdminServiceController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
@@ -85,6 +88,7 @@ class AdminServiceController extends Controller
         ]);
 
         $data = [
+            'type' => $request->input('type'),
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),

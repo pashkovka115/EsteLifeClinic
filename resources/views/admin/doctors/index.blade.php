@@ -16,7 +16,7 @@
                     <th>Имя</th>
                     <th>Специализация</th>
                     <th>Услуги</th>
-                    <th>Уровень</th>
+                    <th>Высшая категория</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -39,7 +39,8 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="">{{ $doctor->level }}</a>
+                            @if($doctor->level == '1') <span class="badge badge-success">Да</span>
+                            @elseif($doctor->level == '0') <span class="badge badge-warning">Нет</span> @endif
                         </td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>

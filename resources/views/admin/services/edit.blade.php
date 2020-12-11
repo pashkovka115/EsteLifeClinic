@@ -36,6 +36,25 @@
                                 </div>
 
                                 <div class="form-group col-sm-12">
+                                    <label>Тип услуги</label>
+                                    <select name="type" class="form-control">
+                                        <?php
+                                        if ($service->type == 'cosmetology'){
+                                            ?>
+                                            <option value="cosmetology" selected>Косметология</option>
+                                            <option value="medicine">Медицина</option>
+                                            <?php
+                                        }elseif ($service->type == 'medicine'){
+                                            ?>
+                                            <option value="cosmetology">Косметология</option>
+                                            <option value="medicine" selected>Медицина</option>
+                                            <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-sm-12">
                                     <label>Категория</label>
                                     <select name="cat_service_id" class="form-control">
                                         @foreach($categories as $category)

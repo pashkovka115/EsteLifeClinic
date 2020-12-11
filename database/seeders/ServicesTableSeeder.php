@@ -13,6 +13,7 @@ class ServicesTableSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
             $services[] = [
                 'cat_service_id' => 1,
+                'type' => ($i % 2 == 0) ? 'medicine' : 'cosmetology',
                 'name' => "Услуга $i",
                 'description' => $faker->realText(),
                 'price' => random_int(500, 150000),

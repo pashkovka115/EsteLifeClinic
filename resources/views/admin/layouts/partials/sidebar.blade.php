@@ -16,33 +16,19 @@
                 <i data-feather="home" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaEcommerce-->
 
-
-            <a href="#sales" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Продажи" data-trigger="hover">
-                <i data-feather="pie-chart" class="align-self-center menu-icon icon-dual"></i>
-            </a><!--end MetricaPages-->
-
-            {{--     todo: {{ active(['admin.products.*']) }}       --}}
             <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Услуги" data-trigger="hover">
                 <i data-feather="shopping-cart" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaApps-->
-
-            <a href="#MetricaUikit" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Цены и скидки" data-trigger="hover">
-                <i data-feather="credit-card" class="align-self-center menu-icon icon-dual"></i>
-            </a><!--end MetricaUikit-->
 
             <a href="#MetricaPages" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Врачи" data-trigger="hover">
                 <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaPages-->
 
-            <a href="#MetricaUsers" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Пользователи" data-trigger="hover">
-                <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
-            </a><!--end MetricaPages-->
-
-            <a href="#pages" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Страницы" data-trigger="hover">
+            <a href="#beforeAfter" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="До/После" data-trigger="hover">
                 <i data-feather="book-open" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
 
-            <a href="#beforeAfter" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="До/После" data-trigger="hover">
+            <a href="#pages" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Страницы" data-trigger="hover">
                 <i data-feather="book-open" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
 
@@ -53,6 +39,14 @@
             <a href="#MetricaAuthentication" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Настройки" data-trigger="hover">
                 <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
+
+            <a href="#MetricaUikit" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Акции и скидки" data-trigger="hover">
+                <i data-feather="credit-card" class="align-self-center menu-icon icon-dual"></i>
+            </a><!--end MetricaUikit-->
+
+            <a href="#MetricaUsers" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Пользователи" data-trigger="hover">
+                <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
+            </a><!--end MetricaPages-->
 
         </nav><!--end nav-->
         {{-- <div class="pro-metrica-end">
@@ -74,29 +68,16 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link {{ active(['admin.index']) }}" href="#"><i class="mdi mdi-home"></i> Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cart-plus"></i> Новые заказы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cart-plus"></i> Статистика</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cart-plus"></i> Запись на прием</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-phone-in-talk"></i> Обр.звонок</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-headset"></i> Тех.поддержка</a></li>
+{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-headset"></i> Тех.поддержка</a></li>--}}
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>
                 </ul>
             </div><!-- end Ecommerce -->
-            <div id="sales" class="main-icon-menu-pane">
-                <div class="title-box">
-                    <h6 class="menu-title">Продажи</h6>
-                </div>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link " href="#"><i class="mdi mdi-cart-plus"></i>  Новые продажи</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-arrow-top-left"></i> Возвраты/Отмены</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cart"></i>  Продажи</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi dripicons-graph-pie"></i>  Отчеты</a></li>
-                </ul>
-            </div><!-- end sales -->
 
-            {{--     todo: {{ active(['admin.products.*']) }}           --}}
             <div id="MetricaApps" class="main-icon-menu-pane {{ active(['admin.services.*']) }}">
                 <div class="title-box">
                     <h6 class="menu-title">Услуги</h6>
@@ -119,21 +100,6 @@
                 </ul>
             </div><!-- end Crypto -->
 
-            <div id="MetricaUikit" class="main-icon-menu-pane">
-                <div class="title-box">
-                    <h6 class="menu-title">Цены и скидки</h6>
-                </div>
-                <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить купон</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить скидку</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi dripicons-graph-line"></i>Группы скидок</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi  mdi-ticket-percent"></i>Список купонов</a></li>
-                    <br>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi dripicons-browser"></i>Редактор цен</a></li>
-                </ul><!--end nav-->
-            </div><!-- end Others -->
-
             <div id="MetricaPages" class="main-icon-menu-pane {{ active(['admin.doctors.*']) }}">
                 <div class="title-box">
                     <h6 class="menu-title">Врачи</h6>
@@ -147,28 +113,28 @@
                             <i class="ti ti-user"></i>  Список врачей</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.doctors.professions.index') }}"><i class="ti ti-user"></i>  Список специализаций</a></li>
-{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>--}}
                 </ul>
             </div><!-- end Pages -->
 
-            <div id="MetricaUsers" class="main-icon-menu-pane">
+            <div id="beforeAfter" class="main-icon-menu-pane">
                 <div class="title-box">
-                    <h6 class="menu-title">Пользователи</h6>
+                    <h6 class="menu-title">До/После</h6>
                 </div>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить пользователя</a></li>
+                <ul class="nav metismenu">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список пользователей</a></li>
-                </ul>
-            </div><!-- end Pages -->
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
+                </ul><!--end nav-->
+            </div><!-- end Others -->
 
-            <div id="pages" class="main-icon-menu-pane">
+            <div id="pages" class="main-icon-menu-pane {{ active(['admin.pages.*']) }}">
                 <div class="title-box">
                     <h6 class="menu-title">Страницы</h6>
                 </div>
                 <ul class="nav metismenu">
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить страницу</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить статью</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.pages.news.create') }}" href="{{ route('admin.pages.news.create') }}"><i class="mdi mdi-plus"></i>Добавить новость</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.pages.category.news.create']) }}" href="{{ route('admin.pages.category.news.create') }}"><i class="mdi mdi-plus"></i>Добавить категорию новости</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-home"></i>Главная страница</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-information"></i>О компании</a></li>
@@ -176,25 +142,8 @@
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-open-page-variant"></i> Страницы</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book"></i>Статьи блога</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Категории блога</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
-                </ul><!--end nav-->
-            </div><!-- end Others -->
-
-            <div id="beforeAfter" class="main-icon-menu-pane">
-                <div class="title-box">
-                    <h6 class="menu-title">До/После</h6>
-                </div>
-                <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить пример</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-open-page-variant"></i> Примеры</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Категории примеров</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.pages.news.index']) }}" href="{{ route('admin.pages.news.index') }}"><i class="mdi mdi-book"></i>Новости</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.pages.category.news.index']) }}" href="{{ route('admin.pages.category.news.index') }}"><i class="mdi mdi-book-multiple"></i>Категории новостей</a></li>
                 </ul><!--end nav-->
             </div><!-- end Others -->
 
@@ -214,9 +163,38 @@
                     <h6 class="menu-title">Настройки</h6>
                 </div>
                 <ul class="nav">
-                    {{-- <li class="nav-item"><a class="nav-link" href="../authentication/auth-login">Log in</a></li> --}}
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Шапка</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Подвал</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
                 </ul>
             </div><!-- end Authentication-->
+
+            <div id="MetricaUikit" class="main-icon-menu-pane">
+                <div class="title-box">
+                    <h6 class="menu-title">Акции и скидки</h6>
+                </div>
+                <ul class="nav metismenu">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить купон</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить скидку</a></li>
+                    <hr>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi dripicons-graph-line"></i>Группы скидок</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi  mdi-ticket-percent"></i>Список купонов</a></li>
+                    <br>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi dripicons-browser"></i>Редактор цен</a></li>
+                </ul><!--end nav-->
+            </div><!-- end Others -->
+
+            <div id="MetricaUsers" class="main-icon-menu-pane">
+                <div class="title-box">
+                    <h6 class="menu-title">Пользователи</h6>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить пользователя</a></li>
+                    <hr>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-user"></i>  Список пользователей</a></li>
+                </ul>
+            </div><!-- end Pages -->
+
         </div><!--end menu-body-->
     </div><!-- end main-menu-inner-->
 </div>

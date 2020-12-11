@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicesHasDoctorsTableSeeder::class);
         $this->call(PracticalInterestsTableSeeder::class);
         $this->call(ReviewsTableSeeder::class);
+        $this->call(CategoryPostsTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
     }
 }

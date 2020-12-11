@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CatService extends Model
+class CatPost extends Model
 {
     use HasFactory;
 
-    protected $table = 'cat_services';
+    protected $table = 'cat_posts';
     protected $fillable = [
         'name',
-        'description',
+        'content',
         'meta_description',
         'title',
         'keywords',
@@ -25,11 +25,9 @@ class CatService extends Model
         return false;
     }
 
-    /*
-     * Услуги
-     */
-    public function services()
+
+    public function posts()
     {
-        return $this->hasMany(Service::class, 'cat_service_id');
+        return $this->hasMany(Post::class, 'cat_post_id');
     }
 }

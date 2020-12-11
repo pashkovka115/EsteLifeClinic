@@ -40,7 +40,6 @@ class AdminDoctorController extends Controller
             'name' => 'required|string',
             'education' => 'nullable|string',
             'add_education' => 'nullable|string',
-            'level' => 'nullable|string',
             'img' => 'nullable|image',
 
             'ico_*' => 'nullable|image',
@@ -57,8 +56,13 @@ class AdminDoctorController extends Controller
             'name' => $request->input('name'),
             'education' => $request->input('education'),
             'add_education' => $request->input('add_education'),
-            'level' => $request->input('level'),
         ];
+
+        if ($request->has('level')) {
+            $doctor['level'] = '1';
+        }else{
+            $doctor['level'] = '0';
+        }
 
         if ($request->hasFile('img')) {
             $img = $request->file('img')->store("images/$folder");
@@ -154,7 +158,6 @@ class AdminDoctorController extends Controller
             'name' => 'required|string',
             'education' => 'nullable|string',
             'add_education' => 'nullable|string',
-            'level' => 'nullable|string',
             'img' => 'nullable|image',
 
             'ico_*' => 'nullable|image',
@@ -173,8 +176,13 @@ class AdminDoctorController extends Controller
             'name' => $request->input('name'),
             'education' => $request->input('education'),
             'add_education' => $request->input('add_education'),
-            'level' => $request->input('level'),
         ];
+
+        if ($request->has('level')) {
+            $doctor['level'] = '1';
+        }else{
+            $doctor['level'] = '0';
+        }
 
         if ($request->hasFile('img')) {
             $img = $request->file('img')->store("images/$folder");

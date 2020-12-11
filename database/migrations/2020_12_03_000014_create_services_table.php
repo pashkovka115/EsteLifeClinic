@@ -15,6 +15,7 @@ class CreateServicesTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('cat_service_id');
+            $table->enum('type', ['medicine', 'cosmetology'])->comment('тип услуги медицина или косметология');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();

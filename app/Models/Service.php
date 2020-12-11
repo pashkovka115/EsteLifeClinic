@@ -12,6 +12,7 @@ class Service extends Model
     protected $table = 'services';
     protected $fillable = [
         'cat_service_id',
+        'type',
         'name',
         'description',
         'price',

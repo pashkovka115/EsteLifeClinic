@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Новая новость')
 
 @section('headerStyle')
     {{--    upload files --}}
@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.services.services.store') }}" method="post">
+                  action="{{ route('admin.pages.news.store') }}" method="post">
                 @csrf
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -24,27 +24,22 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="text-input-name">Имя</label>
+                                        <label for="text-input-name">Заголовок</label>
                                         <input class="form-control" type="text" name="name" value="{{ old('name') }}"
                                                id="text-input-name">
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-12">
-                                    <label>Цена</label>
-                                    <input class="form-control" name="price" type="text" value="{{ old('price') }}">
-                                </div>
-
-                                <div class="form-group col-sm-12">
-                                    <label>Тип услуги</label>
-                                    <select name="type" class="form-control">
-                                        <option value="medicine">Медицина</option>
-                                        <option value="cosmetology">Косметология</option>
-                                    </select>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="text-input-name">Время чтения</label>
+                                        <input class="form-control" type="text" name="read_time" value="{{ old('read_time') }}"
+                                               id="text-input-name">
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     <label>Категория</label>
-                                    <select name="cat_service_id" class="form-control">
+                                    <select name="cat_post_id" class="form-control">
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -64,9 +59,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="elm1">Описание</label>
-                    <textarea name="description" class="form-control" rows="5"
-                              id="elm1">{{ old('description') }}</textarea>
+                    <label for="elm1">Контент</label>
+                    <textarea name="content" class="form-control" rows="5" id="elm1">{{ old('content') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Title</label>

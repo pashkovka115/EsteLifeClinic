@@ -17,7 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->string('name')->nullable();
             $table->text('education')->nullable()->comment('образование');
             $table->text('add_education')->nullable()->comment('доп образование');
-            $table->string('level')->nullable()->comment('уровень образования');
+            $table->enum('level', ['0', '1'])->comment('высшая категория');
             $table->string('img')->nullable();
             $table->timestamps();
         });

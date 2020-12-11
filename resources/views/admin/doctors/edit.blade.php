@@ -26,11 +26,19 @@
                             <input class="form-control" type="text" name="name" value="{{ $doctor->name }}"
                                    id="text-input-name">
                         </div>
-                        <div class="form-group">
-                            <label for="text-input-lavel">Уровень</label>
-                            <input class="form-control" type="text" name="level" value="{{ $doctor->level }}"
-                                   id="text-input-lavel">
+
+                        <div class="checkbox my-3">
+                            <div class="custom-control custom-checkbox">
+                                <?php
+                                if ($doctor->level == '1'){
+                                    $checked = ' checked';
+                                }else{ $checked = ''; }
+                                ?>
+                                <input type="checkbox" name="level" class="custom-control-input"{{ $checked }} id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                <label class="custom-control-label" for="customCheck3">Врач высшей категории</label>
+                            </div>
                         </div>
+
                     </div>
 
                     <div class="col-sm-4">

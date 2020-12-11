@@ -24,11 +24,9 @@ class CreateCatPostsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name', 45)->nullable();
-            $table->text('content')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();
-            $table->string('img')->nullable();
         });
     }
 
