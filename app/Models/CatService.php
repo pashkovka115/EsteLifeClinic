@@ -12,6 +12,7 @@ class CatService extends Model
     protected $table = 'cat_services';
     protected $fillable = [
         'name',
+        'parent_id',
         'description',
         'meta_description',
         'title',
@@ -31,5 +32,13 @@ class CatService extends Model
     public function services()
     {
         return $this->hasMany(Service::class, 'cat_service_id');
+    }
+
+    /*
+     * Дочерние категории
+     */
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id')->with('children');
     }
 }

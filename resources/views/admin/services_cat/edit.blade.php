@@ -22,6 +22,46 @@
                             <input class="form-control" type="text" name="name" value="{{ $cat->name }}"
                                    id="text-input-name">
                         </div>
+
+                        <div class="form-group">
+                            <?php
+                            function categories($category, $current_cat_id, $current_cat_parent_id, $parent_name = ''){
+                                if ($category->id == $current_cat_id){
+                                    return;
+                                }
+                                if ($parent_name != ''){
+                                    $name = $parent_name . ' → ' . $category->name;
+                                }else{
+                                    $name = $parent_name . $category->name;
+                                }
+                                if ($category->id == $current_cat_parent_id){
+                                    $selected = ' selected';
+                                }else{
+                                    $selected = '';
+                                }
+
+                                echo "<option value=\"$category->id\"$selected>$name</option>";
+
+                                if ($parent_name == ''){
+                                    $parent_name .= $category->name;
+                                }else{
+                                    $parent_name .= ' → ' . $category->name;
+                                }
+
+                                foreach ($category->children as $child){
+                                    categories($child, $current_cat_id, $current_cat_parent_id, $parent_name);
+                                }
+                            }
+                            ?>
+                            <label>Родительская категория</label>
+                            <select name="parent_id" class="form-control">
+                                <option value="0">Без родительской категории</option>
+                                @foreach($categories as $category)
+                                    <?php categories($category, $cat->id, $cat->parent_id); ?>
+                                @endforeach
+                            </select>
+                        </div>
+
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">

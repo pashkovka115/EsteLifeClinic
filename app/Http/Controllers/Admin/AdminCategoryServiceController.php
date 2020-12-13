@@ -19,7 +19,9 @@ class AdminCategoryServiceController extends Controller
 
     public function create()
     {
-        return view('admin.services_cat.create');
+        $categories = CatService::whereNull('parent_id')->with('children')->get();
+
+        return view('admin.services_cat.create', ['categories' => $categories]);
     }
 
 
@@ -27,6 +29,7 @@ class AdminCategoryServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'parent_id' => 'required|nullable|numeric',
             'description' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
@@ -40,6 +43,12 @@ class AdminCategoryServiceController extends Controller
             'meta_description' => $request->input('meta_description'),
             'keywords' => $request->input('keywords'),
         ];
+
+        if ((int)$request->input('parent_id') > 0){
+            $data['parent_id'] = (int)$request->input('parent_id');
+        }else{
+            $data['parent_id'] = null;
+        }
 
         $folder = date('Y/m/d');
 
@@ -58,8 +67,9 @@ class AdminCategoryServiceController extends Controller
     public function edit($id)
     {
         $cat = CatService::where('id', $id)->firstOrFail();
+        $categories = CatService::whereNull('parent_id')->with('children')->get();
 
-        return view('admin.services_cat.edit', ['cat' => $cat]);
+        return view('admin.services_cat.edit', ['cat' => $cat, 'categories' => $categories]);
     }
 
 
@@ -67,6 +77,7 @@ class AdminCategoryServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'parent_id' => 'required|nullable|numeric',
             'description' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
@@ -80,6 +91,12 @@ class AdminCategoryServiceController extends Controller
             'meta_description' => $request->input('meta_description'),
             'keywords' => $request->input('keywords'),
         ];
+        if ((int)$request->input('parent_id') > 0){
+            $data['parent_id'] = (int)$request->input('parent_id');
+        }else{
+            $data['parent_id'] = null;
+        }
+
 
         $folder = date('Y/m/d');
 
@@ -97,9 +114,13 @@ class AdminCategoryServiceController extends Controller
 
     public function destroy($id)
     {
-       $cat = CatService::with('services')->where('id', $id)->firstOrFail();
+       $cat = CatService::with(['services', 'children'])->where('id', $id)->firstOrFail();
         if ($cat->services()->count() > 0){
             flash('В этой категории есть услуги')->error();
+            return back();
+        }
+        if ($cat->children()->count() > 0){
+            flash('В этой категории есть вложенные категории. Ближайшую дочернюю категорию сделайте "Без родительской"')->error();
             return back();
         }
 

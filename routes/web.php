@@ -26,7 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 //Админ-панель
 //Route::group(['middleware'=>'roles','roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
-Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('admin.')->group(function (){
+//Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('admin.')->group(function (){
+Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
 
     #главная админ-панели
     Route::get('/', 'AdminController@index')->name('index');

@@ -21,6 +21,36 @@
                             <input class="form-control" type="text" name="name" value="{{ old('name') }}"
                                    id="text-input-name">
                         </div>
+                        <div class="form-group">
+                            <?php
+                            function categories($category, $parent_name = ''){
+                                if ($parent_name != ''){
+                                    $name = $parent_name . ' → ' . $category->name;
+                                }else{
+                                    $name = $parent_name . $category->name;
+                                }
+
+                                echo "<option value=\"$category->id\">$name</option>";
+
+                                if ($parent_name == ''){
+                                    $parent_name .= $category->name;
+                                }else{
+                                    $parent_name .= ' → ' . $category->name;
+                                }
+
+                                foreach ($category->children as $child){
+                                    categories($child, $parent_name);
+                                }
+                            }
+                            ?>
+                            <label>Родительская категория</label>
+                            <select name="parent_id" class="form-control">
+                                <option value="0">Без родительской категории</option>
+                                @foreach($categories as $category)
+                                    <?php categories($category); ?>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">

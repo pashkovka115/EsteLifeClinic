@@ -42,15 +42,6 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-sm-12">
-                                    <label>Категория</label>
-                                    <select name="cat_service_id" class="form-control">
-                                        @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -61,6 +52,36 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <?php
+                    function categories($category, $parent_name = ''){
+                        if ($parent_name != ''){
+                            $name = $parent_name . ' → ' . $category->name;
+                        }else{
+                            $name = $parent_name . $category->name;
+                        }
+
+                        echo "<option value=\"$category->id\">$name</option>";
+
+                        if ($parent_name == ''){
+                            $parent_name .= $category->name;
+                        }else{
+                            $parent_name .= ' → ' . $category->name;
+                        }
+
+                        foreach ($category->children as $child){
+                            categories($child, $parent_name);
+                        }
+                    }
+                    ?>
+                    <label>Категория</label>
+                    <select name="parent_id" class="form-control">
+                        @foreach($categories as $category)
+                            <?php categories($category); ?>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">

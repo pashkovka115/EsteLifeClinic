@@ -20,7 +20,7 @@ class AdminServiceController extends Controller
 
     public function create()
     {
-        $cats = CatService::all();
+        $cats = CatService::whereNull('parent_id')->with('children')->get();
 
         return view('admin.services.create', ['categories' => $cats]);
     }
@@ -67,7 +67,7 @@ class AdminServiceController extends Controller
     public function edit($id)
     {
         $serv = Service::with('category')->where('id', $id)->firstOrFail();
-        $cats = CatService::all();
+        $cats = CatService::whereNull('parent_id')->with('children')->get();
 
         return view('admin.services.edit', ['service' => $serv, 'categories' => $cats]);
     }

@@ -53,21 +53,6 @@
                                         ?>
                                     </select>
                                 </div>
-
-                                <div class="form-group col-sm-12">
-                                    <label>Категория</label>
-                                    <select name="cat_service_id" class="form-control">
-                                        @foreach($categories as $category)
-                                            <?php
-                                            if ($category->id == $service->category->id){
-                                                $selected = ' selected';
-                                            }else{ $selected = ''; }
-                                            ?>
-                                        <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -79,6 +64,42 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <?php
+                    function categories($category, $service_cat_id, $parent_name = ''){
+                        if ($parent_name != ''){
+                            $name = $parent_name . ' → ' . $category->name;
+                        }else{
+                            $name = $parent_name . $category->name;
+                        }
+
+                        if ($category->id == $service_cat_id){
+                            $selected = ' selected';
+                        }else{
+                            $selected = '';
+                        }
+
+                        echo "<option value=\"$category->id\"$selected>$name</option>";
+
+                        if ($parent_name == ''){
+                            $parent_name .= $category->name;
+                        }else{
+                            $parent_name .= ' → ' . $category->name;
+                        }
+
+                        foreach ($category->children as $child){
+                            categories($child, $service_cat_id, $parent_name);
+                        }
+                    }
+                    ?>
+                    <label>Категория</label>
+                    <select name="cat_service_id" class="form-control">
+                        @foreach($categories as $category)
+                            <?php categories($category, $service->category->id); ?>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
