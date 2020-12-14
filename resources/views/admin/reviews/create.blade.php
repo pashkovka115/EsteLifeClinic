@@ -41,7 +41,7 @@
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" name="visibility" class="custom-control-input" id="customCheck3"
                                        data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                <label class="custom-control-label" for="customCheck3">Видимость</label>
+                                <label class="custom-control-label" for="customCheck3">Проверен</label>
                             </div>
                         </div>
                     </div>

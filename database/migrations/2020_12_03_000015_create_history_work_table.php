@@ -22,10 +22,10 @@ class CreateHistoryWorkTable extends Migration
             $table->timestamps();
 
 
-            $table->index(["doctor_id"], 'fk_doctors_doctor1_idx');
+            $table->index(["doctor_id"], 'fk_doctors_doctor3_idx');
 
 
-            $table->foreign('doctor_id', 'fk_doctors_doctor1_idx')
+            $table->foreign('doctor_id', 'fk_doctors_doctor3_idx')
                 ->references('id')->on('doctors')
                 ->onDelete('no action')
                 ->onUpdate('no action');

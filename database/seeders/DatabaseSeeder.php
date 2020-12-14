@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewsTableSeeder::class);
         $this->call(CategoryPostsTableSeeder::class);
         $this->call(PostsTableSeeder::class);
+        $this->call(TreatmentHistoryTableSeeder::class);
     }
 }

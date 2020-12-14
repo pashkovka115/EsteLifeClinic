@@ -6,7 +6,7 @@
  <!-- leftbar-tab-menu -->
  <div class="leftbar-tab-menu">
     <div class="main-icon-menu">
-        <a href="/ecommerce/ecommerce-index" class="logo logo-metrica d-block text-center">
+        <a href="{{ route('admin.index') }}" class="logo logo-metrica d-block text-center">
             <span>
                 <img src="{{ URL::asset('assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
             </span>
@@ -116,14 +116,14 @@
                 </ul>
             </div><!-- end Pages -->
 
-            <div id="beforeAfter" class="main-icon-menu-pane">
+            <div id="beforeAfter" class="main-icon-menu-pane {{ active('admin.before_after.*') }}">
                 <div class="title-box">
                     <h6 class="menu-title">До/После</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.before_after.before_after.create') }}" href="{{ route('admin.before_after.before_after.create') }}"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.before_after.before_after.index') }}" href="{{ route('admin.before_after.before_after.index') }}"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
                 </ul><!--end nav-->
             </div><!-- end Others -->
 

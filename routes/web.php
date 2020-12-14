@@ -59,6 +59,11 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     Route::prefix('administrator')->as('administrator.')->group(function(){
         Route::resource('administrator', 'Admin\AdministratorController')->only(['index', 'update'])->names('administrator');
     });
+
+    // Раздел До/После
+    Route::prefix('before-after')->as('before_after.')->group(function(){
+        Route::resource('before-after', 'Admin\BeforeAfterController')->except('show')->names('before_after');
+    });
 });
 
 
