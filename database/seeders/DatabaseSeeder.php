@@ -28,5 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryPostsTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(TreatmentHistoryTableSeeder::class);
+        $this->call(OptionsTableSeeder::class);
+        $this->call(BannerTableSeeder::class);
+        $this->call(BannerItemsTableSeeder::class);
+        $this->call(CompanyTableSeeder::class);
     }
 }

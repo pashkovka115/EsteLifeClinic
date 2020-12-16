@@ -53,6 +53,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     Route::prefix('pages')->as('pages.')->group(function(){
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
+        Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
     });
 
     // Раздел администратор
@@ -63,6 +64,23 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     // Раздел До/После
     Route::prefix('before-after')->as('before_after.')->group(function(){
         Route::resource('before-after', 'Admin\BeforeAfterController')->except('show')->names('before_after');
+    });
+
+    // Раздел настройки
+    Route::prefix('options')->as('options.')->group(function(){
+        // Общие настройки
+        Route::resource('options', 'Admin\AdminOptionController')->only(['index', 'edit', 'update'])->names('options');
+        // Баннеры. Список
+//        Route::get('banners', 'Admin\AdminBannerController@index')->name('banners.list');
+        Route::resource('banners', 'Admin\AdminBannerController')->names('banners.list');
+        // Баннеры. Элементы
+        Route::get('banners/banner/items/{id}', 'Admin\AdminBannerItemsController@index')->name('banners.banner.items');
+        Route::get('banners/banner/item/create/{id}', 'Admin\AdminBannerItemsController@create')->name('banners.banner.item.create');
+        Route::post('banners/banner/item/store/{id}', 'Admin\AdminBannerItemsController@store')->name('banners.banner.item.store');
+        Route::put('banners/banner/item/update/{id}', 'Admin\AdminBannerItemsController@update')->name('banners.banner.item.update');
+        Route::get('banners/banner/item/edit/{id}', 'Admin\AdminBannerItemsController@edit')->name('banners.banner.item.edit');
+        Route::delete('banners/banner/item/destroy/{id}', 'Admin\AdminBannerItemsController@destroy')->name('banners.banner.item.destroy');
+//        Route::resource('banners/items', 'Admin\AdminBannerItemsController')->except(['index', 'show'])->names('banners.items');
     });
 });
 

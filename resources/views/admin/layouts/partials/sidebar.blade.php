@@ -137,7 +137,7 @@
                     <li class="nav-item"><a class="nav-link {{ active(['admin.pages.category.news.create']) }}" href="{{ route('admin.pages.category.news.create') }}"><i class="mdi mdi-plus"></i>Добавить категорию новости</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-home"></i>Главная страница</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-information"></i>О компании</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.pages.company.edit', ['company' => 'company']) }}"><i class="mdi mdi-information"></i>О компании</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-contacts"></i> Контакты</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-open-page-variant"></i> Страницы</a></li>
@@ -158,7 +158,7 @@
                 </ul>
             </div>
 
-            <div id="MetricaAuthentication" class="main-icon-menu-pane">
+            <div id="MetricaAuthentication" class="main-icon-menu-pane {{ active('admin.options.*') }}">
                 <div class="title-box">
                     <h6 class="menu-title">Настройки</h6>
                 </div>
@@ -166,6 +166,10 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Шапка</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Подвал</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.list.create') }}" href="{{ route('admin.options.banners.list.create') }}"><i class="mdi mdi-book-multiple"></i>Добавить баннер</a></li>
+                    <hr>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.options.options.index') }}" href="{{ route('admin.options.options.index') }}"><i class="mdi mdi-book-multiple"></i>Список общих настроек</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.list.index') }}" href="{{ route('admin.options.banners.list.index') }}"><i class="mdi mdi-book-multiple"></i>Список слайдеров, баннеров</a></li>
                 </ul>
             </div><!-- end Authentication-->
 

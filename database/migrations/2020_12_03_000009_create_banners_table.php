@@ -6,34 +6,20 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBannersTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'banners';
 
-    /**
-     * Run the migrations.
-     * @table banners
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name', 45)->nullable();
-//            $table->json('images')->nullable();
-            $table->longText('images');
+            $table->enum('visibility', ['1', '0']);
+            $table->string('name')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);
