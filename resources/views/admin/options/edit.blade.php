@@ -24,14 +24,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="text-input-name">Значение</label>
-                            <input class="form-control" name="val" type="text" value="{{ $option->val }}"
-                                   id="text-input-name">
+                            <label>Значение</label>
+                            <textarea class="form-control" name="val">{{ $option->val }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="text-input-name">Дополнительное значение</label>
                             <input class="form-control" name="val2" type="text" value="{{ $option->val2 }}"
+                                   id="text-input-name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text-input-name">Краткое описание</label>
+                            <input class="form-control" name="description" type="text" value="{{ $option->description }}"
                                    id="text-input-name">
                         </div>
 

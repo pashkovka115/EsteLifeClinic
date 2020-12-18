@@ -6,24 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePagesTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'pages';
 
-    /**
-     * Run the migrations.
-     * @table pages
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('h1')->nullable();
             $table->text('content')->nullable();
             $table->string('title')->nullable();
             $table->text('meta_description')->nullable();
@@ -32,11 +23,7 @@ class CreatePagesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

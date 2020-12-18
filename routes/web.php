@@ -30,7 +30,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
 
     #главная админ-панели
-    Route::get('/', 'AdminController@index')->name('index');
+    Route::get('/', 'AdminController@index')->name('home');
+
+    //Раздел врачи
+    Route::prefix('home')->as('home.')->group(function(){
+        Route::resource('appointments', 'Admin\AdminAppointmentController')->except('show')->names('home.appointments');
+    });
 
     //Раздел врачи
     Route::prefix('doctors')->as('doctors.')->group(function(){
@@ -53,6 +58,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     Route::prefix('pages')->as('pages.')->group(function(){
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
+        Route::resource('pages', 'Admin\AdminPageController')->except('show')->names('pages');
         Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
     });
 
@@ -81,6 +87,11 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::get('banners/banner/item/edit/{id}', 'Admin\AdminBannerItemsController@edit')->name('banners.banner.item.edit');
         Route::delete('banners/banner/item/destroy/{id}', 'Admin\AdminBannerItemsController@destroy')->name('banners.banner.item.destroy');
 //        Route::resource('banners/items', 'Admin\AdminBannerItemsController')->except(['index', 'show'])->names('banners.items');
+    });
+
+    // Раздел Акции и скидки
+    Route::prefix('actions')->as('actions.')->group(function(){
+        Route::resource('actions', 'Admin\AdminActionController')->except('show')->names('actions');
     });
 });
 

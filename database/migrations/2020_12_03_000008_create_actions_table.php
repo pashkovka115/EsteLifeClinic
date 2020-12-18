@@ -6,35 +6,26 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateActionsTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'actions';
 
-    /**
-     * Run the migrations.
-     * @table actions
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description', 45)->nullable();
-            $table->integer('discount')->nullable();
-            $table->enum('type', ['int', '%'])->nullable();
+            $table->string('name');
+            $table->string('type')->nullable()->comment('тип акции');
+            $table->string('slogan')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('img')->nullable();
+            $table->text('description')->nullable();
+            $table->date('start')->nullable();
+            $table->date('finish')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

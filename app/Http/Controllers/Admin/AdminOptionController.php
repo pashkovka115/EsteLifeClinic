@@ -29,7 +29,8 @@ class AdminOptionController extends Controller
         $request->validate([
             'key' => 'required|string',
             'val' => 'required|string',
-            'val2' => 'nullable|string'
+            'val2' => 'nullable|string',
+            'description' => 'nullable|string',
         ]);
 
         $op = Option::where('id', $id)->firstOrFail();

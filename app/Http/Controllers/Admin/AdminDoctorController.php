@@ -185,8 +185,12 @@ class AdminDoctorController extends Controller
         }
 
         if ($request->hasFile('img')) {
-            $img = $request->file('img')->store("images/$folder");
+            $img = $request->file('img')->store("images/doctors/$folder");
             $doctor['img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $db_doctor->img;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
         }
         $db_doctor->update($doctor);
 
@@ -271,6 +275,12 @@ class AdminDoctorController extends Controller
         $db_doctor->professions()->detach(array_keys(Profession::all('id')->keyBy('id')->toArray()));
         $db_doctor->jobs()->where('doctor_id', $id)->delete();
         $db_doctor->interests()->where('doctor_id', $id)->delete();
+
+        $old_file = storage_path('app/public') . '/' . $db_doctor->img;
+        if (is_file($old_file)){
+            unlink($old_file);
+        }
+
         $db_doctor->delete();
 
         return back();

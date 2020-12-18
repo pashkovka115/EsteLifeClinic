@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+class Page extends Model
 {
     use HasFactory;
 
-    protected $table = 'options';
+    protected $table = 'pages';
     protected $fillable = [
-        'key',
-        'val',
-        'val2',
-        'description'
+        'h1',
+        'content',
+        'title',
+        'meta_description',
+        'keywords',
+        'img',
     ];
 
 

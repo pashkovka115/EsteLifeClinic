@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Action;
+use App\Models\Appointment;
+use App\Models\Doctor;
+use App\Models\Post;
+use App\Models\Review;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -9,6 +15,26 @@ class AdminController extends Controller
     #главная админ-панели
     public function index()
     {
-        return view('admin.index');
+        //записей на приём
+        $appointments = Appointment::count();
+        // Услуг
+        $services = Service::count();
+        // Врачей
+        $doctors = Doctor::count();
+        // Отзывы
+        $reviews = Review::count();
+        // Новости
+        $posts = Post::count();
+        // Акции и скидки
+        $actions = Action::count();
+
+        return view('admin.index', [
+            'appointments' => $appointments,
+            'services' => $services,
+            'doctors' => $doctors,
+            'reviews' => $reviews,
+            'posts' => $posts,
+            'actions' => $actions
+        ]);
     }
 }

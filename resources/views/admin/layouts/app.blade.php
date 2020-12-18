@@ -63,14 +63,14 @@
                         </div>
                     </div>
 
-                    @if(Route::current()->getName() != 'admin.index')
+                    @if(Route::current()->getName() != 'admin.home')
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="page-title-box">
                                     <div class="float-right">
                                     <ol class="breadcrumb">
                                       <li class="breadcrumb-item">
-                                      <a href="{{ route('admin.index') }}">Главная</a></li>
+                                      <a href="{{ route('admin.home') }}">Главная</a></li>
                                       @yield('breadcrumbs')
                                     </ol>
                                  </div>

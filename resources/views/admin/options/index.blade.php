@@ -17,24 +17,18 @@
                     <th title="key">Ключ</th>
                     <th title="val">Значение</th>
                     <th title="val2">Дополнительное значение</th>
+                    <th>Краткое описание</th>
                     <th>Редактировать</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($options as $option)
                     <tr>
-                        <td>
-                            {{ $option->id }}
-                        </td>
-                        <td>
-                            {{ $option->key }}
-                        </td>
-                        <td>
-                            {{ $option->val }}
-                        </td>
-                        <td>
-                            {{ $option->val2 }}
-                        </td>
+                        <td>{{ $option->id }}</td>
+                        <td>{{ $option->key }}</td>
+                        <td>{{ $option->val }}</td>
+                        <td>{{ $option->val2 }}</td>
+                        <td>{{ mb_strimwidth($option->description, 0, 100, '...') }}</td>
                         <td>
                             <a href="{{ route('admin.options.options.edit', ['option' => $option->id]) }}">
                                 <i class="far fa-edit text-warning mr-1"></i>

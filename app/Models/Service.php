@@ -39,4 +39,13 @@ class Service extends Model
     {
         return $this->belongsTo(CatService::class, 'cat_service_id');
     }
+
+
+    /*
+     * Акции и скидки
+     */
+    public function actions()
+    {
+        return $this->belongsToMany(Service::class, 'services_has_actions');
+    }
 }
