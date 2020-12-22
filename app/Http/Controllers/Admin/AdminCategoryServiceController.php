@@ -114,15 +114,18 @@ class AdminCategoryServiceController extends Controller
 
     public function destroy($id)
     {
-       $cat = CatService::with(['services', 'children'])->where('id', $id)->firstOrFail();
+       $cat = CatService::with(['services', 'children', 'appointments'])->where('id', $id)->firstOrFail();
+
         if ($cat->services()->count() > 0){
             flash('В этой категории есть услуги')->error();
             return back();
         }
         if ($cat->children()->count() > 0){
-            flash('В этой категории есть вложенные категории. Ближайшую дочернюю категорию сделайте "Без родительской"')->error();
+            flash('В этой категории есть вложенные категории. Ближайшую дочернюю категорию "'.$cat->children[0]->name.'" сделайте "Без родительской"')->error();
             return back();
         }
+
+        $cat->appointments()->delete();
 
         $cat->delete();
 

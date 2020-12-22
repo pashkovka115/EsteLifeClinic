@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Страницы')
+@section('pageName', 'Редактировать страницу')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Редактировать страницу</li>
+@endsection
 
 @section('headerStyle')
     {{--    upload files --}}

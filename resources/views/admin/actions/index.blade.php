@@ -1,7 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
-
+@section('title', 'Список акций')
+@section('pageName', 'Список акций')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список акций</li>
+@endsection
 @section('headerStyle')
 
 @stop
@@ -13,7 +16,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Наименование</th>
                     <th>Тип</th>
                     <th>Действия</th>
@@ -22,17 +24,16 @@
                 <tbody>
                 @foreach($actions as $action)
                     <tr>
-                        <td>{{ $action->id }}</td>
                         <td>{{ $action->name }}</td>
                         <td>{{ $action->type }}</td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
-                            <a href="{{ route('admin.actions.actions.edit', ['action' => $action->id]) }}"><i
+                            <a href="{{ route('admin.content.actions.actions.edit', ['action' => $action->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
-                            <a href="{{ route('admin.actions.actions.destroy', ['action' => $action->id]) }}"
+                            <a href="{{ route('admin.content.actions.actions.destroy', ['action' => $action->id]) }}"
                                onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $action->id }}').submit(); return false;">
                                                      <i class="fas fa-trash-alt text-danger"></i></a>
-                            <form id="form_{{ $action->id }}" action="{{ route('admin.actions.actions.destroy', ['action' => $action->id]) }}" method="POST" style="display: none;">
+                            <form id="form_{{ $action->id }}" action="{{ route('admin.content.actions.actions.destroy', ['action' => $action->id]) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>

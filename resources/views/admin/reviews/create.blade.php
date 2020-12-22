@@ -1,7 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
-
+@section('title', 'Отзывы')
+@section('pageName', 'Добавить отзыв')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Добавить отзыв</li>
+@endsection
 @section('headerStyle')
 
 @stop
@@ -10,7 +13,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.reviews.reviews.store') }}" method="post">
+                  action="{{ route('admin.content.reviews.reviews.store') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-sm-8">

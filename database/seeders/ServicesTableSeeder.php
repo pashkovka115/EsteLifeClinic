@@ -10,7 +10,7 @@ class ServicesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $services = [];
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $services[] = [
                 'cat_service_id' => 1,
                 'type' => ($i % 2 == 0) ? 'medicine' : 'cosmetology',

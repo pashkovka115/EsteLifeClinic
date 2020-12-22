@@ -9,14 +9,6 @@ class DoctorsTableSeeder extends Seeder
 {
     public function run(Faker $faker)
     {
-        $profs = [
-            'Врач высшей категории',
-            'Врач средней категории',
-            'Врач без категории',
-            'Врач второй категории',
-            'Врач первой категории',
-        ];
-
         $doctors = [];
         for ($i = 0; $i < 20; $i++) {
             $doctors[] = [

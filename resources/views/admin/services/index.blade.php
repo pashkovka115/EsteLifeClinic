@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Услуги')
+@section('pageName', 'Список услуг')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список услуг</li>
+@endsection
 
 @section('headerStyle')
 

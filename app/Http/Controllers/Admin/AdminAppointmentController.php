@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\CatService;
+use App\Models\Doctor;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AdminAppointmentController extends Controller
 {
     public function index()
     {
-        $appo = Appointment::orderBy('created_at', 'DESC')->paginate();
+        $appo = Appointment::with(['service', 'cat_servise', 'doctor'])->paginate();
 
         return view('admin.appointments.index', ['appointments' => $appo]);
     }
@@ -18,7 +21,15 @@ class AdminAppointmentController extends Controller
 
     public function create()
     {
-        return view('admin.appointments.create');
+        $cats = CatService::all(['id', 'name']);
+        $services = Service::all(['id', 'name']);
+        $doctors = Doctor::all(['id', 'name']);
+
+        return view('admin.appointments.create', [
+            'categories' => $cats,
+            'services' => $services,
+            'doctors' => $doctors
+        ]);
     }
 
 
@@ -27,9 +38,9 @@ class AdminAppointmentController extends Controller
         $request->validate([
             'name' => 'nullable|string',
             'phone' => 'required|string',
-            'cat_servise' => 'nullable|string',
-            'service' => 'nullable|string',
-            'doctor' => 'nullable|string',
+            'cat_servise_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
+            'doctor_id' => 'required|numeric',
             'day' => 'nullable|string',
             'time' => 'nullable|string',
         ]);
@@ -43,9 +54,18 @@ class AdminAppointmentController extends Controller
 
     public function edit($id)
     {
-        $appo = Appointment::where('id', $id)->firstOrFail();
+        $appo = Appointment::with(['service', 'cat_servise', 'doctor'])->where('id', $id)->firstOrFail();
+//        dd($appo);
+        $cats = CatService::all(['id', 'name']);
+        $services = Service::all(['id', 'name']);
+        $doctors = Doctor::all(['id', 'name']);
 
-        return view('admin.appointments.edit', ['appointment' => $appo]);
+        return view('admin.appointments.edit', [
+            'appointment' => $appo,
+            'categories' => $cats,
+            'services' => $services,
+            'doctors' => $doctors
+        ]);
     }
 
 
@@ -54,9 +74,9 @@ class AdminAppointmentController extends Controller
         $request->validate([
             'name' => 'nullable|string',
             'phone' => 'required|string',
-            'cat_servise' => 'nullable|string',
-            'service' => 'nullable|string',
-            'doctor' => 'nullable|string',
+            'cat_servise_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
+            'doctor_id' => 'required|numeric',
             'day' => 'nullable|string',
             'time' => 'nullable|string',
         ]);

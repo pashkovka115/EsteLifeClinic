@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Общие настройки')
+@section('title', 'Настройки')
+@section('pageName', 'Список общих настроек')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список общих настроек</li>
+@endsection
 
 @section('headerStyle')
 

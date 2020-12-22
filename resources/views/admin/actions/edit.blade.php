@@ -1,7 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
-
+@section('title', 'Редактируем акцию')
+@section('pageName', 'Редактируем акцию')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Редактируем акцию</li>
+@endsection
 @section('headerStyle')
     {{--    upload files --}}
     <link rel="stylesheet" href="{{ URL::asset('plugins/dropify/css/dropify.min.css')}}">
@@ -11,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.actions.actions.update', ['action' => $action->id]) }}" method="post">
+                  action="{{ route('admin.content.actions.actions.update', ['action' => $action->id]) }}" method="post">
                 @method('PUT')
                 @csrf
                 <div class="row">

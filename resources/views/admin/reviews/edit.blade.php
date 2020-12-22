@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Отзывы')
+@section('pageName', 'Редактировать отзыв')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Редактировать отзыв</li>
+@endsection
 
 @section('headerStyle')
 
@@ -10,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.reviews.reviews.update', ['review' => $review->id]) }}" method="post">
+                  action="{{ route('admin.content.reviews.reviews.update', ['review' => $review->id]) }}" method="post">
                 @method('PUT')
                 @csrf
                 <div class="row">

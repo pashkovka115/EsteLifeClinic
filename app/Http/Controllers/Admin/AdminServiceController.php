@@ -113,8 +113,9 @@ class AdminServiceController extends Controller
 
     public function destroy($id)
     {
-        $serv = Service::with('doctors')->where('id', $id)->firstOrFail();
+        $serv = Service::with(['doctors', 'appointments'])->where('id', $id)->firstOrFail();
         $serv->doctors()->detach(array_keys(Doctor::all('id')->keyBy('id')->toArray()));
+        $serv->appointments()->delete();
         $serv->delete();
 
         return back();

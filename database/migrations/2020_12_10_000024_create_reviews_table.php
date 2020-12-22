@@ -14,7 +14,6 @@ class CreateReviewsTable extends Migration
             $table->enum('visibility', ['0', '1']);
             $table->string('name');
             $table->text('content');
-            $table->timestamps();
 
             $table->index(["cat_service_id"], 'fk_cat_services_id_cat_service1_idx');
 

@@ -3,7 +3,7 @@
 @section('title', 'Запись на приём')
 @section('pageName', 'Запись на приём редактируем')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Запись на приём</li>
+    <li class="breadcrumb-item active">Запись на приём редактируем</li>
 @endsection
 
 @section('headerStyle')
@@ -31,17 +31,44 @@
 
                         <div class="form-group col-sm-12">
                             <label>Категория</label>
-                            <input class="form-control" type="text" name="cat_servise" value="{{ $appointment->cat_servise }}">
+                            <select name="cat_servise_id" class="form-control">
+                                @foreach($categories as $category)
+                                    <?php
+                                    if ($category->id == $appointment->cat_servise->id){
+                                        $selected = ' selected';
+                                    }else{ $selected = ''; }
+                                    ?>
+                                    <option value="{{ $category->id }}"{{ $selected }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label>Услуга</label>
-                            <input class="form-control" type="text" name="service" value="{{ $appointment->service }}">
+                            <select name="service_id" class="form-control">
+                                @foreach($services as $service)
+                                    <?php
+                                    if ($service->id == $appointment->service->id){
+                                        $selected = ' selected';
+                                    }else{ $selected = ''; }
+                                    ?>
+                                    <option value="{{ $service->id }}"{{ $selected }}>{{ $service->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label>Врач</label>
-                            <input class="form-control" type="text" name="doctor" value="{{ $appointment->doctor }}">
+                            <select name="doctor_id" class="form-control">
+                                @foreach($doctors as $doctor)
+                                    <?php
+                                    if ($doctor->id == $appointment->doctor->id){
+                                        $selected = ' selected';
+                                    }else{ $selected = ''; }
+                                    ?>
+                                    <option value="{{ $doctor->id }}"{{ $selected }}>{{ $doctor->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">

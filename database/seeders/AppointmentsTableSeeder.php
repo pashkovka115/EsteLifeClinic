@@ -13,9 +13,9 @@ class AppointmentsTableSeeder extends Seeder
             [
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                'cat_servise' => 'Косметология лица и тела',
-                'service' => 'Мезотерапия',
-                'doctor' => 'Швецова Ольга Семёновна',
+                'cat_servise_id' => 1,
+                'service_id' => 1,
+                'doctor_id' => 1,
                 'day' => '2020-12-05',
                 'time' => '17:15',
                 'created_at' => now()
@@ -23,9 +23,9 @@ class AppointmentsTableSeeder extends Seeder
             [
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                'cat_servise' => 'Косметология лица и тела',
-                'service' => 'Мезотерапия',
-                'doctor' => 'Швецова Ольга Семёновна',
+                'cat_servise_id' => 1,
+                'service_id' => 1,
+                'doctor_id' => 1,
                 'day' => '2020-12-05',
                 'time' => '18:00',
                 'created_at' => now()
@@ -33,9 +33,9 @@ class AppointmentsTableSeeder extends Seeder
             [
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                'cat_servise' => 'Косметология лица и тела',
-                'service' => 'Мезотерапия',
-                'doctor' => 'Швецова Ольга Семёновна',
+                'cat_servise_id' => 1,
+                'service_id' => 1,
+                'doctor_id' => 1,
                 'day' => '2020-12-05',
                 'time' => '16:30',
                 'created_at' => now()
@@ -43,9 +43,9 @@ class AppointmentsTableSeeder extends Seeder
             [
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                'cat_servise' => 'Косметология лица и тела',
-                'service' => 'Мезотерапия',
-                'doctor' => 'Швецова Ольга Семёновна',
+                'cat_servise_id' => 1,
+                'service_id' => 1,
+                'doctor_id' => 1,
                 'day' => '2020-12-05',
                 'time' => '20:00',
                 'created_at' => now()

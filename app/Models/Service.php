@@ -48,4 +48,13 @@ class Service extends Model
     {
         return $this->belongsToMany(Service::class, 'services_has_actions');
     }
+
+
+    /*
+     * Отзывы
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'service_id');
+    }
 }

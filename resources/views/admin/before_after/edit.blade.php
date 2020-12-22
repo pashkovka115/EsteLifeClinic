@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('title', 'До/После')
+@section('pageName', 'Редактировать до/после')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Редактировать до/после</li>
+@endsection
 
 @section('headerStyle')
     {{--    upload files --}}
@@ -11,7 +15,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.before_after.before_after.update', ['before_after' => $item->id]) }}" method="post">
+                  action="{{ route('admin.content.before_after.before_after.update', ['before_after' => $item->id]) }}" method="post">
                 @method('PUT')
                 @csrf
                 <div class="row">

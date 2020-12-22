@@ -41,4 +41,13 @@ class CatService extends Model
     {
         return $this->hasMany(self::class, 'parent_id')->with('children');
     }
+
+
+    /*
+    * Отзывы
+    */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'cat_servise_id');
+    }
 }

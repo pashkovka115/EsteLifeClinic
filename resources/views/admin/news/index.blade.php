@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Новости')
+@section('pageName', 'Список новостей')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список новостей</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Заголовок</th>
                     <th>Категория</th>
                     <th>Контент</th>
@@ -23,21 +26,8 @@
                 <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $post->id }}</a>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $post->name }}</a>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $post->category->name }}</a>
-                            </p>
-                        </td>
+                        <td>{{ $post->name }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td>
                             {{ mb_strimwidth($post->content, 0, 100, '...') }}
                         </td>

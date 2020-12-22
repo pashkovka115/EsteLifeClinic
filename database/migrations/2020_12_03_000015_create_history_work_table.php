@@ -19,7 +19,6 @@ class CreateHistoryWorkTable extends Migration
             $table->string('position')->nullable()->comment('должность');
             $table->string('place')->nullable()->comment('место работы');
             $table->unsignedBigInteger('doctor_id');
-            $table->timestamps();
 
 
             $table->index(["doctor_id"], 'fk_doctors_doctor3_idx');

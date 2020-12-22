@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Страницы')
+@section('pageName', 'Список страниц')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список страниц</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>H1</th>
                     <th>Краткое описание</th>
                     <th>Действия</th>
@@ -22,7 +25,6 @@
                 <tbody>
                 @foreach($pages as $page)
                     <tr>
-                        <td>{{ $page->id }}</td>
                         <td>{{ $page->h1 }}</td>
                         <td>{{ mb_strimwidth($page->content, 0, 150, '...') }}</td>
                         <td>

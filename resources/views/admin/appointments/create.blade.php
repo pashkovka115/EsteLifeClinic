@@ -29,17 +29,29 @@
 
                         <div class="form-group col-sm-12">
                             <label>Категория</label>
-                            <input class="form-control" type="text" name="cat_servise" value="{{ old('cat_servise') }}">
+                            <select name="cat_servise_id" class="form-control">
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label>Услуга</label>
-                            <input class="form-control" type="text" name="service" value="{{ old('service') }}">
+                            <select name="service_id" class="form-control">
+                                @foreach($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label>Врач</label>
-                            <input class="form-control" type="text" name="doctor" value="{{ old('doctor') }}">
+                            <select name="doctor_id" class="form-control">
+                                @foreach($doctors as $doctor)
+                                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-12">

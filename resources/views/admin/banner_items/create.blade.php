@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Элемент баннера')
+@section('pageName', 'Создать элемент баннера')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Создать элемент баннера</li>
+@endsection
 
 @section('headerStyle')
     {{--    upload files --}}

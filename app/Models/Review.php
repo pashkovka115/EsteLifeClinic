@@ -22,4 +22,9 @@ class Review extends Model
     {
         return $this->belongsTo(CatService::class, 'cat_service_id');
     }
+
+    public function usesTimestamps(): bool
+    {
+        return false;
+    }
 }

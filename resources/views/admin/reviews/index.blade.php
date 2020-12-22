@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Отзывы')
+@section('pageName', 'Список отзывов')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список отзывов</li>
+@endsection
 
 @section('headerStyle')
 
@@ -39,12 +43,12 @@
                         </td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
-                            <a href="{{ route('admin.reviews.reviews.edit', ['review' => $reviw->id]) }}"><i
+                            <a href="{{ route('admin.content.reviews.reviews.edit', ['review' => $reviw->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
-                            <a href="{{ route('admin.reviews.reviews.destroy', ['review' => $reviw->id]) }}"
+                            <a href="{{ route('admin.content.reviews.reviews.destroy', ['review' => $reviw->id]) }}"
                                onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $reviw->id }}').submit(); return false;">
                                                      <i class="fas fa-trash-alt text-danger"></i></a>
-                            <form id="form_{{ $reviw->id }}" action="{{ route('admin.reviews.reviews.destroy', ['review' => $reviw->id]) }}" method="POST" style="display: none;">
+                            <form id="form_{{ $reviw->id }}" action="{{ route('admin.content.reviews.reviews.destroy', ['review' => $reviw->id]) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>

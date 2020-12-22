@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Баннер')
+@section('pageName', 'Создать баннер')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Создать баннер</li>
+@endsection
 
 @section('headerStyle')
 

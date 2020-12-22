@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Категория услуг')
+@section('title', 'Категории новостей')
+@section('pageName', 'Создать категорию новостей')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Создать категорию новостей</li>
+@endsection
 
 @section('headerStyle')
 

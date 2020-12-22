@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Баннеры')
+@section('pageName', 'Список баннеров')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список баннеров</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Наименование</th>
                     <th>Действия с баннером</th>
                     <th>Действия с элементами</th>
@@ -22,9 +25,7 @@
                 <tbody>
                 @foreach($banners as $banner)
                     <tr>
-                        <td>{{ $banner->id }}</td>
                         <td>{{ $banner->name }}</td>
-
                         <td>
                             <a href="{{ route('admin.options.banners.list.edit', ['banner' => $banner->id]) }}">
                                 <i class="far fa-edit text-warning mr-1"></i></a>

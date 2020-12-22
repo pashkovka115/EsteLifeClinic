@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Врачи')
+@section('pageName', 'Список врачей')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список врачей</li>
+@endsection
 
 @section('headerStyle')
 
@@ -47,7 +51,7 @@
                             <a href="{{ route('admin.doctors.doctors.edit', ['doctor' => $doctor->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.doctors.doctors.destroy', ['doctor' => $doctor->id]) }}"
-                               onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $doctor->id }}').submit(); return false;">
+                               onclick="if (confirm('Удалить? Так же удалится вся инфомация связанная с этим доктором и отзывы о нём.')) document.getElementById('form_{{ $doctor->id }}').submit(); return false;">
                                                      <i class="fas fa-trash-alt text-danger"></i></a>
                             <form id="form_{{ $doctor->id }}" action="{{ route('admin.doctors.doctors.destroy', ['doctor' => $doctor->id]) }}" method="POST" style="display: none;">
                                 @csrf

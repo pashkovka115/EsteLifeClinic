@@ -15,4 +15,10 @@ class PracticalInterest extends Model
         'doctor_id',
         'ico'
     ];
+
+
+    public function usesTimestamps(): bool
+    {
+        return false;
+    }
 }

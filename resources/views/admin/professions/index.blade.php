@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Специальности')
+@section('pageName', 'Список специальностей')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список специальностей</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Специализация</th>
                     <th>Действия</th>
                 </tr>
@@ -21,11 +24,6 @@
                 <tbody>
                 @foreach($professions as $profession)
                     <tr>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                {{ $profession->id }}
-                            </p>
-                        </td>
                         <td>
                             <p class="d-inline-block align-middle mb-0">
                                 <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $profession->name }}</a>

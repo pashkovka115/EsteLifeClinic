@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Категории постов')
-@section('pageName', 'Категории')
+@section('title', 'Категории новостей')
+@section('pageName', 'Список категорий новостей')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Категории</li>
+    <li class="breadcrumb-item active">Список категорий новостей</li>
 @endsection
 
 @section('headerStyle')
@@ -17,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Имя</th>
                     <th>Описание</th>
                     <th>Действия</th>
@@ -27,14 +26,7 @@
                 @foreach($categories as $category)
                     <tr>
                         <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $category->id }}</a>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $category->name }}</a>
-                            </p>
+                            {{ $category->name }}
                         </td>
 
                         <td>

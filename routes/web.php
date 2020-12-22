@@ -25,14 +25,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 
 //Админ-панель
-//Route::group(['middleware'=>'roles','roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
-//Route::middleware(\App\Http\Middleware\CheckRole::class)->prefix('admin')->as('admin.')->group(function (){
 Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Admin'], 'prefix'=>'admin', 'as'=>'admin.'], function () {
 
     #главная админ-панели
     Route::get('/', 'AdminController@index')->name('home');
 
-    //Раздел врачи
+    // Запись на приём
     Route::prefix('home')->as('home.')->group(function(){
         Route::resource('appointments', 'Admin\AdminAppointmentController')->except('show')->names('home.appointments');
     });
@@ -49,10 +47,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::resource('categories', 'Admin\AdminCategoryServiceController')->except('show')->names('categories');
     });
 
-    // Раздел отзывы
-    Route::prefix('reviews')->as('reviews.')->group(function(){
-        Route::resource('reviews', 'Admin\AdminReviewController')->except('show')->names('reviews');
-    });
 
     // Раздел страницы
     Route::prefix('pages')->as('pages.')->group(function(){
@@ -62,15 +56,11 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
     });
 
-    // Раздел администратор
+    // Раздел администратор (верхнее меню)
     Route::prefix('administrator')->as('administrator.')->group(function(){
         Route::resource('administrator', 'Admin\AdministratorController')->only(['index', 'update'])->names('administrator');
     });
 
-    // Раздел До/После
-    Route::prefix('before-after')->as('before_after.')->group(function(){
-        Route::resource('before-after', 'Admin\BeforeAfterController')->except('show')->names('before_after');
-    });
 
     // Раздел настройки
     Route::prefix('options')->as('options.')->group(function(){
@@ -86,13 +76,29 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::put('banners/banner/item/update/{id}', 'Admin\AdminBannerItemsController@update')->name('banners.banner.item.update');
         Route::get('banners/banner/item/edit/{id}', 'Admin\AdminBannerItemsController@edit')->name('banners.banner.item.edit');
         Route::delete('banners/banner/item/destroy/{id}', 'Admin\AdminBannerItemsController@destroy')->name('banners.banner.item.destroy');
-//        Route::resource('banners/items', 'Admin\AdminBannerItemsController')->except(['index', 'show'])->names('banners.items');
+
+        // Меню
+        Route::resource('menu', 'Admin\AdminMenuController')->only(['index'])->names('menu');
     });
 
-    // Раздел Акции и скидки
-    Route::prefix('actions')->as('actions.')->group(function(){
-        Route::resource('actions', 'Admin\AdminActionController')->except('show')->names('actions');
+    // Раздел Контент
+    Route::prefix('content')->as('content.')->group(function(){
+        // Акции и скидки
+        Route::prefix('actions')->as('actions.')->group(function(){
+            Route::resource('actions', 'Admin\AdminActionController')->except('show')->names('actions');
+        });
+
+        // До/После
+        Route::prefix('before-after')->as('before_after.')->group(function(){
+            Route::resource('before-after', 'Admin\BeforeAfterController')->except('show')->names('before_after');
+        });
+
+        // отзывы
+        Route::prefix('reviews')->as('reviews.')->group(function(){
+            Route::resource('reviews', 'Admin\AdminReviewController')->except('show')->names('reviews');
+        });
     });
+
 });
 
 

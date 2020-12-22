@@ -55,7 +55,7 @@
                                 <i class="fab fa-angellist bg-soft-classic"></i>
                             </div>
                             <h3 class="text-dark">{{ $reviews }}</h3>
-                            <h6 class="font-14 text-dark"><a href="{{ route('admin.reviews.reviews.index') }}">Отзывы</a></h6>
+                            <h6 class="font-14 text-dark"><a href="{{ route('admin.content.reviews.reviews.index') }}">Отзывы</a></h6>
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </div><!-- end col-->
@@ -79,7 +79,7 @@
                                 <i class="fas fa-ticket-alt bg-soft-purple"></i>
                             </div>
                             <h3 class="text-dark">{{ $actions }}</h3>
-                            <h6 class="font-14 text-dark"><a href="{{ route('admin.actions.actions.index') }}">Акции и скидки</a></h6>
+                            <h6 class="font-14 text-dark"><a href="{{ route('admin.content.actions.actions.index') }}">Акции и скидки</a></h6>
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </div><!-- end col-->

@@ -10,7 +10,7 @@ class HistoryWork extends Model
     use HasFactory;
 
     protected $table = 'history_work';
-    protected $dates = ['start', 'end', 'created_at', 'updated_at'];
+    protected $dates = ['start', 'end'];
     protected $fillable = [
         'start',
         'end',
@@ -18,4 +18,9 @@ class HistoryWork extends Model
         'place',
         'doctor_id',
     ];
+
+    public function usesTimestamps(): bool
+    {
+        return false;
+    }
 }

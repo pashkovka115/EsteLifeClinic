@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Баннер - элементы')
+@section('title', 'Элементы баннера')
+@section('pageName', 'Список элементов баннера')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список элементов баннера</li>
+@endsection
 
 @section('headerStyle')
 
@@ -16,7 +20,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Заголовок</th>
                     <th>Краткое описание</th>
                     <th>Действия</th>
@@ -25,7 +28,6 @@
                 <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
                         <td>{{ $item->title }}</td>
                         <td>{{ mb_strimwidth($item->description, 0, 120, '...') }}</td>
 

@@ -54,4 +54,22 @@ class Doctor extends Model
     {
         return $this->hasMany(PracticalInterest::class)->limit(4);
     }
+
+
+    /*
+     * До/После
+     */
+    public function treatment_history()
+    {
+        return $this->hasMany(TreatmentHistory::class, 'doctor_id');
+    }
+
+
+    /*
+     * Отзывы
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
 }

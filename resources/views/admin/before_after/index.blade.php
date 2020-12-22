@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'До/После')
+@section('pageName', 'Список до/после')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список до/после</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Оказанная услуга</th>
                     <th>Специалист</th>
                     <th>Категория</th>
@@ -24,7 +27,6 @@
                 <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->doctor->name }}</td>
                         <td>{{ $item->category->name }}</td>
@@ -36,12 +38,12 @@
                         </td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
-                            <a href="{{ route('admin.before_after.before_after.edit', ['before_after' => $item->id]) }}"><i
+                            <a href="{{ route('admin.content.before_after.before_after.edit', ['before_after' => $item->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
-                            <a href="{{ route('admin.before_after.before_after.destroy', ['before_after' => $item->id]) }}"
+                            <a href="{{ route('admin.content.before_after.before_after.destroy', ['before_after' => $item->id]) }}"
                                onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $item->id }}').submit(); return false;">
                                                      <i class="fas fa-trash-alt text-danger"></i></a>
-                            <form id="form_{{ $item->id }}" action="{{ route('admin.before_after.before_after.destroy', ['before_after' => $item->id]) }}" method="POST" style="display: none;">
+                            <form id="form_{{ $item->id }}" action="{{ route('admin.content.before_after.before_after.destroy', ['before_after' => $item->id]) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>

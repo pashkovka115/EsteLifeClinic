@@ -3,8 +3,7 @@
 @section('title', 'О компании')
 @section('pageName', 'О компании')
 @section('breadcrumbs')
-    <li class="breadcrumb-item"><a href="">Товары</a></li>
-    <li class="breadcrumb-item active">Категории</li>
+    <li class="breadcrumb-item active">О компании</li>
 @endsection
 @section('headerStyle')
     {{--    upload files --}}

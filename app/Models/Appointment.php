@@ -13,10 +13,28 @@ class Appointment extends Model
     protected $fillable = [
         'name',
         'phone',
-        'cat_servise',
-        'service',
-        'doctor',
+        'cat_servise_id',
+        'service_id',
+        'doctor_id',
         'day',
         'time',
     ];
+
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
+
+
+    public function cat_servise()
+    {
+        return $this->belongsTo(CatService::class, 'cat_servise_id');
+    }
+
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
+    }
 }

@@ -6,18 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateServicesHasDoctorsTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'services_has_doctors';
 
-    /**
-     * Run the migrations.
-     * @table services_has_doctors
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
@@ -40,11 +31,7 @@ class CreateServicesHasDoctorsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

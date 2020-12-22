@@ -12,10 +12,22 @@ class TreatmentHistoryTableSeeder extends Seeder
     {
         $items = [];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $items[] = [
                 'doctor_id' => 1,
                 'cat_service_id' => 1,
+                'name' => 'Чистка лица',
+                'after_images' => 'images/after_befor/after.png',
+                'before_images' => 'images/after_befor/before.png',
+                'description' => $faker->realText(),
+                'done' => $faker->dateTimeBetween()
+            ];
+        }
+
+        for ($i = 0; $i < 15; $i++) {
+            $items[] = [
+                'doctor_id' => 2,
+                'cat_service_id' => 2,
                 'name' => 'Чистка лица',
                 'after_images' => 'images/after_befor/after.png',
                 'before_images' => 'images/after_befor/before.png',

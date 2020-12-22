@@ -6,18 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCatServicesTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
     public $tableName = 'cat_services';
 
-    /**
-     * Run the migrations.
-     * @table cat_servises
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
@@ -35,11 +26,7 @@ class CreateCatServicesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
      public function down()
      {
        Schema::dropIfExists($this->tableName);

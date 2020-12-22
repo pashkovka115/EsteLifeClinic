@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Новая новость')
+@section('title', 'Новости')
+@section('pageName', 'Создать новость')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Создать новость</li>
+@endsection
 
 @section('headerStyle')
     {{--    upload files --}}

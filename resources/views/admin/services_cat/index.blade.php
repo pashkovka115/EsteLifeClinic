@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Категория услуг')
+@section('pageName', 'Список категорий услуг')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Список категорий услуг</li>
+@endsection
 
 @section('headerStyle')
 
@@ -13,7 +17,6 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Имя</th>
                     <th>Описание</th>
                     <th>Действия</th>
@@ -22,20 +25,8 @@
                 <tbody>
                 @foreach($cats as $cat)
                     <tr>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $cat->id }}</a>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="d-inline-block align-middle mb-0">
-                                <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $cat->name }}</a>
-                            </p>
-                        </td>
-
-                        <td>
-                            <a href="">{{ $cat->description }}</a>
-                        </td>
+                        <td>{{ $cat->name }}</td>
+                        <td>{{ $cat->description }}</td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.services.categories.edit', ['category' => $cat->id]) }}"><i

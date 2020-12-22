@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Наши врачи')
+@section('title', 'Добавить акцию')
+@section('pageName', 'Добавить акцию')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Добавить акцию</li>
+@endsection
 
 @section('headerStyle')
     {{--    upload files --}}
@@ -11,7 +15,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.actions.actions.store') }}" method="post">
+                  action="{{ route('admin.content.actions.actions.store') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-sm-8">
