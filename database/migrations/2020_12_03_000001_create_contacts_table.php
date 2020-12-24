@@ -29,6 +29,10 @@ class CreateContactsTable extends Migration
             $table->string('phone2', 45)->nullable();
             $table->string('coordinates', 100)->nullable();
             $table->string('email', 45)->nullable();
+
+            $table->string('title')->nullable();
+            $table->string('keywords')->nullable();
+            $table->text('meta_description')->nullable();
         });
     }
 

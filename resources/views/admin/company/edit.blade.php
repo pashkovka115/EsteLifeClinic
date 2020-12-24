@@ -28,7 +28,7 @@
 
                     <div class="form-group col-sm-12">
                         <label for="text-input-name">Заголовок</label>
-                        <input class="form-control" type="text" name="h1" value="{{ $company->h1 }}"
+                        <input class="form-control" type="text" name="name" value="{{ $company->name }}"
                                id="text-input-name">
                     </div>
 

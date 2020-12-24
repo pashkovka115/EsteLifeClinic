@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Call extends Model
 {
     use HasFactory;
 
-    protected $table = 'pages';
+    protected $table = 'calls';
     protected $fillable = [
+        'phone',
         'name',
-        'content',
-        'title',
-        'meta_description',
-        'keywords',
-        'img',
+        'time',
+        'status',
     ];
 
 

@@ -9,7 +9,7 @@ class CompanyTableSeeder extends Seeder
     public function run()
     {
         $company = [
-            'h1' => 'Медицинский центр',
+            'name' => 'Медицинский центр',
             'top_slider' => 1,
             'middle_slider' => 2,
             'bottom_slider' => 3,

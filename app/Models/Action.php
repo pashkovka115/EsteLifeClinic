@@ -19,6 +19,9 @@ class Action extends Model
         'description',
         'start',
         'finish',
+        'title',
+        'keywords',
+        'meta_description',
     ];
 
 

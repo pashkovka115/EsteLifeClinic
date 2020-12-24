@@ -17,7 +17,7 @@
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th>H1</th>
+                    <th>Заголовок</th>
                     <th>Краткое описание</th>
                     <th>Действия</th>
                 </tr>
@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach($pages as $page)
                     <tr>
-                        <td>{{ $page->h1 }}</td>
+                        <td>{{ $page->name }}</td>
                         <td>{{ mb_strimwidth($page->content, 0, 150, '...') }}</td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>

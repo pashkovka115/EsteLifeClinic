@@ -20,6 +20,10 @@ class CreateDoctorsTable extends Migration
             $table->enum('level', ['0', '1'])->comment('высшая категория');
             $table->string('img')->nullable();
             $table->timestamps();
+
+            $table->string('title')->nullable();
+            $table->string('keywords')->nullable();
+            $table->text('meta_description')->nullable();
         });
     }
 

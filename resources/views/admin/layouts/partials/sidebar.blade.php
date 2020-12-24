@@ -50,10 +50,10 @@
 
         </nav><!--end nav-->
         {{-- <div class="pro-metrica-end">
-            <a href="" class="help" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Тех.поддержка">
+            <a href="#" class="help" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Тех.поддержка">
                 <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
             </a>
-            <a href="" class="profile">
+            <a href="#" class="profile">
                 <img src="{{ URL::asset('assets/images/users/user-4.jpg')}}" alt="profile-user" class="rounded-circle thumb-sm">
             </a>
         </div> --}}
@@ -68,14 +68,15 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link {{ active(['admin.home']) }}" href="{{ route('admin.home') }}"><i class="mdi mdi-home"></i> Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-cart-plus"></i> Статистика</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.home.home.appointments.*') }}" href="{{ route('admin.home.home.appointments.index') }}"><i class="mdi mdi-cart-plus"></i> Запись на прием</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.home.home.appointments.create') }}" href="{{ route('admin.home.home.appointments.create') }}"><i class="mdi mdi-cart-plus"></i> Записать на прием</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-phone-in-talk"></i> Обр.звонок</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.calls.index') }}" href="{{ route('admin.calls.index') }}"><i class="mdi mdi-phone-in-talk"></i> Обр.звонок</a></li>
     {{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-headset"></i> Тех.поддержка</a></li>--}}
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-star"></i> Отзывы</a></li>
+                    @if(Route::currentRouteName() != 'admin.content.reviews.reviews.index')
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.content.reviews.reviews.index') }}"><i class="mdi mdi-star"></i> Отзывы</a></li>
+                    @endif
                 </ul>
             </div><!-- end Ecommerce -->
 
@@ -130,9 +131,9 @@
                     <h6 class="menu-title">До/После</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link {{ active('admin.before_after.before_after.*') }}" href=""><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.before_after.before_after.*') }}" href="#"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
                 </ul><!--end nav-->
             </div><!-- end Others -->--}}
 
@@ -161,9 +162,9 @@
                     <h6 class="menu-title">Отзывы</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
                 </ul>
             </div>--}}
 
@@ -174,13 +175,13 @@
                 <ul class="nav">
 {{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Шапка</a></li>--}}
 {{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Подвал</a></li>--}}
-{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>--}}
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.menu.create') }}" href="{{ route('admin.options.menu.index') }}"><i class="mdi mdi-book-multiple"></i>Меню</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.list.create') }}" href="{{ route('admin.options.banners.list.create') }}"><i class="mdi mdi-book-multiple"></i>Добавить баннер</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.options.*') }}" href="{{ route('admin.options.options.index') }}"><i class="mdi mdi-book-multiple"></i>Список общих настроек</a></li>
                     <br>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.*') }}" href="{{ route('admin.options.banners.list.index') }}"><i class="mdi mdi-book-multiple"></i>Список слайдеров, баннеров</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.seo.index') }}" href="{{ route('admin.seo.index') }}"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
                 </ul>
             </div><!-- end Authentication-->
 
@@ -189,9 +190,9 @@
                     <h6 class="menu-title">Акции и скидки</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href=""><i class="mdi  mdi-ticket-percent"></i>Список акций</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi  mdi-ticket-percent"></i>Список акций</a></li>
                 </ul><!--end nav-->
             </div><!-- end Others -->--}}
 

@@ -120,11 +120,11 @@
                     <textarea name="meta_description"
                               class="form-control" rows="5">{{ $service->meta_description }}</textarea>
                 </div>
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label for="elm2">META Keywords</label>
                     <textarea name="keywords"
                               class="form-control" rows="5">{{ $service->keywords }}</textarea>
-                </div>
+                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>

@@ -14,7 +14,7 @@ class CreatePagesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('h1')->nullable();
+            $table->string('name')->nullable();
             $table->text('content')->nullable();
             $table->string('title')->nullable();
             $table->text('meta_description')->nullable();

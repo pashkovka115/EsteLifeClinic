@@ -20,8 +20,8 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <label for="text-input-name">H1</label>
-                            <input class="form-control" type="text" name="h1" value="{{ old('h1') }}"
+                            <label for="text-input-name">Заголовок</label>
+                            <input class="form-control" type="text" name="name" value="{{ old('name') }}"
                                    id="text-input-name">
                         </div>
                         <div class="form-group">
@@ -49,11 +49,11 @@
                               rows="5">{{ old('meta_description') }}</textarea>
                 </div>
 
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label for="elm1">Meta keywords</label>
                     <textarea name="keywords" class="form-control"
                               rows="5">{{ old('keywords') }}</textarea>
-                </div>
+                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>

@@ -99,14 +99,14 @@
                     </div>
                 </div>
 
-                <div class="row">
+                {{--<div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="text-input-name">META Keywords</label>
                             <textarea class="form-control" name="keywords">{{ $cat->keywords }}</textarea>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>

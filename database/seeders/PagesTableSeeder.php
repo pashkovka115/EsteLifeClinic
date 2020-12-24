@@ -13,7 +13,7 @@ class PagesTableSeeder extends Seeder
     {
         $pages = [
             [
-                'h1' => 'Политика конфиденциальности',
+                'name' => 'Политика конфиденциальности',
                 'content' => '<p>' . $faker->realText(400) . '</p>',
                 'title' => 'Title - Политика конфиденциальности' ,
                 'meta_description' => $faker->realText(),
@@ -21,7 +21,7 @@ class PagesTableSeeder extends Seeder
                 'img' => 'images/di-OR02.jpg'
             ],
             [
-                'h1' => 'Страница 2',
+                'name' => 'Страница 2',
                 'content' => '<p>' . $faker->realText(400) . '</p>',
                 'title' => 'Title - Страница 2' ,
                 'meta_description' => $faker->realText(),
@@ -29,7 +29,7 @@ class PagesTableSeeder extends Seeder
                 'img' => 'images/di-OR02.jpg'
             ],
             [
-                'h1' => 'Страница 3',
+                'name' => 'Страница 3',
                 'content' => '<p>' . $faker->realText(400) . '</p>',
                 'title' => 'Title - Страница 3' ,
                 'meta_description' => $faker->realText(),

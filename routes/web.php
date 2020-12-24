@@ -19,7 +19,11 @@ Route::get('/', function () {
 
 
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -97,6 +101,20 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::prefix('reviews')->as('reviews.')->group(function(){
             Route::resource('reviews', 'Admin\AdminReviewController')->except('show')->names('reviews');
         });
+    });
+
+    // Поддержка
+    Route::resource('support', 'Admin\AdminSupportController')->names('support');
+
+    // Обратные звонки
+    Route::get('calls', 'Admin\AdminCallsController@index')->name('calls.index');
+    Route::post('calls/destroy', 'Admin\AdminCallsController@destroy')->name('calls.destroy');
+    Route::post('calls/update', 'Admin\AdminCallsController@update')->name('calls.update');
+
+    // Отдельная страница SEO
+    Route::prefix('seo')->as('seo.')->group(function (){
+        Route::get('', 'Admin\AdminSeoController@index')->name('index');
+        Route::post('update', 'Admin\AdminSeoController@update')->name('update');
     });
 
 });

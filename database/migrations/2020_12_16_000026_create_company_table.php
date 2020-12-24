@@ -13,7 +13,7 @@ class CreateCompanyTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('h1')->nullable();
+            $table->string('name')->nullable();
             $table->unsignedBigInteger('top_slider')->nullable();
             $table->unsignedBigInteger('middle_slider')->nullable();
             $table->unsignedBigInteger('bottom_slider')->nullable();
@@ -29,6 +29,10 @@ class CreateCompanyTable extends Migration
             $table->text('service3');
             $table->string('ico4');
             $table->text('service4');
+
+            $table->string('title')->nullable();
+            $table->string('keywords')->nullable();
+            $table->text('meta_description')->nullable();
         });
     }
 

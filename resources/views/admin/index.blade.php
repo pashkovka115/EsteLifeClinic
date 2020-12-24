@@ -85,6 +85,22 @@
                 </div><!-- end col-->
 
             </div>
+
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="card dash-data-card text-center">
+                        <div class="card-body">
+                            <div class="icon-info mb-3">
+{{--                                <i class="fas fa-ticket-alt bg-soft-purple"></i>--}}
+                                <i class="fas fa-phone-volume bg-soft-danger"></i>
+                            </div>
+                            <h3 class="text-dark">{{ $calls }}</h3>
+                            <h6 class="font-14 text-dark"><a href="{{ route('admin.calls.index') }}">Не обработанных звонков</a></h6>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!-- end col-->
+            </div>
+
         </div>
     </div>
 @stop

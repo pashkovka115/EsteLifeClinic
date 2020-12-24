@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Action;
 use App\Models\Appointment;
+use App\Models\Call;
 use App\Models\Doctor;
 use App\Models\Post;
 use App\Models\Review;
@@ -27,6 +28,8 @@ class AdminController extends Controller
         $posts = Post::count();
         // Акции и скидки
         $actions = Action::count();
+        // Необработанные звонки
+        $calls = Call::where('status', '0')->count();
 
         return view('admin.index', [
             'appointments' => $appointments,
@@ -34,7 +37,8 @@ class AdminController extends Controller
             'doctors' => $doctors,
             'reviews' => $reviews,
             'posts' => $posts,
-            'actions' => $actions
+            'actions' => $actions,
+            'calls' => $calls
         ]);
     }
 }

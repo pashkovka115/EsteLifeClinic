@@ -150,28 +150,40 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="divider-custom mt-0">
-                                                    <div class="divider-text bg-light">Товары</div>
+                                                    <div class="divider-text bg-light">Услуги</div>
                                                 </div>
-                                                <a class="dropdown-item mb-2" href="/analytics/analytics-index"> Добавить товар</a>
-                                                <a class="dropdown-item mb-2" href="/crypto/crypto-index"> Добавить категорию</a>
-                                                <a class="dropdown-item mb-2" href="/crm/crm-index"> Добавить тег</a>
-                                                <a class="dropdown-item" href="/projects/projects-index"> Добавить параметр</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.services.create') }}">Добавить услугу</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.categories.create') }}"> Добавить категорию услуг</a>
                                             </div>
                                             <div class="col-4">
                                                 <div class="divider-custom mt-0">
-                                                    <div class="divider-text bg-light">Продажи</div>
+                                                    <div class="divider-text bg-light">Врачи</div>
                                                 </div>
-                                                <a class="dropdown-item mb-2" href="/ecommerce/ecommerce-index"> Новые продажи</a>
-                                                <a class="dropdown-item mb-2" href="/helpdesk/helpdesk-index"> Возвраты</a>
-                                                <a class="dropdown-item" href="/hospital/hospital-index"> Отчеты</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.doctors.doctors.create') }}">Добавить врача</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.doctors.professions.create') }}">Добавить специализацию</a>
                                             </div>
                                             <div class="col-4">
                                                 <div class="divider-custom mt-0">
-                                                    <div class="divider-text bg-light">Цены и скидки</div>
+                                                    <div class="divider-text bg-light">Контент</div>
                                                 </div>
-                                                <a class="dropdown-item mb-2" href="/ecommerce/ecommerce-index"> Цены</a>
-                                                <a class="dropdown-item mb-2" href="/helpdesk/helpdesk-index"> Купоны</a>
-                                                <a class="dropdown-item" href="/hospital/hospital-index"> Скидки</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.content.actions.actions.create') }}">Добавить акцию</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.content.reviews.reviews.create') }}">Добавить отзыв</a>
+                                                <a class="dropdown-item" href="{{ route('admin.content.before_after.before_after.create') }}">Добавить до/после</a>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="divider-custom mt-0">
+                                                    <div class="divider-text bg-light">Страницы</div>
+                                                </div>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.pages.pages.create') }}">Добавить страницу</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.pages.news.create') }}">Добавить новость</a>
+                                                <a class="dropdown-item" href="{{ route('admin.pages.category.news.create') }}">Добавить категорию новости</a>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="divider-custom mt-0">
+                                                    <div class="divider-text bg-light">Настройки</div>
+                                                </div>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.options.menu.index') }}">Меню</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.options.banners.list.create') }}">Добавить баннер</a>
                                             </div>
                                         </div>
                                     </div>

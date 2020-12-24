@@ -25,7 +25,7 @@ class AdminPageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'h1' => 'nullable|string',
+            'name' => 'nullable|string',
             'content' => 'nullable|string',
             'title' => 'required|string',
             'meta_description' => 'nullable|string',
@@ -59,7 +59,7 @@ class AdminPageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'h1' => 'nullable|string',
+            'name' => 'nullable|string',
             'content' => 'nullable|string',
             'title' => 'required|string',
             'meta_description' => 'nullable|string',

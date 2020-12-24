@@ -22,6 +22,10 @@ class CreateActionsTable extends Migration
             $table->text('description')->nullable();
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
+
+            $table->string('title')->nullable();
+            $table->string('keywords')->nullable();
+            $table->text('meta_description')->nullable();
         });
     }
 
