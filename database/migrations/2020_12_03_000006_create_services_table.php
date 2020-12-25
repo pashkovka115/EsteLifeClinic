@@ -24,6 +24,8 @@ class CreateServicesTable extends Migration
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();
 
+            $table->timestamps();
+
             $table->index(["cat_service_id"], 'fk_services_cat_services_idx');
 
 

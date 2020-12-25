@@ -21,11 +21,6 @@ class CatService extends Model
     ];
 
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
-
     /*
      * Услуги
      */

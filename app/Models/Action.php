@@ -25,11 +25,6 @@ class Action extends Model
     ];
 
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
-
 
     /*
      * Услуги

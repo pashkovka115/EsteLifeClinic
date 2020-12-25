@@ -21,6 +21,8 @@ class ServicesTableSeeder extends Seeder
                 'meta_description' => $faker->realText(),
                 'title' => "Title $i",
                 'keywords' => $faker->words(3, true),
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
 

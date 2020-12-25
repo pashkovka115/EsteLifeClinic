@@ -18,10 +18,4 @@ class Page extends Model
         'keywords',
         'img',
     ];
-
-
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
 }

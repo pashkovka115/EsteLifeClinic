@@ -27,6 +27,8 @@ class CreateCatPostsTable extends Migration
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();
+
+            $table->timestamps();
         });
     }
 

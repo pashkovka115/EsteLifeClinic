@@ -116,9 +116,25 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::get('', 'Admin\AdminSeoController@index')->name('index');
         Route::post('update', 'Admin\AdminSeoController@update')->name('update');
     });
-
 });
 
+
+
+// Sitemaps
+//    Route::get('/sitemap', 'HomeController@sitemapIndex'); //Все sitemaps
+//    Route::get('/sitemap/ceilings', 'HomeController@sitemapCeilings'); //sitemap на потолки
+//    Route::get('/sitemap/ceilings/images', 'HomeController@sitemapImages'); //sitemap на фотографии потолков
+
+Route::prefix('sitemap')->group(function (){
+    // Все
+    Route::get('', 'Admin\AdminSiteMapController@index');
+    // Услуги
+    Route::get('services', 'Admin\AdminSiteMapController@services');
+    // Категории услуг
+    Route::get('cats-services', 'Admin\AdminSiteMapController@catServices');
+    // Врачи
+    Route::get('doctors', 'Admin\AdminSiteMapController@doctors');
+});
 
 
 

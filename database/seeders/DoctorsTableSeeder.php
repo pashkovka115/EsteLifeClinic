@@ -24,7 +24,9 @@ class DoctorsTableSeeder extends Seeder
     <li>В 2013г. завершила образовательный модуль «Роль и место образовательных программ в комплексной терапии сахарного диабета».</li>
 </ul>',
                 'level' => ($i % 4 == 0) ? '0' : '1',
-                'img' => ($i == 0) ? 'images/orlova.png' : null
+                'img' => ($i == 0) ? 'images/orlova.png' : null,
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
 

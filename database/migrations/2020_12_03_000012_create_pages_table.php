@@ -20,6 +20,8 @@ class CreatePagesTable extends Migration
             $table->text('meta_description')->nullable();
             $table->text('keywords')->nullable();
             $table->string('img')->nullable();
+
+            $table->timestamps();
         });
     }
 

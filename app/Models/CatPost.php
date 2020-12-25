@@ -20,11 +20,6 @@ class CatPost extends Model
     ];
 
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
-
 
     public function posts()
     {

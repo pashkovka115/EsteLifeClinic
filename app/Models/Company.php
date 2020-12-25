@@ -29,10 +29,6 @@ class Company extends Model
         'service4',
     ];
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
 
 
     public function top_sliders()

@@ -33,6 +33,8 @@ class CreateCompanyTable extends Migration
             $table->string('title')->nullable();
             $table->string('keywords')->nullable();
             $table->text('meta_description')->nullable();
+
+            $table->timestamps();
         });
     }
 

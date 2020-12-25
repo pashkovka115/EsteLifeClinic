@@ -22,6 +22,8 @@ class CreateCatServicesTable extends Migration
             $table->text('keywords')->nullable();
             $table->string('img')->nullable();
 
+            $table->timestamps();
+
             $table->foreign('parent_id')->references('id')->on('cat_services');
         });
     }

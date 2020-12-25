@@ -22,10 +22,6 @@ class Service extends Model
         'keywords',
     ];
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
 
 
     /*
