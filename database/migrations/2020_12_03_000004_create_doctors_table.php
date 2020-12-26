@@ -14,7 +14,8 @@ class CreateDoctorsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->text('education')->nullable()->comment('образование');
             $table->text('add_education')->nullable()->comment('доп образование');
             $table->enum('level', ['0', '1'])->comment('высшая категория');

@@ -8,7 +8,7 @@
     <div class="main-icon-menu">
         <a href="{{ route('admin.home') }}" class="logo logo-metrica d-block text-center">
             <span>
-                <img src="{{ URL::asset('assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
+                <img src="{{ URL::asset('assets/images/logo-sm2.png')}}" alt="logo-small" class="logo-sm">
             </span>
         </a>
         <nav class="nav">

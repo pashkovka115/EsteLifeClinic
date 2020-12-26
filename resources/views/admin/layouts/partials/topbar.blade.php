@@ -128,7 +128,7 @@
                     <li>
                         <a href="/crm/crm-index">
                             <span class="responsive-logo">
-                                <img src="{{ URL::asset('assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm align-self-center" height="34">
+                                <img src="{{ URL::asset('assets/images/logo-sm1.png')}}" alt="logo-small" class="logo-sm align-self-center" height="34">
                             </span>
                         </a>
                     </li>

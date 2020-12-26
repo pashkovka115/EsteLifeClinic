@@ -9,17 +9,18 @@ class ProfessionsTableSeeder extends Seeder
     public function run()
     {
         $ps = [
-            'Логопед',
-            'Маммолог',
-            'Мануальный терапевт',
-            'Окулист (офтальмолог)',
-            'Ортопед',
-            'Остеопат',
+            'Трихолог',
+            'Косметолог',
+            'Гинеколог',
+            'Невролог',
+            'Дерматолог',
+            'Эндокринолог',
         ];
         $profs = [];
         foreach ($ps as $str){
             $profs[] = [
-                'name' => $str
+                'name' => $str,
+                'slug' => \Str::slug($str)
             ];
         }
 

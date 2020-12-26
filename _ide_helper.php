@@ -14656,6 +14656,69 @@
      
 }
 
+    namespace Harimayco\Menu\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Menu {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function render()
+        {
+                        /** @var \Harimayco\Menu\WMenu $instance */
+                        return $instance->render();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function scripts()
+        {
+                        /** @var \Harimayco\Menu\WMenu $instance */
+                        return $instance->scripts();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function select($name = 'menu', $menulist = [])
+        {
+                        /** @var \Harimayco\Menu\WMenu $instance */
+                        return $instance->select($name, $menulist);
+        }
+                    /**
+         * Returns empty array if menu not found now.
+         * 
+         * Thanks @sovichet
+         *
+         * @param $name
+         * @return array 
+         * @static 
+         */ 
+        public static function getByName($name)
+        {
+                        return \Harimayco\Menu\WMenu::getByName($name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function get($menu_id)
+        {
+                        return \Harimayco\Menu\WMenu::get($menu_id);
+        }
+         
+    }
+     
+}
+
     namespace Barryvdh\Debugbar { 
             /**
      * 
@@ -15428,69 +15491,6 @@
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
-        }
-         
-    }
-     
-}
-
-    namespace Harimayco\Menu\Facades { 
-            /**
-     * 
-     *
-     */ 
-        class Menu {
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function render()
-        {
-                        /** @var \Harimayco\Menu\WMenu $instance */
-                        return $instance->render();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function scripts()
-        {
-                        /** @var \Harimayco\Menu\WMenu $instance */
-                        return $instance->scripts();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function select($name = 'menu', $menulist = [])
-        {
-                        /** @var \Harimayco\Menu\WMenu $instance */
-                        return $instance->select($name, $menulist);
-        }
-                    /**
-         * Returns empty array if menu not found now.
-         * 
-         * Thanks @sovichet
-         *
-         * @param $name
-         * @return array 
-         * @static 
-         */ 
-        public static function getByName($name)
-        {
-                        return \Harimayco\Menu\WMenu::getByName($name);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function get($menu_id)
-        {
-                        return \Harimayco\Menu\WMenu::get($menu_id);
         }
          
     }
@@ -18744,9 +18744,9 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+            class Menu extends \Harimayco\Menu\Facades\Menu {}
             class Debugbar extends \Barryvdh\Debugbar\Facade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
-            class Menu extends \Harimayco\Menu\Facades\Menu {}
             class Flash extends \Laracasts\Flash\Flash {}
      
 }

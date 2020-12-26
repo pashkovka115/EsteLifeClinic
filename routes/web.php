@@ -2,20 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
+/*
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('home');*/
 
 
 
@@ -25,7 +16,14 @@ Auth::routes([
     'confirm' => false,
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+// Врачи
+Route::get('dostors', 'DoctorController@index')->name('front.doctors.index');
+Route::get('dostors/show/{slug}', 'DoctorController@show')->name('front.doctors.show');
+Route::post('dostors', 'DoctorController@ajax')->name('front.doctors.index.ajax');
+Route::get('dostors/professions/{profession}', 'DoctorProfessionsController@index')->name('front.doctors.professions');
+Route::post('dostors/professions/{profession}', 'DoctorProfessionsController@ajax')->name('front.doctors.professions.ajax');
 
 
 //Админ-панель
