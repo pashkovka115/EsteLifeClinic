@@ -23,7 +23,7 @@ class OptionsTableSeeder extends Seeder
             ],
             [
                 'key' => 'address',
-                'val' => 'г. Краснодар, ул.Коммунаров 225/1',
+                'val' => 'г. Краснодар, <br>ул.Коммунаров 225/1',
                 'val2' => null,
                 'description' => null
             ],
@@ -35,7 +35,7 @@ class OptionsTableSeeder extends Seeder
             ],
             [
                 'key' => 'mini_day',
-                'val' => 'Суббота',
+                'val' => 'Сб',
                 'val2'=> '09:00 - 18:00',
                 'description' => null
             ],
@@ -47,57 +47,69 @@ class OptionsTableSeeder extends Seeder
             ],
             [
                 'key' => 'whatsapp',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://www.whatsapp.com/?lang=ru',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'telegram',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://telegram.org/',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'facebook',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://ru-ru.facebook.com/',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'vk',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://vk.com/feed',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'instagram',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://www.instagram.com/?hl=ru',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'youtube',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://www.youtube.com/',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'prodoctorov',
-                'val' => 'link akkaunt',
-                'val2' => 'link ico',
+                'val' => 'https://prodoctorov.ru/',
+                'val2' => '',
                 'description' => null
             ],
             [
                 'key' => 'script_head',
-                'val' => '<script></script>',
+                'val' => '',
                 'val2' => null,
                 'description' => 'Скрипты и/или стили в шапке сайта'
             ],
             [
                 'key' => 'script_footer',
-                'val' => '<script></script>',
+                'val' => '',
                 'val2' => null,
-                'description' => 'Скрипты и/или стили в подвале сайта'
+                'description' => 'Скрипты в подвале сайта'
+            ],
+            [
+                'key' => 'route_taxis',
+                'val' => '21, 42, 62, 78, 85, 93, 196',
+                'val2' => null,
+                'description' => 'Маршрутное такси'
+            ],
+            [
+                'key' => 'tram',
+                'val' => '5, 8, 15, 21, 22 (50 метров от остановки)',
+                'val2' => null,
+                'description' => 'Трамвай'
             ],
         ];
 

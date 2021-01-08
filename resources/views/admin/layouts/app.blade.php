@@ -10,7 +10,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ URL::asset('/favicon/favicon.ico') }}">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('/favicon/android-chrome-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="512x512"  href="{{ asset('/favicon/android-chrome-512x512.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon/favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/favicon-32x32.png') }}">
+        <link rel="manifest" href="{{ asset('/favicon/site.webmanifest') }}">
 
         @yield('headerStyle')
 

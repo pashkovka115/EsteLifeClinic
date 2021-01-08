@@ -30,7 +30,9 @@ class AdminActionController extends Controller
             'type' => 'nullable|string',
             'slogan' => 'nullable|string',
             'discount' => 'nullable|string',
-            'img' => 'nullable|image',
+            'big_img' => 'nullable|image',
+            'banner_img' => 'nullable|image',
+            'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'start' => 'nullable|date',
             'finish' => 'nullable|date',
@@ -39,9 +41,13 @@ class AdminActionController extends Controller
         $data = $request->except(['_method', '_token', 'img']);
         $folder = date('Y/m/d');
 
-        if ($request->hasFile('img')){
-            $img = $request->file('img')->store("images/actions/$folder");
-            $data['img'] = $img;
+        if ($request->hasFile('big_img')){
+            $img = $request->file('big_img')->store("images/actions/$folder");
+            $data['big_img'] = $img;
+        }
+        if ($request->hasFile('banner_img')){
+            $img = $request->file('banner_img')->store("images/actions/$folder");
+            $data['banner_img'] = $img;
         }
         $action = new Action($data);
         $action->save();
@@ -52,7 +58,7 @@ class AdminActionController extends Controller
 
     public function edit($id)
     {
-        $action = Action::where('id', $id)->firstOrFail();
+        $action = Action::with('conditions')->where('id', $id)->firstOrFail();
 
         return view('admin.actions.edit', ['action' => $action]);
     }
@@ -65,7 +71,9 @@ class AdminActionController extends Controller
             'type' => 'nullable|string',
             'slogan' => 'nullable|string',
             'discount' => 'nullable|string',
-            'img' => 'nullable|image',
+            'big_img' => 'nullable|image',
+            'banner_img' => 'nullable|image',
+            'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'start' => 'nullable|date',
             'finish' => 'nullable|date',
@@ -75,10 +83,18 @@ class AdminActionController extends Controller
         $folder = date('Y/m/d');
         $action = Action::where('id', $id)->firstOrFail();
 
-        if ($request->hasFile('img')){
-            $img = $request->file('img')->store("images/actions/$folder");
-            $data['img'] = $img;
-            $old_file = storage_path('app/public') . '/' . $action->img;
+        if ($request->hasFile('big_img')){
+            $img = $request->file('big_img')->store("images/actions/$folder");
+            $data['big_img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $action->big_img;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+        if ($request->hasFile('banner_img')){
+            $img = $request->file('banner_img')->store("images/actions/$folder");
+            $data['banner_img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $action->banner_img;
             if (is_file($old_file)){
                 unlink($old_file);
             }
@@ -96,7 +112,11 @@ class AdminActionController extends Controller
         $services = array_keys(Service::all('id')->keyBy('id')->toArray());
         $action->services()->detach($services);
 
-        $old_file = storage_path('app/public') . '/' . $action->img;
+        $old_file = storage_path('app/public') . '/' . $action->big_img;
+        if (is_file($old_file)){
+            unlink($old_file);
+        }
+        $old_file = storage_path('app/public') . '/' . $action->banner_img;
         if (is_file($old_file)){
             unlink($old_file);
         }

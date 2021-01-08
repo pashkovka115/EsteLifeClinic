@@ -13,6 +13,7 @@ class Review extends Model
     protected $fillable = [
         'cat_service_id',
         'name',
+        'phone',
         'content',
         'visibility'
     ];
@@ -21,10 +22,5 @@ class Review extends Model
     public function category()
     {
         return $this->belongsTo(CatService::class, 'cat_service_id');
-    }
-
-    public function usesTimestamps(): bool
-    {
-        return false;
     }
 }

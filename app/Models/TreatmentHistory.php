@@ -37,4 +37,10 @@ class TreatmentHistory extends Model
     {
         return $this->belongsTo(CatService::class, 'cat_service_id');
     }
+
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
 }

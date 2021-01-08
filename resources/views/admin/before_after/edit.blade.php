@@ -24,11 +24,21 @@
                     </div>
                 </div>
 
-                    <div class="form-group">
-                        <label for="text-input-name">Оказанная услуга</label>
-                        <input class="form-control" type="text" name="name" value="{{ $item->name }}"
-                               id="text-input-name">
-                    </div>
+                <div class="form-group">
+                    <label>Оказанная услуга</label>
+                    <select name="service_id" class="form-control">
+                        @foreach($services as $service)
+                            <?php
+                            if ($service->id == $item->service->id){
+                                $selected = ' selected';
+                            }else{
+                                $selected = '';
+                            }
+                            ?>
+                            <option value="{{ $service->id }}"{{ $selected }}>{{ $service->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                     <div class="form-group">
                         <label for="example-date-input">Дата</label>
@@ -92,8 +102,8 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="elm2">Описание</label>
-                            <textarea name="description" class="form-control" rows="3"
-                                      id="elm2">{{ $item->description }}</textarea>
+                            <textarea name="description" class="form-control"
+                                      rows="3">{{ $item->description }}</textarea>
                         </div>
                     </div>
                 </div>

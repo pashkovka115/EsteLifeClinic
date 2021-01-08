@@ -21,17 +21,17 @@ class CreateCompanyTable extends Migration
             $table->string('practice')->nullable();
             $table->string('cnt')->nullable()->comment('количество процедур');
             $table->text('description');
-            $table->string('ico1');
-            $table->text('service1');
-            $table->string('ico2');
-            $table->text('service2');
-            $table->string('ico3');
-            $table->text('service3');
-            $table->string('ico4');
-            $table->text('service4');
+
+            $table->string('ico1')->nullable();
+            $table->text('service1')->nullable();
+            $table->string('ico2')->nullable();
+            $table->text('service2')->nullable();
+            $table->string('ico3')->nullable();
+            $table->text('service3')->nullable();
+            $table->string('ico4')->nullable();
+            $table->text('service4')->nullable();
 
             $table->string('title')->nullable();
-            $table->string('keywords')->nullable();
             $table->text('meta_description')->nullable();
 
             $table->timestamps();

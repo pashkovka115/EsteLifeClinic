@@ -16,8 +16,7 @@ class AppointmentsTableSeeder extends Seeder
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
-                'day' => '2020-12-05',
-                'time' => '17:15',
+                'date' => '2020-12-05',
                 'created_at' => now()
             ],
             [
@@ -26,8 +25,7 @@ class AppointmentsTableSeeder extends Seeder
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
-                'day' => '2020-12-05',
-                'time' => '18:00',
+                'date' => '2020-12-05',
                 'created_at' => now()
             ],
             [
@@ -36,8 +34,7 @@ class AppointmentsTableSeeder extends Seeder
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
-                'day' => '2020-12-05',
-                'time' => '16:30',
+                'date' => '2020-12-05',
                 'created_at' => now()
             ],
             [
@@ -46,8 +43,7 @@ class AppointmentsTableSeeder extends Seeder
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
-                'day' => '2020-12-05',
-                'time' => '20:00',
+                'date' => '2020-12-05',
                 'created_at' => now()
             ],
         ];

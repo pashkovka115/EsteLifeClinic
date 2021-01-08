@@ -14,14 +14,16 @@ class CreatePostsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name')->nullable();
-            $table->text('content')->nullable();
+            $table->unsignedBigInteger('cat_post_id');
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->string('read_time')->nullable();
             $table->string('title')->nullable();
             $table->text('meta_description')->nullable();
-            $table->text('keywords')->nullable();
             $table->string('img')->nullable();
-            $table->unsignedBigInteger('cat_post_id');
+            $table->string('bg_img')->nullable();
+            $table->text('excerpt')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
 
             $table->index(["cat_post_id"], 'fk_posts_cat_posts1_idx');

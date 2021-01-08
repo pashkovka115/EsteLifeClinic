@@ -12,7 +12,8 @@ class Banner extends Model
     protected $table = 'banners';
     protected $fillable = [
         'visibility',
-        'name'
+        'name',
+        'description'
     ];
 
 

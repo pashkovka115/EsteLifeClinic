@@ -50,6 +50,12 @@ class AdminCategoryServiceController extends Controller
             $data['parent_id'] = null;
         }
 
+        if ($request->has('before_after')){
+            $data['before_after'] = '1';
+        }else{
+            $data['before_after'] = '0';
+        }
+
         $folder = date('Y/m/d');
 
         if ($request->hasFile('img')) {
@@ -95,6 +101,11 @@ class AdminCategoryServiceController extends Controller
             $data['parent_id'] = (int)$request->input('parent_id');
         }else{
             $data['parent_id'] = null;
+        }
+        if ($request->has('before_after')){
+            $data['before_after'] = '1';
+        }else{
+            $data['before_after'] = '0';
         }
 
 

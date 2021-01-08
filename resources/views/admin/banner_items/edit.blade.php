@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    <label for="text-input-name">Заголовок</label>
+                                    <label for="text-input-name">Баннер/Слайдер</label>
                                     <input class="form-control" type="text" name="title" value="{{ $item->banner->name }}" disabled>
                                     <input type="hidden" name="banner_id" value="{{ $item->banner->id }}">
                                 </div>
@@ -54,6 +54,11 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group col-sm-12 mt-3">
+                                    <label for="text-input-name" title="extra">Дополнительное поле</label>
+                                    <input class="form-control" type="text" name="extra" value="{{ $item->extra }}">
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -62,6 +67,11 @@
                             <div class="card-body">
                                 <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
                                        @if($item->img) data-default-file="{{ URL::asset('storage/' . $item->img)}}" @endif />
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="delete_img" class="custom-control-input" id="delete_img" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                    <label class="custom-control-label" for="delete_img">Удалить изображение</label>
+                                </div>
                             </div>
                         </div>
                     </div>

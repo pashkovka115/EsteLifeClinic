@@ -71,12 +71,14 @@ class AdminBannerItemsController extends Controller
             'title' => 'nullable|string',
             'img' => 'nullable|image',
             'description' => 'nullable|string',
+            'extra' => 'nullable|string',
         ]);
 
         $data = [
             'banner_id' => $request->input('banner_id'),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'extra' => $request->input('extra'),
         ];
 
         $item = BannerItems::where('id', $id)->firstOrFail();
@@ -86,6 +88,14 @@ class AdminBannerItemsController extends Controller
         if ($request->hasFile('img')) {
             $img = $request->file('img')->store("images/banners/$folder");
             $data['img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $item->img;
+            if (is_file($old_file)) {
+                unlink($old_file);
+            }
+        }
+
+        if ($request->has('delete_img')) {
+            $data['img'] = null;
             $old_file = storage_path('app/public') . '/' . $item->img;
             if (is_file($old_file)) {
                 unlink($old_file);

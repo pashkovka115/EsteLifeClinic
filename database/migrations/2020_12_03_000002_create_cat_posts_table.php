@@ -23,7 +23,8 @@ class CreateCatPostsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name', 45)->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();

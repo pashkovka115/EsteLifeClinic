@@ -11,6 +11,8 @@ $(document).ready(function () {
           language: 'ru',
           theme: "modern",
           height:300,
+          convert_urls: false,
+          relative_urls : false,
           plugins: [
               "advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker",
               "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
@@ -34,6 +36,8 @@ $(document).ready(function () {
           language: 'ru',
           theme: "modern",
           height:300,
+          convert_urls: false,
+          relative_urls : false,
           plugins: [
               "advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker",
               "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",

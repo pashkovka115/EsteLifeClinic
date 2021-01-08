@@ -16,8 +16,7 @@ class Appointment extends Model
         'cat_servise_id',
         'service_id',
         'doctor_id',
-        'day',
-        'time',
+        'date',
     ];
 
 

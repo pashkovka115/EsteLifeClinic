@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Новости')
-@section('pageName', 'Создать новость')
+@section('pageName', 'Редактировать новость')
 @section('breadcrumbs')
     <li class="breadcrumb-item active">Создать новость</li>
 @endsection
@@ -50,13 +50,30 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input class="form-control" name="title" type="text" value="{{ old('title') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="elm2">META Description</label>
+                                    <textarea name="meta_description"
+                                              class="form-control" rows="5">{{ old('meta_description') }}</textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify" />
+                                <h4 class="mt-0 header-title">Для ленты</h4>
+                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify">
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title">Для одной новости</h4>
+                                <input type="file" name="bg_img" id="input-file-now-custom-1" class="dropify">
                             </div>
                         </div>
                     </div>
@@ -64,22 +81,9 @@
 
                 <div class="form-group">
                     <label for="elm1">Контент</label>
-                    <textarea name="content" class="form-control" rows="5" id="elm1">{{ old('content') }}</textarea>
+                    <textarea name="content" class="form-control" rows="5"
+                              id="elm1">{{ old('content') }}</textarea>
                 </div>
-                <div class="form-group">
-                    <label>Title</label>
-                    <input class="form-control" name="title" type="text" value="{{ old('title') }}">
-                </div>
-                <div class="form-group">
-                    <label for="elm2">META Description</label>
-                    <textarea name="meta_description"
-                              class="form-control" rows="5">{{ old('meta_description') }}</textarea>
-                </div>
-                {{--<div class="form-group">
-                    <label for="elm2">META Keywords</label>
-                    <textarea name="keywords"
-                              class="form-control" rows="5">{{ old('keywords') }}</textarea>
-                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>

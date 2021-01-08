@@ -116,9 +116,10 @@
                     <h6 class="menu-title">Контент</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.actions.create') }}" href="{{ route('admin.content.actions.actions.create') }}"><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.reviews.reviews.create') }}" href="{{ route('admin.content.reviews.reviews.create') }}"><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.before_after.before_after.create') }}" href="{{ route('admin.content.before_after.before_after.create') }}"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.actions.create') }}" href="{{ route('admin.content.actions.actions.create') }}"><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.conditions_actions.create') }}" href="{{ route('admin.content.actions.conditions_actions.create') }}"><i class="mdi mdi-plus"></i>Добавить условие акции</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.actions.*') }}" href="{{ route('admin.content.actions.actions.index') }}"><i class="mdi  mdi-ticket-percent"></i>Список акций</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.reviews.reviews.*') }}" href="{{ route('admin.content.reviews.reviews.index') }}"><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
@@ -146,7 +147,7 @@
                     <li class="nav-item"><a class="nav-link {{ active('admin.pages.news.create') }}" href="{{ route('admin.pages.news.create') }}"><i class="mdi mdi-plus"></i>Добавить новость</a></li>
                     <li class="nav-item"><a class="nav-link {{ active(['admin.pages.category.news.create']) }}" href="{{ route('admin.pages.category.news.create') }}"><i class="mdi mdi-plus"></i>Добавить категорию новости</a></li>
                     <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-home"></i>Главная страница</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.pages.home.edit') }}" href="{{ route('admin.pages.home.edit') }}"><i class="mdi mdi-home"></i>Главная страница</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.pages.company.edit') }}" href="{{ route('admin.pages.company.edit', ['company' => 'company']) }}"><i class="mdi mdi-information"></i>О компании</a></li>
 {{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-contacts"></i> Контакты</a></li>--}}
                     <hr>

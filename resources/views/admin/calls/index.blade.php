@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Обратные звонки')
-@section('pageName', 'Обратные звонки')
+@section('pageName', 'Заказы обратных звонков')
 @section('breadcrumbs')
 <li class="breadcrumb-item active">Обратные звонки</li>
 @endsection
@@ -18,7 +18,7 @@
             <tr>
                 <th>Телефон</th>
                 <th>Имя</th>
-                <th>Желаемое время</th>
+{{--                <th>Желаемое время</th>--}}
                 <th>Статус</th>
                 <th></th>
             </tr>
@@ -28,7 +28,7 @@
             <tr>
                 <td>{{ $call->phone }}</td>
                 <td>{{ $call->name }}</td>
-                <td>{{ $call->time }}</td>
+{{--                <td>{{ $call->time }}</td>--}}
                 <td>
                     @if($call->status == '1')
                     @php($checked = ' checked')

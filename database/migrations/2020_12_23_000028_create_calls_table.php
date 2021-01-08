@@ -12,7 +12,7 @@ class CreateCallsTable extends Migration
             $table->id();
             $table->string('phone');
             $table->string('name');
-            $table->dateTime('time')->nullable()->comment('во сколько позвонить');
+//            $table->dateTime('time')->nullable()->comment('во сколько позвонить');
             $table->enum('status', ['0', '1']);
         });
     }

@@ -15,7 +15,9 @@ class CreateCatServicesTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
-            $table->string('name', 45)->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->enum('before_after', ['0', '1'])->comment('выводить в меню до после');
             $table->text('description')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();

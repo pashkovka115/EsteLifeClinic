@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\SlugOptions;
 
 class CatService extends Model
 {
@@ -12,13 +13,34 @@ class CatService extends Model
     protected $table = 'cat_services';
     protected $fillable = [
         'name',
+        'slug',
         'parent_id',
+        'before_after',
         'description',
         'meta_description',
         'title',
         'keywords',
         'img',
     ];
+
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
     /*
@@ -39,7 +61,7 @@ class CatService extends Model
 
 
     /*
-    * Отзывы
+    * Записаны на приём в этой категории
     */
     public function appointments()
     {

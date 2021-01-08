@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Action;
 use App\Models\CatService;
 use App\Models\Doctor;
 use App\Models\Service;
@@ -66,10 +67,15 @@ class AdminServiceController extends Controller
 
     public function edit($id)
     {
-        $serv = Service::with('category')->where('id', $id)->firstOrFail();
+        $serv = Service::with(['category', 'action'])->where('id', $id)->firstOrFail();
         $cats = CatService::whereNull('parent_id')->with('children')->get();
+        $actions = Action::all(['id', 'name']);
 
-        return view('admin.services.edit', ['service' => $serv, 'categories' => $cats]);
+        return view('admin.services.edit', [
+            'service' => $serv,
+            'categories' => $cats,
+            'actions' => $actions
+        ]);
     }
 
 
@@ -80,11 +86,19 @@ class AdminServiceController extends Controller
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
+            'action_id' => 'required|numeric',
             'description' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
-            'keywords' => 'nullable|string',
-            'img' => 'image',
+            'img' => 'nullable|image',
+            'ico1' => 'nullable|image',
+            'ico2' => 'nullable|image',
+            'ico3' => 'nullable|image',
+            'ico4' => 'nullable|image',
+            'service1' => 'nullable|string',
+            'service2' => 'nullable|string',
+            'service3' => 'nullable|string',
+            'service4' => 'nullable|string',
         ]);
 
         $data = [
@@ -92,19 +106,71 @@ class AdminServiceController extends Controller
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),
+            'action_id' => $request->input('action_id'),
             'description' => $request->input('description'),
             'title' => $request->input('title'),
             'meta_description' => $request->input('meta_description'),
-            'keywords' => $request->input('keywords'),
+            'service1' => $request->input('service1'),
+            'service2' => $request->input('service2'),
+            'service3' => $request->input('service3'),
+            'service4' => $request->input('service4'),
         ];
-
-        if ($request->hasFile('img')) {
-            $folder = date('Y/m/d');
-            $img = $request->file('img')->store("images/categories/$folder");
-            $data['img'] = $img;
+        if ($data['action_id'] == '0'){
+            $data['action_id'] = null;
         }
 
         $serv = Service::where('id', $id)->firstOrFail();
+
+        if ($request->hasFile('img')) {
+            $folder = date('Y/m/d');
+            $img = $request->file('img')->store("images/services/$folder");
+            $data['img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $serv->img;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
+        if ($request->hasFile('ico1')) {
+            $folder = date('Y/m/d');
+            $img = $request->file('ico1')->store("images/services/$folder");
+            $data['ico1'] = $img;
+            $old_file = storage_path('app/public') . '/' . $serv->ico1;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
+        if ($request->hasFile('ico2')) {
+            $folder = date('Y/m/d');
+            $img = $request->file('ico2')->store("images/services/$folder");
+            $data['ico2'] = $img;
+            $old_file = storage_path('app/public') . '/' . $serv->ico2;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
+        if ($request->hasFile('ico3')) {
+            $folder = date('Y/m/d');
+            $img = $request->file('ico3')->store("images/services/$folder");
+            $data['ico3'] = $img;
+            $old_file = storage_path('app/public') . '/' . $serv->ico3;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
+        if ($request->hasFile('ico4')) {
+            $folder = date('Y/m/d');
+            $img = $request->file('ico4')->store("images/services/$folder");
+            $data['ico4'] = $img;
+            $old_file = storage_path('app/public') . '/' . $serv->ico4;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
         $serv->update($data);
 
         return back();

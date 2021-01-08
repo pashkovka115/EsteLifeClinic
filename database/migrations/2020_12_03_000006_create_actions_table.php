@@ -15,16 +15,18 @@ class CreateActionsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('type')->nullable()->comment('тип акции');
             $table->string('slogan')->nullable();
             $table->string('discount')->nullable();
-            $table->string('img')->nullable();
+            $table->string('big_img')->nullable();
+            $table->string('banner_img')->nullable();
+            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
 
             $table->string('title')->nullable();
-            $table->string('keywords')->nullable();
             $table->text('meta_description')->nullable();
 
             $table->timestamps();

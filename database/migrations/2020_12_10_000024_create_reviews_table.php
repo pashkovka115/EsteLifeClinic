@@ -13,7 +13,9 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('cat_service_id');
             $table->enum('visibility', ['0', '1']);
             $table->string('name');
+            $table->string('phone');
             $table->text('content');
+            $table->timestamps();
 
             $table->index(["cat_service_id"], 'fk_cat_services_id_cat_service1_idx');
 

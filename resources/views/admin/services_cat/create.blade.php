@@ -55,6 +55,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="before_after" class="custom-control-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                            <label class="custom-control-label" for="customCheck3">Показывать в меню "До/После"</label>
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">

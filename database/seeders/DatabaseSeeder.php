@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ActionsTableSeeder::class);
         $this->call(AppointmentsTableSeeder::class);
         $this->call(CallsTableSeeder::class);
+        $this->call(ConditionsActionsTableSeeder::class);
+        $this->call(HomeTableSeeder::class);
     }
 }

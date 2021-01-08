@@ -19,11 +19,67 @@ Auth::routes([
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Врачи
-Route::get('dostors', 'DoctorController@index')->name('front.doctors.index');
-Route::get('dostors/show/{slug}', 'DoctorController@show')->name('front.doctors.show');
-Route::post('dostors', 'DoctorController@ajax')->name('front.doctors.index.ajax');
-Route::get('dostors/professions/{profession}', 'DoctorProfessionsController@index')->name('front.doctors.professions');
-Route::post('dostors/professions/{profession}', 'DoctorProfessionsController@ajax')->name('front.doctors.professions.ajax');
+Route::prefix('doctors')->group(function (){
+    Route::get('', 'DoctorController@index')->name('front.doctors.index');
+    Route::get('/show/{slug}', 'DoctorController@show')->name('front.doctors.show');
+    Route::post('', 'DoctorController@ajax')->name('front.doctors.index.ajax');
+    Route::get('/professions/{profession}', 'DoctorProfessionsController@index')->name('front.doctors.professions');
+    Route::post('/professions/{profession}', 'DoctorProfessionsController@ajax')->name('front.doctors.professions.ajax');
+});
+
+// Акции
+Route::prefix('actions')->group(function (){
+    Route::get('', 'ActionController@index')->name('front.actions.index');
+    Route::get('show/{slug}', 'ActionController@show')->name('front.actions.show');
+});
+
+// До/После
+Route::prefix('difference')->group(function (){
+    Route::get('', 'BeforeAfterController@index')->name('front.before_after.index');
+    Route::get('show/{slug}', 'BeforeAfterController@show')->name('front.before_after.show');
+
+    Route::post('{slug?}', 'BeforeAfterController@ajax')->name('front.before_after.ajax');
+});
+
+// О компании
+Route::get('about-company', 'AboutCompanyController@index')->name('front.about.company');
+
+// Контакты
+Route::get('contacts', 'ContactController@index')->name('front.contact');
+
+// Новости
+Route::prefix('news')->group(function () {
+    Route::get('', 'NewsController@index')->name('front.news.index');
+    Route::get('/category/{slug}', 'NewsController@categoryIndex')->name('front.news.category_index');
+    Route::get('/show/{slug}', 'NewsController@show')->name('front.news.show');
+    Route::post('/ajax', 'NewsController@ajax')->name('front.news.ajax');
+    Route::post('/category/{slug}/ajax', 'NewsController@categoryAjax')->name('front.news.category.ajax');
+});
+
+// Обратный звонок
+Route::post('call', 'CallController@store')->name('front.call.store');
+
+// Запись на приём
+Route::post('appointment', 'AppointmentController@store')->name('front.appointment.store');
+
+// Цены
+Route::get('price', 'PriceController@index')->name('front.price');
+Route::get('price/{slug}', 'PriceController@show')->name('front.price.show.category');
+Route::post('price/search', 'PriceController@search')->name('front.price.search');
+
+// Отзывы reviews
+Route::get('reviews', 'ReviewController@index')->name('front.reviews');
+Route::post('reviews', 'ReviewController@index_ajax')->name('front.reviews_ajax');
+Route::post('reviews/store', 'ReviewController@store')->name('front.reviews.store');
+Route::get('reviews/show/{cat_id}', 'ReviewController@show')->name('front.reviews.show');
+Route::post('reviews/show/{cat_id}', 'ReviewController@show_ajax')->name('front.reviews.show_ajax');
+
+// Поиск
+Route::get('search', 'SearchController@index')->name('front.search');
+
+// Услуга
+Route::get('service/{slug}', 'ServiceController@show')->name('front.service.show');
+
 
 
 //Админ-панель
@@ -52,10 +108,15 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
     // Раздел страницы
     Route::prefix('pages')->as('pages.')->group(function(){
+        Route::get('home/edit', 'Admin\AdminHomeController@edit')->name('home.edit');
+        Route::put('home/update', 'Admin\AdminHomeController@update')->name('home.update');
+
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
         Route::resource('pages', 'Admin\AdminPageController')->except('show')->names('pages');
         Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
+
+//        Route::post('file-upload', 'Admin\AdminPageController@file_upload')->name('pages.file_upload');
     });
 
     // Раздел администратор (верхнее меню)
@@ -88,6 +149,12 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Акции и скидки
         Route::prefix('actions')->as('actions.')->group(function(){
             Route::resource('actions', 'Admin\AdminActionController')->except('show')->names('actions');
+            // Условия акции
+            Route::get('conditions/{action_id}/{condition_id}', 'Admin\AdminConditionController@edit')->name('conditions_actions.edit');
+            Route::get('conditions/create', 'Admin\AdminConditionController@create')->name('conditions_actions.create');
+            Route::post('conditions/store', 'Admin\AdminConditionController@store')->name('conditions_actions.store');
+            Route::put('conditions/update/{id}', 'Admin\AdminConditionController@update')->name('conditions_actions.update');
+            Route::delete('conditions/destroy/{id}', 'Admin\AdminConditionController@destroy')->name('conditions_actions.destroy');
         });
 
         // До/После
@@ -106,7 +173,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
     // Обратные звонки
     Route::get('calls', 'Admin\AdminCallsController@index')->name('calls.index');
-    Route::post('calls/destroy', 'Admin\AdminCallsController@destroy')->name('calls.destroy');
+    Route::delete('calls/{call}/destroy', 'Admin\AdminCallsController@destroy')->name('calls.destroy');
     Route::post('calls/update', 'Admin\AdminCallsController@update')->name('calls.update');
 
     // Отдельная страница SEO

@@ -33,8 +33,10 @@ class AdminNewsController extends Controller
             'content' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
+            'excerpt' => 'nullable|string',
             'keywords' => 'nullable|string',
             'img' => 'nullable|image',
+            'bg_img' => 'nullable|image',
             'cat_post_id' => 'required|numeric',
         ]);
 
@@ -46,7 +48,11 @@ class AdminNewsController extends Controller
             $data['img'] = $img;
         }
 
-//        dd($data);
+        if ($request->hasFile('bg_img')) {
+            $img = $request->file('bg_img')->store("images/posts/$folder");
+            $data['bg_img'] = $img;
+        }
+
         $post = new Post($data);
         $post->save();
 
@@ -72,8 +78,10 @@ class AdminNewsController extends Controller
             'content' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
+            'excerpt' => 'nullable|string',
             'keywords' => 'nullable|string',
             'img' => 'nullable|image',
+            'bg_img' => 'nullable|image',
             'cat_post_id' => 'required|numeric',
         ]);
 
@@ -85,6 +93,15 @@ class AdminNewsController extends Controller
             $img = $request->file('img')->store("images/posts/$folder");
             $data['img'] = $img;
             $old_file = storage_path('app/public') . '/' . $post->img;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+        }
+
+        if ($request->hasFile('bg_img')) {
+            $img = $request->file('bg_img')->store("images/posts/$folder");
+            $data['bg_img'] = $img;
+            $old_file = storage_path('app/public') . '/' . $post->bg_img;
             if (is_file($old_file)){
                 unlink($old_file);
             }

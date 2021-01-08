@@ -28,7 +28,7 @@ class AdminOptionController extends Controller
     {
         $request->validate([
             'key' => 'required|string',
-            'val' => 'required|string',
+            'val' => 'nullable|string',
             'val2' => 'nullable|string',
             'description' => 'nullable|string',
         ]);

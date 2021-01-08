@@ -13,7 +13,7 @@ class Call extends Model
     protected $fillable = [
         'phone',
         'name',
-        'time',
+//        'time',
         'status',
     ];
 

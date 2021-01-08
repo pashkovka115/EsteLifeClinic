@@ -25,7 +25,7 @@
                                    id="text-input-name">
                         </div>
                         <div class="form-group">
-                            <label for="text-input-title">Тип</label>
+                            <label for="text-input-title">Тип (программа обследования, ежемесячная акция, ежегодная скидка, ...)</label>
                             <input class="form-control" type="text" name="type" value="{{ $action->type }}"
                                    id="text-input-title">
                         </div>
@@ -39,13 +39,51 @@
                             <input class="form-control" type="text" name="discount" value="{{ $action->discount }}"
                                    id="text-input-title">
                         </div>
+                        <div class="form-group my-5">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Условия акции</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($action->conditions as $condition)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('admin.content.actions.conditions_actions.edit',
+                                                            [
+                                                                'action_id' => $action->id,
+                                                                'condition_id' => $condition->id
+                                                            ]
+) }}" target="_blank">{{ $condition->condition }}</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table><!--end /table-->
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
-                                   @if($action->img) data-default-file="{{ URL::asset('storage/' . $action->img)}}" @endif />
+                            <p>Большая</p>
+                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify"
+                                   @if($action->big_img) data-default-file="{{ URL::asset('storage/' . $action->big_img)}}" @endif />
+                        </div>
+                        <div class="form-group">
+                            <p>Для баннера</p>
+                            <input type="file" name="banner_img" id="input-file-now-custom-2" class="dropify"
+                                   @if($action->banner_img) data-default-file="{{ URL::asset('storage/' . $action->banner_img)}}" @endif />
                         </div>
                     </div>
+
+                </div>
+
+                <div class="form-group mb-5">
+                    <label>Краткое описание (для ленты)</label>
+                    <textarea name="short_description" class="form-control"
+                              rows="1">{{ $action->short_description }}</textarea>
                 </div>
 
                 <div class="form-group">

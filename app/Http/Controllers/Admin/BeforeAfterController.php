@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CatService;
 use App\Models\Doctor;
+use App\Models\Service;
 use App\Models\TreatmentHistory;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class BeforeAfterController extends Controller
         $request->validate([
             'doctor_id' => 'required|numeric',
             'cat_service_id' => 'required|numeric',
-            'name' => 'required|string',
+            'service_id' => 'required|numeric',
             'description' => 'nullable|string',
             'done' => 'nullable|date'
         ]);
@@ -58,11 +59,17 @@ class BeforeAfterController extends Controller
 
     public function edit($id)
     {
-        $item = TreatmentHistory::with(['doctor', 'category'])->where('id', $id)->firstOrFail();
+        $item = TreatmentHistory::with(['doctor', 'category', 'service'])->where('id', $id)->firstOrFail();
         $doctors = Doctor::all(['id', 'name']);
         $categories = CatService::all(['id', 'name']);
+        $services = Service::all(['id', 'name']);
 
-        return view('admin.before_after.edit', ['item' => $item, 'doctors' => $doctors, 'categories' => $categories]);
+        return view('admin.before_after.edit', [
+            'item' => $item,
+            'doctors' => $doctors,
+            'categories' => $categories,
+            'services' => $services
+        ]);
     }
 
 
@@ -71,7 +78,7 @@ class BeforeAfterController extends Controller
         $request->validate([
             'doctor_id' => 'required|numeric',
             'cat_service_id' => 'required|numeric',
-            'name' => 'required|string',
+            'service_id' => 'required|numeric',
             'description' => 'nullable|string',
             'done' => 'nullable|date'
         ]);

@@ -27,7 +27,7 @@
                 <tbody>
                 @foreach($items as $item)
                     <tr>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->service->name }}</td>
                         <td>{{ $item->doctor->name }}</td>
                         <td>{{ $item->category->name }}</td>
                         <td>

@@ -55,13 +55,8 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label>День</label>
-                            <input class="form-control" type="date" name="day" value="{{ old('day') }}">
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                            <label>Время</label>
-                            <input class="form-control" type="text" name="time" value="{{ old('time') }}">
+                            <label>Дата</label>
+                            <input class="form-control" type="text" name="date" value="{{ old('date') }}">
                         </div>
                     </div>
 

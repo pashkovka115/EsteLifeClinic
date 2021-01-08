@@ -34,8 +34,7 @@
                         <td>{{ $appointment->cat_servise->name }}</td>
                         <td>{{ $appointment->service->name }}</td>
                         <td>{{ $appointment->doctor->name }}</td>
-                        <?php $date = new DateTime($appointment->day); ?>
-                        <td>{{ $date->format('d_m_Y') }} - {{ $appointment->time }}</td>
+                        <td>{{ $appointment->date }}</td>
                         <td>
                             <a href="{{ route('admin.home.home.appointments.edit', ['appointment' => $appointment->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>

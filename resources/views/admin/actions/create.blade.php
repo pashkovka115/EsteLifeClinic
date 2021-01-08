@@ -1,11 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Добавить акцию')
-@section('pageName', 'Добавить акцию')
+@section('title', 'Редактируем акцию')
+@section('pageName', 'Редактируем акцию')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Добавить акцию</li>
+    <li class="breadcrumb-item active">Редактируем акцию</li>
 @endsection
-
 @section('headerStyle')
     {{--    upload files --}}
     <link rel="stylesheet" href="{{ URL::asset('plugins/dropify/css/dropify.min.css')}}">
@@ -15,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.content.actions.actions.store') }}" method="post">
+                  action="{{ route('admin.content.actions.actions.create') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-sm-8">
@@ -25,7 +24,7 @@
                                    id="text-input-name">
                         </div>
                         <div class="form-group">
-                            <label for="text-input-title">Тип</label>
+                            <label for="text-input-title">Тип (программа обследования, ежемесячная акция, ежегодная скидка, ...)</label>
                             <input class="form-control" type="text" name="type" value="{{ old('type') }}"
                                    id="text-input-title">
                         </div>
@@ -42,9 +41,15 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="file" name="img" id="input-file-now-custom-1" class="dropify">
+                            <p>Большая</p>
+                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify">
+                        </div>
+                        <div class="form-group">
+                            <p>Для баннера</p>
+                            <input type="file" name="banner_img" id="input-file-now-custom-1" class="dropify">
                         </div>
                     </div>
+
                 </div>
 
                 <div class="form-group">

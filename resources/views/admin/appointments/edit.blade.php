@@ -72,13 +72,8 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label>День</label>
-                            <input class="form-control" type="date" name="day" value="{{ $appointment->day }}">
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                            <label>Время</label>
-                            <input class="form-control" type="text" name="time" value="{{ $appointment->time }}">
+                            <label>Дата</label>
+                            <input class="form-control" type="text" name="date" value="{{ $appointment->date }}">
                         </div>
                     </div>
 

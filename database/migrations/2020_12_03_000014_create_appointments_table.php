@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/*
+ * Запись на приём
+ */
 class CreateAppointmentsTable extends Migration
 {
     public $tableName = 'appointments';
@@ -19,8 +22,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('cat_servise_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('doctor_id');
-            $table->date('day')->nullable();
-            $table->string('time')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
 
             $table->index(["cat_servise_id"], 'fk_cat_services_cat_servise1_idx');

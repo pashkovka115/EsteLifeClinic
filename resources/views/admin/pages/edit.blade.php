@@ -46,16 +46,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="elm1">Meta description</label>
+                    <label>Meta description</label>
                     <textarea name="meta_description" class="form-control"
                               rows="5">{{ $page->meta_description }}</textarea>
                 </div>
-
-                {{--<div class="form-group">
-                    <label for="elm1">Meta keywords</label>
-                    <textarea name="keywords" class="form-control"
-                              rows="5">{{ $page->keywords }}</textarea>
-                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>

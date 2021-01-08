@@ -67,7 +67,7 @@
 
                     <div class="form-group col-sm-4">
                         <label for="text-input-name">Проведено процедур</label>
-                        <input class="form-control" type="text" name="practice" value="{{ $company->cnt }}"
+                        <input class="form-control" type="text" name="cnt" value="{{ $company->cnt }}"
                                id="text-input-name">
                     </div>
 

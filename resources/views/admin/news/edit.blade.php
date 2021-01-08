@@ -56,45 +56,52 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input class="form-control" name="title" type="text" value="{{ $post->title }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="elm2">META Description</label>
+                                    <textarea name="meta_description"
+                                              class="form-control" rows="5">{{ $post->meta_description }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="elm2">Краткое описание</label>
+                                    <textarea name="excerpt"
+                                              class="form-control" rows="5">{{ $post->excerpt }}</textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="mt-0 header-title">Для ленты</h4>
                                 <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
                                        @if($post->img) data-default-file="{{ URL::asset('storage/' . $post->img)}}" @endif />
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title">Для одной новости</h4>
+                                <input type="file" name="bg_img" id="input-file-now-custom-1" class="dropify"
+                                       @if($post->bg_img) data-default-file="{{ URL::asset('storage/' . $post->bg_img)}}" @endif />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="elm1">Контент</label>
+                    <label for="elm1">Полная статья</label>
                     <textarea name="content" class="form-control" rows="5"
                               id="elm1">{{ $post->content }}</textarea>
                 </div>
-                <div class="form-group">
-                    <label>Title</label>
-                    <input class="form-control" name="title" type="text" value="{{ $post->title }}">
-                </div>
-                <div class="form-group">
-                    <label for="elm2">META Description</label>
-                    <textarea name="meta_description"
-                              class="form-control" rows="5">{{ $post->meta_description }}</textarea>
-                </div>
-                {{--<div class="form-group">
-                    <label for="elm2">META Keywords</label>
-                    <textarea name="keywords"
-                              class="form-control" rows="5">{{ $post->keywords }}</textarea>
-                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>
         </div>
     </div>
-
-
 @stop
 
 @section('footerScript')

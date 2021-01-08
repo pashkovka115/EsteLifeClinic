@@ -41,8 +41,7 @@ class AdminAppointmentController extends Controller
             'cat_servise_id' => 'required|numeric',
             'service_id' => 'required|numeric',
             'doctor_id' => 'required|numeric',
-            'day' => 'nullable|string',
-            'time' => 'nullable|string',
+            'date' => 'nullable|string',
         ]);
 
         $appo = new Appointment($request->except(['_method', '_token']));
@@ -77,8 +76,7 @@ class AdminAppointmentController extends Controller
             'cat_servise_id' => 'required|numeric',
             'service_id' => 'required|numeric',
             'doctor_id' => 'required|numeric',
-            'day' => 'nullable|string',
-            'time' => 'nullable|string',
+            'date' => 'nullable|string',
         ]);
 
         Appointment::where('id', $id)->update($request->except(['_method', '_token']));

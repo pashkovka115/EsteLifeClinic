@@ -6,18 +6,20 @@
                     <h2>EsteLife</h2>
                     <div class="item">
                         <h4>Адрес:</h4>
-                        <p>г. Краснодар, ул.Коммунаров 225/1</p>
+                        <p>{{ strip_tags(option('address')->val) }}</p>
                     </div>
                     <div class="item">
                         <h4>Режим работы:</h4>
                         <table>
                             <tr>
-                                <td>Пн-Пт</td>
-                                <td>08:00 - 20:00</td>
+                                <?php $rab_days = option('rab_days'); ?>
+                                <td>{{ $rab_days->val }}</td>
+                                <td>{{ $rab_days->val2 }}</td>
                             </tr>
                             <tr>
-                                <td>Суббота</td>
-                                <td>09:00 - 18:00</td>
+                                <?php $mini_day = option('mini_day'); ?>
+                                <td>{{ $mini_day->val }}</td>
+                                <td>{{ $mini_day->val2 }}</td>
                             </tr>
                             <tr>
                                 <td>Воскресенье</td>
@@ -28,22 +30,33 @@
                     <div class="item">
                         <h4>Телефон:</h4>
                         <ul>
-                            <li><a href="tel:+79183800900">+7 (918) 3-800-900</a></li>
-                            <li><a href="tel:+78612592459">+7 (861) 259 24 59</a></li>
+                            <li><a href="tel:+{{ preg_replace('/\+|\s|\-|\(|\)/', '', option('phone1')->val) }}">{{ option('phone1')->val }}</a></li>
+                            <li><a href="tel:+{{ preg_replace('/\+|\s|\-|\(|\)/', '', option('phone2')->val) }}">{{ option('phone2')->val }}</a></li>
                         </ul>
                     </div>
                     <div class="item">
                         <h4>Email и соц.сети:</h4>
-                        <p><a href="mailto:estelifeclinic@mail.ru">estelifeclinic@mail.ru</a></p>
+                        <p><a href="mailto:{!! option('email')->val !!}">{{ option('email')->val }}</a></p>
                         <div class="soc-box-2">
+                            <?php $soc_networks = options(['whatsapp', 'telegram', 'facebook', 'vk', 'instagram', 'youtube', 'prodoctorov']); ?>
                             <ul>
-                                <li><a href=""><i class="demo-icon icon-whatsapp"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-telegram"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-fb2"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-vk2"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-insta"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-youtube"></i></a></li>
-                                <li><a href=""><i class="demo-icon icon-prodoc"></i></a></li>
+                                @foreach($soc_networks as $network)
+                                    @if($network->key == 'whatsapp' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-whatsapp"></i></a></li>
+                                    @elseif($network->key == 'telegram' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-telegram"></i></a></li>
+                                    @elseif($network->key == 'facebook' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-fb2"></i></a></li>
+                                    @elseif($network->key == 'vk' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-vk2"></i></a></li>
+                                    @elseif($network->key == 'instagram' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-insta"></i></a></li>
+                                    @elseif($network->key == 'youtube' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-youtube"></i></a></li>
+                                    @elseif($network->key == 'prodoctorov' and $network->val)
+                                        <li><a href="{{ $network->val }}"><i class="demo-icon icon-prodoc"></i></a></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -58,7 +71,7 @@
         <div class="row">
             <div class="col-lg-12 wrapper">
                 <div class="column">
-                    <div class="logo-box"><a href=""><img src="{{ asset('img/logo.svg') }}" alt=""></a></div>
+                    <div class="logo-box"><a href="/"><img src="{{ asset('img/logo.svg') }}" alt=""></a></div>
                     <button class="version-visim">Версия для слабовидящих</button>
                 </div>
                 <div class="column column-menu">
@@ -104,10 +117,10 @@
                 <div class="column column-contacts">
                     <h4>Свяжитесь с нами!</h4>
                     <ul>
-                        <li><a href="tel:+79183800900">+7 (918) 3-800-900</a></li>
-                        <li><a href="tel:+78612592459">+7 (861) 259 24 59</a></li>
+                        <li><a href="tel:+{{ preg_replace('/\+|\s|\-|\(|\)/', '', option('phone1')->val) }}">{{ option('phone1')->val }}</a></li>
+                        <li><a href="tel:+{{ preg_replace('/\+|\s|\-|\(|\)/', '', option('phone2')->val) }}">{{ option('phone2')->val }}</a></li>
                     </ul>
-                    <p class="email"><a href="mailto:estelifeclinic@mail.ru">estelifeclinic@mail.ru</a></p>
+                    <p class="email"><a href="mailto:{!! option('email')->val !!}">{{ option('email')->val }}</a></p>
                     <p class="msngr"><a href=""><i class="demo-icon icon-whatsapp"></i></a> <a href=""><i class="demo-icon icon-telegram"></i></a></p>
                     <h4>мы в соц.сетях</h4>
                     <div class="soc-box-2">
@@ -182,16 +195,35 @@
 
 
 <div class="hidden">
-    <form action="" class="form popup-form" id="callback">
+    <form action="{{ route('front.call.store') }}" class="form popup-form" id="callback" method="post">
+        @csrf
         <h3>Заполните форму обратного звонка</h3>
-        <input type="text"  name="Имя" placeholder="Ваше имя"  required="required">
-        <input type="text"  name="Телефон" class="tel-input" placeholder="Номер телефона" required="required">
+        <input type="text"  name="name" placeholder="Ваше имя"  required="required">
+        <input type="text"  name="phone" class="tel-input" placeholder="Номер телефона" required="required">
         <button class="btn btn-indigo">Отправить</button>
         <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
-        <p>Вы также можете позвонить по номеру<br /> 8 (918) 3-800-900, чтобы узнать любую информацию</p>
+        <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
     </form>
 
-    <form action="" class="form popup-form" id="order">
+    <form action="{{ route('front.reviews.store') }}" class="form popup-form" id="review-form" method="post">
+        @csrf
+        <h3>Оставить отзыв</h3>
+        <input type="text"  name="name" placeholder="Ваше имя"  required="required">
+        <input type="text"  name="phone" class="tel-input" placeholder="Номер телефона" required="required">
+        <select name="cat_service_id" id="">
+            <option value="">Выберите направление</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+        <textarea name="content" placeholder="Ваш отзыв"></textarea>
+        <button class="btn btn-indigo">Написать</button>
+        <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
+        <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
+    </form>
+
+    <form action="{{ route('front.appointment.store') }}" class="form popup-form" id="order" method="post">
+        @csrf
         <h3>Запись на прием</h3>
         <p class="subtitle">Администратор нашего центра перезвонит вам для подтверждения записи</p>
         <div class="steps-digits">
@@ -200,41 +232,44 @@
             <span class="step-digit step-digit-3">03</span>
         </div>
         <div class="step-item step-1 active">
-            <input type="text"  placeholder="Ваше имя"  required="required">
-            <input type="text"  class="tel-input" placeholder="Номер телефона" required="required">
+            <input type="text" name="name"  placeholder="Ваше имя"  required="required">
+            <input type="text" name="phone"  class="tel-input" placeholder="Номер телефона" required="required">
             <div class="btn btn-indigo" id="step-2">Далее</div>
         </div>
         <div class="step-item step-2">
-            <select name="" id="">
+            <select name="cat_servise_id" id="">
                 <option value="">Выберите направление</option>
-                <option value="">Направление 1</option>
-                <option value="">Направление 2</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
             </select>
-            <select name="" id="">
+            <select name="service_id" id="">
                 <option value="">Выберите услугу</option>
-                <option value="">Услуга 1</option>
-                <option value="">Услуга 2</option>
+                @foreach($services as $service)
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @endforeach
             </select>
-            <select name="" id="">
+            <select name="doctor_id" id="">
                 <option value="">Выберите врача</option>
-                <option value="">Врач 1</option>
-                <option value="">Врач 2</option>
+                @foreach($doctors as $doctor)
+                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                @endforeach
             </select>
             <div class="btn btn-indigo" id="step-3">Последний вопрос</div>
         </div>
         <div class="step-item step-3">
-            <input type="text"  placeholder="Желаемая дата посещения">
-            <select name="" id="">
+            <input type="text" name="date"  placeholder="Желаемая дата посещения">
+            {{--<select name="" id="">
                 <option value="">Желаемое время посещения</option>
                 <option value="">10 : 00</option>
                 <option value="">11 : 00</option>
                 <option value="">12 : 00</option>
                 <option value="">13 : 00</option>
-            </select>
+            </select>--}}
             <button class="btn btn-indigo" id="step-3">Отправить</button>
         </div>
         <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
-        <p>Вы также можете позвонить по номеру<br /> 8 (918) 3-800-900, чтобы узнать любую информацию</p>
+        <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
     </form>
     <div class="popup-contacts-form" id="contacts-form">
         <div class="title">
@@ -254,17 +289,17 @@
             <div class="col-lg-5">
                 <div class="contacts-box">
                     <div class="item">
-                        <p>г. Краснодар, ул.Коммунаров 225/1</p>
+                        <p>{{ strip_tags(option('address')->val) }}</p>
                     </div>
                     <div class="item">
                         <table>
                             <tr>
-                                <td>Пн-Пт</td>
-                                <td>08:00 - 20:00</td>
+                                <td>{{ option('rab_days')->val }}</td>
+                                <td>{{ option('rab_days')->val2 }}</td>
                             </tr>
                             <tr>
-                                <td>Суббота</td>
-                                <td>09:00 - 18:00</td>
+                                <td>{{ option('mini_day')->val }}</td>
+                                <td>{{ option('mini_day')->val2 }}</td>
                             </tr>
                             <tr>
                                 <td>Воскресенье</td>
@@ -273,12 +308,12 @@
                         </table>
                     </div>
                     <div class="item">
-                        <p class="phone">+7 (918) 3-800-900</p>
-                        <p class="phone">+7 (861) 259 24 59</p>
+                        <p class="phone">{{ option('phone1')->val }}</p>
+                        <p class="phone">{{ option('phone2')->val }}</p>
                     </div>
                     <div class="item">
-                        <p><b>Маршрутные такси:</b> 21, 42, 62, 78, 85, 93, 196</p>
-                        <p><b>Трамвай:</b> 5,8,15,21,22 (50 метров от остановки)</p>
+                        <p><b>Маршрутные такси:</b> {{ option('route_taxis')->val }}</p>
+                        <p><b>Трамвай:</b> {{ option('tram')->val }}</p>
                     </div>
                     <a href="#callback" class="btn btn-indigo popup-with-form">Заказать обратный звонок</a>
                 </div>
@@ -297,4 +332,5 @@
 </div>
 <script src="http://api-maps.yandex.ru/2.0/?load=package.standard,package.geoObjects&lang=ru-RU" type="text/javascript"></script>
 <script src="{{ asset('js/scripts.min.js') }}"></script>
+{{ option('script_footer')->val }}
 

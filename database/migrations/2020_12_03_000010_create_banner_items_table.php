@@ -17,6 +17,7 @@ class CreateBannerItemsTable extends Migration
             $table->enum('visibility', ['1', '0']);
             $table->string('title')->nullable();
             $table->string('img')->nullable();
+            $table->string('extra')->nullable()->comment('дополнительное поле');
             $table->text('description')->nullable();
         });
     }

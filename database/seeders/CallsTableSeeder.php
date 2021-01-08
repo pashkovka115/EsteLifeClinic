@@ -15,7 +15,7 @@ class CallsTableSeeder extends Seeder
             $calls[] = [
                 'phone' => $faker->phoneNumber,
                 'name' => $faker->name,
-                'time' => $faker->dateTimeBetween('-1 year', '+1 year'),
+//                'time' => $faker->dateTimeBetween('-1 year', '+1 year'),
                 'status' => ($i == 2 or $i == 5) ? '1' : '0'
             ];
         }

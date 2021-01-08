@@ -16,15 +16,15 @@ class CreateTreatmentHistoryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('cat_service_id');
-            $table->string('name');
+            $table->unsignedBigInteger('service_id');
             $table->longText('before_images')->nullable();
             $table->longText('after_images')->nullable();
             $table->text('description')->nullable();
             $table->date('done')->nullable();
 
             $table->index(["doctor_id"], 'fk_doctors_doctor1_idx');
-
             $table->index(["cat_service_id"], 'fk_cat_service_cat_service1_idx');
+            $table->index(["service_id"], 'fk_service_service1_idx');
 
 
             $table->foreign('doctor_id', 'fk_doctors_doctor1_idx')
@@ -34,6 +34,11 @@ class CreateTreatmentHistoryTable extends Migration
 
             $table->foreign('cat_service_id', 'fk_cat_service_cat_service1_idx')
                 ->references('id')->on('cat_services')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('service_id', 'fk_service_service1_idx')
+                ->references('id')->on('services')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

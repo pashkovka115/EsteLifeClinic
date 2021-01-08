@@ -15,7 +15,9 @@ class Action extends Model
         'type',
         'slogan',
         'discount',
-        'img',
+        'big_img',
+        'banner_img',
+        'short_description',
         'description',
         'start',
         'finish',
@@ -25,12 +27,19 @@ class Action extends Model
     ];
 
 
-
     /*
      * Услуги
      */
     public function services()
     {
         return $this->belongsToMany(Service::class, 'services_has_actions');
+    }
+
+    /*
+     * Условия
+     */
+    public function conditions()
+    {
+        return $this->hasMany(ConditionsAction::class, 'action_id');
     }
 }

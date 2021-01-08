@@ -2,34 +2,59 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                <?php
+                function cats_menu($categories){
+                    $str = '<ul>';
+                    foreach ($categories as $category){
+                        if ($category->children->count() > 0){
+                            $ico = ' <i class="demo-icon icon-arrow-right"></i>';
+                        }else{ $ico = ''; }
+                        $str .= '<li><a>' . $category->name . $ico . '</a>';
+                        if ($category->children->count() > 0){
+                            $str .= cats_menu($category->children);
+                        }
+                        $str .= '</li>';
+                    }
+                    $str .= '</ul>';
+
+                    return $str;
+                }
+                ?>
                 <nav>
                     <ul>
-                        <li><a href="">Косметология</a></li>
-                        <li><a href="">Медицина</a></li>
-                        <li><a href="">Цены</a></li>
-                        <li><a href="" class="red-link">Акции</a></li>
-                        <li><a href="">Врачи <i class="demo-icon icon-arrow-down"></i></a>
+                        <li><a href="#">Косметология <i class="demo-icon icon-arrow-down"></i></a>
+                            <?php
+                            echo cats_menu($cats_menu);
+                            ?>
+                        </li>
+                        <li><a href="#">Медицина <i class="demo-icon icon-arrow-down"></i></a>
+                            <?php
+                            echo cats_menu($cats_menu);
+                            ?>
+                        </li>
+                        <li><a href="{{ route('front.price') }}">Цены</a></li>
+                        <li><a href="{{ route('front.actions.index') }}" class="{{ active('front.actions*', 'red-link') }}">Акции</a></li>
+                        <li><a class="{{ active('front.doctors*', 'red-link') }}" href="#">Врачи <i class="demo-icon icon-arrow-down"></i></a>
                             <ul>
-                                <li><a href="">Эндокринолог</a></li>
-                                <li><a href="">Гинеколог <i class="demo-icon icon-arrow-right"></i></a>
-                                    <ul>
-                                        <li><a href="">Яковенко Ольга Алексеевна</a></li>
-                                        <li><a href="">Абрамашвили Юлия Георгиевна</a></li>
-                                    </ul>
+                                @foreach($top_menu_professions as $profession)
+                                    @if($profession->doctors->count() > 0)
+                                        <li><a href="{{ route('front.doctors.professions', ['profession' => $profession->slug]) }}">{{ $profession->name }} <i class="demo-icon icon-arrow-right"></i></a>
+                                        <ul>
+                                            @foreach($profession->doctors as $doctor)
+                                                <li><a href="{{ route('front.doctors.show', ['slug' => $doctor->slug]) }}">{{ $doctor->name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <li><a href="{{ route('front.doctors.professions', ['profession' => $profession->slug]) }}">{{ $profession->name }}</a>
+                                    @endif
                                 </li>
-                                <li><a href="">Невролог</a></li>
-                                <li><a href="">Дерматолог</a></li>
-                                <li><a href="">Косметолог</a></li>
-                                <li><a href="">Трихолог</a></li>
-                                <li><a href="">УЗ-диагностики</a></li>
-                                <li><a href="">Дерматовенеролог</a></li>
-                                <li><a href="">Массажист</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="">До/После</a></li>
-                        <li><a href="">О нас</a></li>
-                        <li><a href="">Контакты</a></li>
-                        <li><a href="">Наш магазин</a></li>
+                        <li><a class="{{ active('front.before_after*', 'red-link') }}" href="{{ route('front.before_after.index') }}">До/После</a></li>
+                        <li><a class="{{ active('front.about.company', 'red-link') }}" href="{{ route('front.about.company') }}">О нас</a></li>
+                        <li><a class="{{ active('front.contact', 'red-link') }}" href="{{ route('front.contact') }}">Контакты</a></li>
+                        <li><a href="#">Наш магазин</a></li>
                     </ul>
                 </nav>
             </div>

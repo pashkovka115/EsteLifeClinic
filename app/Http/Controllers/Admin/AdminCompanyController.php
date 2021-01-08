@@ -21,7 +21,7 @@ class AdminCompanyController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "h1" => "nullable|string",
+            "name" => "nullable|string",
             "h3" => "nullable|string",
             "practice" => "nullable|string",
             "description" => "nullable|string",
@@ -40,7 +40,7 @@ class AdminCompanyController extends Controller
         ]);
 
         $data = [
-            "h1" => $request->input('h1'),
+            "name" => $request->input('name'),
             "h3" => $request->input('h3'),
             "practice" => $request->input('practice'),
             "description" => $request->input('description'),

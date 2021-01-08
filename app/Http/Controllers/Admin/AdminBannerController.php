@@ -26,10 +26,12 @@ class AdminBannerController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'description' => 'nullable|string',
             'visibility' => 'nullable'
         ]);
 
         $data['name'] = $request->input('name');
+        $data['description'] = $request->input('description');
 
         if ($request->has('visibility')){
             $data['visibility'] = '1';
@@ -58,10 +60,12 @@ class AdminBannerController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'description' => 'nullable|string',
             'visibility' => 'nullable'
         ]);
 
         $data['name'] = $request->input('name');
+        $data['description'] = $request->input('description');
 
         if ($request->has('visibility')){
             $data['visibility'] = '1';

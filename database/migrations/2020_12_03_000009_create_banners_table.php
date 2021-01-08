@@ -16,6 +16,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->enum('visibility', ['1', '0']);
             $table->string('name')->nullable();
+            $table->text('description')->nullable();
         });
     }
 

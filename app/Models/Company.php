@@ -33,16 +33,16 @@ class Company extends Model
 
     public function top_sliders()
     {
-        return $this->belongsTo(Banner::class, 'top_slider');
+        return $this->belongsTo(Banner::class, 'top_slider')->with('items');
     }
 
     public function middle_sliders()
     {
-        return $this->belongsTo(Banner::class, 'middle_slider');
+        return $this->belongsTo(Banner::class, 'middle_slider')->with('items');
     }
 
     public function bottom_sliders()
     {
-        return $this->belongsTo(Banner::class, 'bottom_slider');
+        return $this->belongsTo(Banner::class, 'bottom_slider')->with('items');
     }
 }

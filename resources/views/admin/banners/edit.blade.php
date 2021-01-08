@@ -21,14 +21,17 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label for="text-input-name">Наименование</label>
-                                        <input class="form-control" type="text" name="name" value="{{ $banner->name }}"
-                                               id="text-input-name">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="text-input-name">Наименование</label>
+                                    <input class="form-control" type="text" name="name" value="{{ $banner->name }}"
+                                           id="text-input-name">
                                 </div>
 
+                                <div class="form-group mb-0">
+                                    <label for="elm1">Описание</label>
+                                    <textarea name="description" class="form-control" id="elm1"
+                                              rows="3">{{ $banner->description }}</textarea>
+                                </div>
 
                             </div>
                         </div>
@@ -60,5 +63,7 @@
 @stop
 
 @section('footerScript')
-
+    {{-- text editor --}}
+    <script src="{{ URL::asset('plugins/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/pages/jquery.form-editor.init.js')}}"></script>
 @stop

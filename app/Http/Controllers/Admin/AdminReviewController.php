@@ -11,7 +11,7 @@ class AdminReviewController extends Controller
 {
     public function index()
     {
-        $reviws = Review::with('category')->paginate();
+        $reviws = Review::with('category')->orderBy('visibility')->paginate();
 
         return view('admin.reviews.index', ['reviws' => $reviws]);
     }

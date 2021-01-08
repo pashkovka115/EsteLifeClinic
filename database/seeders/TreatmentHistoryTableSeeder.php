@@ -16,7 +16,7 @@ class TreatmentHistoryTableSeeder extends Seeder
             $items[] = [
                 'doctor_id' => 1,
                 'cat_service_id' => 1,
-                'name' => 'Чистка лица',
+                'service_id' => random_int(1, 3),
                 'after_images' => 'images/after_befor/after.png',
                 'before_images' => 'images/after_befor/before.png',
                 'description' => $faker->realText(),
@@ -28,7 +28,7 @@ class TreatmentHistoryTableSeeder extends Seeder
             $items[] = [
                 'doctor_id' => 2,
                 'cat_service_id' => 2,
-                'name' => 'Чистка лица',
+                'service_id' => random_int(1, 3),
                 'after_images' => 'images/after_befor/after.png',
                 'before_images' => 'images/after_befor/before.png',
                 'description' => $faker->realText(),

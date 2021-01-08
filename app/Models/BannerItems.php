@@ -16,6 +16,7 @@ class BannerItems extends Model
         'title',
         'img',
         'description',
+        'extra',
     ];
 
 

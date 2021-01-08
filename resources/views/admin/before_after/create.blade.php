@@ -75,8 +75,8 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="elm2">Описание</label>
-                            <textarea name="description" class="form-control" rows="3"
-                                      id="elm2">{{ old('description') }}</textarea>
+                            <textarea name="description" class="form-control"
+                                      rows="3">{{ old('description') }}</textarea>
                         </div>
                     </div>
                 </div>
