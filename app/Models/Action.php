@@ -32,7 +32,7 @@ class Action extends Model
      */
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'services_has_actions');
+        return $this->belongsTo(Service::class, 'action_id');
     }
 
     /*

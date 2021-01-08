@@ -18,7 +18,7 @@ class CreateConditionsActionsTable extends Migration
 
             $table->foreign('action_id', 'fk_conditions_actions_id_action1_idx')
                 ->references('id')->on('actions')
-                ->onDelete('no action')
+                ->onDelete('CASCADE')
                 ->onUpdate('no action');
         });
     }

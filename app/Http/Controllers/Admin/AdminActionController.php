@@ -109,8 +109,10 @@ class AdminActionController extends Controller
     public function destroy($id)
     {
         $action = Action::with('services')->where('id', $id)->firstOrFail();
-        $services = array_keys(Service::all('id')->keyBy('id')->toArray());
-        $action->services()->detach($services);
+//        dd($action);
+        if (!is_null($action->services) and $action->services->count() > 0){
+            return back()->withErrors('Эту акцию нельзя удалить, она участвует в ' . $action->services->count() . 'услугах');
+        }
 
         $old_file = storage_path('app/public') . '/' . $action->big_img;
         if (is_file($old_file)){

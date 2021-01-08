@@ -55,7 +55,7 @@ class Service extends Model
      */
     public function action()
     {
-        return $this->belongsTo(Action::class, 'action_id');
+        return $this->hasMany(Action::class, 'action_id');
     }
 
 
