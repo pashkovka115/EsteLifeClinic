@@ -100,8 +100,9 @@
                             $diff = $start->diffInDays($end);
                             ?>
                         <div class="item">
-                            <a href="{{ route('front.actions.show', ['slug' => $action->slug]) }}"><img src="/storage/{{ $action->banner_img }}" alt="{{ $action->name }}">
-{{--                                <span class="date-label">до 31 октября</span>--}}
+                            <a href="{{ route('front.actions.show', ['slug' => $action->slug]) }}">
+                                @if($action->banner_img)<img src="/storage/{{ $action->banner_img }}" alt="{{ $action->name }}">@endif
+
                                 @if($diff > 3)
                                     <span class="date-label">до {{ (\Carbon\Carbon::createFromFormat('Y-m-d', $action->finish))->formatLocalized('%d %B %Y') }}</span>
                                 @else

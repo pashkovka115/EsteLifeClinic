@@ -29,7 +29,7 @@
                 @foreach($items as $item)
                     <tr>
                         <td>{{ $item->title }}</td>
-                        <td>{{ mb_strimwidth($item->description, 0, 120, '...') }}</td>
+                        <td>{{ mb_strimwidth(strip_tags($item->description), 0, 120, '...') }}</td>
 
                         <td>
                             <a href="{{ route('admin.options.banners.banner.item.edit', ['id' => $item->id]) }}"><i
