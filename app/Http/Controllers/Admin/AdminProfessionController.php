@@ -29,9 +29,10 @@ class AdminProfessionController extends Controller
             'name' => 'required|string'
         ]);
 
-        $prof = new Profession();
-        $prof->name = $request->input('name');
-        $prof->save();
+//        $prof = new Profession();
+//        $prof->name = $request->input('name');
+//        $prof->save();
+        $prof = Profession::create(['name' => $request->input('name')]);
 
         return redirect()->route('admin.doctors.professions.edit', ['profession' => $prof->id]);
     }
