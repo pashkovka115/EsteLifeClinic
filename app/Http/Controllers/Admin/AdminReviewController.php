@@ -29,12 +29,14 @@ class AdminReviewController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'phone' => 'required|string',
             'cat_service_id' => 'required|numeric',
             'content' => 'required|string',
         ]);
 
         $data = [
             'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
             'cat_service_id' => $request->input('cat_service_id'),
             'content' => $request->input('content'),
         ];
@@ -48,7 +50,7 @@ class AdminReviewController extends Controller
         $review = new Review($data);
         $review->save();
 
-        return redirect()->route('admin.reviews.reviews.edit', ['review' => $review->id]);
+        return redirect()->route('admin.content.reviews.reviews.edit', ['review' => $review->id]);
     }
 
 
@@ -65,12 +67,14 @@ class AdminReviewController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'phone' => 'required|string',
             'cat_service_id' => 'required|numeric',
             'content' => 'required|string',
         ]);
 
         $data = [
             'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
             'cat_service_id' => $request->input('cat_service_id'),
             'content' => $request->input('content'),
         ];

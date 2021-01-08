@@ -18,6 +18,7 @@
                 <thead>
                 <tr>
                     <th>Имя</th>
+                    <th>Телефон</th>
                     <th>Категория</th>
                     <th>Отзыв</th>
                     <th>Проверен</th>
@@ -32,6 +33,7 @@
                                 <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $reviw->name }}</a>
                             </p>
                         </td>
+                        <td>{{ $reviw->phone }}</td>
                         <td>
                             {{ $reviw->category->name }}
                         </td>

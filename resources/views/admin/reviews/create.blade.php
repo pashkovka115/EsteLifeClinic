@@ -27,6 +27,14 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="text-input-phone">Телефон</label>
+                                        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}"
+                                               id="text-input-phone">
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-sm-12">
                                     <label>Категория</label>
                                     <select name="cat_service_id" class="form-control">
