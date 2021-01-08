@@ -20,6 +20,7 @@
                     {{--                    @php(dd($all_banners))--}}
                     <label>Главный баннер</label>
                     <select name="top_slider" class="form-control">
+                        <option value="0">Отключен</option>
                         @foreach($all_banners as $banner)
                             <?php
                             if ($home->top_sliders and $banner->id == $home->top_sliders->id) {
@@ -36,6 +37,7 @@
                 <div class="form-group">
                     <label>Второй баннер</label>
                     <select name="two_slider" class="form-control">
+                        <option value="0">Отключен</option>
                         @foreach($all_banners as $banner)
                             <?php
                             if ($home->useful_tips and $banner->id == $home->useful_tips->id) {
@@ -84,6 +86,7 @@
                 <div class="form-group">
                     <label>Баннер о нас</label>
                     <select name="medical_center_slider" class="form-control">
+                        <option value="0">Отключен</option>
                         @foreach($all_banners as $banner)
                             <?php
                             if ($home->medical_center_sliders and $banner->id == $home->medical_center_sliders->id) {

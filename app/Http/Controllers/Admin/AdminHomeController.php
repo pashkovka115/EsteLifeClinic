@@ -34,11 +34,22 @@ class AdminHomeController extends Controller
             'count_doctors_list' => 'nullable|numeric',
             'count_news' => 'nullable|numeric',
         ]);
-//        dd($request->all());
-//
+
+        $data = $request->except(['_token', '_method']);
+
+        if ($data['top_slider'] == '0'){
+            $data['top_slider'] = null;
+        }
+        if ($data['two_slider'] == '0'){
+            $data['two_slider'] = null;
+        }
+        if ($data['medical_center_slider'] == '0'){
+            $data['medical_center_slider'] = null;
+        }
+
         $home = Home::firstOrFail();
-        $home->update($request->except(['_token', '_method']));
-//dd($home);
+        $home->update($data);
+
         return back();
     }
 

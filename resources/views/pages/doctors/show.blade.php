@@ -48,7 +48,9 @@
                                                     <img src="/storage/{{ $doc->img }}" alt="">
                                                 </a>
                                                 @endif
+                                                @if($doc->level == '1')
                                                 <span class="label"><i class="demo-icon icon-star"></i></span>
+                                                @endif
                                             </div>
                                             <div class="desc">
                                                 <div class="title"><a href="{{ route('front.doctors.show', ['slug' => $doc->slug]) }}">{{ $doc->name }}</a></div>
