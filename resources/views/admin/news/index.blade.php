@@ -29,7 +29,7 @@
                         <td>{{ $post->name }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            {{ mb_strimwidth($post->content, 0, 100, '...') }}
+                            {{ mb_strimwidth(strip_tags($post->content), 0, 100, '...') }}
                         </td>
 
                         <td>

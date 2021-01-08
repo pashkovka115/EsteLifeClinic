@@ -60,6 +60,12 @@
                                               class="form-control" rows="5">{{ old('meta_description') }}</textarea>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="elm2">Краткое описание</label>
+                                    <textarea name="excerpt"
+                                              class="form-control" rows="5">{{ old('excerpt') }}</textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>
