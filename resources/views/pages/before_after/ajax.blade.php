@@ -14,8 +14,10 @@ if ($i <= 2) {
 ?>
 <div class="before-after-box {{ $class }}">
     <div class="image twentytwenty-container">
-        <img src="/storage/{{ $item->before_images }}" alt="">
-        <img src="/storage/{{ $item->after_images }}" alt="">
+        {{--<img src="/storage/{{ $item->before_images }}" alt="">
+        <img src="/storage/{{ $item->after_images }}" alt="">--}}
+        <img src="{{ asset('/storage/' . $item->before_images) }}" alt="">
+        <img src="{{ asset('/storage/' . $item->after_images) }}" alt="">
         <span class="label label-before">До</span>
         <span class="label label-after">После</span>
     </div>
