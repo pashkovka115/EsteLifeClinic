@@ -17,17 +17,20 @@
             <form enctype="multipart/form-data"
                   action="{{ route('admin.content.before_after.before_after.store') }}" method="post">
                 @csrf
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
                     </div>
                 </div>
 
-                    <div class="form-group">
-                        <label for="text-input-name">Оказанная услуга</label>
-                        <input class="form-control" type="text" name="name" value="{{ old('name') }}"
-                               id="text-input-name">
-                    </div>
+                <div class="form-group">
+                    <label>Оказанная услуга</label>
+                    <select name="service_id" class="form-control">
+                        @foreach($services as $service)
+                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                     <div class="form-group">
                         <label for="example-date-input">Дата</label>

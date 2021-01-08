@@ -23,8 +23,13 @@ class BeforeAfterController extends Controller
     {
         $doctors = Doctor::all(['id', 'name']);
         $categories = CatService::all(['id', 'name']);
+        $services = Service::all(['id', 'name']);
 
-        return view('admin.before_after.create', ['doctors' => $doctors, 'categories' => $categories]);
+        return view('admin.before_after.create', [
+            'doctors' => $doctors,
+            'categories' => $categories,
+            'services' => $services
+        ]);
     }
 
 
@@ -53,7 +58,7 @@ class BeforeAfterController extends Controller
         $item = new TreatmentHistory($data);
         $item->save();
 
-        return redirect()->route('admin.before_after.before_after.edit', ['before_after' => $item->id]);
+        return redirect()->route('admin.content.before_after.before_after.edit', ['before_after' => $item->id]);
     }
 
 

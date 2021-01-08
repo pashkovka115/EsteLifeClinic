@@ -13,6 +13,7 @@ class TreatmentHistory extends Model
     protected $fillable = [
         'doctor_id',
         'cat_service_id',
+        'service_id',
         'name',
         'before_images',
         'after_images',

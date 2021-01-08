@@ -18,7 +18,7 @@
                   action="{{ route('admin.content.before_after.before_after.update', ['before_after' => $item->id]) }}" method="post">
                 @method('PUT')
                 @csrf
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
                     </div>
