@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Service extends Model
 {
     use HasFactory;
+    use HasSlug;
 
     protected $table = 'services';
     protected $fillable = [
@@ -30,6 +33,25 @@ class Service extends Model
         'ico4',
         'service4',
     ];
+
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
     /*
@@ -55,7 +77,7 @@ class Service extends Model
      */
     public function action()
     {
-        return $this->hasMany(Action::class, 'action_id');
+        return $this->belongsTo(Action::class, 'action_id');
     }
 
 

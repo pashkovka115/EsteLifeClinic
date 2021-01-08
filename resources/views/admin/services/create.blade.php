@@ -1,14 +1,19 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Услуги')
-@section('pageName', 'Создать услугу')
+@section('pageName', 'Редактировать услугу')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Создать услугу</li>
+    <li class="breadcrumb-item active">Редактировать услугу</li>
 @endsection
 
 @section('headerStyle')
     {{--    upload files --}}
     <link rel="stylesheet" href="{{ URL::asset('plugins/dropify/css/dropify.min.css')}}">
+    <style>
+        .custom-width .dropify-wrapper{
+            height: 90px;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -41,8 +46,18 @@
                                 <div class="form-group col-sm-12">
                                     <label>Тип услуги</label>
                                     <select name="type" class="form-control">
+                                        <option value="cosmetology" selected>Косметология</option>
                                         <option value="medicine">Медицина</option>
-                                        <option value="cosmetology">Косметология</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <label>Акции</label>
+                                    <select name="action_id" class="form-control">
+                                        <option value="0">Без акции</option>
+                                        @foreach($actions as $action)
+                                        <option value="{{ $action->id }}">{{ $action->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -52,13 +67,13 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify" />
+                                <input type="file" name="img" id="input-file-now-custom-1" class="dropify">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group col-sm-12">
+                <div class="form-group">
                     <?php
                     function categories($category, $parent_name = ''){
                         if ($parent_name != ''){
@@ -81,7 +96,7 @@
                     }
                     ?>
                     <label>Категория</label>
-                    <select name="parent_id" class="form-control">
+                    <select name="cat_service_id" class="form-control">
                         @foreach($categories as $category)
                             <?php categories($category); ?>
                         @endforeach
@@ -89,10 +104,72 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="elm1">Описание</label>
-                    <textarea name="description" class="form-control" rows="5"
-                              id="elm1">{{ old('description') }}</textarea>
+                    <label for="elm1">Краткое описание</label>
+                    <textarea name="short_description" class="form-control" rows="5"
+                              id="elm1">{{ old('short_description') }}</textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="elm1">Полное описание</label>
+                    <textarea name="description" class="form-control" rows="5"
+                              id="elm2">{{ old('description') }}</textarea>
+                </div>
+
+
+                <div class="row">
+                    <h3 class="col-sm-12">Преимущества этой услуги</h3>
+                    <div class="form-group col-sm-8">
+                        <textarea name="service1" class="form-control" rows="5">{{ old('service1') }}</textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body custom-width">
+                                <input type="file" name="ico1" id="input-file-now-custom-1" class="dropify">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-8">
+                        <textarea name="service2" class="form-control" rows="5">{{ old('service2') }}</textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body custom-width">
+                                <input type="file" name="ico2" id="input-file-now-custom-1" class="dropify">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-8">
+                        <textarea name="service3" class="form-control" rows="5">{{ old('service3') }}</textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body custom-width">
+                                <input type="file" name="ico3" id="input-file-now-custom-1" class="dropify">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-8">
+                        <textarea name="service4" class="form-control" rows="5">{{ old('service4') }}</textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body custom-width">
+                                <input type="file" name="ico4" id="input-file-now-custom-1" class="dropify">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     <label>Title</label>
                     <input class="form-control" name="title" type="text" value="{{ old('title') }}">
@@ -102,11 +179,6 @@
                     <textarea name="meta_description"
                               class="form-control" rows="5">{{ old('meta_description') }}</textarea>
                 </div>
-                {{--<div class="form-group">
-                    <label for="elm2">META Keywords</label>
-                    <textarea name="keywords"
-                              class="form-control" rows="5">{{ old('keywords') }}</textarea>
-                </div>--}}
 
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>
