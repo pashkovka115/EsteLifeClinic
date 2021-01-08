@@ -8,6 +8,7 @@ use App\Models\CatPost;
 use App\Models\CatService;
 use App\Models\Company;
 use App\Models\Doctor;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -16,16 +17,16 @@ class AdminSeoController extends Controller
 {
     public function index()
     {
-        $services = Service::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $actions = Action::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $cats_posts = CatPost::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $cats_services = CatService::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $posts = Post::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $doctors = Doctor::all(['id', 'name', 'title', 'keywords', 'meta_description']);
-        $pages = Doctor::all(['id', 'name', 'title', 'keywords', 'meta_description']);
+        $services = Service::all(['id', 'name', 'title', 'meta_description']);
+        $cats_services = CatService::all(['id', 'name', 'title', 'meta_description']);
+        $actions = Action::all(['id', 'name', 'title', 'meta_description']);
+        $cats_posts = CatPost::all(['id', 'name', 'title', 'meta_description']);
+        $posts = Post::all(['id', 'name', 'title', 'meta_description']);
+        $doctors = Doctor::all(['id', 'name', 'title', 'meta_description']);
+        $pages = Page::all(['id', 'name', 'title', 'meta_description']);
 
         // по одной записи
-        $companys = Company::all(['id', 'name', 'title', 'keywords', 'meta_description']);
+        $companys = Company::all(['id', 'name', 'title', 'meta_description']);
 
 
         return view('admin.seo.index', [
