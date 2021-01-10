@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\CatService;
 use App\Models\Doctor;
+use App\Models\Page;
 use App\Models\Profession;
 use App\Models\Service;
 use Carbon\Carbon;
@@ -45,6 +46,16 @@ class AppServiceProvider extends ServiceProvider
         // Верхнее меню
         \View::composer('partials.top_menu', function($view) {
             $view->with(['cats_menu' => CatService::whereNull('parent_id')->with(['children'])->get()]);
+        });
+
+        // Меню в подвале
+        \View::composer('partials.footer', function($view) {
+            $view->with(['parents_cats' => CatService::whereNull('parent_id')->get()]);
+        });
+
+        // Страницы в подвале
+        \View::composer('partials.footer', function($view) {
+            $view->with(['pages' => Page::all(['slug', 'name'])]);
         });
 
         // форма записи на приём

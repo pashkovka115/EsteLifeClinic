@@ -32,7 +32,7 @@
                             echo cats_menu($cats_menu);
                             ?>
                         </li>
-                        <li><a href="{{ route('front.price') }}">Цены</a></li>
+                        <li><a href="{{ route('front.price') }}" class="{{ active('front.price', 'red-link') }}">Цены</a></li>
                         <li><a href="{{ route('front.actions.index') }}" class="{{ active('front.actions*', 'red-link') }}">Акции</a></li>
                         <li><a class="{{ active('front.doctors*', 'red-link') }}" href="#">Врачи <i class="demo-icon icon-arrow-down"></i></a>
                             <ul>

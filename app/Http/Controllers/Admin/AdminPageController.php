@@ -25,9 +25,9 @@ class AdminPageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'nullable|string',
+            'name' => 'required|string',
             'content' => 'nullable|string',
-            'title' => 'required|string',
+            'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'keywords' => 'nullable|string',
         ]);
@@ -90,5 +90,18 @@ class AdminPageController extends Controller
         Page::where('id', $id)->delete();
 
         return back();
+    }
+
+
+    public function file_upload(Request $request)
+    {
+        $request->validate([
+            'file' => 'image'
+        ]);
+
+        $folder = date('Y/m/d');
+        $img = $request->file('file')->store("images/pages/$folder");
+
+        return json_encode(['location' => '/storage/' . $img], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
     }
 }

@@ -56,6 +56,9 @@ Route::prefix('news')->group(function () {
     Route::post('/category/{slug}/ajax', 'NewsController@categoryAjax')->name('front.news.category.ajax');
 });
 
+// Страницы
+Route::get('page/{slug}', 'PageController@show')->name('front.page.show');
+
 // Обратный звонок
 Route::post('call', 'CallController@store')->name('front.call.store');
 
@@ -116,7 +119,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::resource('pages', 'Admin\AdminPageController')->except('show')->names('pages');
         Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
 
-//        Route::post('file-upload', 'Admin\AdminPageController@file_upload')->name('pages.file_upload');
+        Route::post('file-upload', 'Admin\AdminPageController@file_upload')->name('pages.file_upload');
     });
 
     // Раздел администратор (верхнее меню)

@@ -77,10 +77,11 @@
                 <div class="column column-menu">
                     <h4>Документы</h4>
                     <div class="menu-wrap">
+                        {{-- todo: Лицензия на медицинскую деятельность --}}
                         <ul>
-                            <li><a href="">Лицензия на медицинскую деятельность</a></li>
-                            <li><a href="">Оценка труда</a></li>
-                            <li><a href="">Политика конфиденциальности</a></li>
+                            @foreach($pages as $page)
+                            <li><a href="{{ route('front.page.show', ['slug' => $page->slug]) }}">{{ $page->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -88,14 +89,14 @@
                     <h4>О компании</h4>
                     <div class="menu-wrap">
                         <ul>
-                            <li><a href="">Главная</a></li>
-                            <li><a href="">О нас</a></li>
-                            <li><a href="">Контакты</a></li>
+                            <li><a href="/">Главная</a></li>
+                            <li><a href="{{ route('front.about.company') }}">О нас</a></li>
+                            <li><a href="{{ route('front.contact') }}">Контакты</a></li>
                             <li><a href="">Наш магазин</a></li>
-                            <li><a href="">Цены</a></li>
-                            <li><a href="">Акции</a></li>
-                            <li><a href="">До/После</a></li>
-                            <li><a href="">Врачи</a></li>
+                            <li><a href="{{ route('front.price') }}">Цены</a></li>
+                            <li><a href="{{ route('front.actions.index') }}">Акции</a></li>
+                            <li><a href="{{ route('front.before_after.index') }}">До/После</a></li>
+                            <li><a href="{{ route('front.doctors.index') }}">Врачи</a></li>
                         </ul>
                     </div>
                 </div>
@@ -103,14 +104,9 @@
                     <h4>Услуги</h4>
                     <div class="menu-wrap">
                         <ul>
-                            <li><a href="">Общая медицина</a></li>
-                            <li><a href="">Косметология лица и тела</a></li>
-                            <li><a href="">Лабораторная диагностика</a></li>
-                            <li><a href="">Аппаратная косметология</a></li>
-                            <li><a href="">Лазерная косметология</a></li>
-                            <li><a href="">Аппаратная диагностика</a></li>
-                            <li><a href="">Эстетика тела</a></li>
-                            <li><a href="">Удаление новообразований</a></li>
+                            @foreach($parents_cats as $parent_cat)
+                            <li><a href="{{ route('front.price.show.category', ['slug' => $parent_cat->slug]) }}">{{ $parent_cat->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
