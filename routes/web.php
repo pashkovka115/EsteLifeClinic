@@ -21,7 +21,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 // Врачи
 Route::prefix('doctors')->group(function (){
     Route::get('', 'DoctorController@index')->name('front.doctors.index');
-    Route::get('/show/{slug}', 'DoctorController@show')->name('front.doctors.show');
+    Route::get('/{slug}', 'DoctorController@show')->name('front.doctors.show');
     Route::post('', 'DoctorController@ajax')->name('front.doctors.index.ajax');
     Route::get('/professions/{profession}', 'DoctorProfessionsController@index')->name('front.doctors.professions');
     Route::post('/professions/{profession}', 'DoctorProfessionsController@ajax')->name('front.doctors.professions.ajax');
