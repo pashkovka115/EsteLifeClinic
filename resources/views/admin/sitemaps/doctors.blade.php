@@ -4,7 +4,7 @@
     @foreach ($doctors as $doctor)
         @if(!is_null($doctor->updated_at))
             <url>
-                <loc>{{ url('/doctor/'.$doctor->url) }}</loc>
+                <loc>{{ route('front.doctors.show', ['slug' => $doctor->slug]) }}</loc>
                 <lastmod>{{ $doctor->updated_at->tz('GMT')->toAtomString() }}</lastmod>
                 <changefreq>monthly</changefreq>
                 <priority>0.8</priority>

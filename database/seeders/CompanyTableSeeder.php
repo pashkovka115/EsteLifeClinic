@@ -39,6 +39,8 @@ class CompanyTableSeeder extends Seeder
             'service3' => 'Каждый сезон в нашей клинике проводятся акции на оказание медицинских и косметологических услуг',
             'ico4' => 'images/icon/doctor2.svg',
             'service4' => 'Первичная консультация врача-косметолога у нас бесплатна!',
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         \DB::table('company')->insert($company);

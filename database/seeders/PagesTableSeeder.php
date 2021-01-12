@@ -19,7 +19,9 @@ class PagesTableSeeder extends Seeder
                 'title' => 'Title - Политика конфиденциальности' ,
                 'meta_description' => $faker->realText(),
                 'keywords' => $faker->realText(),
-                'img' => null
+                'img' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Страница 2',
@@ -28,7 +30,9 @@ class PagesTableSeeder extends Seeder
                 'title' => 'Title - Страница 2' ,
                 'meta_description' => $faker->realText(),
                 'keywords' => $faker->realText(),
-                'img' => null
+                'img' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Страница 3',
@@ -37,7 +41,9 @@ class PagesTableSeeder extends Seeder
                 'title' => 'Title - Страница 3' ,
                 'meta_description' => $faker->realText(),
                 'keywords' => $faker->realText(),
-                'img' => null
+                'img' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 

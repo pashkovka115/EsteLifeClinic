@@ -16,6 +16,7 @@ class CreateHomeTable extends Migration
             $table->unsignedBigInteger('medical_center_slider')->nullable();
             $table->unsignedTinyInteger('count_doctors_list')->nullable();
             $table->unsignedTinyInteger('count_news')->nullable();
+            $table->timestamps();
         });
     }
 

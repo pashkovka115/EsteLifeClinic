@@ -20,12 +20,6 @@ class Home extends Model
     ];
 
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
-
-
     /*
      * Верхний(главный) слайдер
      */
@@ -43,13 +37,6 @@ class Home extends Model
         return $this->belongsTo(Banner::class, 'two_slider')->with('items');
     }
 
-    /*
-     * Третий(акции) слайдер
-     */
-    /*public function action_sliders()
-    {
-        return $this->belongsTo(Banner::class, 'action_slider')->with('items');
-    }*/
 
     /*
      * Медицинский центр(нижний) слайдер

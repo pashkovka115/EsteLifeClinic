@@ -39,6 +39,8 @@ class PostsTableSeeder extends Seeder
                 'read_time' => '15 минут',
                 'meta_description' => $faker->text(),
                 'cat_post_id' => ($i % 2 == 0) ? 2 : 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 

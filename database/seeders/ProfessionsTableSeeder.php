@@ -20,7 +20,9 @@ class ProfessionsTableSeeder extends Seeder
         foreach ($ps as $str){
             $profs[] = [
                 'name' => $str,
-                'slug' => \Str::slug($str)
+                'slug' => \Str::slug($str),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 

@@ -16,10 +16,4 @@ class Option extends Model
         'val2',
         'description'
     ];
-
-
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
 }

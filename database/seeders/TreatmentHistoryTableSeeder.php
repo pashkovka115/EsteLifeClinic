@@ -20,7 +20,9 @@ class TreatmentHistoryTableSeeder extends Seeder
                 'after_images' => 'images/after_befor/after.png',
                 'before_images' => 'images/after_befor/before.png',
                 'description' => $faker->realText(),
-                'done' => $faker->dateTimeBetween()
+                'done' => $faker->dateTimeBetween(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 
@@ -32,7 +34,9 @@ class TreatmentHistoryTableSeeder extends Seeder
                 'after_images' => 'images/after_befor/after.png',
                 'before_images' => 'images/after_befor/before.png',
                 'description' => $faker->realText(),
-                'done' => $faker->dateTimeBetween()
+                'done' => $faker->dateTimeBetween(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 

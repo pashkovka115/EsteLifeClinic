@@ -21,6 +21,7 @@ class CreateTreatmentHistoryTable extends Migration
             $table->longText('after_images')->nullable();
             $table->text('description')->nullable();
             $table->date('done')->nullable();
+            $table->timestamps();
 
             $table->index(["doctor_id"], 'fk_doctors_doctor1_idx');
             $table->index(["cat_service_id"], 'fk_cat_service_cat_service1_idx');

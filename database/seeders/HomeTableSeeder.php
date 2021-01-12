@@ -16,6 +16,8 @@ class HomeTableSeeder extends Seeder
             'medical_center_slider' => 6,
             'count_doctors_list' => 7,
             'count_news' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         Home::create($page);

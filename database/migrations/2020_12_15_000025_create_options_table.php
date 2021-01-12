@@ -14,6 +14,7 @@ class CreateOptionsTable extends Migration
             $table->text('val')->nullable();
             $table->string('val2')->nullable()->comment('дополнительное значение');
             $table->string('description')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -3,20 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');*/
-
-
-
 Auth::routes([
     'register' => false,
     'reset' => false,
     'confirm' => false,
 ]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('front.home');
 
 // Врачи
 Route::prefix('doctors')->group(function (){
@@ -30,7 +23,7 @@ Route::prefix('doctors')->group(function (){
 // Акции
 Route::prefix('actions')->group(function (){
     Route::get('', 'ActionController@index')->name('front.actions.index');
-    Route::get('show/{slug}', 'ActionController@show')->name('front.actions.show');
+    Route::get('{slug}', 'ActionController@show')->name('front.actions.show');
 });
 
 // До/После
@@ -51,7 +44,7 @@ Route::get('contacts', 'ContactController@index')->name('front.contact');
 Route::prefix('news')->group(function () {
     Route::get('', 'NewsController@index')->name('front.news.index');
     Route::get('/category/{slug}', 'NewsController@categoryIndex')->name('front.news.category_index');
-    Route::get('/show/{slug}', 'NewsController@show')->name('front.news.show');
+    Route::get('/{slug}', 'NewsController@show')->name('front.news.show');
     Route::post('/ajax', 'NewsController@ajax')->name('front.news.ajax');
     Route::post('/category/{slug}/ajax', 'NewsController@categoryAjax')->name('front.news.category.ajax');
 });
@@ -66,16 +59,22 @@ Route::post('call', 'CallController@store')->name('front.call.store');
 Route::post('appointment', 'AppointmentController@store')->name('front.appointment.store');
 
 // Цены
-Route::get('price', 'PriceController@index')->name('front.price');
-Route::get('price/{slug}', 'PriceController@show')->name('front.price.show.category');
-Route::post('price/search', 'PriceController@search')->name('front.price.search');
+Route::prefix('price')->group(function (){
+    Route::get('', 'PriceController@index')->name('front.price');
+    Route::get('{slug}', 'PriceController@show')->name('front.price.show.category');
+    Route::post('search', 'PriceController@search')->name('front.price.search');
+});
+
 
 // Отзывы reviews
-Route::get('reviews', 'ReviewController@index')->name('front.reviews');
-Route::post('reviews', 'ReviewController@index_ajax')->name('front.reviews_ajax');
-Route::post('reviews/store', 'ReviewController@store')->name('front.reviews.store');
-Route::get('reviews/show/{cat_id}', 'ReviewController@show')->name('front.reviews.show');
-Route::post('reviews/show/{cat_id}', 'ReviewController@show_ajax')->name('front.reviews.show_ajax');
+Route::prefix('reviews')->group(function (){
+    Route::get('', 'ReviewController@index')->name('front.reviews');
+    Route::post('', 'ReviewController@index_ajax')->name('front.reviews_ajax');
+    Route::post('store', 'ReviewController@store')->name('front.reviews.store');
+    Route::get('show/{cat_id}', 'ReviewController@show')->name('front.reviews.show');
+    Route::post('show/{cat_id}', 'ReviewController@show_ajax')->name('front.reviews.show_ajax');
+});
+
 
 // Поиск
 Route::get('search', 'SearchController@index')->name('front.search');
@@ -195,13 +194,29 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
 Route::prefix('sitemap')->group(function (){
     // Все
-    Route::get('', 'Admin\AdminSiteMapController@index');
+    Route::get('', 'Admin\AdminSiteMapController@index')->name('sitemap.index');
+    // Главная
+    Route::get('home', 'Admin\AdminSiteMapController@home')->name('sitemap.home');
     // Услуги
-    Route::get('services', 'Admin\AdminSiteMapController@services');
-    // Категории услуг
-    Route::get('cats-services', 'Admin\AdminSiteMapController@catServices');
+    Route::get('services', 'Admin\AdminSiteMapController@services')->name('sitemap.services');
     // Врачи
-    Route::get('doctors', 'Admin\AdminSiteMapController@doctors');
+    Route::get('doctors', 'Admin\AdminSiteMapController@doctors')->name('sitemap.doctors');
+    // Врачи по профессиям
+    Route::get('doctors-profession', 'Admin\AdminSiteMapController@doctors_professions')->name('sitemap.doctors_profession');
+    // Цены
+    Route::get('price', 'Admin\AdminSiteMapController@price')->name('sitemap.price');
+    // Акции, скидки
+    Route::get('actions', 'Admin\AdminSiteMapController@actions')->name('sitemap.actions');
+    // До/После
+    Route::get('difference', 'Admin\AdminSiteMapController@difference')->name('sitemap.difference');
+    // О компании
+    Route::get('about-company', 'Admin\AdminSiteMapController@about_company')->name('sitemap.about_company');
+    // Контакты
+    Route::get('contacts', 'Admin\AdminSiteMapController@contacts')->name('sitemap.contacts');
+    // Страницы
+    Route::get('pages', 'Admin\AdminSiteMapController@pages')->name('sitemap.pages');
+    // Новости
+    Route::get('news', 'Admin\AdminSiteMapController@news')->name('sitemap.news');
 });
 
 

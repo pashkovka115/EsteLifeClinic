@@ -22,12 +22,6 @@ class TreatmentHistory extends Model
     ];
 
 
-    public function usesTimestamps(): bool
-    {
-        return false;
-    }
-
-
     public function doctor()
     {
         return $this->belongsTo(Doctor::class, 'doctor_id');
