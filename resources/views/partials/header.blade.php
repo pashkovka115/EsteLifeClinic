@@ -27,7 +27,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <button class="version-visim"><span><small>А</small>А</span>Версия для слабовидящих</button>
+                        <button id="specialButton" class="version-visim"><span><small>А</small>А</span>Версия для слабовидящих</button>
                     </div>
                     <div class="right">
                         <div class="add"><a href="#contacts-form" class="popup-with-form">{!! option('address')->val !!}</a></div>

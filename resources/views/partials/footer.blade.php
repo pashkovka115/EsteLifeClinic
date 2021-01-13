@@ -328,5 +328,6 @@
 </div>
 <script src="http://api-maps.yandex.ru/2.0/?load=package.standard,package.geoObjects&lang=ru-RU" type="text/javascript"></script>
 <script src="{{ asset('js/scripts.min.js') }}"></script>
+<script src="https://lidrekon.ru/slep/js/uhpv-full.min.js"></script>
 {{ option('script_footer')->val }}
 
