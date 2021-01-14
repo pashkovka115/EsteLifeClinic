@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CallsTableSeeder::class);
         $this->call(ConditionsActionsTableSeeder::class);
         $this->call(HomeTableSeeder::class);
+        $this->call(OnlineConsultationsTableSeeder::class);
     }
 }

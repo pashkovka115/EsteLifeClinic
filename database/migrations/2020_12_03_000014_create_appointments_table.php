@@ -22,7 +22,8 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('cat_servise_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('doctor_id');
-            $table->string('date')->nullable();
+            $table->date('date')->nullable();
+            $table->string('time')->nullable();
             $table->timestamps();
 
             $table->index(["cat_servise_id"], 'fk_cat_services_cat_servise1_idx');

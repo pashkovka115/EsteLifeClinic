@@ -93,6 +93,8 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     // Запись на приём
     Route::prefix('home')->as('home.')->group(function(){
         Route::resource('appointments', 'Admin\AdminAppointmentController')->except('show')->names('home.appointments');
+        // Онлайн консультации
+        Route::resource('online', 'Admin\AdminOnlineConsultationController')->except('show')->names('home.online');
     });
 
     //Раздел врачи

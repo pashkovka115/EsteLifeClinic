@@ -234,19 +234,19 @@
         </div>
         <div class="step-item step-2">
             <select name="cat_servise_id" id="">
-                <option value="">Выберите направление</option>
+                <option value="Не важно">Выберите направление</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
             <select name="service_id" id="">
-                <option value="">Выберите услугу</option>
+                <option value="Не важно">Выберите услугу</option>
                 @foreach($services as $service)
                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                 @endforeach
             </select>
             <select name="doctor_id" id="">
-                <option value="">Выберите врача</option>
+                <option value="Не важно">Выберите врача</option>
                 @foreach($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                 @endforeach
@@ -254,19 +254,71 @@
             <div class="btn btn-indigo" id="step-3">Последний вопрос</div>
         </div>
         <div class="step-item step-3">
-            <input type="text" name="date"  placeholder="Желаемая дата посещения">
-            {{--<select name="" id="">
-                <option value="">Желаемое время посещения</option>
-                <option value="">10 : 00</option>
-                <option value="">11 : 00</option>
-                <option value="">12 : 00</option>
-                <option value="">13 : 00</option>
-            </select>--}}
+            <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
+            <select name="time" id="">
+                <option value="Не важно">Желаемое время посещения</option>
+                @for($i = 8; $i <= 19; $i++)
+                <option value="{{ $i }}:00">{{ $i }} : 00</option>
+                <option value="{{ $i }}:30">{{ $i }} : 30</option>
+                @endfor
+            </select>
             <button class="btn btn-indigo" id="step-3">Отправить</button>
         </div>
         <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
         <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
     </form>
+
+    <form action="" class="form popup-form" id="online" method="post">
+        @csrf
+        <h3>Запись на онлайн консультацию</h3>
+        <p class="subtitle">Администратор нашего центра перезвонит вам для подтверждения записи</p>
+        <div class="steps-digits">
+            <span class="step-digit step-digit-1 active">01</span>
+            <span class="step-digit step-digit-22">02</span>
+            <span class="step-digit step-digit-33">03</span>
+        </div>
+        <div class="step-item step-11 active">
+            <input type="text" name="name"  placeholder="Ваше имя"  required="required">
+            <input type="text" name="phone"  class="tel-input" placeholder="Номер телефона" required="required">
+            <div class="btn btn-indigo" id="step-22">Далее</div>
+        </div>
+        <div class="step-item step-22">
+            <select name="cat_servise_id" id="">
+                <option value="Не важно">Выберите направление</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            <select name="service_id" id="">
+                <option value="Не важно">Выберите услугу</option>
+                @foreach($services as $service)
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @endforeach
+            </select>
+            <select name="doctor_id" id="">
+                <option value="Не важно">Выберите врача</option>
+                @foreach($doctors as $doctor)
+                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                @endforeach
+            </select>
+            <div class="btn btn-indigo" id="step-33">Последний вопрос</div>
+        </div>
+        <div class="step-item step-33">
+            <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
+            <select name="time" id="">
+                <option value="Не важно">Желаемое время посещения</option>
+                @for($i = 8; $i <= 19; $i++)
+                <option value="{{ $i }}:00">{{ $i }} : 00</option>
+                <option value="{{ $i }}:30">{{ $i }} : 30</option>
+                @endfor
+            </select>
+            <button class="btn btn-indigo" id="step-44">Отправить</button>
+        </div>
+        <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
+        <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
+    </form>
+
+
     <div class="popup-contacts-form" id="contacts-form">
         <div class="title">
             <h3>EsteLife Clinic</h3>

@@ -68,8 +68,11 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link {{ active(['admin.home']) }}" href="{{ route('admin.home') }}"><i class="mdi mdi-home"></i> Главная</a></li>
-                    <li class="nav-item"><a class="nav-link {{ active('admin.home.home.appointments.*') }}" href="{{ route('admin.home.home.appointments.index') }}"><i class="mdi mdi-cart-plus"></i> Запись на прием</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.home.home.appointments.*') }}" href="{{ route('admin.home.home.appointments.index') }}"><i class="mdi mdi-cart-plus"></i> Заявки на прием</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.home.home.appointments.create') }}" href="{{ route('admin.home.home.appointments.create') }}"><i class="mdi mdi-cart-plus"></i> Записать на прием</a></li>
+                    <hr>
+                    <li class="nav-item" style="margin-bottom: 16px"><a class="nav-link {{ active('admin.home.home.online.*') }}" href="{{ route('admin.home.home.online.index') }}"><i class="mdi mdi-cart-plus"></i> Заявки на онлайн консультацию</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.home.home.online.create') }}" href="{{ route('admin.home.home.online.create') }}"><i class="mdi mdi-cart-plus"></i> Записать на онлайн консультацию</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.calls.index') }}" href="{{ route('admin.calls.index') }}"><i class="mdi mdi-phone-in-talk"></i> Обр.звонок</a></li>
     {{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-headset"></i> Тех.поддержка</a></li>--}}

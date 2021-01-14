@@ -100,7 +100,7 @@
                                     </b></div>
                                 <div class="btn-wrap">
                                     <a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a>
-                                    <a href="" class="btn btn-border-indigo">Онлайн-консультация</a>
+                                    <a id="doctor_online" data-doctor="{{ $doctor->id }}" href="#online" class="btn btn-border-indigo popup-with-form">Онлайн-консультация</a>
                                 </div>
                             </div>
                             <div class="education info-doc-item">

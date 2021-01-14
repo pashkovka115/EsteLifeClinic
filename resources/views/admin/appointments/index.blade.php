@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Запись на приём')
-@section('pageName', 'Запись на приём')
+@section('title', 'Заявки на приём')
+@section('pageName', 'Заявки на приём')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Запись на приём</li>
+    <li class="breadcrumb-item active">Заявки на приём</li>
 @endsection
 
 @section('headerStyle')
@@ -34,7 +34,7 @@
                         <td>{{ $appointment->cat_servise->name }}</td>
                         <td>{{ $appointment->service->name }}</td>
                         <td>{{ $appointment->doctor->name }}</td>
-                        <td>{{ $appointment->date }}</td>
+                        <td>{{ $appointment->date }}/{{ $appointment->time }}</td>
                         <td>
                             <a href="{{ route('admin.home.home.appointments.edit', ['appointment' => $appointment->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>

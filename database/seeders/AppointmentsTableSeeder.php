@@ -11,39 +11,43 @@ class AppointmentsTableSeeder extends Seeder
     {
         $appointments = [
             [
-                'name' => $faker->name,
+                'name' => $faker->unique()->name,
                 'phone' => $faker->phoneNumber,
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
                 'date' => '2020-12-05',
+                'time' => '14:00',
                 'created_at' => now()
             ],
             [
-                'name' => $faker->name,
+                'name' => $faker->unique()->name,
                 'phone' => $faker->phoneNumber,
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
                 'date' => '2020-12-05',
+                'time' => '18:30',
                 'created_at' => now()
             ],
             [
-                'name' => $faker->name,
+                'name' => $faker->unique()->name,
                 'phone' => $faker->phoneNumber,
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
                 'date' => '2020-12-05',
+                'time' => '19:30',
                 'created_at' => now()
             ],
             [
-                'name' => $faker->name,
+                'name' => $faker->unique()->name,
                 'phone' => $faker->phoneNumber,
                 'cat_servise_id' => 1,
                 'service_id' => 1,
                 'doctor_id' => 1,
                 'date' => '2020-12-05',
+                'time' => '8:00',
                 'created_at' => now()
             ],
         ];
