@@ -18,6 +18,7 @@
                   action="{{ route('admin.services.categories.store') }}"
                   method="post">
                 @csrf
+                <input type="hidden" name="type" value="{{ $type }}">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-group">
@@ -55,6 +56,14 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <?php
+                            $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+                            ?>
+                            <p class="form-control">Тип категории: {{ $a[$type] }}</p>
+                        </div>
+
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="before_after" class="custom-control-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                             <label class="custom-control-label" for="customCheck3">Показывать в меню "До/После"</label>

@@ -85,8 +85,11 @@
                     <h6 class="menu-title">Услуги</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create') }}"><i class="mdi mdi-plus"></i> Добавить услугу</a></li>
-                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create') }}"><i class="mdi mdi-plus"></i> Добавить категорию</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create', ['type' => 'medicine']) }}" style="margin-bottom: 16px"><i class="mdi mdi-plus"></i> Добавить медицинскую услугу</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create', ['type' => 'cosmetology']) }}"><i class="mdi mdi-plus"></i> Добавить косметологическую услугу</a></li>
+                    <hr>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create', ['type' => 'medicine']) }}" style="margin-bottom: 32px"><i class="mdi mdi-plus"></i> Добавить категорию медицины</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create', ['type' => 'cosmetology']) }}"><i class="mdi mdi-plus"></i> Добавить категорию косметологии</a></li>
                     <hr>
                 <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.*']) }}" href="{{ route('admin.services.services.index') }}"><i class="mdi mdi-dropbox"></i> Список услуг</a></li>
                     <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.*']) }}" href="{{ route('admin.services.categories.index') }}">

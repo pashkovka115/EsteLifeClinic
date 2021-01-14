@@ -15,6 +15,7 @@ class CatService extends Model
     protected $table = 'cat_services';
     protected $fillable = [
         'name',
+        'type',
         'slug',
         'parent_id',
         'before_after',

@@ -17,17 +17,22 @@ class AdminCategoryServiceController extends Controller
     }
 
 
-    public function create()
+    public function create($type)
     {
-        $categories = CatService::whereNull('parent_id')->with('children')->get();
+        if ($type != 'cosmetology' and $type != 'medicine'){
+            return back()->withErrors('Не коректный тип категории');
+        }
 
-        return view('admin.services_cat.create', ['categories' => $categories]);
+        $categories = CatService::whereNull('parent_id')->where('type', $type)->with('children')->get();
+
+        return view('admin.services_cat.create', ['categories' => $categories, 'type' => $type]);
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
+            'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'parent_id' => 'required|nullable|numeric',
             'description' => 'nullable|string',
@@ -38,6 +43,7 @@ class AdminCategoryServiceController extends Controller
 
         $data = [
             'name' => $request->input('name'),
+            'type' => $request->input('type'),
             'description' => $request->input('description'),
             'title' => $request->input('title'),
             'meta_description' => $request->input('meta_description'),
@@ -70,10 +76,10 @@ class AdminCategoryServiceController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $cat = CatService::where('id', $id)->firstOrFail();
-        $categories = CatService::whereNull('parent_id')->with('children')->get();
+        $categories = CatService::whereNull('parent_id')->where('type', $cat->type)->with('children')->get();
 
         return view('admin.services_cat.edit', ['cat' => $cat, 'categories' => $categories]);
     }

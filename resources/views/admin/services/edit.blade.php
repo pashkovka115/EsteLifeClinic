@@ -45,22 +45,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    <label>Тип услуги</label>
-                                    <select name="type" class="form-control">
-                                        <?php
-                                        if ($service->type == 'cosmetology'){
-                                            ?>
-                                            <option value="cosmetology" selected>Косметология</option>
-                                            <option value="medicine">Медицина</option>
-                                            <?php
-                                        }elseif ($service->type == 'medicine'){
-                                            ?>
-                                            <option value="cosmetology">Косметология</option>
-                                            <option value="medicine" selected>Медицина</option>
-                                            <?php
-                                            }
-                                        ?>
-                                    </select>
+                                    <p class="form-control">Тип услуги: {{ $type }}</p>
                                 </div>
 
                                 <div class="form-group col-sm-12">

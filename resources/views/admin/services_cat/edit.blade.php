@@ -66,7 +66,18 @@
                             </select>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div class="form-group">
+                            <p class="form-control">
+                                Тип категории:
+                                @if($cat->type == 'cosmetology')
+                                    Косметология
+                                @elseif($cat->type == 'medicine')
+                                    Медицина
+                                @endif
+                            </p>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
                             <?php
                             if ($cat->before_after == '1'){
                                 $checked = ' checked';

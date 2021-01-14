@@ -9,7 +9,7 @@
                         if ($category->children->count() > 0){
                             $ico = ' <i class="demo-icon icon-arrow-right"></i>';
                         }else{ $ico = ''; }
-                        $str .= '<li><a>' . $category->name . $ico . '</a>';
+                        $str .= '<li><a href="'.route('front.price.show.category', ['slug' => $category->slug]).'">' . $category->name . $ico . '</a>';
                         if ($category->children->count() > 0){
                             $str .= cats_menu($category->children);
                         }
@@ -24,12 +24,12 @@
                     <ul>
                         <li><a href="#">Косметология <i class="demo-icon icon-arrow-down"></i></a>
                             <?php
-                            echo cats_menu($cats_menu);
+                            echo cats_menu($cats_menu_cosmetology);
                             ?>
                         </li>
                         <li><a href="#">Медицина <i class="demo-icon icon-arrow-down"></i></a>
                             <?php
-                            echo cats_menu($cats_menu);
+                            echo cats_menu($cats_menu_medicine);
                             ?>
                         </li>
                         <li><a href="{{ route('front.price') }}" class="{{ active('front.price', 'red-link') }}">Цены</a></li>

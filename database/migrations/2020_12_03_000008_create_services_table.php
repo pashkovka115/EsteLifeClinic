@@ -16,7 +16,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cat_service_id');
             $table->unsignedBigInteger('action_id')->nullable();
-            $table->enum('type', ['medicine', 'cosmetology'])->comment('тип услуги медицина или косметология');
+//            $table->enum('type', ['medicine', 'cosmetology'])->comment('тип услуги медицина или косметология');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('short_description')->nullable();

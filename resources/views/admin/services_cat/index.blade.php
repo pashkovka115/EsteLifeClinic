@@ -18,6 +18,7 @@
                 <thead>
                 <tr>
                     <th>Имя</th>
+                    <th>Тип</th>
                     <th>Описание</th>
                     <th>Действия</th>
                 </tr>
@@ -26,6 +27,13 @@
                 @foreach($cats as $cat)
                     <tr>
                         <td>{{ $cat->name }}</td>
+                        <td>
+                            @if($cat->type == 'cosmetology')
+                                Косметология
+                            @elseif($cat->type == 'medicine')
+                                Медицина
+                            @endif
+                        </td>
                         <td>{{ $cat->description }}</td>
                         <td>
                             <a href=""><i class="far fa-eye text-primary mr-1"></i></a>

@@ -17,6 +17,7 @@ class CreateCatServicesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->string('name');
             $table->string('slug')->unique();
+            $table->enum('type', ['medicine', 'cosmetology'])->comment('тип услуги медицина или косметология');
             $table->enum('before_after', ['0', '1'])->comment('выводить в меню до после');
             $table->text('description')->nullable();
             $table->text('meta_description')->nullable();

@@ -19,19 +19,27 @@ class AdminServiceController extends Controller
     }
 
 
-    public function create()
+    public function create($type)
     {
-        $cats = CatService::whereNull('parent_id')->with('children')->get();
+        if ($type != 'cosmetology' and $type != 'medicine'){
+            return back()->withErrors('Не коректный тип услуги');
+        }
+        $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+
+        $cats = CatService::whereNull('parent_id')->where('type', $type)->with('children')->get();
         $actions = Action::all(['id', 'name']);
 
-        return view('admin.services.create', ['categories' => $cats, 'actions' => $actions]);
+        return view('admin.services.create', [
+            'categories' => $cats,
+            'actions' => $actions,
+            'type' => $a[$type],
+        ]);
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
@@ -52,7 +60,7 @@ class AdminServiceController extends Controller
         ]);
 
         $data = [
-            'type' => $request->input('type'),
+//            'type' => $request->input('type'),
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),
@@ -107,13 +115,15 @@ class AdminServiceController extends Controller
     public function edit($id)
     {
         $serv = Service::with(['category', 'action'])->where('id', $id)->firstOrFail();
-        $cats = CatService::whereNull('parent_id')->with('children')->get();
+        $cats = CatService::whereNull('parent_id')->where('type', $serv->category->type)->with('children')->get();
         $actions = Action::all(['id', 'name']);
+        $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
         return view('admin.services.edit', [
             'service' => $serv,
             'categories' => $cats,
-            'actions' => $actions
+            'actions' => $actions,
+            'type' => $a[$serv->category->type]
         ]);
     }
 
@@ -121,7 +131,6 @@ class AdminServiceController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
@@ -142,7 +151,7 @@ class AdminServiceController extends Controller
         ]);
 
         $data = [
-            'type' => $request->input('type'),
+//            'type' => $request->input('type'),
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),

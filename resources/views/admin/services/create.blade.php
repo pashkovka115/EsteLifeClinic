@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Услуги')
-@section('pageName', 'Редактировать услугу')
+@section('pageName', 'Новая услуга')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Редактировать услугу</li>
+    <li class="breadcrumb-item active">Новая услуга</li>
 @endsection
 
 @section('headerStyle')
@@ -44,11 +44,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    <label>Тип услуги</label>
-                                    <select name="type" class="form-control">
-                                        <option value="cosmetology" selected>Косметология</option>
-                                        <option value="medicine">Медицина</option>
-                                    </select>
+                                    <p class="form-control">Тип услуги: {{ $type }}</p>
                                 </div>
 
                                 <div class="form-group col-sm-12">

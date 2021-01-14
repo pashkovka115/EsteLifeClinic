@@ -150,10 +150,12 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="divider-custom mt-0">
-                                                    <div class="divider-text bg-light">Услуги</div>
+                                                    <div class="divider-text bg-light">Добавить услуги</div>
                                                 </div>
-                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.services.create') }}">Добавить услугу</a>
-                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.categories.create') }}"> Добавить категорию услуг</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.services.create', ['type' => 'medicine']) }}">Медицинская услуга</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.services.create', ['type' => 'cosmetology']) }}">Косметологическая услуга</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.categories.create', ['type' => 'medicine']) }}"> Категория медицины</a>
+                                                <a class="dropdown-item mb-2" href="{{ route('admin.services.categories.create', ['type' => 'cosmetology']) }}">Категория косметологии</a>
                                             </div>
                                             <div class="col-4">
                                                 <div class="divider-custom mt-0">

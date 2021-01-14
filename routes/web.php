@@ -103,8 +103,23 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
     // Раздел услуги
     Route::prefix('services')->as('services.')->group(function(){
-        Route::resource('services', 'Admin\AdminServiceController')->except('show')->names('services');
-        Route::resource('categories', 'Admin\AdminCategoryServiceController')->except('show')->names('categories');
+//        Route::resource('services', 'Admin\AdminServiceController')->except('show')->names('services');
+        Route::post('services', 'Admin\AdminServiceController@store')->name('services.store');
+        Route::get('services', 'Admin\AdminServiceController@index')->name('services.index');
+        Route::get('services/create/{type}', 'Admin\AdminServiceController@create')->name('services.create');
+        Route::delete('services/{service}', 'Admin\AdminServiceController@destroy')->name('services.destroy');
+        Route::put('services/{service}', 'Admin\AdminServiceController@update')->name('services.update');
+        Route::get('services/{service}/edit', 'Admin\AdminServiceController@edit')->name('services.edit');
+
+        Route::post('categories', 'Admin\AdminCategoryServiceController@store')->name('categories.store');
+        Route::get('categories', 'Admin\AdminCategoryServiceController@index')->name('categories.index');
+        Route::get('categories/create/{type}', 'Admin\AdminCategoryServiceController@create')->name('categories.create');
+        Route::delete('categories/{category}', 'Admin\AdminCategoryServiceController@destroy')->name('categories.destroy');
+        Route::put('categories/{category}', 'Admin\AdminCategoryServiceController@update')->name('categories.update');
+        Route::get('categories/{category}/edit', 'Admin\AdminCategoryServiceController@edit')->name('categories.edit');
+
+//        Route::resource('categories', 'Admin\AdminCategoryServiceController')->except('show')->names('categories');
+//        Route::post('categories', 'Admin\AdminCategoryServiceController')->names('categories');
     });
 
 

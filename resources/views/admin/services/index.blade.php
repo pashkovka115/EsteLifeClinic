@@ -18,6 +18,7 @@
                 <thead>
                 <tr>
                     <th>Имя</th>
+                    <th>Тип</th>
                     <th>Категория</th>
                     <th>Цена</th>
                     <th>Действия</th>
@@ -30,6 +31,12 @@
                             <p class="d-inline-block align-middle mb-0">
                                 <a href="" class="d-inline-block align-middle mb-0 product-name">{{ $service->name }}</a>
                             </p>
+                        </td>
+                        <td>
+                            @php
+                                $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+                            @endphp
+                            {{ $a[$service->category->type] }}
                         </td>
                         <td>
                             <p class="d-inline-block align-middle mb-0">
