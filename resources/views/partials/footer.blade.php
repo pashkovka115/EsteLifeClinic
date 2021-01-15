@@ -306,7 +306,7 @@
         <div class="step-item step-33">
             <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
             <select name="time" id="">
-                <option value="Не важно">Желаемое время посещения</option>
+                <option value="Не важно">Желаемое время</option>
                 @for($i = 8; $i <= 19; $i++)
                 <option value="{{ $i }}:00">{{ $i }} : 00</option>
                 <option value="{{ $i }}:30">{{ $i }} : 30</option>

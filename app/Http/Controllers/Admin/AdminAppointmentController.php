@@ -54,7 +54,7 @@ class AdminAppointmentController extends Controller
     public function edit($id)
     {
         $appo = Appointment::with(['service', 'cat_servise', 'doctor'])->where('id', $id)->firstOrFail();
-//        dd($appo);
+
         $cats = CatService::all(['id', 'name']);
         $services = Service::all(['id', 'name']);
         $doctors = Doctor::all(['id', 'name']);
@@ -77,6 +77,7 @@ class AdminAppointmentController extends Controller
             'service_id' => 'required|numeric',
             'doctor_id' => 'required|numeric',
             'date' => 'nullable|string',
+            'time' => 'nullable|string',
         ]);
 
         Appointment::where('id', $id)->update($request->except(['_method', '_token']));

@@ -11,7 +11,6 @@ use Spatie\Sluggable\SlugOptions;
 class OnlineConsultation extends Model
 {
     use HasFactory;
-    use HasSlug;
 
 
     protected $table = 'online_consultations';
@@ -24,24 +23,6 @@ class OnlineConsultation extends Model
         'date',
         'time',
     ];
-
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
 
     public function service()

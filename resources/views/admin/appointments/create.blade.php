@@ -56,7 +56,7 @@
 
                         <div class="form-group col-sm-12">
                             <label>Дата</label>
-                            <input class="form-control" type="date" value="{{ old('date') }}" required>
+                            <input class="form-control" type="date" name="date" value="{{ old('date') }}" required>
                         </div>
 
                         <div class="form-group col-sm-12">

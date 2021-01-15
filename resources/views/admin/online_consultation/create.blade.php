@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Записать на приём')
-@section('pageName', 'Записать на приём')
+@section('title', 'Записать на онлайн консультацию')
+@section('pageName', 'Записать на онлайн консультацию')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Запись на приём</li>
+    <li class="breadcrumb-item active">Запись на онлайн консультацию</li>
 @endsection
 
 @section('headerStyle')
@@ -13,7 +13,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.home.home.appointments.store') }}" method="post">
+            <form action="{{ route('admin.home.home.online.store') }}" method="post">
                 @csrf
                     <div class="row">
 
@@ -56,7 +56,7 @@
 
                         <div class="form-group col-sm-12">
                             <label>Дата</label>
-                            <input class="form-control" type="date" value="{{ old('date') }}" required>
+                            <input class="form-control" type="date" name="date" value="{{ old('date') }}" required>
                         </div>
 
                         <div class="form-group col-sm-12">

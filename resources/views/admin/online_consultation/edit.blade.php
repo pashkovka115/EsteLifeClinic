@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Запись на приём')
-@section('pageName', 'Запись на приём редактируем')
+@section('title', 'Запись на онлайн консультацию')
+@section('pageName', 'Запись на онлайн консультацию редактируем')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Запись на приём редактируем</li>
+    <li class="breadcrumb-item active">Запись на онлайн консультацию редактируем</li>
 @endsection
 
 @section('headerStyle')
@@ -14,19 +14,19 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.home.home.appointments.update', ['appointment' => $appointment->id]) }}" method="post">
+                  action="{{ route('admin.home.home.online.update', ['online' => $online->id]) }}" method="post">
                 @method('PUT')
                 @csrf
                     <div class="row">
 
                         <div class="form-group col-sm-12">
                             <label>Имя</label>
-                            <input class="form-control" type="text" name="name" value="{{ $appointment->name }}">
+                            <input class="form-control" type="text" name="name" value="{{ $online->name }}">
                         </div>
 
                         <div class="form-group col-sm-12">
                             <label>Телефон*</label>
-                            <input class="form-control" type="text" name="phone" value="{{ $appointment->phone }}">
+                            <input class="form-control" type="text" name="phone" value="{{ $online->phone }}">
                         </div>
 
                         <div class="form-group col-sm-12">
@@ -34,7 +34,7 @@
                             <select name="cat_servise_id" class="form-control">
                                 @foreach($categories as $category)
                                     <?php
-                                    if ($category->id == $appointment->cat_servise->id){
+                                    if ($category->id == $online->cat_servise->id){
                                         $selected = ' selected';
                                     }else{ $selected = ''; }
                                     ?>
@@ -48,7 +48,7 @@
                             <select name="service_id" class="form-control">
                                 @foreach($services as $service)
                                     <?php
-                                    if ($service->id == $appointment->service->id){
+                                    if ($service->id == $online->service->id){
                                         $selected = ' selected';
                                     }else{ $selected = ''; }
                                     ?>
@@ -62,7 +62,7 @@
                             <select name="doctor_id" class="form-control">
                                 @foreach($doctors as $doctor)
                                     <?php
-                                    if ($doctor->id == $appointment->doctor->id){
+                                    if ($doctor->id == $online->doctor->id){
                                         $selected = ' selected';
                                     }else{ $selected = ''; }
                                     ?>
@@ -73,7 +73,7 @@
 
                         <div class="form-group col-sm-12">
                             <label>Дата</label>
-                            <input class="form-control" type="date" name="date" value="{{ $appointment->date }}">
+                            <input class="form-control" type="date" name="date" value="{{ $online->date }}">
                         </div>
 
                         <div class="form-group col-sm-12">
@@ -84,9 +84,9 @@
                                     <?php
                                     $selected = '';
                                     $selected2 = '';
-                                    if ($appointment->time == "$i:00"){
+                                    if ($online->time == "$i:00"){
                                         $selected = ' selected';
-                                    }elseif ($appointment->time == "$i:30"){
+                                    }elseif ($online->time == "$i:30"){
                                         $selected2 = ' selected';
                                     }
                                     ?>
