@@ -43,7 +43,6 @@ class AdminOnlineConsultationController extends Controller
             'doctor_id' => 'required|numeric',
             'date' => 'nullable|string',
         ]);
-//        dd($request->all());
 
         $online = new OnlineConsultation($request->except(['_method', '_token']));
         $online->save();
@@ -89,6 +88,8 @@ class AdminOnlineConsultationController extends Controller
 
     public function destroy($id)
     {
-        //
+        OnlineConsultation::where('id', $id)->delete();
+
+        return back();
     }
 }

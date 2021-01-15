@@ -105,42 +105,50 @@ $(function() {
 
 	// My
     $("#step-22").on('click', function() {
-        $(this).parents(".popup-form").find(".step-item").removeClass("active");
-        $(".step-22").addClass("active");
-        $(".popup-form").find(".step-digit").removeClass("active");
-        $(".step-digit-22").addClass("active");
-        //
-        var doctor_id = $('#doctor_online').data('doctor');
-        // .removeClass('option', 'selected', 'focus')
-        var lis = $('#online').find('select[name="doctor_id"]').next('div.nice-select').find('ul.list li');
-        lis.removeClass('selected focus');
-        $(lis).each(function (i, el){
-            var elm = $(el);
-            // console.log(elm.data('value'), doctor_id)
-            if (elm.data('value') === doctor_id){
-                $(elm).addClass('selected focus');
-                var text = $(elm).text();
-                // $(elm).parent('ul').prev().text(text);
-                // elm.parentElement.nod.textContent = text;
-                $(elm).parents('div.nice-select').find('span.current').text(text);
-                return false;
-            }
-        });
+        var step_item = $(this).parents(".popup-form").find(".step-item");
+        if (step_item.find('input[name="name"]').val() !== '' && step_item.find('input[name="phone"]').val() !== ''){
+
+            $(this).parents(".popup-form").find(".step-item").removeClass("active");
+            $(".step-22").addClass("active");
+            $(".popup-form").find(".step-digit").removeClass("active");
+            $(".step-digit-22").addClass("active");
+            //
+            var doctor_id = $('#doctor_online').data('doctor');
+
+            var lis = $('#online').find('select[name="doctor_id"]').next('div.nice-select').find('ul.list li');
+            lis.removeClass('selected focus');
+            $(lis).each(function (i, el){
+                var elm = $(el);
+                // console.log(elm.data('value'), doctor_id)
+                if (elm.data('value') === doctor_id){
+                    $(elm).addClass('selected focus');
+                    var text = $(elm).text();
+                    // $(elm).parent('ul').prev().text(text);
+                    // elm.parentElement.nod.textContent = text;
+                    $(elm).parents('div.nice-select').find('span.current').text(text);
+                    return false;
+                }
+            });
+            var select = $('#online').find('select[name="doctor_id"]').find('option[value="'+doctor_id+'"]').prop('selected', true);
+        }else {
+            step_item.find('input[name="name"]').css('borderColor', 'red');
+            step_item.find('input[name="phone"]').css('borderColor', 'red');
+        }
     });
 
     $("#step-33").click(function() {
-        $(this).parents(".popup-form").find(".step-item").removeClass("active");
-        $(".step-33").addClass("active");
-        $(".popup-form").find(".step-digit").removeClass("active");
-        $(".step-digit-33").addClass("active");
-    });
+        if (cat_servise_id.value !== '0' && service_id.value !== '0' && doctor_id.value !== '0'){
+            $(this).parents(".popup-form").find(".step-item").removeClass("active");
+            $(".step-33").addClass("active");
+            $(".popup-form").find(".step-digit").removeClass("active");
+            $(".step-digit-33").addClass("active");
+        }else {
+            $(cat_servise_id).css('color', 'red');
+            $(service_id).css('color', 'red');
+            $(doctor_id).css('color', 'red');
+        }
 
-    // #online
-    $("#step-44").click(function(e) {
-        e.target.preventDefault();
 
-        $(this).parents(".popup-form").find(".step-item").removeClass("active");
-        $(".step-11").addClass("active");
     });
 	// End My
 

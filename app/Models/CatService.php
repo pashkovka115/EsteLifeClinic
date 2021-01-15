@@ -62,6 +62,11 @@ class CatService extends Model
         return $this->hasMany(self::class, 'parent_id')->with('children');
     }
 
+    public function parents()
+    {
+        return $this->belongsTo(self::class, 'parent_id')->with('parents');
+    }
+
 
     /*
     * Записаны на приём в этой категории

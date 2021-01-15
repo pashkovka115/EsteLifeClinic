@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 
 class AdminSupportController extends Controller
 {
-    public function index()
-    {
-
-    }
-
-
     public function create()
     {
         $messages = Support::all();
@@ -49,29 +43,5 @@ class AdminSupportController extends Controller
         }*/
 
         return back();
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }

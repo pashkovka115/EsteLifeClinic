@@ -6,7 +6,7 @@
     <li class="breadcrumb-item active">SEO</li>
 @endsection
 @section('headerStyle')
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}"/>--}}
     <style>
         .toast{
             position: fixed;
@@ -438,7 +438,6 @@
                 model: $(form).find('input[name="model"]').val(),
                 id: $(form).find('input[name="id"]').val(),
                 title: $(form).find('input[name="title"]').val(),
-                keywords: $(form).find('input[name="keywords"]').val(),
                 meta_description: $(form).find('input[name="meta_description"]').val(),
             }
 
@@ -456,7 +455,7 @@
                 data: data,
                 success: function (resp) {
                     $('#saveToast').toast('show')
-                    console.log(resp)
+                    // console.log(resp)
                     // success function is called when data came back
                     // for example: get your content and display it on your site
                 }

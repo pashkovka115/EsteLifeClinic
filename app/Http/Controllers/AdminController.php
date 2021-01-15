@@ -6,6 +6,7 @@ use App\Models\Action;
 use App\Models\Appointment;
 use App\Models\Call;
 use App\Models\Doctor;
+use App\Models\OnlineConsultation;
 use App\Models\Post;
 use App\Models\Review;
 use App\Models\Service;
@@ -18,6 +19,8 @@ class AdminController extends Controller
     {
         //записей на приём
         $appointments = Appointment::count();
+        //записей на онлайн консультацию
+        $online = OnlineConsultation::count();
         // Услуг
         $services = Service::count();
         // Врачей
@@ -33,6 +36,7 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'appointments' => $appointments,
+            'online' => $online,
             'services' => $services,
             'doctors' => $doctors,
             'reviews' => $reviews,

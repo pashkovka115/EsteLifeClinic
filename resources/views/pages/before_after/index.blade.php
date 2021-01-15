@@ -10,13 +10,7 @@
     <section class="before-after-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="crumbs">
-                        <ol>
-                            <li><a href="">Все акции</a></li>
-                            <li>Программа обследования «Мужчины 40+»</li>
-                        </ol>
-                    </div>
+                <div class="col-lg-12" style="padding-top: 40px">
                     <ul class="menu">
                         <li class="{{ active('front.before_after.index') }}"><a href="{{ route('front.before_after.index') }}">Все</a></li>
                     @foreach($categories as $category)

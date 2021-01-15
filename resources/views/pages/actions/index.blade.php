@@ -8,13 +8,7 @@
     <section class="action-all-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="crumbs">
-                        <ol>
-                            <li><a href="/">Главная</a></li>
-                            <li>Все акции</li>
-                        </ol>
-                    </div>
+                <div class="col-lg-12" style="padding-top: 40px">
                     <h1 class="title">Акции</h1>
                     <div class="wrapper">
                         @foreach($actions as $action)

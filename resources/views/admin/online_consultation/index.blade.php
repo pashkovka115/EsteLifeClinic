@@ -41,7 +41,7 @@
                             <a href="{{ route('admin.home.home.online.destroy', ['online' => $online->id]) }}"
                                onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $online->id }}').submit(); return false;">
                                                      <i class="fas fa-trash-alt text-danger"></i></a>
-                            <form id="form_{{ $online->id }}" action="{{ route('admin.home.home.appointments.destroy', ['appointment' => $online->id]) }}" method="POST" style="display: none;">
+                            <form id="form_{{ $online->id }}" action="{{ route('admin.home.home.online.destroy', ['online' => $online->id]) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>

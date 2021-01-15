@@ -58,6 +58,9 @@ Route::post('call', 'CallController@store')->name('front.call.store');
 // Запись на приём
 Route::post('appointment', 'AppointmentController@store')->name('front.appointment.store');
 
+// Запись на онлайн консультацию
+Route::post('online', 'OnlineConsultation@store')->name('front.online.store');
+
 // Цены
 Route::prefix('price')->group(function (){
     Route::get('', 'PriceController@index')->name('front.price');

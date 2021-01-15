@@ -19,10 +19,14 @@ class PriceController extends Controller
 
     public function show($slug)
     {
-        $categories = CatService::with(['children'])->where('slug', $slug)->get();
+        $categories = CatService::with(['children', 'parents'])->where('slug', $slug)->get();
         $all_categories = CatService::all(['slug', 'name']);
 
-        return view('pages.price.index', ['categories' => $categories, 'all_categories' => $all_categories]);
+        return view('pages.price.index', [
+            'categories' => $categories,
+            'all_categories' => $all_categories,
+            'slug' => $slug
+        ]);
     }
 
 

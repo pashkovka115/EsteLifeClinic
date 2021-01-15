@@ -75,7 +75,6 @@ class AdminSeoController extends Controller
             'model' => 'required|string',
             'id' => 'required|numeric',
             'title' => 'nullable|string',
-            'keywords' => 'nullable|string',
             'meta_description' => 'nullable|string',
         ]);
 
@@ -84,7 +83,6 @@ class AdminSeoController extends Controller
             $model = "App\Models\\$model_str";
             $model::where('id', $request->input('id'))->update([
                 'title' => $request->input('title'),
-                'keywords' => $request->input('keywords'),
                 'meta_description' => $request->input('meta_description'),
             ]);
 

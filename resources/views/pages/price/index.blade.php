@@ -37,12 +37,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    @if(isset($slug))
+                    <?php
+                    function parents($category){
+
+                        if (isset($category->parents) and !is_null($category->parents)){
+                            parents($category->parents);
+                            echo "<li><a href='". route('front.price.show.category', ['slug' => $category->parents->slug]) ."'>" . $category->parents->name . "</a></li>";
+                        }
+                    }
+                    ?>
+
                     <div class="crumbs">
                         <ol>
-                            <li><a href="">Все акции</a></li>
-                            <li>Программа обследования «Мужчины 40+»</li>
+                            @foreach($categories as $category)
+                                @php(parents($category))
+                                <li>{{ $category->name }}</li>
+                                @break
+                            @endforeach
                         </ol>
                     </div>
+                    @else
+                        <div style="height: 40px"></div>
+                    @endif
                     <div class="price-title-block">
                         <h1 class="title">Цены на услуги</h1>
                         <div class="filter-block">

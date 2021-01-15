@@ -8,13 +8,7 @@
     <section class="company-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="crumbs">
-                        <ol>
-                            <li><a href="/">Главная</a></li>
-                            <li>О нас</li>
-                        </ol>
-                    </div>
+                <div class="col-lg-12" style="padding-top: 40px">
                     <h1 class="title">{{ $company->name }}</h1>
                 </div>
             </div>

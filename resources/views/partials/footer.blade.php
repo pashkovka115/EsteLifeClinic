@@ -268,7 +268,7 @@
         <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
     </form>
 
-    <form action="" class="form popup-form" id="online" method="post">
+    <form action="{{ route('front.online.store') }}" class="form popup-form" id="online" method="post">
         @csrf
         <h3>Запись на онлайн консультацию</h3>
         <p class="subtitle">Администратор нашего центра перезвонит вам для подтверждения записи</p>
@@ -283,20 +283,20 @@
             <div class="btn btn-indigo" id="step-22">Далее</div>
         </div>
         <div class="step-item step-22">
-            <select name="cat_servise_id" id="">
-                <option value="Не важно">Выберите направление</option>
+            <select name="cat_servise_id" id="cat_servise_id">
+                <option value="0">Выберите направление</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <select name="service_id" id="">
-                <option value="Не важно">Выберите услугу</option>
+            <select name="service_id" id="service_id">
+                <option value="0">Выберите услугу</option>
                 @foreach($services as $service)
                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                 @endforeach
             </select>
-            <select name="doctor_id" id="">
-                <option value="Не важно">Выберите врача</option>
+            <select name="doctor_id" id="doctor_id">
+                <option value="0">Выберите врача</option>
                 @foreach($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                 @endforeach

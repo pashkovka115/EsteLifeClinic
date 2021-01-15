@@ -14,7 +14,7 @@ class CreateSupportTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('theme');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->text('description');
             $table->timestamp('created_at');
         });
