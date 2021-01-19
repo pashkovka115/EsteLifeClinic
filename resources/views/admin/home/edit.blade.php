@@ -56,7 +56,7 @@
                     <select name="action_slider" class="form-control">
                         @for($i=0; $i<=30; $i++)
                             <?php
-                            if ($home->action_slider == $i){
+                            if (isset($home->action_slider) and $home->action_slider == $i){
                                 $selected = ' selected';
                             } else {
                                 $selected = '';
@@ -72,7 +72,7 @@
                     <select name="count_doctors_list" class="form-control">
                         @for($i=3; $i<=23; $i++)
                             <?php
-                            if ($home->count_doctors_list == $i){
+                            if (isset($home->count_doctors_list) and $home->count_doctors_list == $i){
                                 $selected = ' selected';
                             } else {
                                 $selected = '';
@@ -105,7 +105,7 @@
                     <select name="count_news" class="form-control">
                         @for($i=1; $i<=12; $i++)
                             <?php
-                            if ($home->count_news == $i){
+                            if (isset($home->count_news) and $home->count_news == $i){
                                 $selected = ' selected';
                             } else {
                                 $selected = '';

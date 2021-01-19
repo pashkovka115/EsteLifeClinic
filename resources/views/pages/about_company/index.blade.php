@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        @if($company->top_sliders->visibility == '1')
+        @if(isset($company->top_sliders->visibility) and $company->top_sliders->visibility == '1')
         <div class="slider-company-block">
             <div class="slider-company">
                 @foreach($company->top_sliders->items as $item)
@@ -115,7 +115,7 @@
         </div>
     </section>
     <?php $middle_slider = $company->middle_sliders; ?>
-    @if($middle_slider->visibility == '1')
+    @if(isset($middle_slider->visibility) and $middle_slider->visibility == '1')
     <section class="gallery-company">
         <div class="container">
             <div class="row">
@@ -140,7 +140,7 @@
     </section>
     @endif
     <?php $bottom_sliders = $company->bottom_sliders; ?>
-    @if($bottom_sliders->visibility == '1')
+    @if(isset($bottom_sliders->visibility) and $bottom_sliders->visibility == '1')
     <section class="cert-block">
         <div class="container">
             <div class="row">
