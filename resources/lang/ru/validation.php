@@ -141,6 +141,18 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'cat_service_id' => [
+            'required' => 'Необходимо указать категорию'
+        ],
+        'cat_post_id' => [
+            'required' => 'Необходимо указать категорию'
+        ],
+        'doctor_id' => [
+            'required' => 'Необходимо указать врача'
+        ],
+        'service_id' => [
+            'required' => 'Необходимо указать услугу'
+        ]
     ],
 
     /*
