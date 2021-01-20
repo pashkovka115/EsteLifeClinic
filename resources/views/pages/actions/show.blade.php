@@ -1,8 +1,7 @@
 @extends('layouts.index')
 
-@section('header_style')
-
-@endsection
+@section('title') {{ $action->title ?? env('APP_NAME') }} @endsection
+@section('meta_description') {{ $action->meta_description }} @endsection
 
 @section('content')
     <section class="action-page-main-block" style="background-image: url('/storage/{{ $action->big_img }}');">

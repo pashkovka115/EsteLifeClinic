@@ -94,14 +94,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{--<div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="text-input-name">Описание</label>
                             <textarea class="form-control" name="description">{{ $cat->description }}</textarea>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">

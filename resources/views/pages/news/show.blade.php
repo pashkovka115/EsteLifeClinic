@@ -1,8 +1,7 @@
 @extends('layouts.index')
 
-@section('header_style')
-
-@endsection
+@section('title'){{ $news->title }}@endsection
+@section('meta_description'){{ $news->meta_description }}@endsection
 
 @section('content')
     <section class="news-title-block" style="background-image: url('/storage/{{ $news->bg_img }}');">

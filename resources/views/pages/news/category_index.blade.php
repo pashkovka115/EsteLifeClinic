@@ -1,8 +1,9 @@
 @extends('layouts.index')
 
-@section('header_style')
-
-@endsection
+@if(isset($news[0]))
+@section('title'){{ $news[0]->category->title }}@endsection
+@section('meta_description'){{ $news[0]->category->meta_description }}@endsection
+@endif
 
 @section('content')
     <section class="news-list-page">

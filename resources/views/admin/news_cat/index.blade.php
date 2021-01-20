@@ -33,7 +33,7 @@
                             <a href="">{{ mb_strimwidth($category->content, 0, 100, '...') }}</a>
                         </td>
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
+                            <a target="_blank" href="{{ route('front.news.category_index', ['slug' => $category->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.pages.category.news.edit', ['news' => $category->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.pages.category.news.destroy', ['news' => $category->id]) }}"

@@ -37,7 +37,6 @@
                             @endif
                         </td>
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.content.before_after.before_after.edit', ['before_after' => $item->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.content.before_after.before_after.destroy', ['before_after' => $item->id]) }}"

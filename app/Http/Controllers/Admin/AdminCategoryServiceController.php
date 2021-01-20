@@ -35,7 +35,7 @@ class AdminCategoryServiceController extends Controller
             'type' => 'required|in:cosmetology,medicine',
             'name' => 'required|string',
             'parent_id' => 'required|nullable|numeric',
-            'description' => 'nullable|string',
+//            'description' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'keywords' => 'nullable|string',
@@ -44,7 +44,7 @@ class AdminCategoryServiceController extends Controller
         $data = [
             'name' => $request->input('name'),
             'type' => $request->input('type'),
-            'description' => $request->input('description'),
+//            'description' => $request->input('description'),
             'title' => $request->input('title'),
             'meta_description' => $request->input('meta_description'),
             'keywords' => $request->input('keywords'),
@@ -90,7 +90,7 @@ class AdminCategoryServiceController extends Controller
         $request->validate([
             'name' => 'required|string',
             'parent_id' => 'required|nullable|numeric',
-            'description' => 'nullable|string',
+//            'description' => 'nullable|string',
             'title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'keywords' => 'nullable|string',
@@ -98,7 +98,7 @@ class AdminCategoryServiceController extends Controller
 
         $data = [
             'name' => $request->input('name'),
-            'description' => $request->input('description'),
+//            'description' => $request->input('description'),
             'title' => $request->input('title'),
             'meta_description' => $request->input('meta_description'),
             'keywords' => $request->input('keywords'),

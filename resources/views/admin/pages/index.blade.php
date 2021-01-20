@@ -28,7 +28,7 @@
                         <td>{{ $page->name }}</td>
                         <td>{{ mb_strimwidth(strip_tags($page->content), 0, 150, '...') }}</td>
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
+                            <a target="_blank" href="{{ route('front.page.show', ['slug' => $page->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.pages.pages.edit', ['page' => $page->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.pages.pages.destroy', ['page' => $page->id]) }}"

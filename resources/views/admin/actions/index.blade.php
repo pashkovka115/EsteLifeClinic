@@ -27,7 +27,7 @@
                         <td>{{ $action->name }}</td>
                         <td>{{ $action->type }}</td>
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
+                            <a target="_blank" href="{{ route('front.actions.show', ['slug' => $action->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.content.actions.actions.edit', ['action' => $action->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.content.actions.actions.destroy', ['action' => $action->id]) }}"

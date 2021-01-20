@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('title') {{ $doctor->title ?? $doctor->name }} @endsection
+@section('meta_description') {{ $doctor->meta_description }} @endsection
 
 @section('header_style')
 

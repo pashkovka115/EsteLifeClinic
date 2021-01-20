@@ -1,8 +1,7 @@
 @extends('layouts.index')
 
-@section('header_style')
-
-@endsection
+@section('title') {{ $page->title }} @endsection
+@section('meta_description') {{ $page->meta_description }} @endsection
 
 @section('content')
     <section class="news-page" style="margin-bottom: 40px">

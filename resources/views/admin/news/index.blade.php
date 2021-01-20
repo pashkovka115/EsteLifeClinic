@@ -33,7 +33,7 @@
                         </td>
 
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
+                            <a target="_blank" href="{{ route('front.news.show', ['slug' => $post->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.pages.news.edit', ['news' => $post->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.pages.news.destroy', ['news' => $post->id]) }}"

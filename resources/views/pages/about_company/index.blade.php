@@ -1,8 +1,7 @@
 @extends('layouts.index')
 
-@section('header_style')
-
-@endsection
+@section('title'){{ $company->title ?? env('APP_NAME') }}@endsection
+@section('meta_description'){{ $company->meta_description }}@endsection
 
 @section('content')
     <section class="company-page">

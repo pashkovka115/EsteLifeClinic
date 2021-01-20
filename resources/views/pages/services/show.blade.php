@@ -1,7 +1,10 @@
 @extends('layouts.index')
 
-@section('header_style')
-
+@section('title')
+    {{ $service->title }}
+@endsection
+@section('meta_description')
+    {{ $service->meta_description }}
 @endsection
 
 @section('content')

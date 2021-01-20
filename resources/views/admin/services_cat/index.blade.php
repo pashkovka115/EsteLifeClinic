@@ -19,7 +19,7 @@
                 <tr>
                     <th>Имя</th>
                     <th>Тип</th>
-                    <th>Описание</th>
+{{--                    <th>Описание</th>--}}
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -34,9 +34,9 @@
                                 Медицина
                             @endif
                         </td>
-                        <td>{{ $cat->description }}</td>
+{{--                        <td>{{ $cat->description }}</td>--}}
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
+                            <a target="_blank" href="{{ route('front.price.show.category', ['slug' => $cat->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.services.categories.edit', ['category' => $cat->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.services.categories.destroy', ['category' => $cat->id]) }}"

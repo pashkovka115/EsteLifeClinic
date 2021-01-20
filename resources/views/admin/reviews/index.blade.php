@@ -44,7 +44,6 @@
                             @if($reviw->visibility == '0') <span class="badge badge-danger">Нет</span> @elseif($reviw->visibility == '1') <span class="badge badge-success">Да</span> @endif
                         </td>
                         <td>
-                            <a href=""><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.content.reviews.reviews.edit', ['review' => $reviw->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.content.reviews.reviews.destroy', ['review' => $reviw->id]) }}"

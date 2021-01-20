@@ -32,6 +32,21 @@
 </style>
 @endsection
 
+@if(isset($slug) and isset($categories[0]))
+    @section('title')
+        {{ $categories[0]->title }}
+    @endsection
+    @section('meta_description')
+        {{ $categories[0]->meta_description }}
+    @endsection
+
+@else
+
+    @section('title')
+        @parent - Все категории
+    @endsection
+@endif
+
 @section('content')
     <section class="price-page">
         <div class="container">
