@@ -112,11 +112,42 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <h4>Дополнительное образование:</h4>
-                                        {!! $doctor->add_education !!}
-                                        <a href="#" class="more">Читать дальше...</a>
+                                        <div id="text_add_education_before"></div>
+                                        <div id="text_add_education_after" style="display: none"></div>
+{{--                                        {!! $doctor->add_education !!}--}}
+{{--                                        <a id="read_more" href="#" class="more">Читать дальше...</a>--}}
                                     </div>
                                 </div>
                             </div>
+                            <?php $json_text = json_encode(['text' => $doctor->add_education], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);  ?>
+                            <script>
+                                var text = {!! $json_text !!};
+                                var sp = text.text.split('<!-- pagebreak -->');
+
+                                if (sp[0] !== undefined){
+                                    document.querySelector('#text_add_education_before').innerHTML = sp[0];
+                                }
+                                if (sp[1] !== undefined){
+                                    var el = document.querySelector('#text_add_education_after');
+                                    el.innerHTML = sp[1];
+                                    el.insertAdjacentHTML('afterend', ' <a id="read_more" href="#" class="more">Читать дальше...</a>');
+                                    console.log(el.innerHTML)
+                                }
+
+                                var read_more = document.querySelector('#read_more');
+                                if (read_more !== undefined && read_more !== null){
+                                    read_more.addEventListener('click', function (e){
+                                        e.preventDefault();
+                                        var toggle_display = document.querySelector('#text_add_education_after');
+                                        var actualDisplay = getComputedStyle(toggle_display).display;
+                                        if (actualDisplay === 'none') {
+                                            toggle_display.style.display = 'block';
+                                        } else {
+                                            toggle_display.style.display = 'none';
+                                        }
+                                    });
+                                }
+                            </script>
                             <div class="interests info-doc-item">
                                 <h4>Сферы практических интересов:</h4>
                                 <div class="wrap">

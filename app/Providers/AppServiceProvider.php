@@ -40,17 +40,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Верхнее меню
         \View::composer('partials.top_menu', function($view) {
-            $view->with(['top_menu_professions' => Profession::with(['doctors'])->get()]);
-        });
-
-        // Верхнее меню тип медицина
-        \View::composer('partials.top_menu', function($view) {
-            $view->with(['cats_menu_medicine' => CatService::whereNull('parent_id')->where('type', 'medicine')->with(['children'])->get()]);
-        });
-
-        // Верхнее меню тип косметология
-        \View::composer('partials.top_menu', function($view) {
-            $view->with(['cats_menu_cosmetology' => CatService::whereNull('parent_id')->where('type', 'cosmetology')->with(['children'])->get()]);
+            $view->with(['top_menu' => \Menu::getByName('Верхнее меню')]);
         });
 
         // Меню в подвале
