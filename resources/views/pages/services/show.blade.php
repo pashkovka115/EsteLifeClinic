@@ -36,14 +36,14 @@
     <section class="serv-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                {{--<div class="col-lg-12">
                     <div class="crumbs">
                         <ol>
                             <li><a href="">Все акции</a></li>
                             <li>Программа обследования «Мужчины 40+»</li>
                         </ol>
                     </div>
-                </div>
+                </div>--}}
                 <div class="col-lg-9">
                     {!! $service->short_description !!}
                 </div>

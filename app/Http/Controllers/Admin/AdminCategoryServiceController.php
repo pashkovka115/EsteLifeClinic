@@ -17,15 +17,32 @@ class AdminCategoryServiceController extends Controller
     }
 
 
-    public function create($type)
+    public function create()
     {
-        if ($type != 'cosmetology' and $type != 'medicine'){
-            return back()->withErrors('Не коректный тип категории');
-        }
+        // Тип для первичной выборки
+        $type = CatService::select('type')->distinct()->first();
+        $categories = CatService::whereNull('parent_id')->where('type', $type->type)->with('children')->get();
 
-        $categories = CatService::whereNull('parent_id')->where('type', $type)->with('children')->get();
+        $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
-        return view('admin.services_cat.create', ['categories' => $categories, 'type' => $type]);
+        return view('admin.services_cat.create', [
+            'categories' => $categories,
+            'all_types' => $types,
+            'current_type' => $type->type
+        ]);
+    }
+
+
+    public function getCategories(Request $request)
+    {
+        $request->validate([
+            'type' => 'required|string'
+        ]);
+        $type = $request->input('type');
+
+        $cats = CatService::whereNull('parent_id')->where('type', $type)->with('children')->get();
+
+        return json_encode($cats->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -81,7 +98,14 @@ class AdminCategoryServiceController extends Controller
         $cat = CatService::where('id', $id)->firstOrFail();
         $categories = CatService::whereNull('parent_id')->where('type', $cat->type)->with('children')->get();
 
-        return view('admin.services_cat.edit', ['cat' => $cat, 'categories' => $categories]);
+        $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+
+        return view('admin.services_cat.edit', [
+            'categories' => $categories,
+            'cat' => $cat,
+            'all_types' => $types,
+            'current_type' => $cat->type
+        ]);
     }
 
 
@@ -89,6 +113,7 @@ class AdminCategoryServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'type' => 'required|string',
             'parent_id' => 'required|nullable|numeric',
 //            'description' => 'nullable|string',
             'title' => 'nullable|string',
@@ -98,6 +123,7 @@ class AdminCategoryServiceController extends Controller
 
         $data = [
             'name' => $request->input('name'),
+            'type' => $request->input('type'),
 //            'description' => $request->input('description'),
             'title' => $request->input('title'),
             'meta_description' => $request->input('meta_description'),

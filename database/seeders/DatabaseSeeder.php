@@ -11,31 +11,31 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(RolesTableSeeder::class); // Для старта сайта
         $this->call(UsersTableSeeder::class); // Для старта сайта
-//        $this->call(DoctorsTableSeeder::class);
-//        $this->call(HistoryWorkTableSeeder::class);
-//        $this->call(CategoryServicesTableSeeder::class);
-//        $this->call(ServicesTableSeeder::class);
-//        $this->call(ProfessionsTableSeeder::class);
-//        $this->call(DoctorsHasProfessionsTableSeeder::class);
-//        $this->call(ServicesHasDoctorsTableSeeder::class);
-//        $this->call(PracticalInterestsTableSeeder::class);
-//        $this->call(ReviewsTableSeeder::class);
-//        $this->call(CategoryPostsTableSeeder::class);
-//        $this->call(PostsTableSeeder::class);
-//        $this->call(TreatmentHistoryTableSeeder::class);
+        $this->call(DoctorsTableSeeder::class);
+        $this->call(HistoryWorkTableSeeder::class);
+        $this->call(CategoryServicesTableSeeder::class);
+        $this->call(ServicesTableSeeder::class);
+        $this->call(ProfessionsTableSeeder::class);
+        $this->call(DoctorsHasProfessionsTableSeeder::class);
+        $this->call(ServicesHasDoctorsTableSeeder::class);
+        $this->call(PracticalInterestsTableSeeder::class);
+        $this->call(ReviewsTableSeeder::class);
+        $this->call(CategoryPostsTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(TreatmentHistoryTableSeeder::class);
         $this->call(OptionsTableSeeder::class); // Для старта сайта
-//        $this->call(BannerTableSeeder::class);
-//        $this->call(BannerItemsTableSeeder::class);
+        $this->call(BannerTableSeeder::class);
+        $this->call(BannerItemsTableSeeder::class);
         $this->call(CompanyTableSeeder::class); // Для старта сайта
-//        $this->call(PagesTableSeeder::class);
-//        $this->call(ActionsTableSeeder::class);
-//        $this->call(AppointmentsTableSeeder::class);
-//        $this->call(CallsTableSeeder::class);
-//        $this->call(ConditionsActionsTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
+        $this->call(ActionsTableSeeder::class);
+        $this->call(AppointmentsTableSeeder::class);
+        $this->call(CallsTableSeeder::class);
+        $this->call(ConditionsActionsTableSeeder::class);
         $this->call(HomeTableSeeder::class); // Для старта сайта
-//        $this->call(OnlineConsultationsTableSeeder::class);
-//        $this->call(PriceDirectionsTableSeeder::class);
-//        $this->call(PriceCategoriesTableSeeder::class);
-//        $this->call(PriceServicesTableSeeder::class);
+        $this->call(OnlineConsultationsTableSeeder::class);
+        $this->call(PriceDirectionsTableSeeder::class);
+        $this->call(PriceCategoriesTableSeeder::class);
+        $this->call(PriceServicesTableSeeder::class);
     }
 }

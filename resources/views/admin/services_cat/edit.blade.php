@@ -1,14 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Категория услуг')
-@section('pageName', 'Редактировать категорию услуг')
+@section('pageName', 'Редактируем категорию услуг')
 @section('breadcrumbs')
-    <li class="breadcrumb-item active">Редактировать категорию услуг</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.services.categories.index') }}">Категории</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.services.services.index') }}">Услуги</a></li>
+    <li class="breadcrumb-item active">Редактируем категорию услуг</li>
 @endsection
 
 @section('headerStyle')
-    {{--    upload files --}}
-    <link rel="stylesheet" href="{{ URL::asset('plugins/dropify/css/dropify.min.css')}}">
+
 @stop
 
 @section('content')
@@ -19,15 +20,32 @@
                   method="post">
                 @method('PUT')
                 @csrf
+                <div class="form-group">
+                    <label for="text-input-name">Наименование</label>
+                    <input class="form-control" type="text" name="name" value="{{ $cat->name }}"
+                           id="text-input-name">
+                </div>
                 <div class="row">
-                    <div class="col-sm-8">
-                        <div class="form-group">
-                            <label for="text-input-name">Наименование</label>
-                            <input class="form-control" type="text" name="name" value="{{ $cat->name }}"
-                                   id="text-input-name">
-                        </div>
 
-                        <div class="form-group">
+
+                    <div class="form-group col-sm-6">
+                        <label>Тип</label>
+                        <select name="type" class="form-control">
+                            @foreach($all_types as $key => $name)
+                                <?php
+                                $selected = '';
+                                if ($current_type == $key){
+                                    $selected = ' selected';
+                                }
+//                                dump($current_type, $key)
+//                                echo '<option value="">===' . $current_type .'---'. $key . '---' . $selected . '</option>';
+                                ?>
+                                <option value="{{ $key }}"{{ $selected }}>{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                        <div class="form-group col-sm-6">
                             <?php
                             function categories($category, $current_cat_id, $current_cat_parent_id, $parent_name = ''){
                                 if ($category->id == $current_cat_id){
@@ -38,6 +56,7 @@
                                 }else{
                                     $name = $parent_name . $category->name;
                                 }
+
                                 if ($category->id == $current_cat_parent_id){
                                     $selected = ' selected';
                                 }else{
@@ -65,70 +84,14 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <p class="form-control">
-                                Тип категории:
-                                @if($cat->type == 'cosmetology')
-                                    Косметология
-                                @elseif($cat->type == 'medicine')
-                                    Медицина
-                                @endif
-                            </p>
-                        </div>
-
-                        <div class="custom-control custom-checkbox mb-3">
-                            <?php
-                            if ($cat->before_after == '1'){
-                                $checked = ' checked';
-                            }else{ $checked = ''; }
-                            ?>
-                            <input type="checkbox" name="before_after" class="custom-control-input"{{ $checked }} id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="before_after" class="custom-control-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                             <label class="custom-control-label" for="customCheck3">Показывать в меню "До/После"</label>
                         </div>
+                    </div>
 
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <input type="file" name="img" id="input-file-now-custom-1" class="dropify" @if($cat->img) data-default-file="{{ URL::asset('storage/' . $cat->img)}}" @endif />
-                        </div>
-                    </div>
                 </div>
-                {{--<div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="text-input-name">Описание</label>
-                            <textarea class="form-control" name="description">{{ $cat->description }}</textarea>
-                        </div>
-                    </div>
-                </div>--}}
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="text-input-name">Title</label>
-                            <input class="form-control" type="text" name="title" value="{{ $cat->title }}"
-                                   id="text-input-name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="text-input-name">META Description</label>
-                            <textarea class="form-control" name="meta_description">{{ $cat->meta_description }}</textarea>
-                        </div>
-                    </div>
-                </div>
-
-                {{--<div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="text-input-name">META Keywords</label>
-                            <textarea class="form-control" name="keywords">{{ $cat->keywords }}</textarea>
-                        </div>
-                    </div>
-                </div>--}}
-
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>
         </div>
@@ -137,7 +100,57 @@
 @stop
 
 @section('footerScript')
-    {{--    upload files --}}
-    <script src="{{ URL::asset('assets/pages/jquery.form-upload.init.js') }}"></script>
-    <script src="{{ URL::asset('plugins/dropify/js/dropify.min.js')}}"></script>
+    <script>
+        var select = $('select[name="parent_id"]');
+
+        function categories(category, parent_name){
+            var name;
+            if (parent_name !== '') {
+                name = parent_name + ' → ' + category.name;
+            } else {
+                name = parent_name + category.name;
+            }
+
+            select.append('<option value="'+ category.id +'">'+ name +'</option>');
+
+            if (parent_name === ''){
+                parent_name += category.name;
+            }else{
+                parent_name += ' → ' + category.name;
+            }
+
+            if (category.children.length > 0){
+                for (var i = 0; i < category.children.length; i++){
+                    categories(category.children[i], parent_name);
+                }
+            }
+        }
+
+        $('select[name="type"]').on('change', function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $.ajax({
+                url: '{{ route('admin.services.categories.get_categories') }}',
+                method: 'POST',
+                data: {
+                    type: $(this).val()
+                },
+                success: function (resp){
+                    var cats = JSON.parse(resp);
+
+                    select.empty();
+                    select.append('<option value="0">Без родительской категории</option>');
+
+                    for (var i =0; i < cats.length; i++){
+                        categories(cats[i], '')
+                    }
+                }
+            });
+        });
+    </script>
 @stop

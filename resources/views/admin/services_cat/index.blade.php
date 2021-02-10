@@ -36,7 +36,6 @@
                         </td>
 {{--                        <td>{{ $cat->description }}</td>--}}
                         <td>
-                            <a target="_blank" href="{{ route('front.price.show.category', ['slug' => $cat->slug]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
                             <a href="{{ route('admin.services.categories.edit', ['category' => $cat->id]) }}"><i
                                     class="far fa-edit text-warning mr-1"></i></a>
                             <a href="{{ route('admin.services.categories.destroy', ['category' => $cat->id]) }}"

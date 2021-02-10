@@ -13,26 +13,26 @@ class AdminServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::with('category')->paginate();
+        $services = Service::with('category')->get();
 
-        return view('admin.services.index', ['services' => $services]);
+        $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+
+        return view('admin.services.index', [
+            'services' => $services,
+            'all_types' => $types
+        ]);
     }
 
 
-    public function create($type)
+    public function create()
     {
-        if ($type != 'cosmetology' and $type != 'medicine'){
-            return back()->withErrors('Не коректный тип услуги');
-        }
-        $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+        $cats = CatService::whereNull('parent_id')->where('type', 'medicine')->with('children')->get();
 
-        $cats = CatService::whereNull('parent_id')->where('type', $type)->with('children')->get();
-        $actions = Action::all(['id', 'name']);
+//        $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
         return view('admin.services.create', [
             'categories' => $cats,
-            'actions' => $actions,
-            'type' => $a[$type],
+//            'all_types' => $types
         ]);
     }
 
@@ -43,7 +43,7 @@ class AdminServiceController extends Controller
             'name' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
-            'action_id' => 'required|numeric',
+//            'action_id' => 'required|numeric',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'title' => 'nullable|string',
@@ -64,7 +64,7 @@ class AdminServiceController extends Controller
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),
-            'action_id' => $request->input('action_id'),
+//            'action_id' => $request->input('action_id'),
             'short_description' => $request->input('short_description'),
             'description' => $request->input('description'),
             'title' => $request->input('title'),
@@ -74,9 +74,9 @@ class AdminServiceController extends Controller
             'service3' => $request->input('service3'),
             'service4' => $request->input('service4'),
         ];
-        if ($data['action_id'] == '0'){
+        /*if ($data['action_id'] == '0'){
             $data['action_id'] = null;
-        }
+        }*/
 
         $folder = date('Y/m/d');
 
@@ -116,15 +116,28 @@ class AdminServiceController extends Controller
     {
         $serv = Service::with(['category', 'action'])->where('id', $id)->firstOrFail();
         $cats = CatService::whereNull('parent_id')->where('type', $serv->category->type)->with('children')->get();
-        $actions = Action::all(['id', 'name']);
-        $a = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
+//        $actions = Action::all(['id', 'name']);
+        $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
         return view('admin.services.edit', [
             'service' => $serv,
             'categories' => $cats,
-            'actions' => $actions,
-            'type' => $a[$serv->category->type]
+            'current_type' => $serv->category->type,
+            'all_types' => $types,
         ]);
+    }
+
+    public function updateAjax(Request $request)
+    {
+        $data = $request->validate([
+            'id' => 'required|numeric',
+            'field' => 'required|string',
+            'data' => 'nullable|string'
+        ]);
+
+        Service::where('id', $data['id'])->update([$data['field'] => $data['data']]);
+
+        return 'OK';
     }
 
 
@@ -132,9 +145,10 @@ class AdminServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+//            'type' => 'required|string',
             'price' => 'nullable|numeric',
             'cat_service_id' => 'required|numeric',
-            'action_id' => 'required|numeric',
+//            'action_id' => 'required|numeric',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'title' => 'nullable|string',
@@ -155,7 +169,7 @@ class AdminServiceController extends Controller
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'cat_service_id' => $request->input('cat_service_id'),
-            'action_id' => $request->input('action_id'),
+//            'action_id' => $request->input('action_id'),
             'short_description' => $request->input('short_description'),
             'description' => $request->input('description'),
             'title' => $request->input('title'),
@@ -165,9 +179,9 @@ class AdminServiceController extends Controller
             'service3' => $request->input('service3'),
             'service4' => $request->input('service4'),
         ];
-        if ($data['action_id'] == '0'){
+        /*if ($data['action_id'] == '0'){
             $data['action_id'] = null;
-        }
+        }*/
 
         $serv = Service::where('id', $id)->firstOrFail();
 

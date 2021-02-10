@@ -3,6 +3,7 @@
 @section('title', 'Услуги')
 @section('pageName', 'Новая услуга')
 @section('breadcrumbs')
+    <li class="breadcrumb-item"><a href="{{ route('admin.services.services.index') }}">Услуги</a></li>
     <li class="breadcrumb-item active">Новая услуга</li>
 @endsection
 
@@ -22,11 +23,7 @@
             <form enctype="multipart/form-data"
                   action="{{ route('admin.services.services.store') }}" method="post">
                 @csrf
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="row">
@@ -38,21 +35,41 @@
                                                id="text-input-name">
                                     </div>
                                 </div>
+
                                 <div class="form-group col-sm-12">
-                                    <label>Цена</label>
-                                    <input class="form-control" name="price" type="text" value="{{ old('price') }}">
+                                    <label>Тип услуги</label>
+                                    <select name="type" class="form-control">
+                                        <option value="medicine" selected>Медицина</option>
+                                        <option value="cosmetology">Косметология</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    <p class="form-control">Тип услуги: {{ $type }}</p>
-                                </div>
+                                    <?php
+                                    function categories($category, $parent_name = ''){
+                                        if ($parent_name != ''){
+                                            $name = $parent_name . ' → ' . $category->name;
+                                        }else{
+                                            $name = $parent_name . $category->name;
+                                        }
 
-                                <div class="form-group col-sm-12">
-                                    <label>Акции</label>
-                                    <select name="action_id" class="form-control">
-                                        <option value="0">Без акции</option>
-                                        @foreach($actions as $action)
-                                        <option value="{{ $action->id }}">{{ $action->name }}</option>
+                                        echo "<option value=\"$category->id\">$name</option>";
+
+                                        if ($parent_name == ''){
+                                            $parent_name .= $category->name;
+                                        }else{
+                                            $parent_name .= ' → ' . $category->name;
+                                        }
+
+                                        foreach ($category->children as $child){
+                                            categories($child, $parent_name);
+                                        }
+                                    }
+                                    ?>
+                                    <label>Категория</label>
+                                    <select name="cat_service_id" class="form-control">
+                                        @foreach($categories as $category)
+                                            <?php categories($category); ?>
                                         @endforeach
                                     </select>
                                 </div>
@@ -69,35 +86,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <?php
-                    function categories($category, $parent_name = ''){
-                        if ($parent_name != ''){
-                            $name = $parent_name . ' → ' . $category->name;
-                        }else{
-                            $name = $parent_name . $category->name;
-                        }
 
-                        echo "<option value=\"$category->id\">$name</option>";
-
-                        if ($parent_name == ''){
-                            $parent_name .= $category->name;
-                        }else{
-                            $parent_name .= ' → ' . $category->name;
-                        }
-
-                        foreach ($category->children as $child){
-                            categories($child, $parent_name);
-                        }
-                    }
-                    ?>
-                    <label>Категория</label>
-                    <select name="cat_service_id" class="form-control">
-                        @foreach($categories as $category)
-                            <?php categories($category); ?>
-                        @endforeach
-                    </select>
-                </div>
 
                 <div class="form-group">
                     <label for="elm1">Краткое описание</label>
@@ -191,4 +180,58 @@
     {{-- text editor --}}
     <script src="{{ URL::asset('plugins/tinymce/tinymce.min.js')}}"></script>
     <script src="{{ URL::asset('assets/pages/jquery.form-editor.init.js')}}"></script>
+
+    <script>
+        var select = $('select[name="cat_service_id"]');
+
+        function categories(category, parent_name){
+            var name;
+            if (parent_name !== '') {
+                name = parent_name + ' → ' + category.name;
+            } else {
+                name = parent_name + category.name;
+            }
+
+            select.append('<option value="'+ category.id +'">'+ name +'</option>');
+
+            if (parent_name === ''){
+                parent_name += category.name;
+            }else{
+                parent_name += ' → ' + category.name;
+            }
+
+            if (category.children.length > 0){
+                for (var i = 0; i < category.children.length; i++){
+                    categories(category.children[i], parent_name);
+                }
+            }
+        }
+
+        $('select[name="type"]').on('change', function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $.ajax({
+                url: '{{ route('admin.services.categories.get_categories') }}',
+                method: 'POST',
+                data: {
+                    type: $(this).val()
+                },
+                success: function (resp){
+                    var cats = JSON.parse(resp);
+
+                    select.empty();
+                    select.append('<option value="0">Без родительской категории</option>');
+
+                    for (var i =0; i < cats.length; i++){
+                        categories(cats[i], '')
+                    }
+                }
+            });
+        });
+    </script>
 @stop
