@@ -20,6 +20,10 @@
                 <i data-feather="shopping-cart" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaApps-->
 
+            <a href="#MetricaPrice" class="nav-link {{ active(['admin.price.*']) }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Цены" data-trigger="hover">
+                <i data-feather="dollar-sign" class="align-self-center menu-icon icon-dual"></i>
+            </a><!--end MetricaApps-->
+
             <a href="#MetricaPages" class="nav-link {{ active(['admin.doctors.*']) }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Врачи" data-trigger="hover">
                 <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaPages-->
@@ -98,6 +102,18 @@
                     <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.*']) }}" href="{{ route('admin.services.categories.index') }}">
                             <i class="mdi mdi-lan"></i>Список категорий услуг</a>
                     </li>
+                </ul>
+            </div><!-- end Crypto -->
+
+            <div id="MetricaPrice" class="main-icon-menu-pane {{ active(['admin.price.*']) }}">
+                <div class="title-box">
+                    <h6 class="menu-title">Цены</h6>
+                </div>
+                <ul class="nav metismenu">
+                    <li class="nav-item"><a class="nav-link {{ active('admin.price.*') }}" href="{{ route('admin.price.direction.index') }}">Просмотр</a></li>
+                    <hr>
+                <li class="nav-item"><a class="nav-link " href="{{ route('admin.price.service.all_services') }}"><i class="mdi mdi-format-list-bulleted"></i> Все услуги</a></li>
+
                 </ul>
             </div><!-- end Crypto -->
 

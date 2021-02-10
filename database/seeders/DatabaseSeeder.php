@@ -34,5 +34,8 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ConditionsActionsTableSeeder::class);
         $this->call(HomeTableSeeder::class); // Для старта сайта
 //        $this->call(OnlineConsultationsTableSeeder::class);
+//        $this->call(PriceDirectionsTableSeeder::class);
+//        $this->call(PriceCategoriesTableSeeder::class);
+//        $this->call(PriceServicesTableSeeder::class);
     }
 }

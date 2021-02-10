@@ -127,6 +127,34 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 //        Route::post('categories', 'Admin\AdminCategoryServiceController')->names('categories');
     });
 
+    // Раздел цены
+    Route::prefix('price')->group(function (){
+        // Направления
+        Route::get('direction', 'Admin\Price\AdminDirectionController@index')->name('price.direction.index');
+        Route::post('direction', 'Admin\Price\AdminDirectionController@store')->name('price.direction.store');
+        Route::get('direction/{direction}/edit', 'Admin\Price\AdminDirectionController@edit')->name('price.direction.edit');
+        Route::put('direction/{direction}', 'Admin\Price\AdminDirectionController@update')->name('price.direction.update');
+        Route::delete('direction/{direction}', 'Admin\Price\AdminDirectionController@destroy')->name('price.direction.destroy');
+
+        // Категории
+        Route::get('category/{direction_id}', 'Admin\Price\AdminCategoryController@index')->name('price.category.index');
+        Route::post('category', 'Admin\Price\AdminCategoryController@store')->name('price.category.store');
+        Route::get('category/{id}/edit', 'Admin\Price\AdminCategoryController@edit')->name('price.category.edit');
+        Route::put('category/{id}', 'Admin\Price\AdminCategoryController@update')->name('price.category.update');
+        Route::delete('category/{id}', 'Admin\Price\AdminCategoryController@destroy')->name('price.category.destroy');
+
+        // Услуги
+        Route::get('service-all', 'Admin\Price\AdminServiceController@startPageForAjax')->name('price.service.all_services');
+//        Route::any('service-data', 'Admin\Price\AdminServiceController@dataForAjax')->name('price.service.data_services');
+
+        Route::get('service/{category_id}', 'Admin\Price\AdminServiceController@index')->name('price.service.index');
+        Route::post('service/store', 'Admin\Price\AdminServiceController@store')->name('price.service.store');
+//        Route::get('service/{id}/edit', 'Admin\Price\AdminServiceController@edit')->name('price.service.edit');
+//        Route::put('service/{id}', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
+        Route::post('service', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
+        Route::delete('service/{id}', 'Admin\Price\AdminServiceController@destroy')->name('price.service.destroy');
+    });
+
 
     // Раздел страницы
     Route::prefix('pages')->as('pages.')->group(function(){
