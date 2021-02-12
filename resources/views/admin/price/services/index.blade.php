@@ -1,17 +1,21 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Услуги')
-@section('pageName', 'Услуги')
+
+@if($parent_type == 1)
+@section('pageName', $parent_name . ' / Услуги')
+@else
+@section('pageName', $parent_name . ' / Услуги')
+@endif
+
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
-@if(isset($services[0]))
-<li class="breadcrumb-item">
-{{--    <a href="{{ route('admin.price.category.index', ['direction_id' => $services[0]->category->direction->id]) }}">{{ $services[0]->category->direction->name }}</a>--}}
-</li>
-{{--<li class="breadcrumb-item">{{ $services[0]->category->name }}</li>--}}
+@if($parent_type == 1)
+<li class="breadcrumb-item"> {{ $parent_name }} </li>
 @endif
 <li class="breadcrumb-item active">Услуги</li>
 @endsection
+
 @section('headerStyle')
 <style>
     .minw100{
@@ -35,6 +39,7 @@
                 <th>Код услуги</th>
                 <th>Название</th>
                 <th>Стоимость, руб.</th>
+                <th>Стоимость со скидкой, руб.</th>
                 <th>#</th>
             </tr>
             </thead>
@@ -43,8 +48,11 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'code')">{{ $service->code }}</div></td>
-                    <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'name')">{{ $service->name }}</div></td>
+                    <td>
+                        <div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'name')">{{ $service->name }}</div>
+                    </td>
                     <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'price')">{{ $service->price }}</div></td>
+                    <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'discount_price')">{{ $service->discount_price }}</div></td>
                     <td>
                         <a href="{{ route('admin.price.service.destroy', ['id' => $service->id]) }}" title="Удалить"
                            onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $service->id }}').submit(); return false;">
@@ -58,7 +66,7 @@
             @endforeach
             </tbody>
         </table>
-        {{ $services->links('pagination::bootstrap-4') }}
+{{--        {{ $services->links('pagination::bootstrap-4') }}--}}
     </div>
 </div>
 {{--<input type="text">--}}
@@ -110,6 +118,9 @@
         <div class="modal-body">
             <form id="save_form" action="{{ route('admin.price.service.store') }}" method="post">
                 @csrf
+                <input type="hidden" name="parent_id" value="{{ $parent_id }}">
+                <input type="hidden" name="type" value="2">
+                <input type="hidden" name="pricedirection_id" value="не нужен">
                 <div class="form-group">
                     <label>Код</label>
                     <input class="form-control" type="text" name="code">
@@ -117,22 +128,6 @@
                 <div class="form-group">
                     <label class="required">Наименование</label>
                     <input class="form-control" type="text" name="name">
-                </div>
-                <div class="form-group">
-                    <label>Категория</label>
-                    <select class="form-control" name="">
-                        {{--@foreach($categories as $category)
-                            <?php
-                            $selected = '';
-                            if (isset($services[0])){
-                                if ($services[0]->category->id == $category->id){
-                                    $selected = ' selected';
-                                }
-                            }
-                            ?>
-                        <option value="{{ $category->id }}"{{ $selected }}>{{ $category->name }}</option>
-                        @endforeach--}}
-                    </select>
                 </div>
 
                 <div class="form-group">

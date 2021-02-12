@@ -89,7 +89,7 @@
                     <h6 class="menu-title">Цены</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link {{ active('admin.price.direction.index') }}" href="{{ route('admin.price.direction.index') }}">Просмотр</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.price.direction.index') }}" href="{{ route('admin.price.direction.index') }}">Направления</a></li>
                     <hr>
                 <li class="nav-item"><a class="nav-link  {{ active('admin.price.service.all_services') }}" href="{{ route('admin.price.service.all_services') }}"><i class="mdi mdi-format-list-bulleted"></i> Все услуги</a></li>
                     <hr>

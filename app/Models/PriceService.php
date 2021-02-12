@@ -21,6 +21,7 @@ class PriceService extends Model
         'slug',
         'code',
         'price',
+        'discount_price'
     ];
 
 
@@ -56,6 +57,16 @@ class PriceService extends Model
     public function children()
     {
         return $this->hasMany(self::class, 'parent_id')->with('children');
+    }
+
+    public function parents()
+    {
+        return $this->hasOne(self::class, 'id', 'parent_id')->with('parent');
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(self::class, 'id', 'parent_id');
     }
 
 

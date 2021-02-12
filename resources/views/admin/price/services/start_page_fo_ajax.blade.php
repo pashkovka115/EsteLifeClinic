@@ -8,6 +8,11 @@
 @endsection
 @section('headerStyle')
     <link href="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <style>
+        table.dataTable.nowrap th, table.dataTable.nowrap td{
+            white-space: normal;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -25,6 +30,7 @@
                     <th>Код услуги</th>
                     <th>Название услуги</th>
                     <th>Стоимость, руб.</th>
+                    <th>Стоимость со скидкой, руб.</th>
                     <th>Группа услуг</th>
                     <th>Направление</th>
                 </tr>
@@ -35,8 +41,24 @@
                         <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'code')">{{ $service->code }}</div></td>
                         <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'name')">{{ $service->name }}</div></td>
                         <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'price')">{{ $service->price }}</div></td>
-                        <td>{{ $service->category->name }}</td>
-                        <td>{{ $service->category->direction->name }}</td>
+                        <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'discount_price')">{{ $service->discount_price }}</div></td>
+                        <td>
+                            @if($service->parent_id > 0)
+                                {{ $service->parent->name }}
+                            @endif
+                        </td>
+                        <td style="min-width: 400px">
+                            @php
+                            //dump($service);
+                            @endphp
+                            @if(is_null($service->parent) and isset($service->directions[0]))
+                                {{ $service->directions[0]->name }}
+                            @elseif(!is_null($service->parent))
+                                {{ $service->parent->directions[0]->name }}
+                            @endif
+                        </td>
+{{--                        <td>{{ $service->category->name }}</td>--}}
+{{--                        <td>{{ $service->category->direction->name }}</td>--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -45,6 +67,7 @@
                     <th>Код услуги</th>
                     <th>Название услуги</th>
                     <th>Стоимость, руб.</th>
+                    <th>Стоимость со скидкой, руб.</th>
                     <th>Группа услуг</th>
                     <th>Направление</th>
                 </tr>
@@ -177,9 +200,9 @@
                             <label class="required">Категория</label>
                             <select class="form-control" name="" required>
                                 <option value="">Выберите категорию</option>
-                                @foreach($all_cats as $cat)
+                                {{--@foreach($all_cats as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                @endforeach
+                                @endforeach--}}
                             </select>
                         </div>
 

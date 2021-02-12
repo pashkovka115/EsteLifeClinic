@@ -143,6 +143,9 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::delete('direction/{direction}', 'Admin\Price\AdminDirectionController@destroy')->name('price.direction.destroy');
 
         // Категории
+        // Ajax
+        Route::post('category/ajax/edit', 'Admin\Price\AdminCategoryController@editAjax')->name('price.category.edit_ajax');
+
         Route::get('category/{direction_id}', 'Admin\Price\AdminCategoryController@index')->name('price.category.index');
         Route::post('category', 'Admin\Price\AdminCategoryController@store')->name('price.category.store');
         Route::get('category/{id}/edit', 'Admin\Price\AdminCategoryController@edit')->name('price.category.edit');

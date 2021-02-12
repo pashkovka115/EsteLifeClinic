@@ -12,10 +12,14 @@ class AdminServiceController extends Controller
 {
     public function index($service_id)
     {
-        $serv = PriceService::with(['directions'])->where('id', $service_id)->paginate();
-//        $cats = PriceCategory::all(['id', 'name']);
+        $temp = PriceService::with(['children'])->where('id', $service_id)->firstOrFail();
 
-        return view('admin.price.services.index', ['services' => $serv]);
+        return view('admin.price.services.index', [
+            'services' => $temp->children,
+            'parent_id' => $service_id,
+            'parent_name' => $temp->name,
+            'parent_type' => $temp->type,
+        ]);
     }
 
 
@@ -24,12 +28,25 @@ class AdminServiceController extends Controller
         $data = $request->validate([
             "code" => 'nullable|string',
             "name" => 'required|string',
-//            "price_category_id" => 'required|numeric',
-            "price" => 'nullable|string'
+            "pricedirection_id" => 'required|string',
+            "parent_id" => 'nullable|numeric',
+            "price" => 'nullable|string',
+            'type' => 'required|numeric'
         ]);
+        if ($data['parent_id'] == null){
+            $data['parent_id'] = 0;
+        }
 
         $sevice = new PriceService($data);
         $sevice->save();
+
+        // Не надо прикреплять к направлению т.к. есть родитель
+        if ($data['parent_id'] > 0){
+            return back();
+        }
+
+        $dir = PriceDirection::with('services')->where('id', $data['pricedirection_id'])->firstOrFail();
+        $dir->services()->attach([$sevice->id]);
 
         return back();
     }
@@ -51,7 +68,15 @@ class AdminServiceController extends Controller
 
     public function destroy($id)
     {
-        PriceService::where('id', $id)->delete();
+        $serv = PriceService::with(['directions', 'children'])->where('id', $id)->firstOrFail();
+        if ($serv->children->count() == 0){
+            $dirs = PriceDirection::all(['id']);
+            $dirs_ids = array_keys($dirs->keyBy('id')->toArray());
+            $serv->directions()->detach($dirs_ids);
+            $serv->delete();
+        }else{
+            flash('В этой группе есть услуги');
+        }
 
         return back();
     }
@@ -59,13 +84,11 @@ class AdminServiceController extends Controller
 
     public function startPageForAjax()
     {
-        $services = PriceService::with('category')->get();
-        $all_cats = PriceCategory::all(['id', 'name']);
+        $services = PriceService::with(['directions', 'parent'])->get();
         $directions = PriceDirection::all(['id', 'name']);
 
         return view('admin.price.services.start_page_fo_ajax', [
             'services' => $services,
-            'all_cats' => $all_cats,
             'directions' => $directions
         ]);
     }

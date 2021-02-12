@@ -12,12 +12,13 @@ class AdminCategoryController extends Controller
 {
     public function index($direction_id)
     {
-//        $categories = PriceCategory::with('services')->where('pricedirection_id', $direction_id)->paginate();
-//        $all_cats = PriceCategory::all(['id', 'name']);
-//        $direction = PriceDirection::where('id', $direction_id)->firstOrFail();
-
         $direction = PriceDirection::where('id', $direction_id)->firstOrFail();
         $directions = PriceDirection::all(['id', 'name']);
+
+        $groups_services = PriceService::where('type', 1)
+            ->whereHas('directions', function ($query) use ($direction_id){
+                $query->where('pricedirections.id', $direction_id);
+            })->get();
 
         $services = PriceService::with(['directions', 'children'])
             ->where('parent_id', 0)
@@ -27,11 +28,10 @@ class AdminCategoryController extends Controller
             ->get();
 
         return view('admin.price.categories.index', [
-//            'categories' => $categories,
-//            'all_cats' => $all_cats,
             'direction' => $direction,
             'directions' => $directions,
-            'services' => $services
+            'services' => $services,
+            'groups_services' => $groups_services
         ]);
     }
 
@@ -43,8 +43,14 @@ class AdminCategoryController extends Controller
             'name' => 'required|string',
         ]);
 
-        $direction = new PriceCategory($data);
-        $direction->save();
+        $service = new PriceService([
+            'name' => $data['name'],
+            'type' => 1
+        ]);
+        $service->save();
+
+        $dir = PriceDirection::with('services')->where('id', $data['pricedirection_id'])->firstOrFail();
+        $dir->services()->attach([$service->id]);
 
         return back();
     }
@@ -52,13 +58,38 @@ class AdminCategoryController extends Controller
 
     public function edit($id)
     {
-        $category = PriceCategory::with('direction')->where('id', $id)->firstOrFail();
+        $serv = PriceService::with('directions')->where('id', $id)->firstOrFail();
         $dirs = PriceDirection::all(['id', 'name']);
+        $servs = PriceService::with('directions')
+            ->where('type', 1)
+            ->where('parent_id', 0)
+            ->whereHas('directions', function ($query) use ($serv){
+                $query->where('pricedirections.id', $serv->directions[0]->id);
+            })->get();
+
 
         return view('admin.price.categories.edit', [
-            'category' => $category,
-            'directions' => $dirs
+            'directions' => $dirs,
+            'service' => $serv,
+            'group_services' => $servs
         ]);
+    }
+
+
+    public function editAjax(Request $request)
+    {
+        $data = $request->validate([
+            'pricedirection_id' => 'required|numeric'
+        ]);
+
+        $servs = PriceService::with('directions')
+            ->where('type', 1)
+            ->where('parent_id', 0)
+            ->whereHas('directions', function ($query) use ($data){
+                $query->where('pricedirections.id', $data['pricedirection_id']);
+            })->get();
+
+        return json_encode($servs->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -67,9 +98,21 @@ class AdminCategoryController extends Controller
         $data = $request->validate([
             'pricedirection_id' => 'required|numeric',
             'name' => 'required|string',
+            'price' => 'nullable|string',
+            'discount_price' => 'nullable|string',
         ]);
 
-        PriceCategory::where('id', $id)->update($data);
+        $dirs = PriceDirection::all(['id']);
+        $dirs_ids = array_keys($dirs->keyBy('id')->toArray());
+        $serv = PriceService::with('directions')->where('id', $id)->firstOrFail();
+        $serv->update([
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'discount_price' => $data['discount_price'],
+        ]);
+
+        $serv->directions()->detach($dirs_ids);
+        $serv->directions()->attach([$data['pricedirection_id']]);
 
         return back();
     }
@@ -77,12 +120,17 @@ class AdminCategoryController extends Controller
 
     public function destroy($id)
     {
-        $cat = PriceCategory::with('services')->where('id', $id)->firstOrFail();
-        if ($cat and $cat->services->count() > 0){
-            flash('В этой категории есть услуги. Вначале удалите услуги')->error();
+        $serv = PriceService::with(['directions', 'children'])->where('id', $id)->firstOrFail();
+        if ($serv and $serv->children->count() > 0){
+            flash('В этой группе есть услуги. Вначале удалите дочерние услуги.')->error();
             return back();
         }
-        $cat->delete();
+
+        $dirs = PriceDirection::all(['id']);
+        $dirs_ids = array_keys($dirs->keyBy('id')->toArray());
+
+        $serv->directions()->detach($dirs_ids);
+        $serv->delete();
 
         return back();
     }

@@ -51,14 +51,14 @@ class AdminDirectionController extends Controller
 
     public function destroy($id)
     {
-        $direction = PriceDirection::with('categories')->where('id', $id)->firstOrFail();
+        $direction = PriceDirection::with('services')->where('id', $id)->firstOrFail();
 
-        if ($direction and $direction->categories->count() > 0){
-            $cats = [];
-            foreach ($direction->categories as $category){
-                $cats[] = $category->name;
+        if ($direction and $direction->services->count() > 0){
+            $servs = [];
+            foreach ($direction->services as $serv){
+                $servs[] = $serv->name;
             }
-            flash('В этом направлении есть категории. Вначале удалите категории: ' . implode(', ', $cats))->error();
+            flash('В этом направлении есть услуги. Удалите или перенесите их в другие напраления: ' . implode(', ', $servs))->error();
             return back();
         }
         $direction->delete();

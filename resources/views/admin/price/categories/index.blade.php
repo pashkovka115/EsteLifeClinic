@@ -36,13 +36,18 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if($cnt > 0)
-                            <i class="fas fa-plus"></i> <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}">{{ $service->name }}</a>
+                            <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}">{{ $service->name }}</a>
                         @else
                             {{ $service->name }}
                         @endif
                     </td>
                     <td>{{ $cnt }}</td>
                     <td>
+                        @if($cnt > 0)
+                            <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}"><i class="far fa-eye text-primary mr-1"></i></a>
+                        @else
+                            <i class="fas fa-minus"></i> &nbsp;
+                        @endif
                         <a href="{{ route('admin.price.category.edit', ['id' => $service->id]) }}"><i
                                 class="far fa-edit text-warning mr-1"></i></a>
                         <a href="{{ route('admin.price.category.destroy', ['id' => $service->id]) }}"
@@ -78,6 +83,7 @@
             <form id="save_form" action="{{ route('admin.price.category.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="pricedirection_id" value="{{ $direction->id }}">
+                <input type="hidden" name="type" value="1">
                 <div class="form-group">
                     <label>Наименование</label>
                     <input class="form-control" type="text" name="name">
@@ -85,9 +91,15 @@
                 <div class="form-group">
                     <label>Направление</label>
                     <select class="form-control" name="pricedirection_id" required>
-                        <option value="">Выберите направление</option>
-                        @foreach($directions as $direction)
-                            <option value="{{ $direction->id }}">{{ $direction->name }}</option>
+{{--                        <option value="">Выберите направление</option>--}}
+                        @foreach($directions as $dir)
+                            <?php
+                            $selected = '';
+                            if ($dir->id == $direction->id){
+                                $selected = ' selected';
+                            }
+                            ?>
+                            <option value="{{ $dir->id }}"{{ $selected }}>{{ $dir->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -113,6 +125,8 @@
             <div class="modal-body">
                 <form id="save_form2" action="{{ route('admin.price.service.store') }}" method="post">
                     @csrf
+                    <input type="hidden" name="pricedirection_id" value="{{ $direction->id }}">
+                    <input type="hidden" name="type" value="2">
                     <div class="form-group">
                         <label>Код</label>
                         <input class="form-control" type="text" name="code">
@@ -122,12 +136,12 @@
                         <input class="form-control" type="text" name="name">
                     </div>
                     <div class="form-group">
-                        <label class="required">Категория</label>
-                        <select class="form-control" name="" required>
-                            <option value="">Выберите категорию</option>
-                            {{--@foreach($all_cats as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach--}}
+                        <label>Группа услуг</label>
+                        <select class="form-control" name="parent_id" required>
+                            <option value="">Выберите группу услуг</option>
+                            @foreach($groups_services as $group)
+                                <option value="{{ $group->id }}">{{ $group->name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -150,24 +164,27 @@
             if ($('#save_form').find('input[name="name"]').val() === ''){
                 $('#save_form').find('input[name="name"]').css('borderColor', 'red');
                 return;
+            }else {
+                $('#save_form').find('input[name="name"]').css('borderColor', 'green');
             }
 
             if ($('#save_form').find('select').val() === ''){
                 $('#save_form').find('select').css('borderColor', 'red');
                 return;
+            }else {
+                $('#save_form').find('input[name="name"]').css('borderColor', 'green');
             }
 
             $('#save_form').submit();
         });
+
         $('#btnSave2').click(function (){
 
             if ($('#save_form2').find('input[name="name"]').val() === ''){
                 $('#save_form2').find('input[name="name"]').css('borderColor', 'red');
                 return;
-            }
-            if ($('#save_form2').find('select').val() === ''){
-                $('#save_form2').find('select').css('borderColor', 'red');
-                return;
+            }else {
+                $('#save_form2').find('input[name="name"]').css('borderColor', 'green');
             }
 
             $('#save_form2').submit();
