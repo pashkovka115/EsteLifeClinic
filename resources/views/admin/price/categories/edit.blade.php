@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label>Направление</label>
-                <select class="form-control" name="price_direction_id">
+                <select class="form-control" name="pricedirection_id">
                     @foreach($directions as $direction)
                         <?php
                         if ($direction->id == $category->direction->id){

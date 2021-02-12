@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\CatService;
 use App\Models\Doctor;
 use App\Models\Page;
+use App\Models\PriceDirection;
 use App\Models\Profession;
 use App\Models\Service;
 use Carbon\Carbon;
@@ -51,6 +52,11 @@ class AppServiceProvider extends ServiceProvider
         // Страницы в подвале
         \View::composer('partials.footer', function($view) {
             $view->with(['pages' => Page::all(['slug', 'name'])]);
+        });
+
+        // Левое меню админки
+        \View::composer('admin.layouts.partials.sidebar', function($view) {
+            $view->with(['directions' => PriceDirection::all(['id', 'name'])]);
         });
 
         // форма записи на приём

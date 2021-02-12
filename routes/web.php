@@ -108,8 +108,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
     // Раздел услуги
     Route::prefix('services')->as('services.')->group(function(){
-//        Route::resource('services', 'Admin\AdminServiceController')->except('show')->names('services');
-        Route::post('services', 'Admin\AdminServiceController@store')->name('services.store');
+        Route::post('services-store', 'Admin\AdminServiceController@store')->name('services.store');
         Route::get('services', 'Admin\AdminServiceController@index')->name('services.index');
 //        Route::get('services/create/{type}', 'Admin\AdminServiceController@create')->name('services.create');
         Route::get('services/create', 'Admin\AdminServiceController@create')->name('services.create');

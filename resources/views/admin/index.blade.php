@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Germes-shop | Админ-панель')
+@section('title', 'EsteLife Clinic | Админ-панель')
 
 @section('headerStyle')
         <link href="{{ URL::asset('plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">

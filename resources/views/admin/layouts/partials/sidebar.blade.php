@@ -32,35 +32,16 @@
                 <i data-feather="folder-plus" class="align-self-center menu-icon icon-dual"></i>
             </a><!--end MetricaPages-->
 
-            {{--<a href="#beforeAfter" class="nav-link {{ active('admin.content.before_after.*') }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="До/После" data-trigger="hover">
-                <i data-feather="thumbs-up" class="align-self-center menu-icon icon-dual"></i>
-            </a>--}} <!--end MetricaAuthentication-->
-
             <a href="#pages" class="nav-link {{ active('admin.pages.*') }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Страницы" data-trigger="hover">
                 <i data-feather="book-open" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
-
-            {{--<a href="#MetricaReviews" class="nav-link {{ active(['admin.reviews.*']) }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Отзывы" data-trigger="hover">
-                <i data-feather="repeat" class="align-self-center menu-icon icon-dual"></i>
-            </a>--}}
 
             <a href="#MetricaAuthentication" class="nav-link {{ active('admin.options.*') }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Настройки" data-trigger="hover">
                 <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
             </a> <!--end MetricaAuthentication-->
 
-            {{--<a href="#MetricaUikit" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Акции и скидки" data-trigger="hover">
-                <i data-feather="credit-card" class="align-self-center menu-icon icon-dual"></i>
-            </a><!--end MetricaUikit-->--}}
-
         </nav><!--end nav-->
-        {{-- <div class="pro-metrica-end">
-            <a href="#" class="help" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Тех.поддержка">
-                <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
-            </a>
-            <a href="#" class="profile">
-                <img src="{{ URL::asset('assets/images/users/user-4.jpg')}}" alt="profile-user" class="rounded-circle thumb-sm">
-            </a>
-        </div> --}}
+
     </div><!--end main-icon-menu-->
 
     <div class="main-menu-inner">
@@ -93,15 +74,13 @@
                 </div>
                 <ul class="nav metismenu">
                     <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create') }}" style="margin-bottom: 16px"><i class="mdi mdi-plus"></i> Добавить услугу</a></li>
-{{--                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.create']) }}" href="{{ route('admin.services.services.create', ['type' => 'cosmetology']) }}"><i class="mdi mdi-plus"></i> Добавить косметологическую услугу</a></li>--}}
-
                     <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create') }}" style="margin-bottom: 32px"><i class="mdi mdi-plus"></i> Добавить категорию</a></li>
-{{--                    <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.create']) }}" href="{{ route('admin.services.categories.create', ['type' => 'cosmetology']) }}"><i class="mdi mdi-plus"></i> Добавить категорию косметологии</a></li>--}}
                     <hr>
                 <li class="nav-item"><a class="nav-link {{ active(['admin.services.services.index']) }}" href="{{ route('admin.services.services.index') }}"><i class="mdi mdi-dropbox"></i> Список услуг</a></li>
                     <li class="nav-item"><a class="nav-link {{ active(['admin.services.categories.index']) }}" href="{{ route('admin.services.categories.index') }}">
                             <i class="mdi mdi-lan"></i>Список категорий</a>
                     </li>
+
                 </ul>
             </div><!-- end Crypto -->
 
@@ -113,7 +92,10 @@
                     <li class="nav-item"><a class="nav-link {{ active('admin.price.direction.index') }}" href="{{ route('admin.price.direction.index') }}">Просмотр</a></li>
                     <hr>
                 <li class="nav-item"><a class="nav-link  {{ active('admin.price.service.all_services') }}" href="{{ route('admin.price.service.all_services') }}"><i class="mdi mdi-format-list-bulleted"></i> Все услуги</a></li>
-
+                    <hr>
+                    @foreach($directions as $direction)
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.category.index', ['direction_id' => $direction->id]) }}">- {{ $direction->name }}</a></li>
+                    @endforeach
                 </ul>
             </div><!-- end Crypto -->
 

@@ -13,11 +13,10 @@
 @section('content')
 
     <div class="card">
-        {{--<div class="card-header">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
-                Добавить услугу
-            </button>
-        </div>--}}
+        <div class="card-header">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Добавить группу услуг</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2"><i class="fas fa-plus"></i> Добавить услугу</button>
+        </div>
         <div class="card-body">
             <table id="datatable" data-page-length='15' class="table table-bordered dt-responsive nowrap"
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -115,5 +114,115 @@
             });
         });
 
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Добавить группу услуг</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="save_form" action="{{ route('admin.price.category.store') }}" method="post">
+                        @csrf
+{{--                        <input type="hidden" name="pricedirection_id" value="{{ $direction->id }}">--}}
+                        <div class="form-group">
+                            <label>Наименование</label>
+                            <input class="form-control" type="text" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Направление</label>
+                            <select class="form-control" name="pricedirection_id" required>
+                                <option value="">Выберите направление</option>
+                                @foreach($directions as $direction)
+                                    <option value="{{ $direction->id }}">{{ $direction->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSave" type="button" class="btn btn-primary">Добавить</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Добавить услугу</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="save_form2" action="{{ route('admin.price.service.store') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label>Код</label>
+                            <input class="form-control" type="text" name="code">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Наименование</label>
+                            <input class="form-control" type="text" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Категория</label>
+                            <select class="form-control" name="" required>
+                                <option value="">Выберите категорию</option>
+                                @foreach($all_cats as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Цена</label>
+                            <input class="form-control" type="text" name="price">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSave2" type="button" class="btn btn-primary">Добавить</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#btnSave').click(function (){
+            if ($('#save_form').find('input[name="name"]').val() === ''){
+                $('#save_form').find('input[name="name"]').css('borderColor', 'red');
+                return;
+            }
+
+            if ($('#save_form').find('select').val() === ''){
+                $('#save_form').find('select').css('borderColor', 'red');
+                return;
+            }
+
+            $('#save_form').submit();
+        });
+        $('#btnSave2').click(function (){
+
+            if ($('#save_form2').find('input[name="name"]').val() === ''){
+                $('#save_form2').find('input[name="name"]').css('borderColor', 'red');
+                return;
+            }
+            if ($('#save_form2').find('select').val() === ''){
+                $('#save_form2').find('select').css('borderColor', 'red');
+                return;
+            }
+
+            $('#save_form2').submit();
+        });
     </script>
 @stop

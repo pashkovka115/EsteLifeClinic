@@ -6,20 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePriceCategoriesTable extends Migration
 {
+    public $tableName = 'pricecategories';
+
+
     public function up()
     {
-        Schema::create('price_categories', function (Blueprint $table) {
+        Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('price_direction_id');
+            $table->unsignedBigInteger('pricedirection_id');
             $table->string('name');
             $table->string('slug');
             $table->timestamps();
 
-            $table->index(["price_direction_id"], 'fk_price_categories_price_direction1_idx');
+            $table->index(["pricedirection_id"], 'fk_price_categories_price_direction1_idx');
 
 
-            $table->foreign('price_direction_id', 'fk_price_categories_price_direction1_idx')
-                ->references('id')->on('price_directions')
+            $table->foreign('pricedirection_id', 'fk_price_categories_price_direction1_idx')
+                ->references('id')->on('pricedirections')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
@@ -28,6 +31,6 @@ class CreatePriceCategoriesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('price_categories');
+        Schema::dropIfExists($this->tableName);
     }
 }

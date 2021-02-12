@@ -13,14 +13,14 @@ class PriceDirection extends Model
     use HasSlug;
 
 
-    protected $table = 'price_directions';
+    protected $table = 'pricedirections';
     protected $fillable = [
         'name',
         'slug',
     ];
 
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
@@ -39,19 +39,30 @@ class PriceDirection extends Model
     }
 
 
-    public function categories()
+    /*public function categories()
     {
-        return $this->hasMany(PriceCategory::class, 'price_direction_id');
-    }
+        return $this->hasMany(PriceCategory::class, 'pricedirection_id');
+    }*/
 
 
     public function services()
     {
+        return $this->belongsToMany(
+            PriceService::class,
+            'direction_prices',
+            'pricedirection_id',
+            'priceservice_id'
+        );
+    }
+
+
+    /*public function services()
+    {
         return $this->hasManyThrough(
             PriceService::class,
             PriceCategory::class,
-            'price_direction_id',
-            'price_category_id'
+            'pricedirection_id',
+            'pricecategory_id'
         );
-    }
+    }*/
 }

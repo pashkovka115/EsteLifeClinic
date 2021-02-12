@@ -5,22 +5,33 @@ namespace App\Http\Controllers\Admin\Price;
 use App\Http\Controllers\Controller;
 use App\Models\PriceCategory;
 use App\Models\PriceDirection;
+use App\Models\PriceService;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
 {
     public function index($direction_id)
     {
-        $categories = PriceCategory::with('services')->where('price_direction_id', $direction_id)->paginate();
-        $all_cats = PriceCategory::all(['id', 'name']);
+//        $categories = PriceCategory::with('services')->where('pricedirection_id', $direction_id)->paginate();
+//        $all_cats = PriceCategory::all(['id', 'name']);
+//        $direction = PriceDirection::where('id', $direction_id)->firstOrFail();
+
         $direction = PriceDirection::where('id', $direction_id)->firstOrFail();
         $directions = PriceDirection::all(['id', 'name']);
 
+        $services = PriceService::with(['directions', 'children'])
+            ->where('parent_id', 0)
+            ->whereHas('directions', function ($query) use ($direction_id){
+                $query->where('pricedirections.id', $direction_id);
+            })
+            ->get();
+
         return view('admin.price.categories.index', [
-            'categories' => $categories,
-            'all_cats' => $all_cats,
+//            'categories' => $categories,
+//            'all_cats' => $all_cats,
             'direction' => $direction,
-            'directions' => $directions
+            'directions' => $directions,
+            'services' => $services
         ]);
     }
 
@@ -28,7 +39,7 @@ class AdminCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'price_direction_id' => 'required|numeric',
+            'pricedirection_id' => 'required|numeric',
             'name' => 'required|string',
         ]);
 
@@ -54,7 +65,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'price_direction_id' => 'required|numeric',
+            'pricedirection_id' => 'required|numeric',
             'name' => 'required|string',
         ]);
 

@@ -28,18 +28,27 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($categories as $category)
+            @foreach($services as $service)
+                @php
+                    $cnt = $service->children->count();
+                @endphp
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><a href="{{ route('admin.price.service.index', ['category_id' => $category->id]) }}">{{ $category->name }}</a></td>
-                    <td>{{ $category->services->count() }}</td>
                     <td>
-                        <a href="{{ route('admin.price.category.edit', ['id' => $category->id]) }}"><i
+                        @if($cnt > 0)
+                            <i class="fas fa-plus"></i> <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}">{{ $service->name }}</a>
+                        @else
+                            {{ $service->name }}
+                        @endif
+                    </td>
+                    <td>{{ $cnt }}</td>
+                    <td>
+                        <a href="{{ route('admin.price.category.edit', ['id' => $service->id]) }}"><i
                                 class="far fa-edit text-warning mr-1"></i></a>
-                        <a href="{{ route('admin.price.category.destroy', ['id' => $category->id]) }}"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $category->id }}').submit(); return false;">
+                        <a href="{{ route('admin.price.category.destroy', ['id' => $service->id]) }}"
+                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $service->id }}').submit(); return false;">
                             <i class="fas fa-trash-alt text-danger"></i></a>
-                        <form id="form_{{ $category->id }}" action="{{ route('admin.price.category.destroy', ['id' => $category->id]) }}" method="POST" style="display: none;">
+                        <form id="form_{{ $service->id }}" action="{{ route('admin.price.category.destroy', ['id' => $service->id]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
@@ -48,7 +57,7 @@
             @endforeach
             </tbody>
         </table>
-        {{ $categories->links('pagination::bootstrap-4') }}
+{{--        {{ $services->links('pagination::bootstrap-4') }}--}}
     </div>
 </div>
 
@@ -68,14 +77,14 @@
         <div class="modal-body">
             <form id="save_form" action="{{ route('admin.price.category.store') }}" method="post">
                 @csrf
-                <input type="hidden" name="price_direction_id" value="{{ $direction->id }}">
+                <input type="hidden" name="pricedirection_id" value="{{ $direction->id }}">
                 <div class="form-group">
                     <label>Наименование</label>
                     <input class="form-control" type="text" name="name">
                 </div>
                 <div class="form-group">
                     <label>Направление</label>
-                    <select class="form-control" name="price_direction_id" required>
+                    <select class="form-control" name="pricedirection_id" required>
                         <option value="">Выберите направление</option>
                         @foreach($directions as $direction)
                             <option value="{{ $direction->id }}">{{ $direction->name }}</option>
@@ -114,11 +123,11 @@
                     </div>
                     <div class="form-group">
                         <label class="required">Категория</label>
-                        <select class="form-control" name="price_category_id" required>
+                        <select class="form-control" name="" required>
                             <option value="">Выберите категорию</option>
-                            @foreach($all_cats as $cat)
+                            {{--@foreach($all_cats as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
+                            @endforeach--}}
                         </select>
                     </div>
 

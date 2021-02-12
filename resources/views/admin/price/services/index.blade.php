@@ -6,9 +6,9 @@
 <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
 @if(isset($services[0]))
 <li class="breadcrumb-item">
-    <a href="{{ route('admin.price.category.index', ['direction_id' => $services[0]->category->direction->id]) }}">{{ $services[0]->category->direction->name }}</a>
+{{--    <a href="{{ route('admin.price.category.index', ['direction_id' => $services[0]->category->direction->id]) }}">{{ $services[0]->category->direction->name }}</a>--}}
 </li>
-<li class="breadcrumb-item">{{ $services[0]->category->name }}</li>
+{{--<li class="breadcrumb-item">{{ $services[0]->category->name }}</li>--}}
 @endif
 <li class="breadcrumb-item active">Услуги</li>
 @endsection
@@ -120,8 +120,8 @@
                 </div>
                 <div class="form-group">
                     <label>Категория</label>
-                    <select class="form-control" name="price_category_id">
-                        @foreach($categories as $category)
+                    <select class="form-control" name="">
+                        {{--@foreach($categories as $category)
                             <?php
                             $selected = '';
                             if (isset($services[0])){
@@ -131,7 +131,7 @@
                             }
                             ?>
                         <option value="{{ $category->id }}"{{ $selected }}>{{ $category->name }}</option>
-                        @endforeach
+                        @endforeach--}}
                     </select>
                 </div>
 

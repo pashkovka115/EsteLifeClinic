@@ -35,6 +35,6 @@ class PriceDirectionsTableSeeder extends Seeder
             ],
         ];
 
-        \DB::table('price_directions')->insert($directions);
+        \DB::table('pricedirections')->insert($directions);
     }
 }

@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label>Категория</label>
-                <select class="form-control" name="price_direction_id">
+                <select class="form-control" name="pricedirection_id">
                     @foreach($categories as $category)
                         <?php
                         if ($category->id == $service->category->id){
