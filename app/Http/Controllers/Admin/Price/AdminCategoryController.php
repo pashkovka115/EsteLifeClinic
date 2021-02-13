@@ -38,6 +38,7 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request->all());
         $data = $request->validate([
             'pricedirection_id' => 'required|numeric',
             'name' => 'required|string',
@@ -45,7 +46,8 @@ class AdminCategoryController extends Controller
 
         $service = new PriceService([
             'name' => $data['name'],
-            'type' => 1
+            'type' => 1,
+            'pricedirection_id' => $data['pricedirection_id']
         ]);
         $service->save();
 
@@ -76,6 +78,9 @@ class AdminCategoryController extends Controller
     }
 
 
+    /*
+     * Возвращает группы из указанного напрвления
+     */
     public function editAjax(Request $request)
     {
         $data = $request->validate([
@@ -88,6 +93,27 @@ class AdminCategoryController extends Controller
             ->whereHas('directions', function ($query) use ($data){
                 $query->where('pricedirections.id', $data['pricedirection_id']);
             })->get();
+
+        return json_encode($servs->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+    }
+
+    /*
+     * Возвращает цены (не группы)
+     * type 1 - Группа
+     * type 2 - Услуга
+     * parent_id - если равен 0, то это вложено в направление(группа или услуга).
+     * если parent_id > 0, то это услуга вложенная в группу
+     */
+    public function getPriceAjax(Request $request)
+    {
+        $data = $request->validate([
+            'pricedirection_id' => 'required|numeric'
+        ]);
+
+        $servs = PriceService::with('directions')
+            ->where('type', 2)
+            ->where('pricedirection_id', $data['pricedirection_id'])
+            ->get();
 
         return json_encode($servs->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
     }
@@ -105,11 +131,7 @@ class AdminCategoryController extends Controller
         $dirs = PriceDirection::all(['id']);
         $dirs_ids = array_keys($dirs->keyBy('id')->toArray());
         $serv = PriceService::with('directions')->where('id', $id)->firstOrFail();
-        $serv->update([
-            'name' => $data['name'],
-            'price' => $data['price'],
-            'discount_price' => $data['discount_price'],
-        ]);
+        $serv->update($data);
 
         $serv->directions()->detach($dirs_ids);
         $serv->directions()->attach([$data['pricedirection_id']]);

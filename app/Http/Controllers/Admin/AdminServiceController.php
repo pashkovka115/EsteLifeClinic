@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Action;
 use App\Models\CatService;
 use App\Models\Doctor;
+use App\Models\PriceDirection;
+use App\Models\PriceService;
 use App\Models\Service;
+use App\Models\ServicePriceservic;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller
@@ -114,9 +117,24 @@ class AdminServiceController extends Controller
 
     public function edit($id)
     {
-        $serv = Service::with(['category', 'action'])->where('id', $id)->firstOrFail();
+        $serv = Service::with(['category'])
+            ->where('id', $id)
+            ->firstOrFail();
+
         $cats = CatService::whereNull('parent_id')->where('type', $serv->category->type)->with('children')->get();
-//        $actions = Action::all(['id', 'name']);
+        $directions = PriceDirection::all(['id', 'name']);
+
+        if (isset($directions[0])) {
+            $services = PriceService::with('directions')
+                ->where('type', 2)
+                ->where('pricedirection_id', $directions[0]->id)
+                ->get();
+        }
+
+        $ties = ServicePriceservic::where('service_id', $id)->get();
+        $price_services_ids = array_keys($ties->keyBy('priceservice_id')->toArray());
+        $tie_services = PriceService::with(['directions', 'parent'])->whereIn('id', $price_services_ids)->get();
+
         $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
         return view('admin.services.edit', [
@@ -124,8 +142,30 @@ class AdminServiceController extends Controller
             'categories' => $cats,
             'current_type' => $serv->category->type,
             'all_types' => $types,
+            'directions' => $directions,
+            'services' => $services ?? [],
+            'tie_services' => $tie_services
         ]);
     }
+
+
+    /*public function editAjax(Request $request)
+    {
+        // todo: доделать
+        $data = $request->validate([
+            'pricedirection_id' => 'required|numeric'
+        ]);
+
+        $services = PriceService::with('directions')
+            ->whereHas('directions', function ($query) use ($data) {
+                return $query->where('pricedirections.id', $data['pricedirection_id']);
+            })
+            ->get();
+
+
+        return json_encode($services->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+    }*/
+
 
     public function updateAjax(Request $request)
     {
@@ -138,6 +178,22 @@ class AdminServiceController extends Controller
         Service::where('id', $data['id'])->update([$data['field'] => $data['data']]);
 
         return 'OK';
+    }
+
+    /*
+     * Связать услугу и цены
+     */
+    public function tiePriceService(Request $request)
+    {
+        $data = $request->validate([
+            'service_id' => 'required|numeric',
+            'priceservice_id' => 'required|numeric'
+        ]);
+
+        $tie = new ServicePriceservic($data);
+        $tie->save();
+
+        return back();
     }
 
 
@@ -190,7 +246,7 @@ class AdminServiceController extends Controller
             $img = $request->file('img')->store("images/services/$folder");
             $data['img'] = $img;
             $old_file = storage_path('app/public') . '/' . $serv->img;
-            if (is_file($old_file)){
+            if (is_file($old_file)) {
                 unlink($old_file);
             }
         }
@@ -200,7 +256,7 @@ class AdminServiceController extends Controller
             $img = $request->file('ico1')->store("images/services/$folder");
             $data['ico1'] = $img;
             $old_file = storage_path('app/public') . '/' . $serv->ico1;
-            if (is_file($old_file)){
+            if (is_file($old_file)) {
                 unlink($old_file);
             }
         }
@@ -210,7 +266,7 @@ class AdminServiceController extends Controller
             $img = $request->file('ico2')->store("images/services/$folder");
             $data['ico2'] = $img;
             $old_file = storage_path('app/public') . '/' . $serv->ico2;
-            if (is_file($old_file)){
+            if (is_file($old_file)) {
                 unlink($old_file);
             }
         }
@@ -220,7 +276,7 @@ class AdminServiceController extends Controller
             $img = $request->file('ico3')->store("images/services/$folder");
             $data['ico3'] = $img;
             $old_file = storage_path('app/public') . '/' . $serv->ico3;
-            if (is_file($old_file)){
+            if (is_file($old_file)) {
                 unlink($old_file);
             }
         }
@@ -230,7 +286,7 @@ class AdminServiceController extends Controller
             $img = $request->file('ico4')->store("images/services/$folder");
             $data['ico4'] = $img;
             $old_file = storage_path('app/public') . '/' . $serv->ico4;
-            if (is_file($old_file)){
+            if (is_file($old_file)) {
                 unlink($old_file);
             }
         }

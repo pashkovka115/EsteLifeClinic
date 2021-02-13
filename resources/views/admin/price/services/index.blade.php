@@ -120,7 +120,7 @@
                 @csrf
                 <input type="hidden" name="parent_id" value="{{ $parent_id }}">
                 <input type="hidden" name="type" value="2">
-                <input type="hidden" name="pricedirection_id" value="не нужен">
+                <input type="hidden" name="pricedirection_id" value="{{ $pricedirection_id }}">
                 <div class="form-group">
                     <label>Код</label>
                     <input class="form-control" type="text" name="code">

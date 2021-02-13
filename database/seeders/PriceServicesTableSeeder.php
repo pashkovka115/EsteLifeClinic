@@ -23,6 +23,7 @@ class PriceServicesTableSeeder extends Seeder
                 'slug' => \Str::slug('Комбинированная чистка лица (ультрозвуковая+механическая чистка), 1,5 часа'),
                 'type' => $type,
                 'parent_id' => $parent_id,
+                'pricedirection_id' => 1,
                 'price' => "$i 500",
                 'discount_price' => '100',
                 'code' => "$i" . ' А22.01.001.001',

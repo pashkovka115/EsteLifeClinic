@@ -118,6 +118,9 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // ajax
         Route::post('services', 'Admin\AdminServiceController@updateAjax')->name('services.update_ajax');
 
+        // Связь услуги - цены
+        Route::post('services-price-store', 'Admin\AdminServiceController@tiePriceService')->name('services.service_price_store');
+
         //ajax
         Route::post('categories/get-categories', 'Admin\AdminCategoryServiceController@getCategories')->name('categories.get_categories');
 
@@ -145,6 +148,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Категории
         // Ajax
         Route::post('category/ajax/edit', 'Admin\Price\AdminCategoryController@editAjax')->name('price.category.edit_ajax');
+        Route::post('category/ajax/getprice', 'Admin\Price\AdminCategoryController@getPriceAjax')->name('price.category.get_price_ajax');
 
         Route::get('category/{direction_id}', 'Admin\Price\AdminCategoryController@index')->name('price.category.index');
         Route::post('category', 'Admin\Price\AdminCategoryController@store')->name('price.category.store');

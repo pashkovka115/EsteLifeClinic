@@ -24,6 +24,8 @@
                 <th>№</th>
                 <th>Название</th>
                 <th>Количество услуг</th>
+                <th>Стоимость, руб.</th>
+                <th>Стоимость со скидкой, руб.</th>
                 <th>Действия</th>
             </tr>
             </thead>
@@ -41,7 +43,27 @@
                             {{ $service->name }}
                         @endif
                     </td>
-                    <td>{{ $cnt }}</td>
+                    <td>
+                        @if($service->type == 1)
+                            {{ $cnt }}
+                        @else
+                            <i class="fas fa-minus"></i>
+                        @endif
+                    </td>
+                    <td>
+                        @if($service->type == 2)
+                            {{ $service->price }}
+                        @else
+                            <i class="fas fa-minus"></i>
+                        @endif
+                    </td>
+                    <td>
+                        @if($service->type == 2)
+                            {{ $service->discount_price }}
+                        @else
+                            <i class="fas fa-minus"></i>
+                        @endif
+                    </td>
                     <td>
                         @if($cnt > 0)
                             <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}"><i class="far fa-eye text-primary mr-1"></i></a>

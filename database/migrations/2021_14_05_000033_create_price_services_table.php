@@ -16,6 +16,7 @@ class CreatePriceServicesTable extends Migration
 //            $table->unsignedBigInteger('pricedirection_id');
             $table->unsignedInteger('type')->default(2);
             $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('pricedirection_id');
             $table->string('slug');
             $table->string('name');
             $table->string('price')->nullable();

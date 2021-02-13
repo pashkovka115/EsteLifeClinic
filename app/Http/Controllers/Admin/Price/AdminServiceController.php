@@ -12,19 +12,21 @@ class AdminServiceController extends Controller
 {
     public function index($service_id)
     {
-        $temp = PriceService::with(['children'])->where('id', $service_id)->firstOrFail();
+        $temp = PriceService::with(['children', 'directions'])->where('id', $service_id)->firstOrFail();
 
         return view('admin.price.services.index', [
             'services' => $temp->children,
             'parent_id' => $service_id,
             'parent_name' => $temp->name,
             'parent_type' => $temp->type,
+            'pricedirection_id' => $temp->directions[0]->id
         ]);
     }
 
 
     public function store(Request $request)
     {
+//        dd($request->all());
         $data = $request->validate([
             "code" => 'nullable|string',
             "name" => 'required|string',

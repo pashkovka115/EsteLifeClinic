@@ -17,6 +17,7 @@ class PriceService extends Model
     protected $fillable = [
         'type',
         'parent_id',
+        'pricedirection_id',
         'name',
         'slug',
         'code',
@@ -66,7 +67,7 @@ class PriceService extends Model
 
     public function parent()
     {
-        return $this->hasOne(self::class, 'id', 'parent_id');
+        return $this->hasOne(self::class, 'id', 'parent_id')->with('directions');
     }
 
 

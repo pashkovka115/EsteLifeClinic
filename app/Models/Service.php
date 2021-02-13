@@ -96,4 +96,28 @@ class Service extends Model
     {
         return $this->hasMany(TreatmentHistory::class, 'service_id');
     }
+
+    /*
+     * Цены
+     */
+    public function prices()
+    {
+        return $this->belongsToMany(
+            PriceService::class,
+            'service_priceservice',
+            'service_id',
+            'priceservice_id',
+        );
+    }
+
+
+    public function directions()
+    {
+        return $this->belongsToMany(
+            PriceService::class,
+            'service_priceservice',
+            'service_id',
+            'priceservice_id',
+        )->with('directions');
+    }
 }
