@@ -3,8 +3,9 @@
 @section('title', 'Редактируем направление')
 @section('pageName', 'Редактируем направление')
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
-<li class="breadcrumb-item active">Редактируем направление</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.service.all_services') }}">Цены</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
+    <li class="breadcrumb-item active">Редактируем направление</li>
 @endsection
 @section('headerStyle')
 

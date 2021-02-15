@@ -126,7 +126,7 @@ class AdminServiceController extends Controller
 
         if (isset($directions[0])) {
             $services = PriceService::with('directions')
-                ->where('type', 2)
+//                ->where('type', 2)
                 ->where('pricedirection_id', $directions[0]->id)
                 ->get();
         }
@@ -303,6 +303,24 @@ class AdminServiceController extends Controller
         $serv->doctors()->detach(array_keys(Doctor::all('id')->keyBy('id')->toArray()));
         $serv->appointments()->delete();
         $serv->delete();
+
+        return back();
+    }
+
+
+    /*
+     * Отсоединяем цену от услуги
+     */
+    public function detachPrice(Request $request)
+    {
+        $data = $request->validate([
+            'service_id' => 'required|numeric',
+            'priceservice_id' => 'required|numeric',
+        ]);
+
+        ServicePriceservic::where('service_id', $data['service_id'])
+            ->where('priceservice_id', $data['priceservice_id'])
+            ->delete();
 
         return back();
     }

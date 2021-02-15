@@ -48,17 +48,12 @@
                             @endif
                         </td>
                         <td style="min-width: 400px">
-                            @php
-                            //dump($service);
-                            @endphp
                             @if(is_null($service->parent) and isset($service->directions[0]))
                                 {{ $service->directions[0]->name }}
                             @elseif(!is_null($service->parent))
                                 {{ $service->parent->directions[0]->name }}
                             @endif
                         </td>
-{{--                        <td>{{ $service->category->name }}</td>--}}
-{{--                        <td>{{ $service->category->direction->name }}</td>--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -73,10 +68,8 @@
                 </tr>
                 </tfoot>
             </table>
-            {{--        {{ $services->links('pagination::bootstrap-4') }}--}}
         </div>
     </div>
-    {{--<input type="text">--}}
 @stop
 
 @section('footerScript')

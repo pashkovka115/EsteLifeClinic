@@ -120,6 +120,8 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         // Связь услуги - цены
         Route::post('services-price-store', 'Admin\AdminServiceController@tiePriceService')->name('services.service_price_store');
+        Route::post('service/{service_id}/detach-price/{priceservice_id}', 'Admin\AdminServiceController@detachPrice')
+            ->name('service.service_detach_price');
 
         //ajax
         Route::post('categories/get-categories', 'Admin\AdminCategoryServiceController@getCategories')->name('categories.get_categories');

@@ -3,6 +3,7 @@
 @section('title', 'Категории')
 @section('pageName', $direction->name .' / Категории')
 @section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{{ route('admin.price.service.all_services') }}">Цены</a></li>
 <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
 <li class="breadcrumb-item active">Категории</li>
 @endsection

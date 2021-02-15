@@ -8,6 +8,7 @@
 @endsection
 
 @section('headerStyle')
+    <link href="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
     {{--    upload files --}}
     <link rel="stylesheet" href="{{ URL::asset('plugins/dropify/css/dropify.min.css')}}">
     <style>
@@ -231,8 +232,8 @@
 
                             <div class="form-group col-sm-4">
                                 <label>Список цен</label>
-                                <select id="priceservice_id" name="priceservice_id" class="form-control">
-                                    <option>Выберите цену</option>
+                                <select id="priceservice_id" name="priceservice_id" class="form-control" required>
+                                    <option value="">Выберите цену</option>
                                     @foreach($services as $serv)
                                         <option value="{{ $serv->id }}">{{ $serv->name }}</option>
                                     @endforeach
@@ -247,14 +248,16 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table id="datatable" class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th>№</th>
                                         <th>Направление</th>
+                                        <th>Тип</th>
                                         <th>Наименование</th>
                                         <th>Стоимость, руб.</th>
                                         <th>Стоимость со скидкой, руб.</th>
+                                        <th>#</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -273,9 +276,26 @@
                                                     @endforeach
                                                 @endif
                                             </td>
+                                            <td>
+                                                @if($price->type == 1)
+                                                    Группа
+                                                @elseif($price->type == 2)
+                                                    Цена
+                                                @endif
+                                            </td>
                                             <td>{{ $price->name }}</td>
                                             <td>{{ $price->price }}</td>
                                             <td>{{ $price->discount_price }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}"
+                                                   onclick="if (confirm('Удалить связь цены с этой услугой?')) document.getElementById('form_{{ $price->id }}').submit(); return false;">
+                                                    <i class="fas fa-trash-alt text-danger"></i></a>
+                                                <form id="form_{{ $price->id }}" action="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}" method="POST" style="display: none;">
+                                                    <input type="hidden" name="service_id" value="{{ $service->id }}">
+                                                    <input type="hidden" name="priceservice_id" value="{{ $price->id }}">
+                                                    @csrf
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -293,6 +313,9 @@
 @stop
 
 @section('footerScript')
+    {{--  datatables  --}}
+    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/dataTables.bootstrap4.min.js') }}"></script>
     {{--    upload files --}}
     <script src="{{ URL::asset('assets/pages/jquery.form-upload.init.js') }}"></script>
     <script src="{{ URL::asset('plugins/dropify/js/dropify.min.js')}}"></script>
@@ -376,5 +399,37 @@
                 }
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+
+                language: {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate": {
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
+                    },
+                    "aria": {
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
+                    }
+                }
+            });
+        });
+
     </script>
 @stop

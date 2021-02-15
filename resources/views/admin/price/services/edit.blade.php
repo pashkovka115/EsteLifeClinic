@@ -5,6 +5,7 @@
 @section('pageName', 'Редактируем услугу')
 
 @section('breadcrumbs')
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.service.all_services') }}">Цены</a></li>
     <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
     <li class="breadcrumb-item">
         <a href="{{ route('admin.price.category.index', ['direction_id' => $service->category->direction->id]) }}">{{ $service->category->direction->name }}</a>

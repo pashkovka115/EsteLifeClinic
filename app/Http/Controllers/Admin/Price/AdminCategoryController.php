@@ -111,7 +111,7 @@ class AdminCategoryController extends Controller
         ]);
 
         $servs = PriceService::with('directions')
-            ->where('type', 2)
+//            ->where('type', 2)
             ->where('pricedirection_id', $data['pricedirection_id'])
             ->get();
 

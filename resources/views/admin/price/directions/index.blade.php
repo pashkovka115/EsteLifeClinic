@@ -3,7 +3,8 @@
 @section('title', 'Направления')
 @section('pageName', 'Направления')
 @section('breadcrumbs')
-<li class="breadcrumb-item active">Направления</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.service.all_services') }}">Цены</a></li>
+    <li class="breadcrumb-item active">Направления</li>
 @endsection
 @section('headerStyle')
 

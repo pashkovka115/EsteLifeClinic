@@ -9,11 +9,12 @@
 @endif
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
-@if($parent_type == 1)
-<li class="breadcrumb-item"> {{ $parent_name }} </li>
-@endif
-<li class="breadcrumb-item active">Услуги</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.service.all_services') }}">Цены</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.price.direction.index') }}">Направления</a></li>
+    @if($parent_type == 1)
+    <li class="breadcrumb-item"> {{ $parent_name }} </li>
+    @endif
+    <li class="breadcrumb-item active">Услуги</li>
 @endsection
 
 @section('headerStyle')
