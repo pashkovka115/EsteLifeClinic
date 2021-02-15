@@ -26,7 +26,6 @@ class AdminServiceController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
         $data = $request->validate([
             "code" => 'nullable|string',
             "name" => 'required|string',
@@ -89,9 +88,79 @@ class AdminServiceController extends Controller
         $services = PriceService::with(['directions', 'parent'])->get();
         $directions = PriceDirection::all(['id', 'name']);
 
+        if (isset($directions[0])){
+            $groups_services = PriceService::where('type', 1)
+                ->whereHas('directions', function ($query) use ($directions) {
+                    $query->where('pricedirections.id', $directions[0]->id);
+                })->get();
+        }
+
+
         return view('admin.price.services.start_page_fo_ajax', [
             'services' => $services,
-            'directions' => $directions
+            'directions' => $directions,
+            'groups_services' => $groups_services
         ]);
+    }
+
+
+    /*
+     * Ещё один способ добавления услуги
+     */
+    public function createNewService()
+    {
+        $directions = PriceDirection::all(['id', 'name']);
+        if (isset($directions[0])){
+            $groups_services = PriceService::where('pricedirection_id', $directions[0]->id)
+                ->where('type', 1)
+                ->get();
+        }
+
+        return view('admin.price.services.createNewService', [
+            'directions' => $directions,
+            'groups_services' => $groups_services ?? []
+        ]);
+    }
+
+
+    public function getGroupService(Request $request)
+    {
+        $data = $request->validate([
+            'pricedirection_id' => 'required|numeric'
+        ]);
+
+        $groups_services = PriceService::where('pricedirection_id', $data['pricedirection_id'])
+            ->where('type', 1)
+            ->get();
+
+        return json_encode($groups_services->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function storeNewService(Request $request)
+    {
+        $data = $request->validate([
+            'type' => 'required|numeric',
+            'name' => 'required|string',
+            'code' => 'nullable|string',
+            'price' => 'nullable|string',
+            'discount_price' => 'nullable|string',
+            'pricedirection_id' => 'required|numeric',
+            'parent_id' => 'nullable|numeric',
+        ]);
+
+        $serv = new PriceService($data);
+        $serv->save();
+
+        $dir = PriceDirection::with('services')->where('id', $data['pricedirection_id'])->firstOrFail();
+        $dir->services()->attach($serv->id);
+
+        if ($serv->id){
+            flash('Добавлено. ' . $serv->name)->success();
+        }else{
+            flash('Непредвиденная ошибка. ' . $serv->name)->success();
+        }
+
+        return back();
     }
 }

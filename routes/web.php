@@ -151,6 +151,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Ajax
         Route::post('category/ajax/edit', 'Admin\Price\AdminCategoryController@editAjax')->name('price.category.edit_ajax');
         Route::post('category/ajax/getprice', 'Admin\Price\AdminCategoryController@getPriceAjax')->name('price.category.get_price_ajax');
+        Route::post('category/ajax/get-group-service', 'Admin\Price\AdminServiceController@getGroupService')->name('price.category.get_group_service_ajax');
 
         Route::get('category/{direction_id}', 'Admin\Price\AdminCategoryController@index')->name('price.category.index');
         Route::post('category', 'Admin\Price\AdminCategoryController@store')->name('price.category.store');
@@ -164,6 +165,10 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         Route::get('service/{category_id}', 'Admin\Price\AdminServiceController@index')->name('price.service.index');
         Route::post('service/store', 'Admin\Price\AdminServiceController@store')->name('price.service.store');
+
+        Route::get('service/create/new/service', 'Admin\Price\AdminServiceController@createNewService')->name('price.service.create_new_service');
+        Route::post('service/store/new/service', 'Admin\Price\AdminServiceController@storeNewService')->name('price.service.store_new_service');
+
 //        Route::get('service/{id}/edit', 'Admin\Price\AdminServiceController@edit')->name('price.service.edit');
 //        Route::put('service/{id}', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
         Route::post('service', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
