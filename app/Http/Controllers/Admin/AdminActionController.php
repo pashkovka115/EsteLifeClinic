@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Action;
+use App\Models\ActionService;
+use App\Models\CatService;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -58,9 +60,62 @@ class AdminActionController extends Controller
 
     public function edit($id)
     {
-        $action = Action::with('conditions')->where('id', $id)->firstOrFail();
+        $action = Action::with(['conditions', 'services'])->where('id', $id)->firstOrFail();
+        // На фронте первой показана медицина
+        $cats_services = CatService::with('services')
+            ->where('type', 'medicine')
+            ->get(['id', 'name']);
 
-        return view('admin.actions.edit', ['action' => $action]);
+        return view('admin.actions.edit', ['action' => $action, 'categories' => $cats_services]);
+    }
+
+
+    public function getCatsWithServicesAjax(Request $request)
+    {
+        $data = $request->validate([
+            'type' => 'required|string'
+        ]);
+
+        $cats_services = CatService::with('services')
+            ->where('type', $data['type'])
+            ->get(['id', 'name']);
+
+        return json_encode($cats_services->toArray(), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function addTieService(Request $request)
+    {
+        $data = $request->validate([
+            'action_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
+        ]);
+
+        $tie = ActionService::where('action_id', $data['action_id'])
+            ->where('service_id', $data['service_id'])
+            ->first();
+        if (!$tie){
+            $action = Action::with('services')->where('id', $data['action_id'])->firstOrFail();
+            $action->services()->attach($data['service_id']);
+        }else{
+            flash('Связь уже существует')->error();
+        }
+
+        return back();
+    }
+
+
+    public function destroyTieService(Request $request)
+    {
+        $data = $request->validate([
+            'action_id' => 'required|numeric',
+            'service_id' => 'required|numeric',
+        ]);
+
+        $action = Action::with('services')->where('id', $data['action_id'])->firstOrFail();
+        $action->services()->detach($data['service_id']);
+
+        return back();
     }
 
 

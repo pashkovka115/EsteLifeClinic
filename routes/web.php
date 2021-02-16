@@ -225,6 +225,12 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
             Route::post('conditions/store', 'Admin\AdminConditionController@store')->name('conditions_actions.store');
             Route::put('conditions/update/{id}', 'Admin\AdminConditionController@update')->name('conditions_actions.update');
             Route::delete('conditions/destroy/{id}', 'Admin\AdminConditionController@destroy')->name('conditions_actions.destroy');
+
+            // Акции - услуги
+            Route::post('add-tie-service-actions-post', 'Admin\AdminActionController@addTieService')->name('add_tie_service_actions');
+            Route::post('destroy-tie-service-actions-post', 'Admin\AdminActionController@destroyTieService')->name('destroy_tie_service_actions');
+            // ajax
+            Route::post('actions-get-service-ajax', 'Admin\AdminActionController@getCatsWithServicesAjax')->name('service_actions.get');
         });
 
         // До/После

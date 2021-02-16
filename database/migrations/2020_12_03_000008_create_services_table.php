@@ -15,7 +15,7 @@ class CreateServicesTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('cat_service_id');
-            $table->unsignedBigInteger('action_id')->nullable();
+//            $table->unsignedBigInteger('action_id')->nullable();
 //            $table->enum('type', ['medicine', 'cosmetology'])->comment('тип услуги медицина или косметология');
             $table->string('name');
             $table->string('slug')->unique();
@@ -39,7 +39,7 @@ class CreateServicesTable extends Migration
             $table->timestamps();
 
             $table->index(["cat_service_id"], 'fk_services_cat_services_idx');
-            $table->index(["action_id"], 'fk_actions_action_idx');
+//            $table->index(["action_id"], 'fk_actions_action_idx');
 
 
             $table->foreign('cat_service_id', 'fk_services_cat_services_idx')
@@ -47,10 +47,10 @@ class CreateServicesTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('action_id', 'fk_actions_action_idx')
+            /*$table->foreign('action_id', 'fk_actions_action_idx')
                 ->references('id')->on('actions')
                 ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onUpdate('no action');*/
         });
     }
 
