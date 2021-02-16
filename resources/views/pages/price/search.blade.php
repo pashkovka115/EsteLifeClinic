@@ -32,17 +32,20 @@
 </style>
 @endsection
 
+
 @section('content')
     <section class="price-page">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="crumbs">
-                        <ol>
-                            <li><a href="">Все акции</a></li>
-                            <li>Программа обследования «Мужчины 40+»</li>
-                        </ol>
-                    </div>
+
+
+                        <div class="crumbs">
+                            <ol>
+
+                            </ol>
+                        </div>
+
                     <div class="price-title-block">
                         <h1 class="title">Цены на услуги</h1>
                         <div class="filter-block">
@@ -53,69 +56,40 @@
 
                                 <div class="sort-box">
                                     <h4>Направление:</h4>
-                                    <select name="slug" id="">
+                                    <select name="pricedirection_id" id="">
                                         <option value="0">Все направления</option>
-                                        @foreach($all_categories as $category)
-                                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                        @foreach($all_directions as $dir)
+                                        <option value="{{ $dir->id }}">{{ $dir->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <?php
-                    function tree($children, $level){
-                        if ($level < 6){
-                            $level++;
-                        }
-                        foreach ($children as $cat){
-                            $services = $cat->services;
-                            if ($services->count() > 0){
-                    ?>
-                    <div class="price-list-item">
-                        <div class="left">
-                            <h{{ $level }}><a href="{{ route('front.price.show.category', ['slug' => $cat->slug]) }}">{{ $cat->name }}</a></h{{ $level }}>
-    {{--                        <p class="label"><a href="">Инвазивная косметология</a></p>--}}
+
+                        <div class="price-list-block">
+
+                            @foreach($directions as $direction => $services)
+                            <div class="price-list-item" style="margin-bottom: 40px">
+                                <div class="left">
+                                    <h3><a href="#">{{ $direction }}</a></h3>
+                                </div>
+
+                                <div class="right">
+                                    @foreach($services as $service)
+                                        @if($service->type == 2)
+                                        <div class="service-item">
+                                            <div class="title">{{ $service->name }}</div>
+                                            <div class="price">{{ $service->price }} ₽</div>
+                                            <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endforeach
+
                         </div>
-                        <div class="right">
-                            <div class="service-item service-item-blue">
-                                <div class="title">{{ $cat->name }}</div>
-                            </div>
-
-                            <div class="service-item">
-                                <div class="title"><?= $services[0]->name ?></div>
-                                <div class="price"><?= $services[0]->price ?> ₽</div>
-                                <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
-                            </div>
-
-                            <div class="hidden-part">
-                                <?php
-                                foreach($services as $key => $service):
-                                if ($key == 0){
-                                    continue;
-                                }
-                                ?>
-                                    <div class="service-item">
-                                        <div class="title"><?= $service->name ?></div>
-                                        <div class="price"><?= $service->price ?> ₽</div>
-                                        <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
-                                    </div>
-                                <?php
-                                endforeach; ?>
-                            </div>
-                            <button class="open-price-list">Развернуть таблицу</button>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                        //tree($cat->children, $level);
-                        }
-                    }
-                    ?>
-
-                    <div class="price-list-block">
-                        <?php tree($categories, 1); ?>
-                    </div>
 
                 </div>
             </div>

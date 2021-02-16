@@ -52,7 +52,7 @@ class PriceDirection extends Model
             'direction_prices',
             'pricedirection_id',
             'priceservice_id'
-        );
+        )->with('children');
     }
 
 

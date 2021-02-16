@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatService;
+use App\Models\PriceDirection;
+use App\Models\PriceService;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -10,10 +12,16 @@ class PriceController extends Controller
 {
     public function index()
     {
-        $categories = CatService::with(['children', 'services'])->whereNull('parent_id')->get();
-        $all_categories = CatService::all(['slug', 'name']);
+        $directions = PriceDirection::with(['services' => function($query){
+            $query->orderBy('parent_id')->orderBy('type', 'desc');
+        }])->get();
 
-        return view('pages.price.index', ['categories' => $categories, 'all_categories' => $all_categories]);
+        $all_directions = PriceDirection::all(['id', 'name']);
+
+        return view('pages.price.index', [
+            'directions' => $directions,
+            'all_directions' => $all_directions
+        ]);
     }
 
 
@@ -34,25 +42,36 @@ class PriceController extends Controller
     {
         $request->validate([
             'search' => 'required|string',
-            'slug' => 'required|string',
+            'pricedirection_id' => 'nullable|numeric',
         ]);
         $search = $request->input('search');
-        $slug = $request->input('slug');
+        $pricedirection_id = (int)$request->input('pricedirection_id');
 
-        $servs = Service::with('category')->where('name', 'like', "%$search%")->get();
-        $cats_ids = [];
+        if ($pricedirection_id > 0){
+            $servs = PriceService::with('directions')
+                ->where('type', 2)
+                ->where('pricedirection_id', $pricedirection_id)
+                ->where('name', 'like', "%$search%")
+                ->get();
+        }elseif ($pricedirection_id == 0){
+            $servs = PriceService::with('directions')
+                ->where('type', 2)
+                ->where('name', 'like', "%$search%")
+                ->get();
+        }
+
+        $directions = [];
         foreach ($servs as $serv){
-            $cats_ids[] = $serv->category->id;
+            foreach ($serv->directions as $direction){
+                $directions[$direction->name][] = $direction['services'][] = $serv ;
+            }
         }
 
-        $categories = CatService::with(['services'])->whereIn('id', array_unique($cats_ids))->distinct();
-        if ($slug != '0'){
-            $categories->where('slug', $slug);
-        }
-        $categories = $categories->get();
+        $all_directions = PriceDirection::all(['id', 'name']);
 
-        $all_categories = CatService::all(['slug', 'name']);
-
-        return view('pages.price.search', ['categories' => $categories, 'all_categories' => $all_categories]);
+        return view('pages.price.search', [
+            'directions' => $directions,
+            'all_directions' => $all_directions
+        ]);
     }
 }
