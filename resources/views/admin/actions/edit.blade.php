@@ -52,31 +52,13 @@
                             <label>Размер скидки</label>
                             <input class="form-control" type="text" name="discount" value="{{ $action->discount }}">
                         </div>
+
                         <div class="form-group my-5">
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead>
-                                    <tr>
-                                        <th>Условия акции</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($action->conditions as $condition)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('admin.content.actions.conditions_actions.edit',
-                                                            [
-                                                                'action_id' => $action->id,
-                                                                'condition_id' => $condition->id
-                                                            ]
-) }}" target="_blank">{{ $condition->condition }}</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table><!--end /table-->
-                            </div>
+                            <label>Условия акции</label>
+                            <textarea name="conditions" class="form-control"
+                                      id="elm1" rows="3">{{ $action->conditions }}</textarea>
                         </div>
+
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
@@ -102,7 +84,7 @@
                 <div class="form-group">
                     <label for="elm1">Описание</label>
                     <textarea name="description" class="form-control" rows="5"
-                              id="elm1">{{ $action->description }}</textarea>
+                              id="elm2">{{ $action->description }}</textarea>
                 </div>
 
                 <div class="form-group">

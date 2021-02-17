@@ -146,12 +146,12 @@ $currentUrl = url()->current();
 																		</label>
 																	</p>
 
-																	{{-- <p class="field-css-classes description description-thin">
-																		<label for="edit-menu-item-classes-{{$m->id}}">  CSS 
+																	 <p class="field-css-classes description description-thin" style="display: none"> {{-- todo: display если нужно --}}
+																		<label for="edit-menu-item-classes-{{$m->id}}">  CSS
 																			<br>
 																			<input type="text" id="clases_menu_{{$m->id}}" class="widefat code edit-menu-item-classes" name="clases_menu_{{$m->id}}" value="{{$m->class}}">
 																		</label>
-																	</p> --}}
+																	</p>
 
 																	<p class="field-css-url description description-wide">
 																		<label for="edit-menu-item-url-{{$m->id}}"> Ссылка
@@ -186,7 +186,7 @@ $currentUrl = url()->current();
 																		<span class="meta-sep hide-if-no-js"> | </span> --}}
 																		<a onclick="getmenus()" class="button button-primary updatemenu" id="update-{{$m->id}}" href="javascript:void(0)">Обновить</a>
 
-																	</div> 
+																	</div>
 
 																</div>
 																<ul class="menu-item-transport"></ul>

@@ -128,14 +128,10 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         Route::post('categories', 'Admin\AdminCategoryServiceController@store')->name('categories.store');
         Route::get('categories', 'Admin\AdminCategoryServiceController@index')->name('categories.index');
-//        Route::get('categories/create/{type}', 'Admin\AdminCategoryServiceController@create')->name('categories.create');
         Route::get('categories/create', 'Admin\AdminCategoryServiceController@create')->name('categories.create');
         Route::delete('categories/{category}', 'Admin\AdminCategoryServiceController@destroy')->name('categories.destroy');
         Route::put('categories/{category}', 'Admin\AdminCategoryServiceController@update')->name('categories.update');
         Route::get('categories/{category}/edit', 'Admin\AdminCategoryServiceController@edit')->name('categories.edit');
-
-//        Route::resource('categories', 'Admin\AdminCategoryServiceController')->except('show')->names('categories');
-//        Route::post('categories', 'Admin\AdminCategoryServiceController')->names('categories');
     });
 
     // Раздел цены
@@ -161,7 +157,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         // Услуги
         Route::get('service-all', 'Admin\Price\AdminServiceController@startPageForAjax')->name('price.service.all_services');
-//        Route::any('service-data', 'Admin\Price\AdminServiceController@dataForAjax')->name('price.service.data_services');
 
         Route::get('service/{category_id}', 'Admin\Price\AdminServiceController@index')->name('price.service.index');
         Route::post('service/store', 'Admin\Price\AdminServiceController@store')->name('price.service.store');
@@ -169,8 +164,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::get('service/create/new/service', 'Admin\Price\AdminServiceController@createNewService')->name('price.service.create_new_service');
         Route::post('service/store/new/service', 'Admin\Price\AdminServiceController@storeNewService')->name('price.service.store_new_service');
 
-//        Route::get('service/{id}/edit', 'Admin\Price\AdminServiceController@edit')->name('price.service.edit');
-//        Route::put('service/{id}', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
         Route::post('service', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
         Route::delete('service/{id}', 'Admin\Price\AdminServiceController@destroy')->name('price.service.destroy');
     });
@@ -200,7 +193,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Общие настройки
         Route::resource('options', 'Admin\AdminOptionController')->only(['index', 'edit', 'update'])->names('options');
         // Баннеры. Список
-//        Route::get('banners', 'Admin\AdminBannerController@index')->name('banners.list');
         Route::resource('banners', 'Admin\AdminBannerController')->names('banners.list');
         // Баннеры. Элементы
         Route::get('banners/banner/items/{id}', 'Admin\AdminBannerItemsController@index')->name('banners.banner.items');
@@ -219,12 +211,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Акции и скидки
         Route::prefix('actions')->as('actions.')->group(function(){
             Route::resource('actions', 'Admin\AdminActionController')->except('show')->names('actions');
-            // Условия акции
-            Route::get('conditions/{action_id}/{condition_id}', 'Admin\AdminConditionController@edit')->name('conditions_actions.edit');
-            Route::get('conditions/create', 'Admin\AdminConditionController@create')->name('conditions_actions.create');
-            Route::post('conditions/store', 'Admin\AdminConditionController@store')->name('conditions_actions.store');
-            Route::put('conditions/update/{id}', 'Admin\AdminConditionController@update')->name('conditions_actions.update');
-            Route::delete('conditions/destroy/{id}', 'Admin\AdminConditionController@destroy')->name('conditions_actions.destroy');
 
             // Акции - услуги
             Route::post('add-tie-service-actions-post', 'Admin\AdminActionController@addTieService')->name('add_tie_service_actions');
@@ -262,10 +248,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
 
 // Sitemaps
-//    Route::get('/sitemap', 'HomeController@sitemapIndex'); //Все sitemaps
-//    Route::get('/sitemap/ceilings', 'HomeController@sitemapCeilings'); //sitemap на потолки
-//    Route::get('/sitemap/ceilings/images', 'HomeController@sitemapImages'); //sitemap на фотографии потолков
-
 Route::prefix('sitemap')->group(function (){
     // Все
     Route::get('', 'Admin\AdminSiteMapController@index')->name('sitemap.index');

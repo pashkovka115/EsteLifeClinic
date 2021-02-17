@@ -23,6 +23,7 @@ class CreateActionsTable extends Migration
             $table->string('banner_img')->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->text('conditions')->nullable();
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
 

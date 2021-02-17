@@ -19,6 +19,7 @@ class Action extends Model
         'banner_img',
         'short_description',
         'description',
+        'conditions',
         'start',
         'finish',
         'title',
@@ -38,8 +39,8 @@ class Action extends Model
     /*
      * Условия
      */
-    public function conditions()
+    /*public function conditions()
     {
         return $this->hasMany(ConditionsAction::class, 'action_id');
-    }
+    }*/
 }

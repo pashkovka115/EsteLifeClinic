@@ -42,12 +42,10 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="action-menu">
+                        @if($action->conditions)
                         <h3>Условия акции:</h3>
-                        <ul>
-                            @foreach($action->conditions as $condition)
-                            <li><a href="#">{{ $condition->condition }}</a></li>
-                            @endforeach
-                        </ul>
+                        {!! $action->conditions !!}
+                        @endif
                         <a href="" class="btn btn-indigo">Участвовать в акции</a>
                     </div>
                 </div>

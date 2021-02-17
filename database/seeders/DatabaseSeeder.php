@@ -31,11 +31,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ActionsTableSeeder::class);
         $this->call(AppointmentsTableSeeder::class);
         $this->call(CallsTableSeeder::class);
-        $this->call(ConditionsActionsTableSeeder::class);
         $this->call(HomeTableSeeder::class); // Для старта сайта
         $this->call(OnlineConsultationsTableSeeder::class);
         $this->call(PriceDirectionsTableSeeder::class);
         $this->call(PriceServicesTableSeeder::class);
         $this->call(DirectionPricesTableSeeder::class);
+        $this->call(MenuSeeder::class);
     }
 }

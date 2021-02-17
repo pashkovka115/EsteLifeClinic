@@ -18,7 +18,7 @@ class ActionController extends Controller
 
     public function show($slug)
     {
-        $action = Action::with(['conditions'])->where('slug', $slug)->firstOrFail();
+        $action = Action::where('slug', $slug)->firstOrFail();
         $all_actions = Action::all(['slug', 'banner_img', 'name']);
 
         return view('pages.actions.show', ['action'=> $action, 'all_actions' => $all_actions]);

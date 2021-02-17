@@ -125,24 +125,12 @@
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.reviews.reviews.create') }}" href="{{ route('admin.content.reviews.reviews.create') }}"><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.before_after.before_after.create') }}" href="{{ route('admin.content.before_after.before_after.create') }}"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.actions.create') }}" href="{{ route('admin.content.actions.actions.create') }}"><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
-                    <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.conditions_actions.create') }}" href="{{ route('admin.content.actions.conditions_actions.create') }}"><i class="mdi mdi-plus"></i>Добавить условие акции</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.actions.actions.*') }}" href="{{ route('admin.content.actions.actions.index') }}"><i class="mdi  mdi-ticket-percent"></i>Список акций</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.reviews.reviews.*') }}" href="{{ route('admin.content.reviews.reviews.index') }}"><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.content.before_after.before_after.*') }}" href="{{ route('admin.content.before_after.before_after.index') }}"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
                 </ul>
             </div><!-- end Pages -->
-
-            {{--<div id="beforeAfter" class="main-icon-menu-pane {{ active('admin.before_after.*') }}">
-                <div class="title-box">
-                    <h6 class="menu-title">До/После</h6>
-                </div>
-                <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить до/после</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link {{ active('admin.before_after.before_after.*') }}" href="#"><i class="mdi mdi-book-open-page-variant"></i> Список до/после</a></li>
-                </ul><!--end nav-->
-            </div><!-- end Others -->--}}
 
             <div id="pages" class="main-icon-menu-pane {{ active(['admin.pages.*']) }}">
                 <div class="title-box">
@@ -155,7 +143,6 @@
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.pages.home.edit') }}" href="{{ route('admin.pages.home.edit') }}"><i class="mdi mdi-home"></i>Главная страница</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.pages.company.edit') }}" href="{{ route('admin.pages.company.edit', ['company' => 'company']) }}"><i class="mdi mdi-information"></i>О компании</a></li>
-{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-contacts"></i> Контакты</a></li>--}}
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.pages.pages.*') }}" href="{{ route('admin.pages.pages.index') }}"><i class="mdi mdi-book-open-page-variant"></i> Страницы</a></li>
                     <hr>
@@ -164,24 +151,11 @@
                 </ul><!--end nav-->
             </div><!-- end Others -->
 
-            {{--<div id="MetricaReviews" class="main-icon-menu-pane {{ active(['admin.reviews.*']) }}">
-                <div class="title-box">
-                    <h6 class="menu-title">Отзывы</h6>
-                </div>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить отзыв</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Список отзывов</a></li>
-                </ul>
-            </div>--}}
-
             <div id="MetricaAuthentication" class="main-icon-menu-pane {{ active('admin.options.*') }}">
                 <div class="title-box">
                     <h6 class="menu-title">Настройки</h6>
                 </div>
                 <ul class="nav">
-{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Шапка</a></li>--}}
-{{--                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-book-multiple"></i>Подвал</a></li>--}}
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.menu.create') }}" href="{{ route('admin.options.menu.index') }}"><i class="mdi mdi-book-multiple"></i>Меню</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.list.create') }}" href="{{ route('admin.options.banners.list.create') }}"><i class="mdi mdi-book-multiple"></i>Добавить баннер</a></li>
                     <hr>
@@ -191,17 +165,6 @@
                     <li class="nav-item"><a class="nav-link {{ active('admin.seo.index') }}" href="{{ route('admin.seo.index') }}"><i class="mdi mdi-file-search-outline"></i>SEO</a></li>
                 </ul>
             </div><!-- end Authentication-->
-
-            {{--<div id="MetricaUikit" class="main-icon-menu-pane {{ active('admin.actions.*') }}">
-                <div class="title-box">
-                    <h6 class="menu-title">Акции и скидки</h6>
-                </div>
-                <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-plus"></i>Добавить акцию</a></li>
-                    <hr>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="mdi  mdi-ticket-percent"></i>Список акций</a></li>
-                </ul><!--end nav-->
-            </div><!-- end Others -->--}}
 
         </div><!--end menu-body-->
     </div><!-- end main-menu-inner-->

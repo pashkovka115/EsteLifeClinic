@@ -60,7 +60,8 @@ class AdminActionController extends Controller
 
     public function edit($id)
     {
-        $action = Action::with(['conditions', 'services'])->where('id', $id)->firstOrFail();
+        $action = Action::with(['services'])->where('id', $id)->firstOrFail();
+//        dd($action);
         // На фронте первой показана медицина
         $cats_services = CatService::with('services')
             ->where('type', 'medicine')
@@ -130,6 +131,7 @@ class AdminActionController extends Controller
             'banner_img' => 'nullable|image',
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
+            'conditions' => 'nullable|string',
             'start' => 'nullable|date',
             'finish' => 'nullable|date',
         ]);
