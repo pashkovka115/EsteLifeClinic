@@ -12,9 +12,15 @@ class PriceController extends Controller
 {
     public function index()
     {
+        /*$directions = PriceDirection::with(['services' => function($query){
+            $query->orderBy('parent_id')->orderBy('type', 'desc');
+        }])->get();*/
+
         $directions = PriceDirection::with(['services' => function($query){
             $query->orderBy('parent_id')->orderBy('type', 'desc');
         }])->get();
+
+//        dd($directions);
 
         $all_directions = PriceDirection::all(['id', 'name']);
 

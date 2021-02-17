@@ -70,9 +70,16 @@ class PriceService extends Model
         return $this->hasOne(self::class, 'id', 'parent_id')->with('directions');
     }
 
-
-    /*public function category()
+    /*
+     * Прикреплённые услуги к этой цене
+     */
+    public function services()
     {
-        return $this->belongsTo(PriceCategory::class, 'pricecategory_id');
-    }*/
+        return $this->belongsToMany(
+            Service::class,
+            'service_priceservice',
+            'priceservice_id',
+            'service_id'
+        );
+    }
 }

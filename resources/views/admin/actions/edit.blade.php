@@ -53,7 +53,7 @@
                             <input class="form-control" type="text" name="discount" value="{{ $action->discount }}">
                         </div>
 
-                        <div class="form-group my-5">
+                        <div class="form-group">
                             <label>Условия акции</label>
                             <textarea name="conditions" class="form-control"
                                       id="elm1" rows="3">{{ $action->conditions }}</textarea>

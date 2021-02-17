@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PriceCategory;
 use App\Models\PriceDirection;
 use App\Models\PriceService;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -16,15 +17,12 @@ class AdminCategoryController extends Controller
         $directions = PriceDirection::all(['id', 'name']);
 
         $groups_services = PriceService::where('type', 1)
-            ->whereHas('directions', function ($query) use ($direction_id){
-                $query->where('pricedirections.id', $direction_id);
-            })->get();
+            ->where('pricedirection_id', $direction_id)
+            ->get();
 
         $services = PriceService::with(['directions', 'children'])
             ->where('parent_id', 0)
-            ->whereHas('directions', function ($query) use ($direction_id){
-                $query->where('pricedirections.id', $direction_id);
-            })
+            ->where('pricedirection_id', $direction_id)
             ->get();
 
         return view('admin.price.categories.index', [
@@ -142,10 +140,17 @@ class AdminCategoryController extends Controller
 
     public function destroy($id)
     {
-        $serv = PriceService::with(['directions', 'children'])->where('id', $id)->firstOrFail();
+        $serv = PriceService::with(['directions', 'children', 'services'])->where('id', $id)->firstOrFail();
+
         if ($serv and $serv->children->count() > 0){
-            flash('В этой группе есть услуги. Вначале удалите дочерние услуги.')->error();
+            flash('В этой группе есть цены. Вначале удалите дочерние цены.')->error();
             return back();
+        }
+
+        if ($serv and $serv->services->count() > 0){
+            $servs_ids = Service::all(['id']);
+            $servs_ids = array_keys($servs_ids->keyBy('id')->toArray());
+            $serv->services()->detach($servs_ids);
         }
 
         $dirs = PriceDirection::all(['id']);

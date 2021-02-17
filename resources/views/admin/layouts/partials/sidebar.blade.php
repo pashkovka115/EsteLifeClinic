@@ -156,7 +156,7 @@
                     <h6 class="menu-title">Настройки</h6>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link {{ active('admin.options.menu.create') }}" href="{{ route('admin.options.menu.index') }}"><i class="mdi mdi-book-multiple"></i>Меню</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.options.menu.create') }}" href="{{ route('admin.options.menu.index') }}?menu=1"><i class="mdi mdi-book-multiple"></i>Меню</a></li>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.banners.list.create') }}" href="{{ route('admin.options.banners.list.create') }}"><i class="mdi mdi-book-multiple"></i>Добавить баннер</a></li>
                     <hr>
                     <li class="nav-item"><a class="nav-link {{ active('admin.options.options.*') }}" href="{{ route('admin.options.options.index') }}"><i class="mdi mdi-book-multiple"></i>Список общих настроек</a></li>
