@@ -117,7 +117,7 @@ class AdminServiceController extends Controller
 
     public function edit($id)
     {
-        $serv = Service::with(['category'])
+        $serv = Service::with(['category', 'treatment_history'])
             ->where('id', $id)
             ->firstOrFail();
 
@@ -135,6 +135,8 @@ class AdminServiceController extends Controller
         $price_services_ids = array_keys($ties->keyBy('priceservice_id')->toArray());
         $tie_services = PriceService::with(['directions', 'parent'])->whereIn('id', $price_services_ids)->get();
 
+        $doctors = Doctor::all(['id', 'name']);
+
         $types = ['cosmetology' => 'Косметология', 'medicine' => 'Медицина'];
 
         return view('admin.services.edit', [
@@ -144,7 +146,8 @@ class AdminServiceController extends Controller
             'all_types' => $types,
             'directions' => $directions,
             'services' => $services ?? [],
-            'tie_services' => $tie_services
+            'tie_services' => $tie_services,
+            'doctors' => $doctors
         ]);
     }
 

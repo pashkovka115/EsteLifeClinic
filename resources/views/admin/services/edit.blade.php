@@ -34,6 +34,11 @@
                        aria-controls="pills-price" aria-selected="false">Цены</a>
                 </li>
 
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-before_after-tab" data-toggle="pill" href="#pills-before_after" role="tab"
+                       aria-controls="pills-before_after" aria-selected="false">До/После</a>
+                </li>
+
             </ul>
             <div class="tab-content" id="pills-tabContent">
 
@@ -117,7 +122,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
+                                        <input type="file" name="img" class="dropify"
                                                @if($service->img) data-default-file="{{ URL::asset('storage/' . $service->img)}}" @endif />
                                     </div>
                                 </div>
@@ -146,7 +151,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body custom-width">
-                                        <input type="file" name="ico1" id="input-file-now-custom-1" class="dropify"
+                                        <input type="file" name="ico1" class="dropify"
                                                @if($service->ico1) data-default-file="{{ URL::asset('storage/' . $service->ico1)}}" @endif />
                                     </div>
                                 </div>
@@ -161,7 +166,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body custom-width">
-                                        <input type="file" name="ico2" id="input-file-now-custom-1" class="dropify"
+                                        <input type="file" name="ico2" class="dropify"
                                                @if($service->ico2) data-default-file="{{ URL::asset('storage/' . $service->ico2)}}" @endif />
                                     </div>
                                 </div>
@@ -176,7 +181,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body custom-width">
-                                        <input type="file" name="ico3" id="input-file-now-custom-1" class="dropify"
+                                        <input type="file" name="ico3" class="dropify"
                                                @if($service->ico3) data-default-file="{{ URL::asset('storage/' . $service->ico3)}}" @endif />
                                     </div>
                                 </div>
@@ -191,7 +196,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body custom-width">
-                                        <input type="file" name="ico4" id="input-file-now-custom-1" class="dropify"
+                                        <input type="file" name="ico4" class="dropify"
                                                @if($service->ico4) data-default-file="{{ URL::asset('storage/' . $service->ico4)}}" @endif />
                                     </div>
                                 </div>
@@ -305,6 +310,101 @@
                     </div>
 
                 </div>
+
+                <div class="tab-pane fade show" id="pills-before_after" role="tabpanel"
+                     aria-labelledby="pills-before_after-tab">
+                    <form action="{{ route('admin.content.before_after.before_after.store') }}" method="post"
+                    enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="cat_service_id" value="{{ $service->category->id }}">
+                        <input type="hidden" name="service_id" value="{{ $service->id }}">
+                        <input type="hidden" name="done" value="{{ now() }}">
+                        <input type="hidden" name="redirect_back" value="true">
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label>Врач</label>
+                                <select name="doctor_id" class="form-control" required>
+                                    <option value="">Выберите врача</option>
+                                    @foreach($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label>Описание</label>
+                                <textarea name="description" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Фото до</h4>
+                                        <input type="file" name="before_images" class="dropify">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Фото после</h4>
+                                        <input type="file" name="after_images" class="dropify">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gradient-success col-sm-1 mt-4" style="height: 40px">
+                            Добавить
+                        </button>
+                    </form>
+                    <hr>
+@php
+//dd($service->treatment_history)
+@endphp
+                    <div class="row mt-5">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table id="datatable2" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Категория</th>
+                                        <th>Врач</th>
+                                        <th>Описание</th>
+                                        <th>#</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($service->treatment_history as $bef_aft)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $bef_aft->category->name }}</td>
+                                            <td>{{ $bef_aft->doctor->name }}</td>
+                                            <td>{{ $bef_aft->description }}</td>
+                                            <td>
+                                                {{--<a href="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}"
+                                                   onclick="if (confirm('Удалить связь цены с этой услугой?')) document.getElementById('form_{{ $price->id }}').submit(); return false;">
+                                                    <i class="fas fa-trash-alt text-danger"></i></a>
+                                                <form id="form_{{ $price->id }}" action="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}" method="POST" style="display: none;">
+                                                    <input type="hidden" name="service_id" value="{{ $service->id }}">
+                                                    <input type="hidden" name="priceservice_id" value="{{ $price->id }}">
+                                                    @csrf
+                                                </form>--}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -404,6 +504,33 @@
         $(document).ready(function () {
 
             $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+
+                language: {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate": {
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
+                    },
+                    "aria": {
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
+                    }
+                }
+            });
+
+            $('#datatable2').DataTable({
                 "pagingType": "full_numbers",
 
                 language: {

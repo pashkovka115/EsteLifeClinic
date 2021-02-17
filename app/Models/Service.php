@@ -94,7 +94,8 @@ class Service extends Model
      */
     public function treatment_history()
     {
-        return $this->hasMany(TreatmentHistory::class, 'service_id');
+        return $this->hasMany(TreatmentHistory::class, 'service_id')
+            ->with(['doctor', 'category']);
     }
 
     /*

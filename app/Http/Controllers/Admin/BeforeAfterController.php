@@ -40,7 +40,9 @@ class BeforeAfterController extends Controller
             'cat_service_id' => 'required|numeric',
             'service_id' => 'required|numeric',
             'description' => 'nullable|string',
-            'done' => 'nullable|date'
+            'done' => 'nullable|date',
+            'before_images' => 'nullable|mimes:jpeg,jpg,png',
+            'after_images' => 'nullable|mimes:jpeg,jpg,png',
         ]);
 
         $data = $request->except(['_method', '_token']);
@@ -57,6 +59,10 @@ class BeforeAfterController extends Controller
 
         $item = new TreatmentHistory($data);
         $item->save();
+
+        if ($request->has('redirect_back')){
+            return back();
+        }
 
         return redirect()->route('admin.content.before_after.before_after.edit', ['before_after' => $item->id]);
     }
