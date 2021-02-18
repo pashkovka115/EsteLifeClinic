@@ -385,15 +385,16 @@
                                             <td>{{ $bef_aft->category->name }}</td>
                                             <td>{{ $bef_aft->doctor->name }}</td>
                                             <td>{{ $bef_aft->description }}</td>
-                                            <td>
-                                                {{--<a href="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}"
-                                                   onclick="if (confirm('Удалить связь цены с этой услугой?')) document.getElementById('form_{{ $price->id }}').submit(); return false;">
+                                            <td style="min-width: 50px">
+                                                <a target="_blank" href="{{ route('admin.content.before_after.before_after.edit', ['before_after' => $bef_aft->id]) }}"><i
+                                                        class="far fa-edit text-warning mr-1"></i></a>
+                                                <a href="{{ route('admin.content.before_after.before_after.destroy', ['before_after' => $bef_aft->id]) }}"
+                                                   onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $bef_aft->id }}').submit(); return false;">
                                                     <i class="fas fa-trash-alt text-danger"></i></a>
-                                                <form id="form_{{ $price->id }}" action="{{ route('admin.services.service.service_detach_price', ['service_id' => $service->id, 'priceservice_id' => $price->id]) }}" method="POST" style="display: none;">
-                                                    <input type="hidden" name="service_id" value="{{ $service->id }}">
-                                                    <input type="hidden" name="priceservice_id" value="{{ $price->id }}">
+                                                <form id="form_{{ $bef_aft->id }}" action="{{ route('admin.content.before_after.before_after.destroy', ['before_after' => $bef_aft->id]) }}" method="POST" style="display: none;">
                                                     @csrf
-                                                </form>--}}
+                                                    @method('DELETE')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
