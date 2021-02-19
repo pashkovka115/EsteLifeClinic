@@ -123,7 +123,7 @@ class AdminActionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'nullable|string',
             'type' => 'nullable|string',
             'slogan' => 'nullable|string',
             'discount' => 'nullable|string',
@@ -134,7 +134,13 @@ class AdminActionController extends Controller
             'conditions' => 'nullable|string',
             'start' => 'nullable|date',
             'finish' => 'nullable|date',
+            'show_home' => 'nullable|numeric',
+            'id' => 'nullable|numeric',
         ]);
+
+        if ($request->has('method') and $request->input('method') == 'ajax'){
+            $id = $request->input('id');
+        }
 
         $data = $request->except(['_method', '_token', 'img']);
         $folder = date('Y/m/d');
@@ -158,6 +164,10 @@ class AdminActionController extends Controller
         }
 
         $action->update($data);
+
+        if ($request->has('method') and $request->input('method') == 'ajax'){
+            return 'OK ajax';
+        }
 
         return back();
     }

@@ -14,6 +14,7 @@ class CreateActionsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
+            $table->enum('show_home', ['0', '1']);
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('type')->nullable()->comment('тип акции');

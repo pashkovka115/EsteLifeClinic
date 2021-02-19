@@ -362,9 +362,7 @@
                         </button>
                     </form>
                     <hr>
-@php
-//dd($service->treatment_history)
-@endphp
+
                     <div class="row mt-5">
                         <div class="col-sm-12">
                             <div class="table-responsive">

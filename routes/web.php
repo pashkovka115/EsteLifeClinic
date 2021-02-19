@@ -173,6 +173,11 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
     Route::prefix('pages')->as('pages.')->group(function(){
         Route::get('home/edit', 'Admin\AdminHomeController@edit')->name('home.edit');
         Route::put('home/update', 'Admin\AdminHomeController@update')->name('home.update');
+        // Баннеры на главной
+        Route::post('home/banner-home-top-update', 'Admin\AdminHomeController@bannerItemUpdate')->name('home.banner_home_item_update');
+        Route::post('home/banner-home-top-destroy', 'Admin\AdminHomeController@bannerItemDestroy')->name('home.banner_home_top_destroy');
+        Route::post('home/banner-home-top-store', 'Admin\AdminHomeController@bannerItemStore')->name('home.banner_home_item_store');
+        Route::get('home/banner-home-top-edit/{id}', 'Admin\AdminHomeController@bannerTopEdit')->name('home.banner_home_top_edit');
 
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');

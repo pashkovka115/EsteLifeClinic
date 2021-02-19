@@ -25,6 +25,7 @@ class Action extends Model
         'title',
         'keywords',
         'meta_description',
+        'show_home'
     ];
 
 

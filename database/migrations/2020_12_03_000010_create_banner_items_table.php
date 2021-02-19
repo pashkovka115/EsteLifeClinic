@@ -13,12 +13,14 @@ class CreateBannerItemsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('banner_id');
+            $table->unsignedBigInteger('banner_id')->nullable();
+            $table->string('code_banner')->nullable()->comment('код баннера к которому относится');
             $table->enum('visibility', ['1', '0']);
             $table->string('title')->nullable();
             $table->string('img')->nullable();
             $table->string('extra')->nullable()->comment('дополнительное поле');
             $table->text('description')->nullable();
+            $table->text('full_description')->nullable();
         });
     }
 

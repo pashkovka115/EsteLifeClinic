@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
-    @if($home->top_sliders)
-    @if($home->top_sliders->visibility == '1')
+{{--    @if($home->top_sliders)--}}
+{{--    @if($home->top_sliders->visibility == '1')--}}
     <section class="slider-block">
         <div class="slider">
-            @foreach($home->top_sliders->items as $item)
+{{--            @foreach($home->top_sliders->items as $item)--}}
+            @foreach($top_slider as $item)
             <div class="item">
                 <img src="/storage/{{ $item->img }}" alt="">
             </div>
@@ -40,8 +41,8 @@
             </div>
         </div>
     </section>
-    @endif
-    @endif
+{{--    @endif--}}
+{{--    @endif--}}
 
     @if($home->useful_tips)
     @if($home->useful_tips->visibility == '1')
@@ -161,48 +162,42 @@
     </section>
 
     <section>
-        @if($home->medical_center_sliders)
-        @if($home->medical_center_sliders->visibility == '1')
         <div class="slider-company-block">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="wrap">
-                            {!! $home->medical_center_sliders->description !!}
+                            {!! $about_us_description->full_description !!}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="slider-company">
-                            @foreach($home->medical_center_sliders->items as $item)
-                                @if($item->visibility == '1')
+                            @foreach($about_us_slider as $item)
                             <div class="item"><img src="/storage/{{ $item->img }}" alt=""></div>
-                                @endif
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
+            @if($about_us_slider->count() > 0)
             <div class="slider-company-nav">
                 <div class="btn-wrap">
                     <button class="btn-slider" id="slider-company-prev-btn"><i class="demo-icon icon-arrow-left"></i></button>
                     <button class="btn-slider" id="slider-company-next-btn"><i class="demo-icon icon-arrow-right"></i></button>
                 </div>
                 <div class="slider-company-thumb">
-                    @foreach($home->medical_center_sliders->items as $item)
-                        @if($item->visibility == '1')
+                    @foreach($about_us_slider as $item)
                     <div class="item">
                         <i class="demo-icon icon-doctor"></i>
                         <p>{{ $item->title }}</p>
                     </div>
-                        @endif
                     @endforeach
                 </div>
                 <div class="slick-dots-custom2"></div>
 
             </div>
+            @endif
         </div>
-        @endif
-        @endif
 
         <div class="container">
             <div class="row">
