@@ -87,7 +87,7 @@ class AdminReviewController extends Controller
 
         Review::where('id', $id)->update($data);
 
-        return back();
+        return redirect()->route('admin.content.reviews.reviews.index');
     }
 
 

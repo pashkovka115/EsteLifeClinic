@@ -206,7 +206,7 @@
         <h3>Оставить отзыв</h3>
         <input type="text"  name="name" placeholder="Ваше имя"  required="required">
         <input type="text"  name="phone" class="tel-input" placeholder="Номер телефона" required="required">
-        <select name="cat_service_id" id="">
+        <select name="cat_service_id">
             <option value="">Выберите направление</option>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -233,19 +233,19 @@
             <div class="btn btn-indigo" id="step-2">Далее</div>
         </div>
         <div class="step-item step-2">
-            <select name="cat_servise_id" id="">
+            <select name="cat_servise_id">
                 <option value="Не важно">Выберите направление</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-            <select name="service_id" id="">
+            <select name="service_id">
                 <option value="Не важно">Выберите услугу</option>
                 @foreach($services as $service)
                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                 @endforeach
             </select>
-            <select name="doctor_id" id="">
+            <select name="doctor_id">
                 <option value="Не важно">Выберите врача</option>
                 @foreach($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
@@ -255,7 +255,7 @@
         </div>
         <div class="step-item step-3">
             <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
-            <select name="time" id="">
+            <select name="time">
                 <option value="Не важно">Желаемое время посещения</option>
                 @for($i = 8; $i <= 19; $i++)
                 <option value="{{ $i }}:00">{{ $i }} : 00</option>
@@ -305,7 +305,7 @@
         </div>
         <div class="step-item step-33">
             <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
-            <select name="time" id="">
+            <select name="time">
                 <option value="Не важно">Желаемое время</option>
                 @for($i = 8; $i <= 19; $i++)
                 <option value="{{ $i }}:00">{{ $i }} : 00</option>

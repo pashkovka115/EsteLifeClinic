@@ -109,7 +109,7 @@ class AdminBannerItemsController extends Controller
 
         $item->update($data);
 
-        return back();
+        return redirect()->route('admin.options.banners.banner.items', ['id' => $data['banner_id']]);
     }
 
 

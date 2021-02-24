@@ -45,7 +45,7 @@ class AdminDirectionController extends Controller
 
         PriceDirection::where('id', $id)->update($data);
 
-        return back();
+        return redirect()->route('admin.price.direction.index');
     }
 
 

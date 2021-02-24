@@ -82,7 +82,7 @@ class AdminAppointmentController extends Controller
 
         Appointment::where('id', $id)->update($request->except(['_method', '_token']));
 
-        return back();
+        return redirect()->route('admin.home.home.appointments.index');
     }
 
 

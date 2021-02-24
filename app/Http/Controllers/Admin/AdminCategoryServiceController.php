@@ -151,7 +151,7 @@ class AdminCategoryServiceController extends Controller
         $cat = CatService::where('id', $id)->firstOrFail();
         $cat->update($data);
 
-        return back();
+        return redirect()->route('admin.services.categories.index');
     }
 
 

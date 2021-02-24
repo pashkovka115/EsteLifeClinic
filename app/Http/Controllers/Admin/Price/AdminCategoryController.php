@@ -134,7 +134,7 @@ class AdminCategoryController extends Controller
         $serv->directions()->detach($dirs_ids);
         $serv->directions()->attach([$data['pricedirection_id']]);
 
-        return back();
+        return redirect()->route('admin.price.category.index', ['direction_id' => $data['pricedirection_id']]);
     }
 
 

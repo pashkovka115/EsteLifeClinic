@@ -82,7 +82,7 @@ class AdminOnlineConsultationController extends Controller
 
         OnlineConsultation::where('id', $id)->update($request->except(['_method', '_token']));
 
-        return back();
+        return redirect()->route('admin.home.home.online.index');
     }
 
 

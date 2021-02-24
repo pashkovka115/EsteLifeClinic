@@ -57,7 +57,7 @@ class AdminCatNewsController extends Controller
 
         CatPost::where('id', $id)->update($request->except(['_method', '_token']));
 
-        return back();
+        return redirect()->route('admin.pages.category.news.index');
     }
 
 

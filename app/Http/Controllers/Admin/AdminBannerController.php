@@ -76,7 +76,7 @@ class AdminBannerController extends Controller
         $banner = Banner::where('id', $id)->firstOrFail();
         $banner->update($data);
 
-        return back();
+        return redirect()->route('admin.options.banners.list.index');
     }
 
 

@@ -54,7 +54,7 @@ class AdminProfessionController extends Controller
 
         Profession::where('id', $id)->update(['name' => $request->input('name')]);
 
-        return back();
+        return redirect()->route('admin.doctors.professions.index');
     }
 
 

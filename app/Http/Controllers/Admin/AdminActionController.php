@@ -169,7 +169,7 @@ class AdminActionController extends Controller
             return 'OK ajax';
         }
 
-        return back();
+        return redirect()->route('admin.content.actions.actions.index');
     }
 
 

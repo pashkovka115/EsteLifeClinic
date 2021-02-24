@@ -36,6 +36,6 @@ class AdminOptionController extends Controller
         $op = Option::where('id', $id)->firstOrFail();
         $op->update($request->except(['_method', '_token']));
 
-        return back();
+        return redirect()->route('admin.options.options.index');
     }
 }

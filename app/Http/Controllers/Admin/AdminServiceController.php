@@ -296,7 +296,7 @@ class AdminServiceController extends Controller
 
         $serv->update($data);
 
-        return back();
+        return redirect()->route('admin.services.services.index');
     }
 
 

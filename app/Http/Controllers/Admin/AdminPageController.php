@@ -81,7 +81,7 @@ class AdminPageController extends Controller
 
         $page->update($data);
 
-        return back();
+        return redirect()->route('admin.pages.pages.index');
     }
 
 

@@ -109,7 +109,7 @@ class AdminNewsController extends Controller
 
         $post->update($data);
 
-        return back();
+        return redirect()->route('admin.pages.news.index');
     }
 
 

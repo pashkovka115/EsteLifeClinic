@@ -118,7 +118,7 @@ class BeforeAfterController extends Controller
 
         $item->update($data);
 
-        return back();
+        return redirect()->route('admin.content.before_after.before_after.index');
     }
 
 

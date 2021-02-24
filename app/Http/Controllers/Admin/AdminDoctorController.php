@@ -264,7 +264,7 @@ class AdminDoctorController extends Controller
         }
 
 
-        return back();
+        return redirect()->route('admin.doctors.doctors.index');
     }
 
 

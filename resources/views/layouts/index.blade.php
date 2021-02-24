@@ -25,7 +25,6 @@
     <!-- Custom Browsers Color End -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
-    <link href="{{ URL::asset('css/temp.css')}}" rel="stylesheet" type="text/css" />
     {{ option('script_head')->val }}
     @yield('header_style')
 
