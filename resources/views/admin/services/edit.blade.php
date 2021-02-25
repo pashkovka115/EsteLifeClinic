@@ -55,16 +55,19 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label for="text-input-name">Имя</label>
-                                                <input class="form-control" type="text" name="name"
-                                                       value="{{ $service->name }}"
-                                                       id="text-input-name">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="text-input-name">Имя</label>
+                                            <input class="form-control" type="text" name="name"
+                                                   value="{{ $service->name }}">
                                         </div>
 
-                                        <div class="form-group col-sm-12">
+                                        <div class="form-group">
+                                            <label for="text-input-name">Цена (имеет приоритет над ценой по акции)</label>
+                                            <input class="form-control" type="text" name="price"
+                                                   value="{{ $service->price }}">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>Тип услуги</label>
                                             <select name="type" class="form-control">
                                                 @foreach($all_types as $key => $name)
@@ -79,7 +82,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-sm-12">
+                                        <div class="form-group">
                                             <?php
                                             function categories($category, $service_cat_id, $parent_name = '')
                                             {

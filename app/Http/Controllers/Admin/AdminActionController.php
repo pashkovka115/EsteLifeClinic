@@ -54,7 +54,7 @@ class AdminActionController extends Controller
         $action = new Action($data);
         $action->save();
 
-        return redirect()->route('admin.actions.actions.edit', ['action' => $action->id]);
+        return redirect()->route('admin.content.actions.actions.edit', ['action' => $action->id]);
     }
 
 

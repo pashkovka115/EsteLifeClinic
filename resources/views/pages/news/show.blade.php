@@ -52,7 +52,9 @@
                                     @endforeach
                                 </ul>
                             </div>
+                            @if($news->excerpt)
                             <div class="intro-news">{{ $news->excerpt }}</div>
+                            @endif
                         </div>
                         {!! $news->content !!}
                     </div>

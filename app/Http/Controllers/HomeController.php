@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Action;
 use App\Models\BannerItems;
+use App\Models\CatService;
 use App\Models\Company;
 use App\Models\Doctor;
 use App\Models\Home;
@@ -14,7 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $home = Home::with([/*'top_sliders',*/ 'useful_tips', 'medical_center_sliders'])->first();
+        $home = Home::first();
         if (is_null($home)){
             return 'Необходимо создать главную страницу';
         }
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $doctors = Doctor::with(['professions', 'jobs'])->limit($home->count_doctors_list)->get();
         $company = Company::firstOrFail(['h3', 'practice', 'cnt']);
         $posts = Post::orderBy('updated_at', 'DESC')->limit($home->count_news)->get();
+        $categories = CatService::with('services')->get();
 
         return view('pages.home.index', [
             'home' => $home,
@@ -39,7 +41,8 @@ class HomeController extends Controller
 
             'top_slider' => $top_slider,
             'about_us_slider' => $about_us_slider,
-            'about_us_description' => $about_us_description
+            'about_us_description' => $about_us_description,
+            'categories' => $categories,
         ]);
     }
 }

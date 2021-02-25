@@ -24,6 +24,7 @@ class CatService extends Model
         'title',
         'keywords',
         'img',
+        'bg_img',
     ];
 
 

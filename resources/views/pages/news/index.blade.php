@@ -9,17 +9,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="crumbs">
+                    {{--<div class="crumbs">
                         <ol>
                             <li><a href="">Все акции</a></li>
                             <li>Программа обследования «Мужчины 40+»</li>
                         </ol>
-                    </div>
+                    </div>--}}
                     <h1 class="title">Новости</h1>
                         <ul class="menu">
+                            @if($categories->count() > 1)
                             <li class="{{ active('front.news.index') }}"><a href="{{ route('front.news.index') }}">Все новости</a></li>
+                            @endif
                             @foreach($categories as $category)
+                                @if($category->posts->count() > 0)
                             <li><a href="{{ route('front.news.category_index', ['slug' => $category->slug]) }}">{{ $category->name }}</a></li>
+                                    @endif
                             @endforeach
                         </ul>
                         <div id="add_content" class="wrapper">
@@ -38,9 +42,13 @@
                             @endforeach
 
                         </div>
+                    @if($news->count() > 0)
                         <div class="text-center">
                             <button id="more_news" data-page="2" class="btn btn-indigo">Смотреть еще</button>
                         </div>
+                    @else
+                        <p>Нет новостей</p>
+                    @endif
                 </div>
             </div>
         </div>

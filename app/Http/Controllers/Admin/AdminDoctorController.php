@@ -158,6 +158,8 @@ class AdminDoctorController extends Controller
             'name' => 'required|string',
             'education' => 'nullable|string',
             'add_education' => 'nullable|string',
+            'professional_awards' => 'nullable|string',
+            'medical_associations' => 'nullable|string',
             'img' => 'nullable|image',
 
             'ico_*' => 'nullable|image',
@@ -176,6 +178,8 @@ class AdminDoctorController extends Controller
             'name' => $request->input('name'),
             'education' => $request->input('education'),
             'add_education' => $request->input('add_education'),
+            'professional_awards' => $request->input('professional_awards'),
+            'medical_associations' => $request->input('medical_associations'),
         ];
 
         if ($request->has('level')) {

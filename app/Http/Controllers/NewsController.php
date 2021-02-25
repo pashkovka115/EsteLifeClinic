@@ -13,7 +13,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = Post::paginate(9);
-        $cats = CatPost::all(['slug', 'name']);
+        $cats = CatPost::with('posts')->get();
 
         return view('pages.news.index', ['news' => $news, 'categories' => $cats]);
     }
@@ -24,7 +24,7 @@ class NewsController extends Controller
             $query->where('slug', $slug);
         })->paginate(9);
 
-        $cats = CatPost::all(['slug', 'name']);
+        $cats = CatPost::with('posts')->get();
 
         return view('pages.news.category_index', ['news' => $news, 'categories' => $cats]);
     }

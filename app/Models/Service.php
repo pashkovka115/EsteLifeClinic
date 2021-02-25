@@ -73,11 +73,11 @@ class Service extends Model
 
 
     /*
-     * Акции и скидки
+     * Акции
      */
-    public function action()
+    public function actions()
     {
-        return $this->belongsTo(Action::class, 'action_id');
+        return $this->belongsToMany(Action::class, 'action_service');
     }
 
 

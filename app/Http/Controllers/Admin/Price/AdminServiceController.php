@@ -163,4 +163,15 @@ class AdminServiceController extends Controller
 
         return back();
     }
+
+
+    /*
+     * Отключить показ кода всех услуг
+     */
+    public function disableShowingCode()
+    {
+        PriceService::where('show_code', '1')->update(['show_code' => '0']);
+
+        return back();
+    }
 }

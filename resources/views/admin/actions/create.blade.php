@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <form enctype="multipart/form-data"
-                  action="{{ route('admin.content.actions.actions.create') }}" method="post">
+                  action="{{ route('admin.content.actions.actions.store') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-sm-8">

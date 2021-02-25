@@ -41,8 +41,12 @@
                         <div class="doc-list">
                             <div class="sticky">
                                 @foreach($doctor_all as $doc)
-                                    @if($doc->id != $doctor->id)
-                                        <div class="item active">
+                                    <?php
+                                    $act = '';
+                                    if($doc->id == $doctor->id){
+                                        $act = ' active';
+                                    } ?>
+                                        <div class="item{{ $act }}">
                                             <div class="image">
                                                 @if($doc->img)
                                                 <a href="{{ route('front.doctors.show', ['slug' => $doc->slug]) }}">
@@ -64,7 +68,6 @@
                                                     ?></div>
                                             </div>
                                         </div>
-                                    @endif
                                 @endforeach
 
                             </div>
@@ -90,6 +93,7 @@
                                         ?>
                                         <div class="stage">Стаж работы: <b>{{ $diff }} {{ Lang::choice('год|года|лет', $diff) }}</b></div>
                                     @endif
+                                    @if($doctor->professions->count() > 0)
                                 <div class="spec">Специализация: <b>
                                         <?php
                                         $arr = [];
@@ -98,7 +102,9 @@
                                         }
                                         echo implode(',', $arr);
                                         ?>
-                                    </b></div>
+                                    </b>
+                                </div>
+                                    @endif
                                 <div class="btn-wrap">
                                     <a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a>
                                     <a id="doctor_online" data-doctor="{{ $doctor->id }}" href="#online" class="btn btn-border-indigo popup-with-form">Онлайн-консультация</a>
@@ -106,10 +112,13 @@
                             </div>
                             <div class="education info-doc-item">
                                 <div class="row">
+                                    @if($doctor->education)
                                     <div class="col-lg-6">
                                         <h4>Образование:</h4>
                                         {!! $doctor->education !!}
                                     </div>
+                                    @endif
+                                    @if($doctor->add_education)
                                     <div class="col-lg-6">
                                         <h4>Дополнительное образование:</h4>
                                         <div id="text_add_education_before"></div>
@@ -117,8 +126,10 @@
 {{--                                        {!! $doctor->add_education !!}--}}
 {{--                                        <a id="read_more" href="#" class="more">Читать дальше...</a>--}}
                                     </div>
+                                        @endif
                                 </div>
                             </div>
+                            @if($doctor->add_education)
                             <?php $json_text = json_encode(['text' => $doctor->add_education], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);  ?>
                             <script>
                                 var text = {!! $json_text !!};
@@ -148,6 +159,8 @@
                                     });
                                 }
                             </script>
+                            @endif
+                            @if($doctor->interests->count() > 0)
                             <div class="interests info-doc-item">
                                 <h4>Сферы практических интересов:</h4>
                                 <div class="wrap">
@@ -160,29 +173,30 @@
 
                                 </div>
                             </div>
+                            @endif
                             <div class="education info-doc-item">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <h4>Профессиональные награды:</h4>
-                                        <ul>
-                                            <li>Благодарственная грамота Косметологи РФ</li>
-                                        </ul>
-
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <h4>Медицинские ассоциации:</h4>
-                                        <ul>
-                                            <li>Косметологи РФ</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12">
+                                    @if($doctor->professional_awards)
+                                        <div class="col-lg-6">
+                                            <h4>Профессиональные награды:</h4>
+                                            {!! $doctor->professional_awards !!}
+                                        </div>
+                                    @endif
+                                    @if($doctor->medical_associations)
+                                        <div class="col-lg-6">
+                                            <h4>Медицинские ассоциации:</h4>
+                                            {!! $doctor->medical_associations !!}
+                                        </div>
+                                    @endif
+                                    {{--<div class="col-lg-12">
                                         <div class="hidden-part">
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, magnam amet laborum alias quaerat laudantium numquam necessitatibus, id veniam beatae nihil aliquid officia reiciendis perspiciatis atque impedit sed eos, ducimus.
                                         </div>
                                         <button class="more">Смотреть</button>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
+                            @if($doctor->jobs->count() > 0)
                             <div class="experience info-doc-item">
                                 <h4>Опыт работы:</h4>
                                 <div class="table-wrap">
@@ -198,6 +212,8 @@
                                     <button class="table-expand">Раскрыть таблицу</button>
                                 </div>
                             </div>
+                            @endif
+                            @if($doctor->services->count() > 0)
                             <div class="services-list info-doc-item">
                                 <h4>Услуги:</h4>
                                 @foreach($doctor->services as $service)
@@ -208,6 +224,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

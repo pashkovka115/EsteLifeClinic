@@ -21,7 +21,7 @@ class AdminCategoryController extends Controller
             ->get();
 
         $services = PriceService::with(['directions', 'children'])
-            ->where('parent_id', 0)
+//            ->where('parent_id', 0)
             ->where('pricedirection_id', $direction_id)
             ->get();
 

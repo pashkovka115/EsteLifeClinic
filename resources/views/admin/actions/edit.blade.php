@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label>Размер скидки</label>
-                            <input class="form-control" type="text" name="discount" value="{{ $action->discount }}">
+                            <input class="form-control" type="number" name="discount" value="{{ $action->discount }}">
                         </div>
 
                         <div class="form-group">

@@ -12,6 +12,7 @@
             <div class="row">
                 <div class="col-lg-12" style="padding-top: 40px">
                     <ul class="menu">
+                        @if($categories->count() > 0)
                         <li class="{{ active('front.before_after.index') }}"><a href="{{ route('front.before_after.index') }}">Все</a></li>
                     @foreach($categories as $category)
                             <?php
@@ -28,6 +29,7 @@
                             ?>
                         <li class="{{ $active }}"><a href="{{ route('front.before_after.show', ['slug' => $category->slug]) }}">{{ $category->name }}</a></li>
                         @endforeach
+                        @endif
                     </ul>
                     <div id="wrapper-before-after" class="wrapper">
                         <?php
@@ -58,10 +60,15 @@
                             $i++;
                             $j++;
                             endforeach; ?>
+                        @if($items->count() == 0)
+                            <p>Нет содержания для отображения</p>
+                        @endif
                     </div>
+                    @if($items->count() > 0)
                     <div class="text-center">
                         <button id="del_btn" data-page="2" class="btn btn-indigo">Смотреть еще</button>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -83,24 +90,26 @@
                 }
             });
 
-            $( "#del_btn" ).on('click', function(e){
-                e.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url: url  + '?page=' + $('#del_btn').attr('data-page'),
-                    data: {
-                        slug: slug
-                    },
-                    success: function ( msg ) {
-                        $('#wrapper-before-after').append(msg);
-                        var new_page = parseInt($('#del_btn').attr('data-page')) + 1;
-                        $('#del_btn').attr('data-page', new_page);
-                        if (msg === ''){
-                            $('#del_btn').parent().remove();
+            if ($( "#del_btn" ).length > 0) {
+                $("#del_btn").on('click', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        method: "POST",
+                        url: url + '?page=' + $('#del_btn').attr('data-page'),
+                        data: {
+                            slug: slug
+                        },
+                        success: function (msg) {
+                            $('#wrapper-before-after').append(msg);
+                            var new_page = parseInt($('#del_btn').attr('data-page')) + 1;
+                            $('#del_btn').attr('data-page', new_page);
+                            if (msg === '') {
+                                $('#del_btn').parent().remove();
+                            }
                         }
-                    }
-                })
-            });
+                    })
+                });
+            }
         });
     </script>
 @endsection

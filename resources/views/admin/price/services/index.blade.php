@@ -37,7 +37,7 @@
             <thead>
             <tr>
                 <th>№</th>
-                <th>Код услуги</th>
+                <th>Код</th>
                 <th>Название</th>
                 <th>Стоимость, руб.</th>
                 <th>Стоимость со скидкой, руб.</th>
@@ -48,7 +48,20 @@
             @foreach($services as $service)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'code')">{{ $service->code }}</div></td>
+                    <td>
+                        <div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'code')">{{ $service->code }}</div>
+
+                        <div class="custom-control custom-checkbox">
+                            <?php
+                            $checked = '';
+                            if ($service->show_code == '1'){
+                                $checked = ' checked';
+                            }
+                            ?>
+                            <input type="checkbox" class="custom-control-input"{{ $checked }} id="customCheck_{{ $service->id }}" onclick="code_status('customCheck_{{ $service->id }}');">
+                            <label class="custom-control-label" for="customCheck_{{ $service->id }}">Показывать</label>
+                        </div>
+                    </td>
                     <td>
                         <div class="minw100" ondblclick="onCode(this, {{ $service->id }}, 'name')">{{ $service->name }}</div>
                     </td>
@@ -82,6 +95,38 @@
             width: 100%;
         }
     </style>
+    <script>
+        function code_status(id) {
+            var status;
+            $this = $("#" + id);
+            if ($($this).is(":checked")) {
+                status = '1';
+            } else {
+                status = '0';
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.price.service.update') }}",
+                data: {
+                    id: id.split('_')[1],
+                    field: 'show_code',
+                    data: status
+                },
+                success: function(resp) {
+                    // console.log(resp)
+                    // success function is called when data came back
+                    // for example: get your content and display it on your site
+                }
+            });
+        }
+    </script>
     <script>
         $.ajaxSetup({
             headers: {

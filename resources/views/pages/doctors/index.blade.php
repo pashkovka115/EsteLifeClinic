@@ -26,7 +26,11 @@
                     </div>
                     <h1 class="title">Врачи</h1>
                     <ul class="menu">
+                        @if($doctors->count() > 0)
                         <li class="{{ active('front.doctors.index') }}"><a href="{{ route('front.doctors.index') }}">Все врачи</a></li>
+                        @else
+                            <p>Нет содержания для отображения</p>
+                        @endif
                         @foreach($professions as $profession)
                             <?php
                             $active = '';
@@ -70,9 +74,11 @@
                         @endforeach
 
                     </div>
+                    @if($doctors->count() > 0)
                     <div class="text-center">
                         <a id="del_btn" href="#" data-page="2" class="btn btn-indigo btn-more-doctors">Смотреть еще</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

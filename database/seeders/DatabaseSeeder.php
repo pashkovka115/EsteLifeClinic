@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PriceDirectionsTableSeeder::class);
         $this->call(PriceServicesTableSeeder::class);
         $this->call(DirectionPricesTableSeeder::class);
-        $this->call(MenuSeeder::class);
+        $this->call(MenuSeeder::class); // Для старта сайта
     }
 }

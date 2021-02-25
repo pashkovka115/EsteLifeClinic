@@ -67,6 +67,16 @@
                     <textarea name="add_education" class="form-control" rows="5"
                               id="elm2">{{ $doctor->add_education }}</textarea>
                 </div>
+                <div class="form-group">
+                    <label for="elm3">Профессиональные награды</label>
+                    <textarea name="professional_awards" class="form-control" rows="5"
+                              id="elm3">{{ $doctor->professional_awards }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="elm4">Медицинские ассоциации</label>
+                    <textarea name="medical_associations" class="form-control" rows="5"
+                              id="elm4">{{ $doctor->medical_associations }}</textarea>
+                </div>
 
                 <div>
                     <h3>Практические интересы</h3>
@@ -80,8 +90,8 @@
                         <div class="form-group col-sm-2">
                             <div class="custom-file">
                                 <input type="file" name="ico_{{ $doctor->interests[0]->id ?? 0 }}"
-                                       class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбрать иконку</label>
+                                       class="custom-file-input" id="customFile1">
+                                <label class="custom-file-label" for="customFile1">Выбрать иконку</label>
                             </div>
                         </div>
                         <div class="form-group col-sm-1">
@@ -100,8 +110,8 @@
                         <div class="form-group col-sm-2">
                             <div class="custom-file">
                                 <input type="file" name="ico_{{ $doctor->interests[1]->id ?? 0 }}"
-                                       class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбрать иконку</label>
+                                       class="custom-file-input" id="customFile2">
+                                <label class="custom-file-label" for="customFile2">Выбрать иконку</label>
                             </div>
                         </div>
                         <div class="form-group col-sm-1">
@@ -120,8 +130,8 @@
                         <div class="form-group col-sm-2">
                             <div class="custom-file">
                                 <input type="file" name="ico_{{ $doctor->interests[2]->id ?? 0 }}"
-                                       class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбрать иконку</label>
+                                       class="custom-file-input" id="customFile3">
+                                <label class="custom-file-label" for="customFile3">Выбрать иконку</label>
                             </div>
                         </div>
                         <div class="form-group col-sm-1">
@@ -140,8 +150,8 @@
                         <div class="form-group col-sm-2">
                             <div class="custom-file">
                                 <input type="file" name="ico_{{ $doctor->interests[3]->id ?? 0 }}"
-                                       class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Выбрать иконку</label>
+                                       class="custom-file-input" id="customFile4">
+                                <label class="custom-file-label" for="customFile4">Выбрать иконку</label>
                             </div>
                         </div>
                         <div class="form-group col-sm-1">

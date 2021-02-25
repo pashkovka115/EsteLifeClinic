@@ -23,6 +23,7 @@
             <thead>
             <tr>
                 <th>№</th>
+                <th>Код</th>
                 <th>Название</th>
                 <th>Количество услуг</th>
                 <th>Стоимость, руб.</th>
@@ -37,6 +38,21 @@
                 @endphp
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>
+                        @if($service->type == 2)
+                        {{ $service->code }}
+                        <div class="custom-control custom-checkbox">
+                            <?php
+                            $checked = '';
+                            if ($service->show_code == '1'){
+                                $checked = ' checked';
+                            }
+                            ?>
+                            <input type="checkbox" class="custom-control-input"{{ $checked }} id="customCheck_{{ $service->id }}" onclick="code_status('customCheck_{{ $service->id }}');">
+                            <label class="custom-control-label" for="customCheck_{{ $service->id }}">Показывать</label>
+                        </div>
+                        @endif
+                    </td>
                     <td>
                         @if($cnt > 0)
                             <a href="{{ route('admin.price.service.index', ['category_id' => $service->id]) }}">{{ $service->name }}</a>
@@ -92,6 +108,38 @@
 @stop
 
 @section('footerScript')
+    <script>
+        function code_status(id) {
+            var status;
+            $this = $("#" + id);
+            if ($($this).is(":checked")) {
+                status = '1';
+            } else {
+                status = '0';
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.price.service.update') }}",
+                data: {
+                    id: id.split('_')[1],
+                    field: 'show_code',
+                    data: status
+                },
+                success: function(resp) {
+                    // console.log(resp)
+                    // success function is called when data came back
+                    // for example: get your content and display it on your site
+                }
+            });
+        }
+    </script>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

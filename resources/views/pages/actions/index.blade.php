@@ -11,7 +11,7 @@
                 <div class="col-lg-12" style="padding-top: 40px">
                     <h1 class="title">Акции</h1>
                     <div class="wrapper">
-                        @foreach($actions as $action)
+                        @forelse($actions as $action)
                             <?php
                             $start = \Carbon\Carbon::create($action->finish);
                             $end = \Carbon\Carbon::now()->startOfDay();
@@ -32,7 +32,9 @@
                             <div class="date">Акция проводится с {{ (new DateTime($action->start))->format('d.m.Y') }} по {{ (new DateTime($action->finish))->format('d.m.Y') }}</div>
                             <div class="desc">{{ $action->short_description }}</div>
                         </div>
-                        @endforeach
+                        @empty
+                            <p>Сейчас нет акций</p>
+                        @endforelse
                     </div>
                 </div>
             </div>

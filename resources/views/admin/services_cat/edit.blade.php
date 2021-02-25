@@ -20,14 +20,23 @@
                   method="post">
                 @method('PUT')
                 @csrf
-                <div class="form-group">
-                    <label for="text-input-name">Наименование</label>
-                    <input class="form-control" type="text" name="name" value="{{ $cat->name }}"
-                           id="text-input-name">
-                </div>
                 <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="text-input-name">Наименование</label>
+                        <input class="form-control" type="text" name="name" value="{{ $cat->name }}">
+                    </div>
+{{--                    <p class="col-sm-3"><img src="/storage/{{ $cat->img }}" alt=""></p>--}}
+                    <div class="form-group col-sm-3">
+                        <label for="text-input-name">Иконка</label>
+                        <input class="form-control" type="file" name="img">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="text-input-name">Фоновая картинка</label>
+                        <input class="form-control" type="file" name="bg_img">
+                    </div>
+                </div>
 
-
+                <div class="row">
                     <div class="form-group col-sm-6">
                         <label>Тип</label>
                         <select name="type" class="form-control">
@@ -37,8 +46,6 @@
                                 if ($current_type == $key){
                                     $selected = ' selected';
                                 }
-//                                dump($current_type, $key)
-//                                echo '<option value="">===' . $current_type .'---'. $key . '---' . $selected . '</option>';
                                 ?>
                                 <option value="{{ $key }}"{{ $selected }}>{{ $name }}</option>
                             @endforeach

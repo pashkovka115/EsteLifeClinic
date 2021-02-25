@@ -12,10 +12,12 @@ class ServiceController extends Controller
 {
     public function show($slug)
     {
-        $service = Service::with(['action', 'category', 'treatment_history'])->where('slug', $slug)->firstOrFail();
+        $service = Service::with(['actions', 'prices', 'category', 'treatment_history'])->where('slug', $slug)->firstOrFail();
         $cat = CatService::with('services')->where('id', $service->category->id)->firstOrFail();
         $doctors = Doctor::with(['professions', 'jobs'])->limit(7)->get();
         $latest_news = Post::orderBy('updated_at', 'DESC')->limit(3)->get();
+
+//        dd($service);
 
         return view('pages.services.show', [
             'service' => $service,

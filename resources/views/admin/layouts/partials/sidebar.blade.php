@@ -95,6 +95,8 @@
                     <hr>
                 <li class="nav-item"><a class="nav-link  {{ active('admin.price.service.create_new_service') }}" href="{{ route('admin.price.service.create_new_service') }}"><i class="mdi mdi-plus"></i> Добавить цены</a></li>
                     <hr>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.service.code_disable') }}" style="color: red"><i class="mdi mdi-minus"></i>Быстро отключить показ кода</a></li>
+                    <hr>
                     @foreach($directions as $direction)
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.category.index', ['direction_id' => $direction->id]) }}">- {{ $direction->name }}</a></li>
                     @endforeach

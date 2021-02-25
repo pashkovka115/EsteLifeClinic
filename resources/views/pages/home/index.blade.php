@@ -16,22 +16,6 @@
             </div>
             @endforeach
 
-            <!--<div class="item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 wrapper-slide">
-                            <div class="left">
-                                <h3>Мы заботимся о вашей красоте и здоровье</h3>
-                                <div class="ftr">
-                                    <p>Мы заботимся о вашей красоте и здоровье. Новое в нашей статье</p>
-                                    <a href="" class="btn btn-indigo">Читать статью</a>
-                                </div>
-                            </div>
-                            <div class="right" style="background-image: url(img/slide.png);"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
         <div class="slick-dots-main-block">
             <div class="container">
@@ -44,41 +28,50 @@
 {{--    @endif--}}
 {{--    @endif--}}
 
-    @if($home->useful_tips)
-    @if($home->useful_tips->visibility == '1')
-    <section class="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="wrapper">
-                        <div class="tabs">
-                            @foreach($home->useful_tips->items as $item)
-                                @if($item->visibility == '1')
-                            <span class="tab">{!! $item->extra !!} {!! $item->title !!}</span>
-                                @endif
-                            @endforeach
-
-                        </div>
-                        <div class="tab_content">
-                            @foreach($home->useful_tips->items as $item)
-                                @if($item->visibility == '1')
-                            <div class="tab_item" style="background-image: url('/storage/{{ $item->img }}');">
-                                <div class="mobile-tab">{!! $item->extra !!} {!! $item->title !!}</div>
-                                <div class="wrap">
-                                    {!! $item->description !!}
-                                </div>
+<section class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="wrapper">
+                    <div class="tabs">
+                        <span class="tab"><i class="demo-icon icon-doctor"></i> Консультация специалиста</span>
+                        @foreach($categories as $category)
+                        <span class="tab"><img src="/storage/{{ $category->img }}" alt="">&nbsp;&nbsp;&nbsp; {{ $category->name }}</span>
+                        @endforeach
+                    </div>
+                    <div class="tab_content">
+                        <div class="tab_item" style="background-image: url(img/bg-serv-1.png);">
+                            <div class="mobile-tab"><i class="demo-icon icon-doctor"></i> Консультация специалиста</div>
+                            <div class="wrap">
+                                <h3>В 100% случаев</h3>
+                                <p><strong>Необходима предварительная консультация специалиста для правильного назначения лечения/процедуры.</strong></p>
+                                <p><strong>Самодиагностика зачастую приводит к неожиданным результатам.</strong></p>
+                                <a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a>
                             </div>
-                                @endif
-                            @endforeach
-
                         </div>
+
+                        @foreach($categories as $category)
+                        <div class="tab_item" style="background-image: url('/storage/{{ $category->bg_img }}');">
+                            <div class="mobile-tab"><i class="demo-icon icon-laser"></i> Лазерная косметология</div>
+                            <div class="wrap">
+                                <div class="ul-wrap">
+                                    <ul>
+                                        @foreach($category->services as $service)
+                                        <li><a href="{{ route('front.service.show', ['slug' => $service->slug]) }}" target="_blank">{{ $service->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a>
+                            </div>
+                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    @endif
-    @endif
+    </div>
+</section>
 
     @if($actions->count() > 0)
     <section class="action-block">

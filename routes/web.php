@@ -166,6 +166,8 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         Route::post('service', 'Admin\Price\AdminServiceController@update')->name('price.service.update');
         Route::delete('service/{id}', 'Admin\Price\AdminServiceController@destroy')->name('price.service.destroy');
+
+        Route::get('service-code-disable', 'Admin\Price\AdminServiceController@disableShowingCode')->name('price.service.code_disable');
     });
 
 

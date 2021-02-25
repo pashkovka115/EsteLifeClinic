@@ -69,7 +69,7 @@
 
                         <div class="price-list-block">
 
-                            @foreach($directions as $direction => $services)
+                            @forelse($directions as $direction => $services)
                             <div class="price-list-item" style="margin-bottom: 40px">
                                 <div class="left">
                                     <h3><a href="#">{{ $direction }}</a></h3>
@@ -79,7 +79,7 @@
                                     @foreach($services as $service)
                                         @if($service->type == 2)
                                         <div class="service-item">
-                                            <div class="title">{{ $service->name }}</div>
+                                            <div class="title">{{ $service->code }} {{ $service->name }}</div>
                                             <div class="price">{{ $service->price }} ₽</div>
                                             <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
                                         </div>
@@ -87,7 +87,9 @@
                                     @endforeach
                                 </div>
                             </div>
-                            @endforeach
+                            @empty
+                                <h3 style="text-align: center">Нет результатов</h3>
+                            @endforelse
 
                         </div>
 

@@ -11,10 +11,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="crumbs">
-                        <ol>
+                        {{--<ol>
                             <li><a href="">Все акции</a></li>
                             <li>Программа обследования «Мужчины 40+»</li>
-                        </ol>
+                        </ol>--}}
                     </div>
                     <h1 class="title">Новости</h1>
                         <ul class="menu">
@@ -30,7 +30,9 @@
                                     }
                                 }
                                 ?>
+                            @if($category->posts->count() > 0)
                             <li class="{{ $active }}"><a href="{{ route('front.news.category_index', ['slug' => $category->slug]) }}">{{ $category->name }}</a></li>
+                            @endif
                             @endforeach
                         </ul>
                         <div id="add_content" class="wrapper">
@@ -49,6 +51,7 @@
                             @endforeach
 
                         </div>
+                    @if($news->count() > 0)
                         <div class="text-center">
                             <?php
                             if(count(Route::current()->parameters()) > 0){
@@ -61,6 +64,7 @@
                                 }}  ?>
 
                         </div>
+                    @endif
                 </div>
             </div>
         </div>

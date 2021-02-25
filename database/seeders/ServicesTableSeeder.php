@@ -37,7 +37,7 @@ class ServicesTableSeeder extends Seeder
                 'service3' => 'Низкая травматичность',
                 'ico4' => '',
                 'service4' => 'Мезококтейль подбирается специалистом индивидуально',
-                'price' => random_int(500, 150000),
+                'price' => (string)random_int(500, 15000) . ' руб.',
                 'img' => asset('images/bg-category.png'),
                 'meta_description' => $faker->realText(),
                 'title' => "Title $i",

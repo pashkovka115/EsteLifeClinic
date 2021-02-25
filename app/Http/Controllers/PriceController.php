@@ -12,15 +12,9 @@ class PriceController extends Controller
 {
     public function index()
     {
-        /*$directions = PriceDirection::with(['services' => function($query){
-            $query->orderBy('parent_id')->orderBy('type', 'desc');
-        }])->get();*/
-
         $directions = PriceDirection::with(['services' => function($query){
             $query->orderBy('parent_id')->orderBy('type', 'desc');
         }])->get();
-
-//        dd($directions);
 
         $all_directions = PriceDirection::all(['id', 'name']);
 
@@ -53,6 +47,7 @@ class PriceController extends Controller
         $search = $request->input('search');
         $pricedirection_id = (int)$request->input('pricedirection_id');
 
+
         if ($pricedirection_id > 0){
             $servs = PriceService::with('directions')
                 ->where('type', 2)
@@ -66,14 +61,14 @@ class PriceController extends Controller
                 ->get();
         }
 
+        $all_directions = PriceDirection::all(['id', 'name']);
+        $sorted_dirs = $all_directions->keyBy('id');
+
         $directions = [];
         foreach ($servs as $serv){
-            foreach ($serv->directions as $direction){
-                $directions[$direction->name][] = $direction['services'][] = $serv ;
-            }
+            $directions[$sorted_dirs[$serv->pricedirection_id]->name][] = $serv;
         }
 
-        $all_directions = PriceDirection::all(['id', 'name']);
 
         return view('pages.price.search', [
             'directions' => $directions,

@@ -22,6 +22,7 @@ class CreatePriceServicesTable extends Migration
             $table->string('price')->nullable();
             $table->string('discount_price')->nullable();
             $table->string('code')->nullable();
+            $table->enum('show_code', ['1', '0']);
             $table->timestamps();
 
             /*$table->index(["pricedirection_id"], 'fk_price_services_pricedirection1_idx');

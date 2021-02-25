@@ -31,7 +31,7 @@ class CreateServicesTable extends Migration
             $table->string('ico4')->nullable();
             $table->text('service4')->nullable();
 
-            $table->decimal('price', 10, 2)->nullable();
+            $table->string('price')->nullable();
             $table->string('img')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('title')->nullable();

@@ -19,11 +19,15 @@ class Doctor extends Model
         'add_education',
         'level',
         'img',
-        'history_work_id'
+        'history_work_id',
+        'professional_awards',
+        'medical_associations',
+        'title',
+        'meta_description'
     ];
 
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')

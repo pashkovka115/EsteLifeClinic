@@ -205,7 +205,7 @@ class AdminServiceController extends Controller
         $request->validate([
             'name' => 'required|string',
 //            'type' => 'required|string',
-            'price' => 'nullable|numeric',
+            'price' => 'nullable|string',
             'cat_service_id' => 'required|numeric',
 //            'action_id' => 'required|numeric',
             'short_description' => 'nullable|string',

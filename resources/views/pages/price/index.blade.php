@@ -32,20 +32,9 @@
 </style>
 @endsection
 
-{{--@if(isset($slug) and isset($categories[0]))
-    @section('title')
-        {{ $categories[0]->title }}
-    @endsection
-    @section('meta_description')
-        {{ $categories[0]->meta_description }}
-    @endsection
-
-@else
-
-    @section('title')
-        @parent - Все категории
-    @endsection
-@endif--}}
+@section('title')
+    @parent - Цены
+@endsection
 
 @section('content')
     <section class="price-page">
@@ -59,7 +48,7 @@
 
                             </ol>
                         </div>
-
+                    @if($directions->count() > 0)
                     <div class="price-title-block">
                         <h1 class="title">Цены на услуги</h1>
                         <div class="filter-block">
@@ -80,24 +69,28 @@
                             </form>
                         </div>
                     </div>
-
+                    @endif
                         <div class="price-list-block">
 
                             @foreach($directions as $direction)
                             <div class="price-list-item" style="margin-bottom: 40px">
+                                @if($direction->services->count() > 0)
                                 <div class="left">
                                     <h3><a href="#">{{ $direction->name }}</a></h3>
                                 </div>
+                                @endif
                                 <div class="right">
                                     @foreach($direction->services as $service)
                                         @if($service->type == 1)
-                                        <div class="service-item service-item-blue">
-                                            <div class="title">{{ $service->name }}</div>
-                                        </div>
+                                            @if($service->children->count() > 0)
+                                                <div class="service-item service-item-blue">
+                                                    <div class="title">{{ $service->name }}</div>
+                                                </div>
+                                            @endif
                                             @if($service->type == 1 and $service->children->count() > 0)
                                                 @foreach($service->children as $child)
                                                     <div class="service-item">
-                                                        <div class="title">{{ $child->name }}</div>
+                                                        <div class="title">{{ $child->name }} @if($child->show_code == '1') {{ $child->code }} @endif</div>
                                                         <div class="price">{{ $child->price }} ₽</div>
                                                         <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
                                                     </div>
@@ -114,7 +107,7 @@
                                                                 }
                                                                 ?>
                                                             <div class="service-item">
-                                                                <div class="title">{{ $child->name }}</div>
+                                                                <div class="title">{{ $child->name }} @if($child->show_code == '1') {{ $child->code }} @endif</div>
                                                                 <div class="price">{{ $child->price }} ₽</div>
                                                                 <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
                                                             </div>
@@ -126,7 +119,7 @@
                                             @endif
                                         @elseif($service->type == 2)
                                             <div class="service-item">
-                                                <div class="title">{{ $service->name }}</div>
+                                                <div class="title">{{ $service->name }} @if($service->show_code == '1') {{ $service->code }} @endif</div>
                                                 <div class="price">{{ $service->price }} ₽</div>
                                                 <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
                                             </div>

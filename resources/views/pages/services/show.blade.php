@@ -12,21 +12,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    @if(!is_null($service->action_id))
+                    @if($service->actions->count() > 0)
                     <div class="date">
-                        {{ (new DateTime($service->action->start))->format('d.m.Y') }} - {{ (new DateTime($service->action->finish))->format('d.m.Y') }}
+                        {{ (new DateTime($service->actions[0]->start))->format('d.m.Y') }} - {{ (new DateTime($service->actions[0]->finish))->format('d.m.Y') }}
                     </div>
                     @endif
                     <div class="program-title">
                         <p>Процедура</p>
                         <p class="big">«{{ $service->name }}»</p>
                     </div>
-                    @if(!is_null($service->action_id))
+                    @if($service->price)
                         <div class="discount-program">
-                            <p>Со скидкой</p>
-                            <p class="big">{{ $service->action->discount }}</p>
+                            <p class="big">{{ $service->price }}</p>
                         </div>
-                        <a href="{{ route('front.actions.show', ['slug' => $service->action->slug]) }}" target="_blank" class="btn btn-indigo">Подробнее об акции</a>
+                    @elseif($service->actions->count() > 0)
+                        <div class="discount-program">
+                            @php
+                            $arr = [];
+                            foreach ($service->actions as $act){
+                                if ($act->discount){
+                                    $arr[] = $act->discount * 1;
+                                }
+                            }
+                            @endphp
+                            {{--@php
+                                //dd($arr)
+                            @endphp--}}
+                            @if(count($arr) > 0)
+                            <p>Со скидкой</p>
+                            <p class="big">От {{ min($arr) }}</p>
+                            @endif
+                        </div>
+                        <a href="{{ route('front.actions.show', ['slug' => $service->actions[0]->slug]) }}" target="_blank" class="btn btn-indigo">Подробнее об акции</a>
                     @endif
                 </div>
             </div>
@@ -44,9 +61,11 @@
                         </ol>
                     </div>
                 </div>--}}
+                @if($service->short_description)
                 <div class="col-lg-9">
                     {!! $service->short_description !!}
                 </div>
+                @endif
                 <div class="col-lg-3">
                     <div class="btn-wrap-serv">
                         <a href="#order" class="btn btn-indigo popup-with-form">Записаться на процедуру</a>
@@ -60,44 +79,55 @@
     <section class="icon-block">
         <div class="container">
             <div class="row">
+                @if($service->description)
                 <div class="col-lg-6">
                     {!! $service->description !!}
                 </div>
+                @endif
                 <div class="col-lg-6">
                     <div class="icon-wrap">
-                        <div class="item">
-                            <div class="icn"><img src="/storage/{{ $service->ico1 }}" alt=""></div>
-                            <p>{{ $service->service1 }}</p>
-                        </div>
-                        <div class="item">
-                            <div class="icn"><img src="/storage/{{ $service->ico2 }}" alt=""></div>
-                            <p>{{ $service->service2 }}</p>
-                        </div>
-                        <div class="item">
-                            <div class="icn"><img src="/storage/{{ $service->ico3 }}" alt=""></div>
-                            <p>{{ $service->service3 }}</p>
-                        </div>
-                        <div class="item">
-                            <div class="icn"><img src="/storage/{{ $service->ico4 }}" alt=""></div>
-                            <p>{{ $service->service4 }}</p>
-                        </div>
+                        @if($service->ico1 or $service->service1)
+                            <div class="item">
+                                <div class="icn"><img src="/storage/{{ $service->ico1 }}" alt=""></div>
+                                <p>{{ $service->service1 }}</p>
+                            </div>
+                        @endif
+                        @if($service->ico2 or $service->service2)
+                            <div class="item">
+                                <div class="icn"><img src="/storage/{{ $service->ico2 }}" alt=""></div>
+                                <p>{{ $service->service2 }}</p>
+                            </div>
+                        @endif
+                        @if($service->ico3 or $service->service3)
+                            <div class="item">
+                                <div class="icn"><img src="/storage/{{ $service->ico3 }}" alt=""></div>
+                                <p>{{ $service->service3 }}</p>
+                            </div>
+                        @endif
+                        @if($service->ico4 or $service->service4)
+                            <div class="item">
+                                <div class="icn"><img src="/storage/{{ $service->ico4 }}" alt=""></div>
+                                <p>{{ $service->service4 }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="price-list-block price-list-block-serv">
+    @if($category->services->count() > 0)
+    <section id="price" class="price-list-block price-list-block-serv">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h2>{{ $category->name }}</h2>
                     <div class="price-list-item">
                         <div class="right">
-                            @foreach($category->services as $serv)
+                            @foreach($service->prices as $price)
                             <div class="service-item">
-                                <div class="title">{{ $serv->name }}</div>
-                                <div @if($serv->id == $service->id) id="price" @endif class="price">{{ $serv->price }}</div>
+                                <div class="title">{{ $price->name }}</div>
+                                <div class="price">{{ $price->price }}</div>
                                 <div class="order"><a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a></div>
                             </div>
                             @endforeach
@@ -107,6 +137,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     @if($service->treatment_history->count() > 0)
     <section class="before-after-page before-after-section">
@@ -144,6 +175,7 @@
     </section>
     @endif
 
+    @if($doctors->count() > 0)
     <section class="doctors-list">
         <div class="container">
             <div class="row">
@@ -187,6 +219,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     @if($latest_news->count() > 0)
     <section class="news-block">

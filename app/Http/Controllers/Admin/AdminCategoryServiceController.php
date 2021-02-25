@@ -148,6 +148,11 @@ class AdminCategoryServiceController extends Controller
             $data['img'] = $img;
         }
 
+        if ($request->hasFile('bg_img')) {
+            $bg_img = $request->file('bg_img')->store("images/categories/$folder");
+            $data['bg_img'] = $bg_img;
+        }
+
         $cat = CatService::where('id', $id)->firstOrFail();
         $cat->update($data);
 

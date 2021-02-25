@@ -24,6 +24,7 @@ class CreateCatServicesTable extends Migration
             $table->string('title')->nullable();
             $table->text('keywords')->nullable();
             $table->string('img')->nullable();
+            $table->string('bg_img')->nullable();
 
             $table->timestamps();
 
