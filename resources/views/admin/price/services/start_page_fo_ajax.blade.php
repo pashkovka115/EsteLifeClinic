@@ -21,6 +21,8 @@
         <div class="card-header">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Добавить группу услуг</button>
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2"><i class="fas fa-plus"></i> Добавить услугу</button>
+            <a href="{{ route('admin.price.service.code_disable') }}" onclick="return confirm('Отключить показ всего кода?')" class="btn btn-danger">Быстро отключить показ кода</a>
+            <a href="{{ route('admin.price.service.code_enable') }}" onclick="return confirm('Включить код?')" class="btn btn-success">Быстро включить показ кода</a>
         </div>
         <div class="card-body">
             <table id="datatable" data-page-length='15' class="table table-bordered dt-responsive nowrap"

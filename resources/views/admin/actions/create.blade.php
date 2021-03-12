@@ -40,13 +40,17 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group">
-                            <p>Большая</p>
-                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify">
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" name="show_home" class="custom-control-input" id="checkbox">
+                            <label class="custom-control-label" for="checkbox">Показывать на главной</label>
                         </div>
                         <div class="form-group">
                             <p>Для баннера</p>
                             <input type="file" name="banner_img" id="input-file-now-custom-1" class="dropify">
+                        </div>
+                        <div class="form-group">
+                            <p>Большая</p>
+                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify">
                         </div>
                     </div>
 

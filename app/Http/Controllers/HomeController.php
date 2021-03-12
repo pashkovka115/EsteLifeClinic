@@ -29,7 +29,7 @@ class HomeController extends Controller
         $actions = Action::where('show_home', '1')->get();
         $doctors = Doctor::with(['professions', 'jobs'])->limit($home->count_doctors_list)->get();
         $company = Company::firstOrFail(['h3', 'practice', 'cnt']);
-        $posts = Post::orderBy('updated_at', 'DESC')->limit($home->count_news)->get();
+        $posts = Post::orderBy('updated_at', 'DESC')->limit(3)->get();
         $categories = CatService::with('services')->get();
 
         return view('pages.home.index', [

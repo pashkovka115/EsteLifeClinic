@@ -125,6 +125,7 @@
                             <div class="col-sm-4">
                                 <div class="card">
                                     <div class="card-body">
+                                        <h4 class="mt-0 header-title">Размер: 1920x563</h4>
                                         <input type="file" name="img" class="dropify"
                                                @if($service->img) data-default-file="{{ URL::asset('storage/' . $service->img)}}" @endif />
                                     </div>

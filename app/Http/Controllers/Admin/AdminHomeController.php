@@ -14,10 +14,7 @@ class AdminHomeController extends Controller
     public function edit()
     {
         $home = Home::with([
-//            'top_sliders',
             'useful_tips',
-//            'action_sliders',
-//            'medical_center_sliders'
         ])->first();
 
         $all_banners = Banner::all();
@@ -43,21 +40,10 @@ class AdminHomeController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'two_slider' => 'nullable|numeric',
-            'action_slider' => 'nullable|numeric',
-            'medical_center_slider' => 'nullable|numeric',
             'count_doctors_list' => 'nullable|numeric',
-            'count_news' => 'nullable|numeric',
         ]);
 
         $data = $request->except(['_token', '_method']);
-
-        if ($data['two_slider'] == '0'){
-            $data['two_slider'] = null;
-        }
-        /*if ($data['medical_center_slider'] == '0'){
-            $data['medical_center_slider'] = null;
-        }*/
 
         $home = Home::firstOrFail();
         $home->update($data);
@@ -119,6 +105,7 @@ class AdminHomeController extends Controller
         return redirect()->route('admin.pages.home.edit');
     }
 
+
     public function bannerItemDestroy(Request $request)
     {
         $data = $request->validate([
@@ -131,16 +118,8 @@ class AdminHomeController extends Controller
             unlink($old_file);
         }
 
-//        $items = BannerItems::with('banner')->where('banner_id', $item->banner_id)->get();
 
         $item->delete();
-
-//        dd($item);
-        /*dd($items);
-
-        if ($items->count() == 1){
-            dd($items);
-        }*/
 
         return back();
     }
@@ -150,28 +129,5 @@ class AdminHomeController extends Controller
         $item = BannerItems::where('id', $id)->firstOrFail();
 
         return view('admin.home.banners.top.edit', ['item' => $item]);
-    }
-
-
-    /*public function bannerTopStore(Request $request)
-    {
-        $data = $request->validate([
-            'id' => 'required|numeric'
-        ]);
-
-        $item = BannerItems::where('id', $data['id'])->firstOrFail();
-        $old_file = storage_path('app/public') . '/' . $item->img;
-        if (is_file($old_file)) {
-            unlink($old_file);
-        }
-        $item->delete();
-
-        return back();
-    }*/
-
-
-    public function destroy($id)
-    {
-        //
     }
 }

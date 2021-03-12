@@ -61,15 +61,25 @@
 
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group">
-                            <p>Большая</p>
-                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify"
-                                   @if($action->big_img) data-default-file="{{ URL::asset('storage/' . $action->big_img)}}" @endif />
+                        <div class="custom-control custom-checkbox mb-3">
+                            @php($checked = '')
+                            @if($action->show_home == '1')
+                                @php($checked = ' checked')
+                            @endif
+                            <input type="checkbox" name="show_home" class="custom-control-input" id="checkbox"{{ $checked }}>
+                            <label class="custom-control-label" for="checkbox">Показывать на главной</label>
                         </div>
                         <div class="form-group">
+                            <h4 class="mt-0 header-title">Размер: 605x255</h4>
                             <p>Для баннера</p>
                             <input type="file" name="banner_img" id="input-file-now-custom-2" class="dropify"
                                    @if($action->banner_img) data-default-file="{{ URL::asset('storage/' . $action->banner_img)}}" @endif />
+                        </div>
+                        <div class="form-group">
+                            <h4 class="mt-0 header-title">Размер: 1920x563</h4>
+                            <p>Большая</p>
+                            <input type="file" name="big_img" id="input-file-now-custom-1" class="dropify"
+                                   @if($action->big_img) data-default-file="{{ URL::asset('storage/' . $action->big_img)}}" @endif />
                         </div>
                     </div>
 

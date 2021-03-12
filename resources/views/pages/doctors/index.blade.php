@@ -8,6 +8,16 @@
     @endif
 @endsection
 
+@section('header_style')
+   {{-- <style>
+        .doc-card .image img{
+            position: absolute !important;
+            top: 60% !important;
+            left: 50% !important;
+        }
+    </style>--}}
+@endsection
+
 @section('content')
     <section class="doctor-list-page">
         <div class="container">
@@ -51,7 +61,9 @@
                         @foreach($doctors as $doctor)
                             <div class="doc-card">
                                 @if($doctor->img)
-                                    <div class="image"><img src="/storage/{{ $doctor->img }}" alt=""></div>
+                                    <div class="image">
+                                        <img src="/storage/{{ $doctor->img }}" alt="" style="max-height: 290px; width: auto;">
+                                    </div>
                                 @endif
                                 <div class="desc">
                                     <div class="title">{{ $doctor->name }}</div>

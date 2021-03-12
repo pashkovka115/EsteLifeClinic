@@ -17,7 +17,7 @@ class BannerItemsTableSeeder extends Seeder
 			 							<blockquote>Estelife Clinic – медицинский центр в Краснодаре, который поможет вам восстановить свое здоровье, а также сохранить и продлить вашу красоту и молодость.</blockquote>
 			 							<p>Наша клиника оснащена новейшим медицинским оборудованием, позволяющим выполнять диагностику заболеваний максимально информативно и точно. В своей работе мы используем расходные материалы и косметические продукты самого высокого качества, ведь ваше здоровье и доверие – главное для нас.</p>',
                 'extra' => null,
-                'code_banner' => '',
+                'code_banner' => 'about_company_top',
                 'full_description' => null
             ],
             [
@@ -28,7 +28,7 @@ class BannerItemsTableSeeder extends Seeder
 			 							<blockquote>Estelife Clinic – медицинский центр в Краснодаре, который поможет вам восстановить свое здоровье, а также сохранить и продлить вашу красоту и молодость.</blockquote>
 			 							<p>Наша клиника оснащена новейшим медицинским оборудованием, позволяющим выполнять диагностику заболеваний максимально информативно и точно. В своей работе мы используем расходные материалы и косметические продукты самого высокого качества, ведь ваше здоровье и доверие – главное для нас.</p>',
                 'extra' => null,
-                'code_banner' => '',
+                'code_banner' => 'about_company_top',
                 'full_description' => null
             ],
             [
@@ -39,7 +39,7 @@ class BannerItemsTableSeeder extends Seeder
 			 							<blockquote>Estelife Clinic – медицинский центр в Краснодаре, который поможет вам восстановить свое здоровье, а также сохранить и продлить вашу красоту и молодость.</blockquote>
 			 							<p>Наша клиника оснащена новейшим медицинским оборудованием, позволяющим выполнять диагностику заболеваний максимально информативно и точно. В своей работе мы используем расходные материалы и косметические продукты самого высокого качества, ведь ваше здоровье и доверие – главное для нас.</p>',
                 'extra' => null,
-                'code_banner' => '',
+                'code_banner' => 'about_company_top',
                 'full_description' => null
             ],
             [
@@ -69,7 +69,7 @@ class BannerItemsTableSeeder extends Seeder
                 'code_banner' => 'home_top',
                 'full_description' => null
             ],
-            [
+            /*[
                 'banner_id' => 5,
                 'title' => 'Консультация специалиста',
                 'img' => null,
@@ -131,7 +131,7 @@ class BannerItemsTableSeeder extends Seeder
                 'extra' => '<i class="demo-icon icon-knife"></i>',
                 'code_banner' => '',
                 'full_description' => null
-            ],
+            ],*/
             [
                 'banner_id' => 0,
                 'title' => null,
@@ -169,6 +169,69 @@ class BannerItemsTableSeeder extends Seeder
                 'extra' => null,
                 'code_banner' => 'home_about_us',
                 'full_description' => null
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => 'x',
+                'description' => 'Мы ценим то, что вы выбрали нас! Мы делаем все, для того, чтобы стоимость наших услуг была привлекательна и максимально доступна для вас.',
+                'extra' => 'x',
+                'code_banner' => 'about_company_two_text',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_two',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_two',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_two',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_certificates',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_certificates',
+                'full_description' => 'x'
+            ],
+            [
+                'banner_id' => null,
+                'title' => 'x',
+                'img' => null,
+                'description' => 'x',
+                'extra' => 'x',
+                'code_banner' => 'about_company_certificates',
+                'full_description' => 'x'
             ],
         ];
 

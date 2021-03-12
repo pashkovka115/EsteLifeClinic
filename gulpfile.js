@@ -50,7 +50,7 @@ function js() {
         src_folder + 'libs/jquery/dist/jquery.min.js',
         src_folder + 'libs/waypoints/waypoints.min.js',
         src_folder + 'libs/animate/animate-css.js',
-        src_folder + 'libs/plugins-scroll/plugins-scroll.js',
+        // src_folder + 'libs/plugins-scroll/plugins-scroll.js',
         src_folder + 'libs/magnific/jquery.magnific-popup.min.js',
         src_folder + 'libs/slick/slick.js',
         src_folder + 'libs/inputmask/jquery.inputmask.bundle.js',

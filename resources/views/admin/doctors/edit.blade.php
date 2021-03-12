@@ -49,6 +49,7 @@
 
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="mt-0 header-title">Размер: 269x290</h4>
                                 <input type="file" name="img" id="input-file-now-custom-1" class="dropify"
                                        @if($doctor->img) data-default-file="{{ URL::asset('storage/' . $doctor->img)}}" @endif />
                             </div>

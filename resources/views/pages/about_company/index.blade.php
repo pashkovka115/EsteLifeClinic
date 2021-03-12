@@ -12,11 +12,11 @@
                 </div>
             </div>
         </div>
-        @if(isset($company->top_sliders->visibility) and $company->top_sliders->visibility == '1')
+{{--        @if(isset($company->top_sliders->visibility) and $company->top_sliders->visibility == '1')--}}
         <div class="slider-company-block">
             <div class="slider-company">
-                @foreach($company->top_sliders->items as $item)
-                    @if($item->visibility == '1')
+                @foreach($top_banner as $item)
+{{--                    @if($item->visibility == '1')--}}
                         <div class="item">
                             <div class="container">
                                 <div class="row">
@@ -24,14 +24,16 @@
                                         <div class="left">
                                         {!! $item->description !!}
                                         </div>
+                                        @if($item->img)
                                         <div class="right" style="background-image: url('/storage/{{ $item->img }}');">
-                                            <img src="'/storage/{{ $item->img }}'" alt="">
+                                            <img src="/storage/{{ $item->img }}" alt="">
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
+{{--                    @endif--}}
                 @endforeach
 
             </div>
@@ -54,7 +56,7 @@
                 <div class="slick-dots-custom2"></div>
             </div>
         </div>
-        @endif
+{{--        @endif--}}
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -113,42 +115,47 @@
             </div>
         </div>
     </section>
-    <?php $middle_slider = $company->middle_sliders; ?>
-    @if(isset($middle_slider->visibility) and $middle_slider->visibility == '1')
+    <?php //$middle_slider = $company->middle_sliders; ?>
+{{--    @if(isset($middle_slider->visibility) and $middle_slider->visibility == '1')--}}
     <section class="gallery-company">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="blue-panel">{{ $middle_slider->name }}</div>
+                    <div class="blue-panel">{!! $banner_two_text->description !!}</div>
                     <div class="nav-slider-gallery">
                         <button class="btn-slider" id="gallery-company-prev-btn"><i class="demo-icon icon-arrow-left"></i></button>
                         <button class="btn-slider" id="gallery-company-next-btn"><i class="demo-icon icon-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    @if($middle_slider->items->count() > 0)
+{{--                    @if($middle_slider->items->count() > 0)--}}
                     <div class="gallery-company-slider">
-                        @foreach($middle_slider->items as $item)
+                        @foreach($banner_two as $item)
+                            @if($item->img)
                         <div class="item"><a href="/storage/{{ $item->img }}" class="popup"><img src="/storage/{{ $item->img }}" alt=""></a></div>
+                            @endif
                         @endforeach
                     </div>
-                    @endif
+{{--                    @endif--}}
                 </div>
             </div>
         </div>
     </section>
-    @endif
-    <?php $bottom_sliders = $company->bottom_sliders; ?>
-    @if(isset($bottom_sliders->visibility) and $bottom_sliders->visibility == '1')
+{{--    @endif--}}
+    <?php //$bottom_sliders = $company->bottom_sliders; ?>
+{{--    @if(isset($bottom_sliders->visibility) and $bottom_sliders->visibility == '1')--}}
     <section class="cert-block">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="title">Сертификаты</h2>
                     <div class="cert-slider popup-gallery">
-                        @foreach($bottom_sliders->items as $item)
-                            @if($item->visibility == '1')
+{{--                        @foreach($bottom_sliders->items as $item)--}}
+                        @foreach($banner_certificates as $item)
+{{--                            @if($item->visibility == '1')--}}
+                                @if($item->img)
                         <div class="item"><a href="/storage/{{ $item->img }}"><img src="/storage/{{ $item->img }}" alt=""></a></div>
+{{--                                @endif--}}
                             @endif
                         @endforeach
                     </div>
@@ -156,14 +163,14 @@
             </div>
         </div>
     </section>
-    @endif
+{{--    @endif--}}
 
     @if($reviews->count() > 0)
     <section class="reviews-block">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <h2 class="title">Отзывы</h2>
+                    <h2 class="title">Отзывы <a href="{{ route('front.reviews') }}">Все отзывы</a></h2>
                     <a href="#add-reviews" class="btn btn-reviews-desktop btn-indigo popup-with-form">Написать отзыв</a>
                 </div>
                 <div class="col-lg-9">
@@ -198,7 +205,7 @@
                                 <div class="date">{{ (new DateTime($post->updated_at))->format('d.m.Y') }}</div>
                                 <div class="time">{{ $post->read_time }}</div>
                             </div>
-                            <div class="title"><a href="">{{ $post->title }}</a></div>
+                            <div class="title"><a href="{{ route('front.news.show', ['slug' => $post->slug]) }}">{{ $post->name }}</a></div>
                             <div class="desc">{{ mb_strimwidth(strip_tags($post->content), 0, 110, '...') }}</div>
                         </div>
                         @endforeach

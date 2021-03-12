@@ -11,7 +11,7 @@ class Company extends Model
 
     protected $table = 'company';
     protected $fillable = [
-        'h1',
+        'name',
         'top_slider',
         'middle_slider',
         'bottom_slider',

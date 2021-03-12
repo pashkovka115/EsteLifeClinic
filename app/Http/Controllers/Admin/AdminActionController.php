@@ -51,6 +51,13 @@ class AdminActionController extends Controller
             $img = $request->file('banner_img')->store("images/actions/$folder");
             $data['banner_img'] = $img;
         }
+
+        if ($request->has('show_home')){
+            $data['show_home'] = '1';
+        }else{
+            $data['show_home'] = '0';
+        }
+
         $action = new Action($data);
         $action->save();
 
@@ -134,7 +141,7 @@ class AdminActionController extends Controller
             'conditions' => 'nullable|string',
             'start' => 'nullable|date',
             'finish' => 'nullable|date',
-            'show_home' => 'nullable|numeric',
+            'show_home' => 'nullable',
             'id' => 'nullable|numeric',
         ]);
 
@@ -143,6 +150,13 @@ class AdminActionController extends Controller
         }
 
         $data = $request->except(['_method', '_token', 'img']);
+
+        if ($request->has('show_home')){
+            $data['show_home'] = '1';
+        }else{
+            $data['show_home'] = '0';
+        }
+
         $folder = date('Y/m/d');
         $action = Action::where('id', $id)->firstOrFail();
 
@@ -162,6 +176,8 @@ class AdminActionController extends Controller
                 unlink($old_file);
             }
         }
+
+//        return $data;
 
         $action->update($data);
 

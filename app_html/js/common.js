@@ -688,7 +688,7 @@ $(function() {
 		}
 	} catch(err) {
 
-	};
+	}
 
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 
@@ -716,7 +716,7 @@ function init () {
         // Текст метки
         hintContent: ''
     }, {
-        iconImageHref: 'img/marker.svg', // картинка иконки
+        iconImageHref: '/img/marker.svg', // картинка иконки
         iconImageSize: [40, 48], // размеры картинки
         iconImageOffset: [-65, -130] // смещение картинки
         });

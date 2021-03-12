@@ -203,7 +203,11 @@
                                     <table>
                                         @foreach($doctor->jobs as $job)
                                         <tr>
-                                            <td>{{ date('Y', $job->start->timestamp) }} - {{ date('Y', $job->end->timestamp) }}</td>
+                                            <td>
+                                                @if($job->start and $job->end)
+                                                {{ date('Y', $job->start->timestamp) }} - {{ date('Y', $job->end->timestamp) }}
+                                                @endif
+                                            </td>
                                             <td>{{ $job->position }}</td>
                                             <td>{{ $job->place }}</td>
                                         </tr>
@@ -218,8 +222,10 @@
                                 <h4>Услуги:</h4>
                                 @foreach($doctor->services as $service)
                                 <div class="service-item">
-                                    <div class="title">{{ $service->name }}</div>
-                                    <div class="price">{{ round($service->price) }} ₽</div>
+                                    <div class="title">
+                                        <a style="color: #000000" href="{{ route('front.service.show', ['slug' => $service->slug]) }}">{{ $service->name }}</a>
+                                    </div>
+{{--                                    <div class="price">{{ round($service->price) }} ₽</div>--}}
                                     <div class="order"><a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a></div>
                                 </div>
                                 @endforeach

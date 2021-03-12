@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-5">
                 <div class="contacts-box">
-                    <h2>EsteLife</h2>
+                    <h2 style="font-size: 40px">ESTELIFE CLINIC</h2>
                     <div class="item">
                         <h4>Адрес:</h4>
                         <p>{{ strip_tags(option('address')->val) }}</p>
@@ -72,40 +72,35 @@
             <div class="col-lg-12 wrapper">
                 <div class="column">
                     <div class="logo-box"><a href="/"><img src="{{ asset('img/logo.svg') }}" alt=""></a></div>
-                    <button class="version-visim">Версия для слабовидящих</button>
+                    <button id="specialButton2" class="version-visim">Версия для слабовидящих</button>
                 </div>
                 <div class="column column-menu">
                     <h4>Документы</h4>
-                    <div class="menu-wrap">
+                    <div>
                         {{-- todo: Лицензия на медицинскую деятельность --}}
                         <ul>
-                            @foreach($pages as $page)
-                            <li><a href="{{ route('front.page.show', ['slug' => $page->slug]) }}">{{ $page->name }}</a></li>
+                            @foreach(\Menu::getByName('Документы') as $item)
+                                <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="column column-menu">
                     <h4>О компании</h4>
-                    <div class="menu-wrap">
+                    <div>
                         <ul>
-                            <li><a href="/">Главная</a></li>
-                            <li><a href="{{ route('front.about.company') }}">О нас</a></li>
-                            <li><a href="{{ route('front.contact') }}">Контакты</a></li>
-                            <li><a href="">Наш магазин</a></li>
-                            <li><a href="{{ route('front.price') }}">Цены</a></li>
-                            <li><a href="{{ route('front.actions.index') }}">Акции</a></li>
-                            <li><a href="{{ route('front.before_after.index') }}">До/После</a></li>
-                            <li><a href="{{ route('front.doctors.index') }}">Врачи</a></li>
+                            @foreach(\Menu::getByName('О компании') as $item)
+                            <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="column column-menu">
                     <h4>Услуги</h4>
-                    <div class="menu-wrap">
+                    <div>
                         <ul>
-                            @foreach($parents_cats as $parent_cat)
-                            <li><a href="{{ route('front.price.show.category', ['slug' => $parent_cat->slug]) }}">{{ $parent_cat->name }}</a></li>
+                            @foreach(\Menu::getByName('Услуги') as $item)
+                                <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -330,7 +325,8 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="tab_content">
-                    <div class="tab_item"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5c075c331567f015f38dfbef2fab94ffd902082604e8a9b99c5538513e6ff57f&amp;width=100%25&amp;height=255&amp;lang=ru_RU&amp;scroll=true"></script></div>
+{{--                    <div class="tab_item"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5c075c331567f015f38dfbef2fab94ffd902082604e8a9b99c5538513e6ff57f&amp;width=100%25&amp;height=255&amp;lang=ru_RU&amp;scroll=true"></script></div>--}}
+                    <div class="tab_item"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A622a2ee91443bf0ab024d19a4ebf9c68e83113569d3cb4a618b22c6c685f44cb&amp;width=100%25&amp;height=255&amp;lang=ru_RU&amp;scroll=true"></script></div>
                     <div class="tab_item"><img src="{{ asset('img/karta.jpg') }}" alt=""></div>
                 </div>
             </div>
@@ -381,5 +377,11 @@
 <script src="https://api-maps.yandex.ru/2.0/?load=package.standard,package.geoObjects&lang=ru-RU" type="text/javascript"></script>
 <script src="{{ asset('js/scripts.min.js') }}"></script>
 <script src="https://lidrekon.ru/slep/js/uhpv-full.min.js"></script>
+<script>
+$('#specialButton2').on('click', function (){
+    $('#specialButton').click();
+    return false;
+});
+</script>
 {{ option('script_footer')->val }}
 

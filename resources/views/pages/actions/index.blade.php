@@ -20,7 +20,9 @@
                         <div class="action-box">
                             <div class="image">
                                 <a href="{{ route('front.actions.show', ['slug' => $action->slug]) }}">
+                                    @if($action->banner_img)
                                     <img src="storage/{{ $action->banner_img }}" alt="">
+                                    @endif
                                     @if($diff > 3)
                                     <span class="date-label">до {{ (\Carbon\Carbon::createFromFormat('Y-m-d', $action->finish))->formatLocalized('%d %B %Y') }}</span>
                                     @else

@@ -168,6 +168,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::delete('service/{id}', 'Admin\Price\AdminServiceController@destroy')->name('price.service.destroy');
 
         Route::get('service-code-disable', 'Admin\Price\AdminServiceController@disableShowingCode')->name('price.service.code_disable');
+        Route::get('service-code-enable', 'Admin\Price\AdminServiceController@enableShowingCode')->name('price.service.code_enable');
     });
 
 
@@ -184,7 +185,18 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::resource('category/news', 'Admin\AdminCatNewsController')->except('show')->names('category.news');
         Route::resource('news', 'Admin\AdminNewsController')->except('show')->names('news');
         Route::resource('pages', 'Admin\AdminPageController')->except('show')->names('pages');
-        Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
+//        Route::resource('company', 'Admin\AdminCompanyController')->only(['edit', 'update'])->names('company');
+
+        Route::prefix('company')->group(function (){
+            Route::get('{company}/edit', 'Admin\AdminCompanyController@edit')->name('company.edit');
+            Route::put('{company}', 'Admin\AdminCompanyController@update')->name('company.update');
+            Route::prefix('banners')->group(function (){
+                Route::get('edit/{id}', 'Admin\AdminCompanyController@bannerItemEdit')->name('company.banners.edit');
+                Route::post('update/{id}', 'Admin\AdminCompanyController@bannerItemUpdate')->name('company.banners.update');
+                Route::post('destroy/{id}', 'Admin\AdminCompanyController@bannerItemDestroy')->name('company.banners.destroy');
+                Route::post('store', 'Admin\AdminCompanyController@bannerItemStore')->name('company.banners.store');
+            });
+        });
 
         Route::post('file-upload', 'Admin\AdminPageController@file_upload')->name('pages.file_upload');
     });

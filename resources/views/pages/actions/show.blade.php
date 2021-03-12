@@ -8,7 +8,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="date">{{ (new DateTime($action->start))->format('d.m.Y') }} - {{ (new DateTime($action->finish))->format('d.m.Y') }}</div>
+                    @php
+                    $end_action_time = new DateTime($action->finish);
+                    @endphp
+                    <div class="date">{{ (new DateTime($action->start))->format('d.m.Y') }} - {{ $end_action_time->format('d.m.Y') }}</div>
+                    @if((new DateTime("now")) > $end_action_time)
+                        <div class="date" style="color: red">Акция завершена</div>
+                    @endif
                     <div class="program-title">
                         <p>{{ $action->type }}</p>
                         <p class="big">{{ $action->name }}</p>

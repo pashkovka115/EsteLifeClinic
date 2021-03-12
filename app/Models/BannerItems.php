@@ -12,6 +12,7 @@ class BannerItems extends Model
     protected $table = 'banner_items';
     protected $fillable = [
         'banner_id',
+        'code_banner',
         'visibility',
         'title',
         'img',

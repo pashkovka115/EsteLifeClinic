@@ -89,14 +89,14 @@
                     <h6 class="menu-title">Цены</h6>
                 </div>
                 <ul class="nav metismenu">
-                    <li class="nav-item"><a class="nav-link {{ active('admin.price.direction.index') }}" href="{{ route('admin.price.direction.index') }}">Направления</a></li>
+                    <li class="nav-item"><a class="nav-link {{ active('admin.price.direction.index') }}" href="{{ route('admin.price.direction.index') }}"><i class="mdi mdi-directions-fork mdi-18px"></i> Направления</a></li>
                     <hr>
                 <li class="nav-item"><a class="nav-link  {{ active('admin.price.service.all_services') }}" href="{{ route('admin.price.service.all_services') }}"><i class="mdi mdi-format-list-bulleted"></i> Все услуги</a></li>
                     <hr>
                 <li class="nav-item"><a class="nav-link  {{ active('admin.price.service.create_new_service') }}" href="{{ route('admin.price.service.create_new_service') }}"><i class="mdi mdi-plus"></i> Добавить цены</a></li>
                     <hr>
-                <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.service.code_disable') }}" style="color: red"><i class="mdi mdi-minus"></i>Быстро отключить показ кода</a></li>
-                    <hr>
+{{--                <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.service.code_disable') }}" style="color: red"><i class="mdi mdi-minus"></i>Быстро отключить показ кода</a></li>--}}
+{{--                    <hr>--}}
                     @foreach($directions as $direction)
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.price.category.index', ['direction_id' => $direction->id]) }}">- {{ $direction->name }}</a></li>
                     @endforeach

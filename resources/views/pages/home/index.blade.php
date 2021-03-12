@@ -12,7 +12,9 @@
 {{--            @foreach($home->top_sliders->items as $item)--}}
             @foreach($top_slider as $item)
             <div class="item">
-                <img src="/storage/{{ $item->img }}" alt="">
+                @if($item->img)
+                <img src="/storage/{{ $item->img }}" alt="" style="max-height: 563px; width: auto;">
+                @endif
             </div>
             @endforeach
 
@@ -36,7 +38,9 @@
                     <div class="tabs">
                         <span class="tab"><i class="demo-icon icon-doctor"></i> Консультация специалиста</span>
                         @foreach($categories as $category)
+                            @if($category->img)
                         <span class="tab"><img src="/storage/{{ $category->img }}" alt="">&nbsp;&nbsp;&nbsp; {{ $category->name }}</span>
+                            @endif
                         @endforeach
                     </div>
                     <div class="tab_content">
@@ -51,7 +55,7 @@
                         </div>
 
                         @foreach($categories as $category)
-                        <div class="tab_item" style="background-image: url('/storage/{{ $category->bg_img }}');">
+                        <div class="tab_item" @if($category->bg_img) style="background-image: url('/storage/{{ $category->bg_img }}');" @endif>
                             <div class="mobile-tab"><i class="demo-icon icon-laser"></i> Лазерная косметология</div>
                             <div class="wrap">
                                 <div class="ul-wrap">
@@ -97,9 +101,9 @@
                             <a href="{{ route('front.actions.show', ['slug' => $action->slug]) }}">
                                 @if($action->banner_img)<img src="/storage/{{ $action->banner_img }}" alt="{{ $action->name }}">@endif
 
-                                @if($diff > 3)
+                                @if($diff > 3 and !is_null($action->finish))
                                     <span class="date-label">до {{ (\Carbon\Carbon::createFromFormat('Y-m-d', $action->finish))->formatLocalized('%d %B %Y') }}</span>
-                                @else
+                                @elseif(!is_null($action->finish))
                                     <span class="date-label date-red">{{ Lang::choice('Остался|Осталось|Осталось', $diff) }} {{ $diff }} {{ Lang::choice('день|дня|дней', $diff) }}!</span>
                                 @endif
                             </a>
@@ -123,7 +127,11 @@
                             @if($doctor->level == '1')
                             <div class="label"><i class="demo-icon icon-star"></i> <span>Врач высшей категории</span></div>
                             @endif
-                            <div class="image"><img src="/storage/{{ $doctor->img }}" alt="{{ $doctor->name }}"></div>
+                            <div class="image">
+                                @if($doctor->img)
+                                <img src="/storage/{{ $doctor->img }}" alt="{{ $doctor->name }}">
+                                @endif
+                            </div>
                             <div class="desc">
                                 <div class="title">{{ $doctor->name }}</div>
                                 @foreach($doctor->professions as $profession)
@@ -166,7 +174,11 @@
                     <div class="col-lg-6">
                         <div class="slider-company">
                             @foreach($about_us_slider as $item)
-                            <div class="item"><img src="/storage/{{ $item->img }}" alt=""></div>
+                            <div class="item">
+                                @if($item->img)
+                                <img src="/storage/{{ $item->img }}" alt="">
+                                @endif
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -237,7 +249,7 @@
                                 <div class="date">{{ (new DateTime($post->updated_at))->format('d.m.Y') }}</div>
                                 <div class="time">{{ $post->read_time }}</div>
                             </div>
-                            <div class="title"><a href="">{{ $post->title }}</a></div>
+                            <div class="title"><a href="{{ route('front.news.show', ['slug' => $post->slug]) }}">{{ $post->name }}</a></div>
                             <div class="desc">{{ mb_strimwidth(strip_tags($post->content), 0, 110, '...') }}</div>
                         </div>
                         @endforeach

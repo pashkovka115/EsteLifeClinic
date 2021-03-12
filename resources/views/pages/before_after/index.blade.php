@@ -48,8 +48,12 @@
                         ?>
                         <div class="before-after-box {{ $class }}">
                             <div class="image twentytwenty-container">
-                                <img src="/storage/{{ $item->before_images }}" alt="">
-                                <img src="/storage/{{ $item->after_images }}" alt="">
+                                @if($item->before_images)
+                                    <img src="/storage/{{ $item->before_images }}" alt="">
+                                @endif
+                                @if($item->after_images)
+                                    <img src="/storage/{{ $item->after_images }}" alt="">
+                                @endif
                                 <span class="label label-before">До</span>
                                 <span class="label label-after">После</span>
                             </div>

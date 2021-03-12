@@ -35,9 +35,7 @@
                                 }
                             }
                             @endphp
-                            {{--@php
-                                //dd($arr)
-                            @endphp--}}
+
                             @if(count($arr) > 0)
                             <p>Со скидкой</p>
                             <p class="big">От {{ min($arr) }}</p>

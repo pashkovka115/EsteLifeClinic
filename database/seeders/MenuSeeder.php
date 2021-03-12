@@ -8,10 +8,27 @@ class MenuSeeder extends Seeder
 {
     public function run()
     {
-        $menu = [
-            'name' => 'Верхнее меню',
-            'created_at' => now(),
-            'updated_at' => now(),
+        $menus = [
+            [
+                'name' => 'Верхнее меню',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Документы',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'О компании',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Услуги',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         $menu_items = [
@@ -103,9 +120,119 @@ class MenuSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'label' => 'Политика конфиденциальности',
+                'link' => '/page/politika-konfidencialnosti',
+                'parent' => '0',
+                'sort' => '0',
+                'class' => null,
+                'menu' => 2,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Страница 2',
+                'link' => '/page/stranica-2',
+                'parent' => '0',
+                'sort' => '1',
+                'class' => null,
+                'menu' => 2,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Главная',
+                'link' => '/',
+                'parent' => '0',
+                'sort' => '0',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'О нас',
+                'link' => '/about-company',
+                'parent' => '0',
+                'sort' => '1',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Контакты',
+                'link' => '/contacts',
+                'parent' => '0',
+                'sort' => '2',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Цены',
+                'link' => '/price',
+                'parent' => '0',
+                'sort' => '3',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Акции',
+                'link' => '/actions',
+                'parent' => '0',
+                'sort' => '4',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'До/После',
+                'link' => '/difference',
+                'parent' => '0',
+                'sort' => '5',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Врачи',
+                'link' => '/doctors',
+                'parent' => '0',
+                'sort' => '6',
+                'class' => null,
+                'menu' => 3,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'label' => 'Услуга',
+                'link' => '#',
+                'parent' => '0',
+                'sort' => '0',
+                'class' => null,
+                'menu' => 4,
+                'depth' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
-        \DB::table('admin_menus')->insert($menu);
+        \DB::table('admin_menus')->insert($menus);
         \DB::table('admin_menu_items')->insert($menu_items);
     }
 }

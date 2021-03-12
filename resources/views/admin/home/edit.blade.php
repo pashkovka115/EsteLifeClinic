@@ -34,7 +34,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label>Показывать последних новостей в списке</label>
                     <select name="count_news" class="form-control">
                         @for($i=1; $i<=12; $i++)
@@ -48,7 +48,7 @@
                             <option value="{{ $i }}"{{ $selected }}>{{ $i }}</option>
                         @endfor
                     </select>
-                </div>
+                </div>--}}
                 <button type="submit" class="btn btn-gradient-success my-3">Сохранить</button>
             </form>
         </div>
@@ -57,6 +57,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Верхний баннер</h3>
+            <h4 class="mt-0 header-title">Размер: 1920x563</h4>
             <button id="btnBannerTop" class="btn btn-primary" data-toggle="modal" data-target="#bannerTop"><i class="fas fa-plus"></i> Добавить изображение</button>
         </div>
 
@@ -98,7 +99,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Баннер акции</h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#bannerTop"><i class="fas fa-plus"></i> Добавить акцию в слайдер</button>
+{{--            <button class="btn btn-primary" data-toggle="modal" data-target="#bannerTop"><i class="fas fa-plus"></i> Добавить акцию в слайдер</button>--}}
         </div>
         <div class="card-body">
             <table class="table table-bordered dt-responsive nowrap"
@@ -168,6 +169,7 @@
             </form>
 
             <button id="addItemAbout" class="btn btn-primary mb-3" data-toggle="modal" data-target="#bannerTop"><i class="fas fa-plus"></i> Добавить изображение</button>
+            <h4 class="mt-0 header-title">Размер: 950x500</h4>
             <table class="table table-bordered dt-responsive nowrap"
                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
@@ -260,15 +262,20 @@
                 }
             });
 
+            var data = {
+                // show_home: status,
+                id: id.split('_')[1],
+                method: 'ajax',
+                _method: 'PUT'
+            };
+            if (status === '1'){
+                data.show_home = '1'
+            }
+
             $.ajax({
                 type: "POST",
                 url: "{{ url('/admin/content/actions/actions') }}/" + id,
-                data: {
-                    show_home: status,
-                    id: id.split('_')[1],
-                    method: 'ajax',
-                    _method: 'PUT'
-                },
+                data: data,
                 success: function(resp) {
                     // console.log(resp)
                     // success function is called when data came back
