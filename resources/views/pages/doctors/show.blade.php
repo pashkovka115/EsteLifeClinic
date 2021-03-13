@@ -106,7 +106,7 @@
                                 </div>
                                     @endif
                                 <div class="btn-wrap">
-                                    <a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a>
+                                    <a href="#order" data-doctor-id="{{ $doctor->id }}" onclick="setDoctor(this)" class="btn btn-indigo popup-with-form">Записаться на прием</a>
                                     <a id="doctor_online" data-doctor="{{ $doctor->id }}" href="#online" class="btn btn-border-indigo popup-with-form">Онлайн-консультация</a>
                                 </div>
                             </div>
@@ -226,7 +226,9 @@
                                         <a style="color: #000000" href="{{ route('front.service.show', ['slug' => $service->slug]) }}">{{ $service->name }}</a>
                                     </div>
 {{--                                    <div class="price">{{ round($service->price) }} ₽</div>--}}
-                                    <div class="order"><a href="#order" class="btn btn-indigo popup-with-form">Записаться на прием</a></div>
+                                    <div class="order">
+                                        <a href="#order" data-doctor-id="{{ $doctor->id }}" data-service-id="{{ $service->id }}" onclick="setService(this); setDoctor(this);" class="btn btn-indigo popup-with-form">Записаться на прием</a>
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>

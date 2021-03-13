@@ -64,8 +64,10 @@ class AdminCategoryController extends Controller
             ->where('type', 1)
             ->where('parent_id', 0)
             ->whereHas('directions', function ($query) use ($serv){
-                $query->where('pricedirections.id', $serv->directions[0]->id);
+                $query->where('pricedirections.id', $serv->pricedirection_id);
+//                $query->where('pricedirections.id', $serv->directions[0]->id);
             })->get();
+//        dd($servs);
 
 
         return view('admin.price.categories.edit', [
@@ -120,6 +122,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
+            'parent_id' => 'required|numeric',
             'pricedirection_id' => 'required|numeric',
             'name' => 'required|string',
             'price' => 'nullable|string',

@@ -29,7 +29,7 @@
                         <?php
                         $selected = '';
                         // пока выбор только одного направления
-                        if ($direction->id == $service->directions[0]->id){
+                        if ($direction->id == $service->pricedirection_id){
                             $selected = ' selected';
                         }
                         ?>
@@ -47,7 +47,7 @@
                         <?php
                         $selected = '';
                         // пока выбор только одного направления
-                        if ($group_serv->id == $service->directions[0]->id){
+                        if ($group_serv->id == $service->parent_id){
                             $selected = ' selected';
                         }
                         ?>

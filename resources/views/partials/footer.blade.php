@@ -229,24 +229,25 @@
         </div>
         <div class="step-item step-2">
             <select name="cat_servise_id">
-                <option value="Не важно">Выберите направление</option>
+                <option value="">Выберите направление</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
             <select name="service_id">
-                <option value="Не важно">Выберите услугу</option>
+                <option value="">Выберите услугу</option>
                 @foreach($services as $service)
                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                 @endforeach
             </select>
             <select name="doctor_id">
-                <option value="Не важно">Выберите врача</option>
+                <option value="">Выберите врача</option>
                 @foreach($doctors as $doctor)
                 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                 @endforeach
             </select>
             <div class="btn btn-indigo" id="step-3">Последний вопрос</div>
+            <div class="btn btn-default mt-3" id="step-2-back">Назад</div>
         </div>
         <div class="step-item step-3">
             <input type="date" name="date"  placeholder="Желаемая дата посещения" required>
@@ -258,6 +259,7 @@
                 @endfor
             </select>
             <button class="btn btn-indigo" id="step-3">Отправить</button>
+            <div class="btn btn-default mt-3" id="step-3-back">Назад</div>
         </div>
         <p class="policy">Нажимая на кнопку, вы соглашаетесь с <a href="">«политикой конфиденциальности»</a></p>
         <p>Вы также можете позвонить по номеру<br /> {{ option('phone1')->val }}, чтобы узнать любую информацию</p>
@@ -382,6 +384,32 @@ $('#specialButton2').on('click', function (){
     $('#specialButton').click();
     return false;
 });
+</script>
+<script>
+    function setService(el){
+        let id = $(el).data('service-id');
+        let form_order = $('form#order');
+        form_order.find('select[name="service_id"]').find('option[value="'+ id +'"]').attr('selected','selected');
+        form_order.find('select[name="service_id"]').next().find('ul li:first-child').removeClass('selected')
+        let current_li = form_order.find('select[name="service_id"]').next().find('li[data-value="'+ id +'"]');
+        current_li.addClass('selected');
+        let span_current = form_order.find('select[name="service_id"]').next().find('span.current');
+        span_current.html(current_li.text());
+
+        console.log('service = ', id)
+    }
+    function setDoctor(el){
+        let id = $(el).data('doctor-id');
+        let form_order = $('form#order');
+        form_order.find('select[name="doctor_id"]').find('option[value="'+ id +'"]').attr('selected','selected');
+        form_order.find('select[name="doctor_id"]').next().find('ul li:first-child').removeClass('selected')
+        let current_li = form_order.find('select[name="doctor_id"]').next().find('li[data-value="'+ id +'"]');
+        current_li.addClass('selected');
+        let span_current = form_order.find('select[name="doctor_id"]').next().find('span.current');
+        span_current.html(current_li.text());
+
+        console.log('doctor = ', id)
+    }
 </script>
 {{ option('script_footer')->val }}
 

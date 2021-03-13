@@ -12,9 +12,9 @@ class AppointmentController extends Controller
         $request->validate([
             'name' => 'required|string',
             'phone' => 'required|regex:/[+()\d-]/',
-            'cat_servise_id' => 'required|numeric',
-            'service_id' => 'required|numeric',
-            'doctor_id' => 'required|numeric',
+            'cat_servise_id' => 'nullable|numeric',
+            'service_id' => 'nullable|numeric',
+            'doctor_id' => 'nullable|numeric',
             'data' => 'nullable|string'
         ]);
 

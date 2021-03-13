@@ -31,9 +31,21 @@
                     <tr>
                         <td>{{ $appointment->name }}</td>
                         <td>{{ $appointment->phone }}</td>
-                        <td>{{ $appointment->cat_servise->name }}</td>
-                        <td>{{ $appointment->service->name }}</td>
-                        <td>{{ $appointment->doctor->name }}</td>
+                        <td>
+                            @if($appointment->cat_servise)
+                            {{ $appointment->cat_servise->name }}
+                            @endif
+                        </td>
+                        <td>
+                            @if($appointment->service)
+                            {{ $appointment->service->name }}
+                            @endif
+                        </td>
+                        <td>
+                            @if($appointment->doctor)
+                            {{ $appointment->doctor->name }}
+                            @endif
+                        </td>
                         <td>{{ $appointment->date }}/{{ $appointment->time }}</td>
                         <td>
                             <a href="{{ route('admin.home.home.appointments.edit', ['appointment' => $appointment->id]) }}"><i

@@ -91,8 +91,14 @@
                                                 @foreach($service->children as $child)
                                                     <div class="service-item">
                                                         <div class="title">{{ $child->name }} @if($child->show_code == '1') {{ $child->code }} @endif</div>
-                                                        <div class="price">{{ $child->price }} ₽</div>
-                                                        <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
+                                                        @if(!is_null($child->discount_price) and $child->discount_price != '')
+                                                            <div class="price">{{ $child->discount_price }} ₽</div>
+                                                        @else
+                                                            <div class="price">{{ $child->price }} ₽</div>
+                                                        @endif
+                                                        <div class="order">
+                                                            <a href="#order" data-service-id="{{ $child->id }}" onclick="setService(this)" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a>
+                                                        </div>
                                                     </div>
                                                     @if($loop->iteration == 2)
                                                         @break
@@ -109,7 +115,9 @@
                                                             <div class="service-item">
                                                                 <div class="title">{{ $child->name }} @if($child->show_code == '1') {{ $child->code }} @endif</div>
                                                                 <div class="price">{{ $child->price }} ₽</div>
-                                                                <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
+                                                                <div class="order">
+                                                                    <a href="#order" data-service-id="{{ $child->id }}" onclick="setService(this)" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a>
+                                                                </div>
                                                             </div>
 
                                                         @endforeach
@@ -121,7 +129,7 @@
                                             <div class="service-item">
                                                 <div class="title">{{ $service->name }} @if($service->show_code == '1') {{ $service->code }} @endif</div>
                                                 <div class="price">{{ $service->price }} ₽</div>
-                                                <div class="order"><a href="#order" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
+                                                <div class="order"><a href="#order" data-service-id="{{ $service->id }}" onclick="setService(this)" class="btn btn-indigo btn-order popup-with-form">Записаться на прием</a></div>
                                             </div>
                                         @endif
                                     @endforeach

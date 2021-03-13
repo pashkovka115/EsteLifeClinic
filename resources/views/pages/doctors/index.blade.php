@@ -62,7 +62,7 @@
                             <div class="doc-card">
                                 @if($doctor->img)
                                     <div class="image">
-                                        <img src="/storage/{{ $doctor->img }}" alt="" style="max-height: 290px; width: auto;">
+                                        <img src="/storage/{{ $doctor->img }}" alt="" style="max-height: 260px; width: auto; object-fit: cover;">
                                     </div>
                                 @endif
                                 <div class="desc">

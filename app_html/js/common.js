@@ -88,8 +88,38 @@ $(function() {
 		$(this).parents(".column-menu").find(".menu-wrap").slideToggle();
 	});
 
+	$('#step-2-back').on('click', function (){
+        let form_order = $("form#order");
+        form_order.find(".step-digit-2").removeClass("active");
+        form_order.find(".step-digit-1").addClass("active");
+        form_order.find(".step-1").addClass("active");
+        form_order.find(".step-2").removeClass("active");
+    });
+
+	$('#step-3-back').on('click', function (){
+        let form_order = $("form#order");
+        form_order.find(".step-digit-2").addClass("active");
+        form_order.find(".step-digit-3").removeClass("active");
+        form_order.find(".step-3").removeClass("active");
+        form_order.find(".step-2").addClass("active");
+    });
+
 
 	$("#step-2").click(function() {
+        // console.log($(this).siblings('input[name="name"]').val())
+        if ($(this).siblings('input[name="name"]').val() === ''){
+            $(this).siblings('input[name="name"]').css('borderColor', 'red');
+            return false;
+        }else {
+            $(this).siblings('input[name="name"]').css('borderColor', 'green');
+        }
+        if ($(this).siblings('input[name="phone"]').val() === ''){
+            $(this).siblings('input[name="phone"]').css('borderColor', 'red');
+            return false;
+        }else {
+            $(this).siblings('input[name="phone"]').css('borderColor', 'green');
+        }
+
 		$(this).parents(".popup-form").find(".step-item").removeClass("active");
 		$(".step-2").addClass("active");
 		$(".popup-form").find(".step-digit").removeClass("active");
