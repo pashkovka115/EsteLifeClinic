@@ -19,9 +19,9 @@ class CreateOnlineConsultationTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('phone', 36);
-            $table->unsignedBigInteger('cat_servise_id');
-            $table->unsignedBigInteger('service_id');
-            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('cat_servise_id')->nullable();
+            $table->unsignedBigInteger('service_id')->nullable();
+            $table->unsignedBigInteger('doctor_id')->nullable();
             $table->date('date')->nullable();
             $table->string('time')->nullable();
             $table->timestamps();

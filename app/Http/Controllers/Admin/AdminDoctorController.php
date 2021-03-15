@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\HistoryWork;
+use App\Models\OnlineConsultation;
 use App\Models\PracticalInterest;
 use App\Models\Profession;
 use App\Models\Service;
@@ -274,13 +275,25 @@ class AdminDoctorController extends Controller
 
     public function destroy($id)
     {
-        $db_doctor = Doctor::with(['professions', 'jobs', 'services', 'interests', 'treatment_history'])->where('id', $id)->firstOrFail();
+        $db_doctor = Doctor::with([
+            'professions',
+            'jobs',
+            'services',
+            'interests',
+            'treatment_history',
+            'onlineConsultations'
+        ])->where('id', $id)->firstOrFail();
+
+//        dd($db_doctor);
+
         $db_doctor->services()->detach(array_keys(Service::all('id')->keyBy('id')->toArray()));
         $db_doctor->professions()->detach(array_keys(Profession::all('id')->keyBy('id')->toArray()));
         $db_doctor->jobs()->where('doctor_id', $id)->delete();
         $db_doctor->interests()->where('doctor_id', $id)->delete();
         $db_doctor->treatment_history()->delete();
         $db_doctor->appointments()->delete();
+
+        OnlineConsultation::where('doctor_id', $id)->update(['doctor_id' => null]);
 
         $old_file = storage_path('app/public') . '/' . $db_doctor->img;
         if (is_file($old_file)){

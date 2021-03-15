@@ -29,6 +29,7 @@
                             <input class="form-control" type="text" name="phone" value="{{ $appointment->phone }}">
                         </div>
 
+                        @if(!is_null($appointment->cat_servise))
                         <div class="form-group col-sm-12">
                             <label>Категория</label>
                             <select name="cat_servise_id" class="form-control">
@@ -42,7 +43,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endif
 
+                        @if(!is_null($appointment->cat_servise))
                         <div class="form-group col-sm-12">
                             <label>Услуга</label>
                             <select name="service_id" class="form-control">
@@ -56,7 +59,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endif
 
+                        @if(!is_null($appointment->doctor))
                         <div class="form-group col-sm-12">
                             <label>Врач</label>
                             <select name="doctor_id" class="form-control">
@@ -70,6 +75,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endif
 
                         <div class="form-group col-sm-12">
                             <label>Дата</label>

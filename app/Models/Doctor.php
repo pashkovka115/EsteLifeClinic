@@ -98,4 +98,10 @@ class Doctor extends Model
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
     }
+
+
+    public function onlineConsultations()
+    {
+        return $this->hasMany(OnlineConsultation::class, 'doctor_id');
+    }
 }
