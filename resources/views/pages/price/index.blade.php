@@ -71,7 +71,9 @@
                     </div>
                     @endif
                         <div class="price-list-block">
-
+@php
+$shown_services = [];
+@endphp
                             @foreach($directions as $direction)
                             <div class="price-list-item" style="margin-bottom: 40px">
                                 @if($direction->services->count() > 0)
@@ -81,7 +83,8 @@
                                 @endif
                                 <div class="right">
                                     @foreach($direction->services as $service)
-                                        @if($service->type == 1)
+                                        @if($service->type == 1 and !in_array($service->id, $shown_services))
+                                            @php($shown_services[] = $service->id)
                                             @if($service->children->count() > 0)
                                                 <div class="service-item service-item-blue">
                                                     <div class="title">{{ $service->name }}</div>
@@ -89,6 +92,10 @@
                                             @endif
                                             @if($service->type == 1 and $service->children->count() > 0)
                                                 @foreach($service->children as $child)
+                                                    @if(in_array($child->id, $shown_services))
+                                                        @continue
+                                                    @endif
+                                                    @php($shown_services[] = $child->id)
                                                     <div class="service-item">
                                                         <div class="title">{{ $child->name }} @if($child->show_code == '1') {{ $child->code }} @endif</div>
                                                         @if(!is_null($child->discount_price) and $child->discount_price != '')
@@ -107,6 +114,10 @@
                                                 @if($service->children->count() > 2)
                                                     <div class="hidden-part">
                                                         @foreach($service->children as $child)
+                                                            @if(in_array($child->id, $shown_services))
+                                                                @continue
+                                                            @endif
+                                                            @php($shown_services[] = $child->id)
                                                             <?php
                                                                 if($loop->iteration < 2){
                                                                     continue;
@@ -125,7 +136,8 @@
                                                     <button class="open-price-list">Развернуть таблицу</button>
                                                 @endif
                                             @endif
-                                        @elseif($service->type == 2)
+                                        @elseif($service->type == 2 and !in_array($service->id, $shown_services))
+                                            @php($shown_services[] = $service->id)
                                             <div class="service-item">
                                                 <div class="title">{{ $service->name }} @if($service->show_code == '1') {{ $service->code }} @endif</div>
                                                 <div class="price">{{ $service->price }} ₽</div>
