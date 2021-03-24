@@ -1,4 +1,4 @@
-# germes-shop
+# germes EsteLife Clinic
 
 php artisan key:generate  
 php artisan storage:link  
